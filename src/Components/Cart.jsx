@@ -2,10 +2,14 @@ import React from 'react'
 import cart from "../Images/Cart.svg"
 
 function Cart() {
+
+
+
+
     return (
-        <div className='max-w-screen-xl m-auto mt-32 flex flex-col gap-10'>
+        <div className='max-w-screen-xl m-auto mt-32 flex flex-col gap-14'>
             <div className='flex flex-col items-center justify-center leading-10'>
-                <p className='text-[42px]'>Explore what resonates best with your preferences.</p>
+                <p className='text-[42px] text-[#146C60]'>Explore what resonates best with your preferences.</p>
                 <span className='text-[16px] text-[#AEB3B6]'>Select the card category that aligns most fittingly with your inclinations.</span>
             </div>
             <div class=" flex justify-center  gap-14    ">

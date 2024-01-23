@@ -4,6 +4,7 @@ import "../Css/home.css"
 import Main from '../Components/Main';
 import Cart from '../Components/Cart';
 import ScanCart from './ScanCart';
+import VisitCart from './VisitCart';
 
 const Home = () => {
     // State variables to manage scroll behavior
@@ -113,6 +114,7 @@ const Home = () => {
                 <Main />
                 <Cart />
                 <ScanCart />
+                <VisitCart />
             </div>
         </div>
     );
