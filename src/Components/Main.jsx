@@ -1,6 +1,9 @@
 import React from 'react'
 import MologLogo from "../Images/molog logo 1.svg"
-import reactangle from "../Images/Group 2240.png"
+import phone from "../Images/phone.png"
+import Cart from './Cart'
+
+
 
 function Main() {
 
@@ -9,12 +12,13 @@ function Main() {
     };
 
 
+
     return (
         <>
             <div className='flex max-w-screen-xl pt-52 mx-auto items-center justify-between'>
                 <div className='flex flex-col gap-10'>
                     <div className='leading-none'>
-                        <p className='text-[86px]  text-[#146C60]'>The professional way</p>
+                        <p  className='text-[86px]  text-[#146C60]'>The professional way</p>
                         <p className='text-[86px]   text-[#022D24]'>for networking</p>
                         <span className=' text-[16px] text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
                     </div>
@@ -38,9 +42,11 @@ function Main() {
 
                 </div>
             </div >
-            <section className='my-32'>
-                <img src={reactangle} className='w-full' alt="" />
+            <section className='mt-32  '>
+                <img src={"https://i.postimg.cc/DZpNRk9J/Group2.png"} className='    w-full ' alt="" />
+                {/* <img src={phone} className=' absolute top-  m-auto ' alt="" /> */}
             </section>
+
         </>
     )
 }

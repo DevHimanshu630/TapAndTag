@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import logo from "../Images/logo.svg"
 import "../Css/home.css"
 import Main from '../Components/Main';
+import Cart from '../Components/Cart';
+import ScanCart from './ScanCart';
 
 const Home = () => {
     // State variables to manage scroll behavior
@@ -109,6 +111,8 @@ const Home = () => {
                 }}
             >
                 <Main />
+                <Cart />
+                <ScanCart />
             </div>
         </div>
     );
