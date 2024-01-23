@@ -5,6 +5,10 @@ import Main from '../Components/Main';
 import Cart from '../Components/Cart';
 import ScanCart from './ScanCart';
 import VisitCart from './VisitCart';
+import cart from "../Images/Frame.jpg"
+import scan from "../Images/scan 1.svg"
+import DeginationCard from './DeginationCard';
+import DigitalCard from './DigitalCard';
 
 const Home = () => {
     // State variables to manage scroll behavior
@@ -56,17 +60,19 @@ const Home = () => {
     };
 
 
-
-
-    const linkStyle = {
-        float: 'left',
-        display: 'block',
-        color: '#f2f2f2',
-        textAlign: 'center',
-        padding: '15px',
-        textDecoration: 'none',
-        fontSize: '17px',
+    const mymenu = {
+        imageUrl: cart,
+        heading: "Share contact details with a single tap",
+        paragraph: "For people who want to make a great first impression. Tap and share your contact details, gather leads and connect to over 5,000 apps and CRM tools."
     };
+
+    const mymenusec = {
+        imageUrl: scan,
+        heading: "Unlock the untapped potential",
+        paragraph: "an eco-friendly innovation poised to revolutionize networking and information exchange."
+    };
+
+
     return (
         <div>
             <div id="navbar" style={navbarStyle} >
@@ -106,15 +112,18 @@ const Home = () => {
             </div>
             <div
                 style={{
-                    padding: '0px 0px 2500px',
+                    padding: '0px 0px 200px',
                     fontSize: '30px',
                     marginTop: '100px',
                 }}
             >
                 <Main />
                 <Cart />
-                <ScanCart />
+                <ScanCart img={mymenusec.imageUrl} menuheading={mymenusec.heading} menusubheading={mymenusec.paragraph} />
                 <VisitCart />
+                <ScanCart img={mymenu.imageUrl} menuheading={mymenu.heading} menusubheading={mymenu.paragraph} />
+                <DeginationCard />
+                <DigitalCard />
             </div>
         </div>
     );

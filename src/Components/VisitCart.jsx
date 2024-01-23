@@ -18,14 +18,14 @@ function VisitCart() {
                     <div className='flex flex-col gap-10'>
                         <div className=' flex gap-3'>
                             <img src={people} alt="" />
-                            <div className=' leading-5'>
+                            <div className=' leading-5 flex flex-col gap-3'>
                                 <p className='text-[28px] text-[#4D4D4D]'>241</p>
                                 <p className='text-[16px] text-[#717171]'>Cards generated</p>
                             </div>
                         </div>
                         <div className=' flex gap-3'>
                             <img src={carts} alt="" />
-                            <div className=' leading-5'>
+                            <div className=' leading-5 flex flex-col gap-3'>
                                 <p className='text-[28px] text-[#4D4D4D]'>4</p>
                                 <p className='text-[16px] text-[#717171]'>Types of Cards</p>
                             </div>
@@ -35,14 +35,14 @@ function VisitCart() {
                         <div className=' flex gap-3'>
                             <img src={scan} alt="" />
 
-                            <div className=' leading-5'>
+                            <div className=' leading-5 flex flex-col gap-3'>
                                 <p className='text-[28px] text-[#4D4D4D]'>46.3k</p>
                                 <p className='text-[16px] text-[#717171]'>Scans</p>
                             </div>
                         </div>
                         <div className=' flex gap-3'>
                             <img src={hand} className='' alt="" />
-                            <div className=' leading-5'>
+                            <div className=' leading-5 flex flex-col gap-3'>
                                 <p className='text-[28px] text-[#4D4D4D]'>1.9k</p>
                                 <p className='text-[16px] text-[#717171]'>Trees saved</p>
                             </div>
