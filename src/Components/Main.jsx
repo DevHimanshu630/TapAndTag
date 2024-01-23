@@ -18,9 +18,9 @@ function Main() {
             <div className='flex max-w-screen-xl pt-52 mx-auto items-center justify-between'>
                 <div className='flex flex-col gap-10'>
                     <div className='leading-none'>
-                        <p  className='text-[86px]  text-[#146C60]'>The professional way</p>
-                        <p className='text-[86px]   text-[#022D24]'>for networking</p>
-                        <span className=' text-[16px] text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
+                        <p className='text-[75px]  text-[#146C60]'>The professional way</p>
+                        <p className='text-[85px]   text-[#022D24]'>for networking</p>
+                        <span style={{ fontFamily: "Open Sans" }} className=' text-[22px] text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
                     </div>
                     <div>
                         <button className='btn-hover color-5 '>
@@ -35,7 +35,7 @@ function Main() {
                             <div><span className='text-[11px]'>Employee’s Designation</span></div>
                             <div><span className='text-[11px]'>+91 7047017862</span></div>
                         </div>
-                        <div className='flex  w-full  items-end justify-end '>
+                        <div className='flex  w-full   items-end justify-end '>
                             <img src={MologLogo} class=" h-[91px] mt-10 " alt="Molog Logo" />
                         </div>
                     </div>
