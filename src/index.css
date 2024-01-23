@@ -1,7 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.cdnfonts.com/css/tenderness-4');
 body{
-  font-family: Tenderness;
+  font-family: 'Tenderness', sans-serif;
 }
+
+
+
