@@ -43,8 +43,7 @@ function Main() {
                 </div>
             </div >
             <section className='mt-32  '>
-                <img src={"https://i.postimg.cc/DZpNRk9J/Group2.png"} className='    w-full ' alt="" />
-                {/* <img src={phone} className=' absolute top-  m-auto ' alt="" /> */}
+                <img src='/Group2.png' className='    w-full ' alt="" />
             </section>
 
         </>
