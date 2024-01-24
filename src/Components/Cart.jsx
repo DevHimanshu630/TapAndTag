@@ -4,6 +4,12 @@ import cart from "../Images/Cart.svg"
 function Cart() {
 
 
+    const sectionStyle = {
+        backgroundImage: `url(${cart})`,
+        backgroundSize: 'cover', // Adjust the background size if needed
+        with: '140px',
+        height: '76px', // Set a specific height
+    };
 
 
     return (
@@ -13,14 +19,14 @@ function Cart() {
                 <span className='text-[16px] text-[#AEB3B6]'>Select the card category that aligns most fittingly with your inclinations.</span>
             </div>
             <div class=" flex justify-center  gap-14    ">
-                <div class="flex items-center  w-[140px]   ">
-                    <img src={cart} alt="classic" />
+                <div style={sectionStyle} class="flex items-center justify-center text-white text-[20px]  w-[140px]   ">
+                    <p>Classic</p>
                 </div>
-                <div class="flex items-center  w-[140px]   ">
-                    <img src={cart} alt="wood" />
+                <div style={sectionStyle} class="flex items-center justify-center text-white text-[20px] w-[140px]   ">
+                    <p>Wood</p>
                 </div>
-                <div class="flex items-center  w-[140px]   ">
-                    <img src={cart} alt="metal" />
+                <div style={sectionStyle} class="flex items-center justify-center text-white text-[20px] w-[140px]   ">
+                    <p>Metal</p>
                 </div>
             </div>
         </div>

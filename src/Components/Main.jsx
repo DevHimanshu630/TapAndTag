@@ -1,16 +1,23 @@
 import React from 'react'
 import MologLogo from "../Images/molog logo 1.svg"
 import phone from "../Images/phone.png"
-import Cart from './Cart'
+import back from '../Images/Group2.png'
+
 
 
 
 function Main() {
 
-    const boxShadowStyle = {
-        boxShadow: '5px 10px 14px 3px gray',
+    const styleborder = {
+        boxShadow: "-6px -6px 6px 0px #F5F2F0, 4px 4px 4px 0px #022D2440, 3px 3px 6px 3px #F5F2F0"
     };
 
+
+    const sectionStyle = {
+        backgroundImage: `url(${back})`,
+        backgroundSize: 'cover', // Adjust the background size if needed
+        height: '684px', // Set a specific height
+    };
 
 
     return (
@@ -29,13 +36,13 @@ function Main() {
                     </div>
                 </div>
                 <div className=''>
-                    <div className='w-[424px] shadow-[rgba(0,_0,_0,_0.44)_6px_5px_12px] flex flex-col justify-between h-[230px] p-10 bg-[#F5F2F0]   rounded-xl '>
+                    <div style={styleborder} className='w-[424px]  flex flex-col justify-between h-[230px] p-10 bg-[#F5F2F0]   rounded-xl '>
                         <div className=' '>
                             <p className='text-[19px] text-[#1C1C1C]'>FULL NAME</p>
                         </div>
-                        <div className='flex flex-col leading-4 mt-1'>
-                            <span className='text-[14px] text-[#1C1C1C]'>Employee’s Designation</span>
-                            <span className='text-[14px] text-[#1C1C1C]'>+91 7047017862</span>
+                        <div className='flex flex-col gap-1 leading-4 mt-1'>
+                            <span className='text-[12px] text-gray-600 font-light  font-[Poppins]'>Employee’s Designation</span>
+                            <span className='text-[12px] text-gray-600 font-light font-[Poppins]'>+91 7047017862</span>
                         </div>
 
                         <div className='flex  w-full   items-end justify-end '>
@@ -45,8 +52,8 @@ function Main() {
 
                 </div>
             </div >
-            <section className='mt-32  '>
-                <img src='/Group2.png' className='    w-full ' alt="" />
+            <section style={sectionStyle} className='mt-32 flex items-center justify-center '>
+                <img src={phone} alt="" />
             </section>
 
         </>
