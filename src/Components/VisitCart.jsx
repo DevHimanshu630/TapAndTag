@@ -6,7 +6,7 @@ import hand from '../Images/Group99.svg'
 
 function VisitCart() {
     return (
-        <div className='w-full bg-[#FAF9F6] my-10 xl:my-24 h-[288px] py-5 xl:py-20'>
+        <div className='w-full bg-[#FAF9F6] my-14 xl:my-24 xl:h-[288px] py-8 xl:py-20'>
 
             <div className='flex xl:max-w-screen-xl flex-wrap md:flex-nowrap gap-12 xl:px-10 items-center justify-evenly  m-auto'>
                 <div className=' w-full xl:py-3 text-center md:text-start '>

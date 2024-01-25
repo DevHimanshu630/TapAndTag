@@ -16,14 +16,13 @@ function Main() {
     const sectionStyle = {
         backgroundImage: `url(${back})`,
         backgroundSize: 'cover', // Adjust the background size if needed
-        height: '684px', // Set a specific height
         with: '100%'
     };
 
 
     return (
         <>
-            <div className='flex flex-wrap xl:max-w-screen-xl xl:pt-52 pt-24 xl:px-8 p-10 gap-16 xl:gap-0 mx-auto items-center justify-between'>
+            <div className='flex flex-wrap xl:max-w-screen-xl xl:pt-52 pt-24 xl:px-8 p-5 gap-16 xl:gap-0 mx-auto items-center justify-between'>
                 <div className='flex flex-col gap-10'>
                     <div className=' '>
                         <p className='md:text-[75px] leading-none text-3xl  text-[#146C60]'>The professional way</p>
@@ -53,7 +52,7 @@ function Main() {
 
                 </div>
             </div >
-            <section style={sectionStyle} className='xl:mt-32 mt-10  flex items-center justify-center '>
+            <section style={sectionStyle} className='xl:mt-32 mt-10  xl:h-[684px] flex items-center justify-center '>
                 <img src={phone} alt="" />
             </section>
 
