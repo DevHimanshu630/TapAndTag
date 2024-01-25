@@ -11,6 +11,24 @@
     outline: none;
 }
 
+#navbar-toggle {
+  position: relative;
+  right: 0;
+  height: 0;
+  background-color: #fff;
+  animation: toggle 0.7s ease forwards;
+  z-index: 2;
+}
+
+@keyframes toggle {
+  0% {
+    right: -400px;
+  }
+  100% {
+    right: 0;
+  }
+}
+
 .btn-hover {
   width: 150px;
   font-size: 18px;

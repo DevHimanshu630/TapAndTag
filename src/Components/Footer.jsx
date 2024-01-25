@@ -8,10 +8,16 @@ function Footer() {
         <footer class="bg-[#FAF9F6] dark:bg-gray-900 mt-24">
             <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div class="md:flex md:justify-between">
-                    <div class="mb-6 md:mb-0">
+                    <div class="mb-6  flex flex-col gap-6 md:mb-0">
                         <a href="/" class="flex items-center">
                             <img src={logo} class="h-18 me-3" alt="FlowBite Logo" />
                         </a>
+                        <p className='w-72 text-[12px] text-[#717171] text-justify'>
+                            2023 MOLOG OPC Pvt. Ltd. All rights reserved. All data were deemed correct at the time of creation. MOLOG is not liable for errors or omissions. All brand, product, service names and logos are trademarks and/or registered trademarks of their respective owners and are hereby recognized and acknowledged. www.molog.in
+                        </p>
+                        <p className='text-[12px] text-[#717171]'>
+                            813, Phase V, Udyog Vihar, Gurgaon 122016
+                        </p>
                     </div>
                     <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
@@ -49,7 +55,7 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-3" />
                 <div class="sm:flex sm:items-center sm:justify-between">
                     <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="/" class="hover:underline">Tap&Tag™</a>. All Rights Reserved.
                     </span>

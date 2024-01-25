@@ -19,7 +19,6 @@ function Product() {
             >
                 <Classic />
                 <Tab />
-                <ClassicCards />
                 <Faq />
                 <Footer />
             </div>

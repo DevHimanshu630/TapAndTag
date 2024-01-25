@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Tabs } from "flowbite";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import ClassicCards from "./Components/ClassicCards";
 
 function Tab() {
 
@@ -64,7 +65,7 @@ function Tab() {
 
 
     return (
-        <div className="w-[100%] py-16 ">
+        <div className="w-[100%] my-20 ">
 
 
             <div className="text-center sm:p-6 p-0 ">
@@ -123,56 +124,7 @@ function Tab() {
                         role="tabpanel"
                         aria-labelledby="profile-tab-example"
                     >
-                        <div className="md:flex-row flex flex-col justify-center gap-[40px] md:mt-[50px]">
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/corporate-2.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/corporate-1.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/corporate-3.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                        </div>
+                        <ClassicCards />
 
                     </div>
                     <div
@@ -181,56 +133,7 @@ function Tab() {
                         role="tabpanel"
                         aria-labelledby="dashboard-tab-example"
                     >
-                        <div className="md:flex-row flex flex-col  justify-center gap-[40px] md:mt-[50px]">
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/restaurant-2.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/restaurant-3.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/restaurant-1.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                        </div>
+                        <ClassicCards />
                     </div>
                     <div
                         className="hidden w-[100%] p-10 md:p-0"
@@ -238,56 +141,7 @@ function Tab() {
                         role="tabpanel"
                         aria-labelledby="settings-tab-example"
                     >
-                        <div className="md:flex-row flex flex-col justify-center gap-[40px] md:mt-[50px]">
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/hospitality-1.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/hospitality-2.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/hospitality-3.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                        </div>
+                        <ClassicCards />
                     </div>
                     <div
                         className="hidden w-[100%] p-10 md:p-0"
@@ -295,56 +149,7 @@ function Tab() {
                         role="tabpanel"
                         aria-labelledby="contacts-tab-example"
                     >
-                        <div className="md:flex-row flex flex-col justify-center gap-[40px] md:mt-[50px]">
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/hospitality-3.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/manufacturing-2.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                            <div
-                                className="shadow "
-                                style={{
-                                    backgroundColor: "black",
-                                    boxShadow:
-                                        " 0 4px 6px -1px rgba(255, 0, 0, 0.1), 0 2px 4px -1px rgba(255, 0, 0, 0.06);",
-                                }}
-                            >
-                                <img
-                                    src="https://www.pickcel.com/assets/img/home/industry/manufacturing-3.webp"
-                                    width="355px"
-                                    height="202px"
-                                    alt=""
-                                    className="border"
-                                />
-                            </div>
-                        </div>
+                        <ClassicCards />
                     </div>
                 </div>
             </div>
