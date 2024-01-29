@@ -11,24 +11,24 @@ function Classic() {
 
     const sectionStyle = {
         backgroundImage: `url(${classicimg})`,
-        backgroundSize: 'contain', // Adjust the background size if needed
-        height: '562px'
+        backgroundSize: 'cover', // Adjust the background size if needed
+
 
     };
 
     return (
         <>
-            <div style={sectionStyle} className='flex  items-center '>
+            <div style={sectionStyle} className='flex h-96 xl:h-[562px] items-center '>
                 <div className='bg-black h-full w-full opacity-40 '></div>
             </div>
-            <div className='bg-[#FAF9F6] shadow-sm w-full h-52 flex items-center justify-center'>
-                <p style={linearGradientStyle} className='text-[70px]'>Ready to get Started?</p>
+            <div className='bg-[#FAF9F6] shadow-sm w-full h-32 xl:h-52 flex items-center justify-center'>
+                <p style={linearGradientStyle} className='md:text-[70px] text-[22px]'>Ready to get Started?</p>
             </div>
             <div className='flex  shadow-sm  flex-col gap-5 py-12 items-center justify-center'>
                 <div>
-                    <span className='text-[56px] text-[#146C60]'>CLASSIC</span>
+                    <span className='xl:text-[56px] text-2xl text-[#146C60]'>CLASSIC</span>
                 </div>
-                <div className='flex flex-col  text-center'>
+                <div className='flex flex-col px-3  md:px-0 text-center'>
                     <span className='text-[16px] text-[#717171]'>
                         The most popular option for digital business cards. Constructed from resilient, recyclable plastic
                     </span>

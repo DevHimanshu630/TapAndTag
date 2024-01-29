@@ -18,14 +18,14 @@ function Faq() {
     };
 
     return (
-        <div className='bg-[#FAF9F6] py-32  w-full '>
-            <div className=" items-center justify-evenly gap-14 m-auto max-w-screen-lg  flex ">
+        <div className='bg-[#FAF9F6] xl:py-32  py-4  w-full '>
+            <div className=" items-center justify-evenly xl:gap-14 m-auto max-w-screen-lg  flex flex-wrap ">
                 <div className="flex flex-col  leading-tight text-left py-3 md:py-0 ">
                     <p style={linearGradientStyle} className='text-[48px]'>Frequently</p>
                     <p style={linearGradientStyle} className='text-[48px]'> Asked Questions</p>
                     <img src={faq} alt="" className='h-[123px] ml-12 mt-10 w-[123px]' />
                 </div>
-                <ul className="basis-1/2">
+                <ul className="xl:basis-1/2 p-4 xl:p-0">
                     <li>
                         <button className="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left  md:text-lg border-base-content/10"
                             aria-expanded="false"
