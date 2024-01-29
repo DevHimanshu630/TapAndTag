@@ -19,6 +19,14 @@ function Main() {
         with: '100%'
     };
 
+    function toggleOverlay() {
+        var overlay = document.getElementById('overlay');
+        overlay.classList.toggle('opacity-0');
+        overlay.classList.toggle('opacity-100');
+        overlay.classList.toggle('pointer-events-none');
+        overlay.classList.toggle('pointer-events-auto');
+    }
+
 
     return (
         <>
@@ -34,6 +42,8 @@ function Main() {
                             Get Your Card
                         </button>
                     </div>
+               
+
                 </div>
                 <div className=''>
                     <div style={styleborder} className='xl:w-[424px] w-[300px] h-[150px] flex flex-col justify-between xl:h-[230px] p-3 xl:p-10 bg-[#F5F2F0]   rounded-xl '>
