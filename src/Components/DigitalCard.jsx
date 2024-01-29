@@ -46,7 +46,7 @@ function DigitalCard() {
         <div className=' xl:max-w-screen-xl m-auto p-3 flex xl:gap-6 gap-12 flex-wrap xl:flex-col items-center  '>
             <div className=' flex flex-col items-center text-center  '>
                 <p className='xl:text-[44px] leading-normal text-3xl text-[#4D4D4D]'>Unveiling the Array of Digital Business Cards</p>
-                <p className='text-[16px] xl:w-[40%] text-[#717171]'>The Nexcent blog is the best place to read about the latest membership insights, trends and more. See who's joining the community, read about how our community are increasing their membership income and lot's more.​</p>
+                <p className='text-[16px] font-[inter] font-normal xl:w-[50%] text-[#717171]'>The Nexcent blog is the best place to read about the latest membership insights, trends and more. See who's joining the community, read about how our community are increasing their membership income and lot's more.​</p>
             </div>
             <div className='flex flex-wrap  justify-center gap-10 xl:p-8' >
                 <div className='flex flex-col gap-4 '>

@@ -5,7 +5,7 @@ function ScanCart({ img, menuheading, menusubheading }) {
 
 
     return (
-        <div className=' max-w-screen-xl p-3  gap-16 xl:mt-32 mt-12 flex flex-wrap justify-evenly  mx-auto'>
+        <div className=' max-w-screen-xl p-3  xl:mt-32 mt-12 flex flex-wrap justify-evenly  mx-auto'>
             <div className=' '>
                 <img
                     src={img}
@@ -15,9 +15,9 @@ function ScanCart({ img, menuheading, menusubheading }) {
             </div>
             <div className='   flex flex-col  text-center md:text-start justify-center gap-8 xl:w-[45%]'>
                 <div>
-                    <p className='text-[36px] leading-8   text-[#393939] '>{menuheading}</p>
+                    <p className='text-[36px] leading-none   text-[#393939] '>{menuheading}</p>
                 </div>
-                <div className='text-[22px] font-thin leading-5 text-[#4D4D4D] '>
+                <div className='text-[18px] font-[inter] font-extralight  text-[#4D4D4D] '>
                     {menusubheading}
                 </div>
                 <div>

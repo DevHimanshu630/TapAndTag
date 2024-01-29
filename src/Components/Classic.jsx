@@ -29,7 +29,7 @@ function Classic() {
                     <span className='xl:text-[56px] text-2xl text-[#146C60]'>CLASSIC</span>
                 </div>
                 <div className='flex flex-col px-3  md:px-0 text-center'>
-                    <span className='text-[16px] text-[#717171]'>
+                    <span className='text-[16px] font-[Open Sans] font-normal text-[#717171]'>
                         The most popular option for digital business cards. Constructed from resilient, recyclable plastic
                     </span>
                     <span className='text-[16px] text-[#717171]'>

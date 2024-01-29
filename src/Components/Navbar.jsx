@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from "../Images/logo.svg"
+import logo from "../Images/logo.png"
 import { Link } from 'react-router-dom'
 import { IoIosArrowForward } from "react-icons/io";
 
@@ -62,7 +62,7 @@ function Navbar() {
                 <div class={`${isMenuNav ? ' ' : ''} " max-w-screen-xl flex flex-wrap items-center mx-auto justify-between xl:px-10 p-4"`}>
                     <div>
                         <Link to={"/"} class="">
-                            <img src={logo} class="" alt="Flowbite Logo" />
+                            <img src={logo} class="h-[60px] w-[108px]" alt="Flowbite Logo" />
                         </Link>
                     </div>
                     <div className='flex gap-5'>
