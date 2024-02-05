@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../Images/logo.svg"
+import logo from "../Images/logo.png"
 
 function Footer() {
     return (
@@ -10,7 +10,7 @@ function Footer() {
                 <div class="md:flex md:justify-between">
                     <div class="mb-6  flex flex-col gap-6 md:mb-0">
                         <a href="/" class="flex items-center">
-                            <img src={logo} class="h-18 me-3" alt="FlowBite Logo" />
+                            <img src={logo} class="h-[60px] w-[108px] me-3" alt="FlowBite Logo" />
                         </a>
                         <p className='w-72 text-[12px] text-[#717171] text-justify'>
                             2023 MOLOG OPC Pvt. Ltd. All rights reserved. All data were deemed correct at the time of creation. MOLOG is not liable for errors or omissions. All brand, product, service names and logos are trademarks and/or registered trademarks of their respective owners and are hereby recognized and acknowledged. www.molog.in

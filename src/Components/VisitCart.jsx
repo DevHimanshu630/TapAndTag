@@ -6,7 +6,7 @@ import hand from '../Images/Group99.svg'
 
 function VisitCart() {
     return (
-        <div className='w-full bg-[#FAF9F6] my-14 xl:my-24 xl:h-[288px] py-8 xl:py-20'>
+        <div className='w-full flex  justify-center bg-[#FAF9F6] py-9 md:py-0 my-14 xl:my-24 xl:h-[288px] '>
 
             <div className='flex xl:max-w-screen-xl flex-wrap md:flex-nowrap gap-12 xl:px-10 items-center justify-evenly  m-auto'>
                 <div className=' w-full xl:py-3 text-center md:text-start '>
@@ -15,7 +15,7 @@ function VisitCart() {
                     <p className='xl:text-[16px] text-[#9F9F9F]  font-[inter] font-normal mt-3'>Witness a substantial reduction in paper wastage, championing Niti Ayog's
                         relentless quest for a digitally empowered India.</p>
                 </div>
-                <div className='flex  items-center  justify-evenly w-full '>
+                <div className='flex  items-center gap-10 xl:gap-24 justify-evenly  '>
                     <div className='flex flex-col gap-5 xl:gap-10'>
                         <div className=' flex gap-3'>
                             <img src={people} alt="" />

@@ -69,13 +69,13 @@ function Tab() {
                 <div className="flex flex-col justify-center items-center gap-10 md:mb-4    dark:border-gray-700">
                     <ul
                         style={styleborder}
-                        className="md:flex border rounded-full  w-fit  flex-wrap px-12 py-1 text-[22px] font-medium text-center "
+                        className="flex border rounded-full  w-fit gap-3  flex-wrap px-6 xl:px-12 py-1  font-medium text-center "
                         id="tabs-example"
                         role="tablist"
                     >
-                        <li className="me-2  " role="presentation">
+                        <li className="xl:me-2  " role="presentation">
                             <button
-                                className="inline-block   px-6 py-2 "
+                                className="inline-block   xl:px-6 xl:py-2 text-sm md:text-[22px] "
                                 id="profile-tab-example"
                                 type="button"
                                 role="tab"
@@ -86,9 +86,9 @@ function Tab() {
                             </button>
 
                         </li>
-                        <li className="me-2" role="presentation">
+                        <li className="xl:me-2" role="presentation">
                             <button
-                                className="inline-block   px-6 py-2 hover:text-gray-600 dark:hover:text-gray-300"
+                                className="inline-block   xl:px-6 xl:py-2 text-sm  md:text-[22px] "
                                 id="dashboard-tab-example"
                                 type="button"
                                 role="tab"
@@ -98,9 +98,9 @@ function Tab() {
                                 HOW IT WORKS
                             </button>
                         </li>
-                        <li className="me-2" role="presentation">
+                        <li className="xl:me-2" role="presentation">
                             <button
-                                className="inline-block   px-6 py-2 hover:text-gray-600 dark:hover:text-gray-300"
+                                className="inline-block   xl:px-6 xl:py-2 text-sm   md:text-[22px]"
                                 id="settings-tab-example"
                                 type="button"
                                 role="tab"
@@ -114,9 +114,9 @@ function Tab() {
                     </ul>
                     <div className="border-t w-[55%]"></div>
                 </div>
-                <div id="tabContentExample ">
+                <div id="tabContentExample  flex justify-center ">
                     <div
-                        className="hidden w-[100%] p-10 md:p-0"
+                        className="hidden w-[100%]  p-10  md:p-0"
                         id="profile-example"
                         role="tabpanel"
                         aria-labelledby="profile-tab-example"

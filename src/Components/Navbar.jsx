@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from "../Images/logo.svg"
+import logo from "../Images/logo.png"
 import { Link } from 'react-router-dom'
 import { IoIosArrowForward } from "react-icons/io";
 
@@ -46,6 +46,7 @@ function Navbar() {
         height: '108px',
         display: 'block',
         transition: 'top 0.5s ease-in-out',
+        zIndex:"2"
     };
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,7 +63,7 @@ function Navbar() {
                 <div class={`${isMenuNav ? ' ' : ''} " max-w-screen-xl flex flex-wrap items-center mx-auto justify-between xl:px-10 p-4"`}>
                     <div>
                         <Link to={"/"} class="">
-                            <img src={logo} class="" alt="Flowbite Logo" />
+                            <img src={logo} class="md:w-[140px] w-[120px]" alt="Flowbite Logo" />
                         </Link>
                     </div>
                     <div className='flex gap-5'>
@@ -109,7 +110,7 @@ function Navbar() {
 
 
 
-            <div className={`w-full xl:hidden ${isMenuOpen ? 'block mt-2.5  bg-[#FAF9F6]  ' : 'hidden'}  `} id="navbar-toggle">
+            <div className={`w-full   xl:hidden ${isMenuOpen ? 'block   bg-[#FAF9F6]  ' : 'hidden'}  `} id="navbar-toggle">
                 <div className='flex flex-col items-center gap-10 '>
                     <ul class="flex flex-col w-full font-medium  rounded-lg bg-[#FAF9F6]   ">
                         <li className='border'>

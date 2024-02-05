@@ -19,21 +19,31 @@ function Main() {
         with: '100%'
     };
 
+    function toggleOverlay() {
+        var overlay = document.getElementById('overlay');
+        overlay.classList.toggle('opacity-0');
+        overlay.classList.toggle('opacity-100');
+        overlay.classList.toggle('pointer-events-none');
+        overlay.classList.toggle('pointer-events-auto');
+    }
+
 
     return (
         <>
             <div className='flex flex-wrap xl:max-w-screen-xl xl:pt-52 pt-24 xl:px-8 p-5 gap-16 xl:gap-0 mx-auto items-center justify-between'>
                 <div className='flex flex-col gap-10'>
                     <div className=' '>
-                        <p className='md:text-[75px] leading-none text-3xl  text-[#146C60]'>The professional way</p>
-                        <p className='md:text-[85px] leading-none text-3xl   tracking-wide   text-[#022D24]'>for networking</p>
-                        <span className=' xl:text-[20px] text-sm text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
+                        <p className='md:text-[75px] leading-10 text-3xl  text-[#146C60]'>The professional way</p>
+                        <p className='md:text-[85px]  leading-tight text-3xl   tracking-wide   text-[#022D24]'>for networking</p>
+                        <span className=' xl:text-[16px]   font-[inter] text-sm text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
                     </div>
                     <div>
                         <button className='btn-hover  color-5 '>
                             Get Your Card
                         </button>
                     </div>
+
+
                 </div>
                 <div className=''>
                     <div style={styleborder} className='xl:w-[424px] w-[300px] h-[150px] flex flex-col justify-between xl:h-[230px] p-3 xl:p-10 bg-[FAF9F4] rounded-xl '>

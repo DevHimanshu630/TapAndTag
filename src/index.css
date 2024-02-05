@@ -1,9 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.cdnfonts.com/css/tenderness-4');
+/* @import url('https://fonts.cdnfonts.com/css/tenderness-4'); */
+@import url(https://db.onlinewebfonts.com/c/04f7cfc7a58fe57373d0396aba73970d?family=Tenderness+Regular);
+
+@font-face {
+  font-family: "Tenderness Regular";
+  src: url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.eot");
+  src: url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.svg#Tenderness Regular")format("svg");
+}
 body{
-  font-family: 'Tenderness';
+  /* font-family: 'Tenderness'; */
+  font-family:'Tenderness Regular' ;
 }
 
 

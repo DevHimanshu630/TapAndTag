@@ -9,7 +9,7 @@ import Footer from '../Components/Footer'
 
 function Product() {
     return (
-        <div>
+        <>
             <Navbar />
             <div
                 style={{
@@ -23,7 +23,7 @@ function Product() {
                 <Footer />
             </div>
 
-        </div>
+        </>
     )
 }
 
