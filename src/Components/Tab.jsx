@@ -50,7 +50,7 @@ function Tab() {
             override: true,
         };
 
-        const tabsElement = document.getElementById("tabs-example");
+        // const tabsElement = document.getElementById("tabs-example");
         // const tabs = new Tabs(tabsElement, tabElements, options, instanceOptions);
         // tabs.show("profile");
 

@@ -22,7 +22,7 @@ function Cart() {
             <div className='flex flex-col p-2 sm:p-0 text-center items-center justify-center '>
                 <p style={linearGradientStyle} className='xl:text-[42px] text-3xl leading-none  '>Step boldly into the</p>
                 <p style={linearGradientStyle} className='xl:text-[42px] text-3xl leading-loose  '>future of digital revolution with Tap and Tag</p>
-                <span className='xl:text-[16px]  font-[inter] font-semibold   text-sm text-[#AEB3B6]'>Select the card category that aligns most fittingly with your inclinations.</span>
+                <span className='xl:text-[16px]  font-[inter] font-normal  text-sm text-[#AEB3B6]'>Select the card category that aligns most fittingly with your inclinations.</span>
             </div>
             <div class=" flex flex-wrap justify-center gap-5  md:gap-14    ">
                 <div style={sectionStyle} class="flex items-center  font-[inter] font-bold justify-center text-white text-[20px]  w-[140px]   ">

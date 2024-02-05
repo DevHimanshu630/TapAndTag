@@ -12,13 +12,13 @@ function Classic() {
     const sectionStyle = {
         backgroundImage: `url(${classicimg})`,
         backgroundSize: 'cover', // Adjust the background size if needed
-        zIndex:"0",
+        zIndex: "0",
 
     };
 
     return (
         <>
-            <div style={sectionStyle} className='flex h-96 xl:h-[562px] items-center '>
+            <div style={sectionStyle} className='flex h-96  xl:h-[562px] items-center '>
                 <div className='bg-black h-96 xl:h-[562px] w-full opacity-40 '></div>
             </div>
             <div className='bg-[#FAF9F6] shadow-sm w-full h-32 xl:h-52 flex items-center justify-center'>
