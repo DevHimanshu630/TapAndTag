@@ -15,7 +15,7 @@ function ScanCart({ img, menuheading, menusubheading, menusubheading1 }) {
             </div>
             <div className='   flex flex-col  text-center md:text-start justify-center gap-8 xl:w-[47%]'>
                 <div>
-                    <p className='xl:text-[36px] text-2xl text-[#4D4D4D] '>{menuheading}</p>
+                    <p className='xl:text-[36px] text-2xl leading-normal text-[#4D4D4D] '>{menuheading}</p>
                     <p className='xl:text-[36px] text-2xl leading-8  text-[#4D4D4D] '>{menusubheading1}</p>
                 </div>
                 <div className='text-[18px] font-[inter] font-thin  leading-normal text-[#717171] '>
