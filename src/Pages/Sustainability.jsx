@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from "../Components/Navbar"
-import classicimg from "../Images/classicimg.png"
+import classicimg from "../Images/background1.png"
 import Footer from '../Components/Footer';
 
 function Sustainability() {
@@ -13,25 +13,24 @@ function Sustainability() {
 
     const sectionStyle = {
         backgroundImage: `url(${classicimg})`,
-        height: '100vh',
-        backgroundRepeat: 'no-repeat',
-
+        backgroundSize: 'cover', // Adjust the background size if needed
+        with: '140px',
+        height: '150vh', // Set a specific height
+        backgroundAttachment: ' fixed'
     };
+
 
     return (
         <>
             <Navbar />
             <div
-                style={{
-                    padding: '0px 0px 00px',
-                    marginTop: '110px',
-                }}
+                style={sectionStyle}
             >
-                <div className='flex flex-col items-center gap-24 pt-36 '>
+                <div className='flex flex-col items-center gap-24 pt-60 '>
                     <div className='flex flex-col items-center gap-12 '>
                         <div className='flex flex-col items-center gap-9 '>
                             <h3 style={linearGradientStyle} className='text-[56px] border-b'>Sustainability and Efficiency</h3>
-                            <p className='text-[19px] text-center text-gray-400'> Aligned with Niti Aayog's Vision</p>
+                            <p className='text-[16px] font-sans font-normal  text-center text-gray-400'> Aligned with Niti Aayog's Vision</p>
                         </div>
                         <div className='text-center'>
                             <p className='text-[16px] text-[#022D24]'>As an advocate for sustainability, MOLOG aligns Tap & Tag with Niti Aayog's policies on</p>

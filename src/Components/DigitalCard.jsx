@@ -45,8 +45,11 @@ function DigitalCard() {
     return (
         <div className=' xl:max-w-screen-xl m-auto p-3 flex xl:gap-6 gap-12 flex-wrap xl:flex-col items-center  '>
             <div className=' flex flex-col items-center text-center  '>
-                <p className='xl:text-[44px] leading-normal text-3xl text-[#4D4D4D]'>Unveiling the Array of Digital Business Cards</p>
-                <p className='text-[16px] xl:w-[40%] text-[#717171]'>The Nexcent blog is the best place to read about the latest membership insights, trends and more. See who's joining the community, read about how our community are increasing their membership income and lot's more.​</p>
+                <p className='xl:text-[44px] xl:leading-loose text-3xl text-[#4D4D4D]'>Unveiling the Array of Digital Business Cards</p>
+                <p className='text-[16px] hidden font-[inter] md:block font-light text-[#717171]'>Join the digital revolution with Tap & Tag, a synergy where efficiency dances with modernization, ​</p>
+                <p className='text-[16px] hidden font-[inter] md:block font-light text-[#717171]'>revolutionizing the landscape of government networking. Let's tap into a future that's not just efficient but also ​</p>
+                <p className='text-[16px] hidden font-[inter] md:block font-light text-[#717171]'>environmentally conscious – a future where every connection is poised, just a tap away." ​</p>
+                <p className='text-[16px] mt-2 text-center md:hidden font-[inter] font-light text-[#717171]'>Join the digital revolution with Tap & Tag, a synergy where efficiency dances with modernization, revolutionizing the landscape of government networking. Let's tap into a future that's not just efficient but also environmentally conscious – a future where every connection is poised, just a tap away."</p>
             </div>
             <div className='flex flex-wrap  justify-center gap-10 xl:p-8' >
                 <div className='flex flex-col gap-4 '>

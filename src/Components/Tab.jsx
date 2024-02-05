@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { Tabs } from "flowbite";
-import { FaRegArrowAltCircleRight } from "react-icons/fa";
-import ClassicCards from "./Components/ClassicCards";
 
+import ClassicCards from "./ClassicCards";
 function Tab() {
+
 
     const linearGradientStyle = {
         background: 'linear-gradient(90deg, #022D24 11.02%, #146C60 88.41%)',
@@ -52,11 +51,11 @@ function Tab() {
         };
 
         const tabsElement = document.getElementById("tabs-example");
-        const tabs = new Tabs(tabsElement, tabElements, options, instanceOptions);
-        tabs.show("profile");
+        // const tabs = new Tabs(tabsElement, tabElements, options, instanceOptions);
+        // tabs.show("profile");
 
-        tabs.getTab("contacts");
-        tabs.getActiveTab();
+        // tabs.getTab("contacts");
+        // tabs.getActiveTab();
     }, []);
 
     const styleborder = {
@@ -66,8 +65,6 @@ function Tab() {
 
     return (
         <div className="w-[100%] my-20 ">
-
-
             <div className="text-center sm:p-6 p-0 ">
                 <div className="flex flex-col justify-center items-center gap-10 md:mb-4    dark:border-gray-700">
                     <ul

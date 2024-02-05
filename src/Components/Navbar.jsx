@@ -113,17 +113,17 @@ function Navbar() {
                 <div className='flex flex-col items-center gap-10 '>
                     <ul class="flex flex-col w-full font-medium  rounded-lg bg-[#FAF9F6]   ">
                         <li className='border'>
-                            <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded " aria-current="page">Products <IoIosArrowForward size={24} /></a>
+                            <Link to={"/"} class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded " aria-current="page">Home</Link>
                         </li>
                         <li className='border'>
-                            <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded ">Customers <IoIosArrowForward size={24} /></a>
+                            <Link to={"/product"} class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded " aria-current="page">Product</Link>
                         </li>
                         <li className='border'>
-                            <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded ">Resources <IoIosArrowForward size={24} /></a>
+                            <Link to={"/Sustainability"} class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded " aria-current="page">Sustainability</Link>
                         </li>
-                        <li className='border'>
+                        {/* <li className='border'>
                             <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded ">Pricing <IoIosArrowForward size={24} /></a>
-                        </li>
+                        </li> */}
                     </ul>
 
                 </div>

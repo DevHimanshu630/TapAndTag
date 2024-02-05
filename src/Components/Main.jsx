@@ -36,13 +36,13 @@ function Main() {
                     </div>
                 </div>
                 <div className=''>
-                    <div style={styleborder} className='xl:w-[424px] w-[300px] h-[150px] flex flex-col justify-between xl:h-[230px] p-3 xl:p-10 bg-[#F5F2F0]   rounded-xl '>
+                    <div style={styleborder} className='xl:w-[424px] w-[300px] h-[150px] flex flex-col justify-between xl:h-[230px] p-3 xl:p-10 bg-[FAF9F4] rounded-xl '>
                         <div className=' '>
                             <p className='xl:text-[19px] text-[#1C1C1C]'>FULL NAME</p>
                         </div>
-                        <div className='flex flex-col gap-1 leading-4 mt-1'>
-                            <span className='text-[12px] text-gray-600 font-light  font-[Poppins]'>Employee’s Designation</span>
-                            <span className='text-[12px] text-gray-600 font-light font-[Poppins]'>+91 7047017862</span>
+                        <div className='flex flex-col gap-1 md:leading-4 mt-1'>
+                            <span className='md:text-[11px]  text-[9px] text-gray-600 font-light  font-[Poppins]'>Employee’s Designation</span>
+                            <span className='md:text-[11px] text-[9px] text-gray-600 font-light font-[Poppins]'>+91 7047017862</span>
                         </div>
 
                         <div className='flex  w-full   items-end justify-end '>

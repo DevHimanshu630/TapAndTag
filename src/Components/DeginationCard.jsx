@@ -28,23 +28,22 @@ function DeginationCard() {
                 </div>
                 <div className=' xl:w-[50%] p-3 text-justify flex flex-col gap-5'>
                     <div className='hidden md:block'>
-                        <p className='text-[19px] text-[#717171]'>All civil contracts for Part-A of HORC project have been awarded and </p>
-                        <p className='text-[19px] text-[#717171]'>works are in progress. Contract of construction of 4.7 km Twin Tunnel </p>
-                        <p className='text-[19px] text-[#717171]'>for Part B has been awarded and tenders for other packages of Part B</p>
-                        <p className='text-[19px] text-[#717171]'>are in various stages of procurement. Govt. of Haryana is providing</p>
-                        <p className='text-[19px] text-[#717171]'>necessary support in all fields viz land acquisition, forest clearance</p>
-                        <p className='text-[19px] text-[#717171]'>and financing of project.</p>
+                        <p className=' font-[inter] font-medium  text-[#717171]'>Tap and Tag transcends the ordinary; it's not just a card – it's a</p>
+                        <p className=' font-[inter] font-medium text-[#717171]'>commitment to a sustainable future. Powered by cutting-edge </p>
+                        <p className=' font-[inter] font-medium text-[#717171]'>encrypted NFC technology, rest assured your information is a fortress,</p>
+                        <p className=' font-[inter] font-medium text-[#717171]'>and exchanges are as reliable as the dawn. Customize your digital </p>
+                        <p className=' font-[inter] font-medium text-[#717171]'>cards, breaking free from the constraints of traditional paper,</p>
+                        <p className=' font-[inter] font-medium text-[#717171]'>enhancing their utility in ways previously unimagined.</p>
                         <div className=" leading-none mt-3">
                         </div>
-                        <p className='text-[#146C60] text-[19px]'>Full Name</p>
+                        <p className='text-[#146C60] text-[20px]'>Full Name</p>
                         <p className='text-[16px] text-[#89939E]'>Designation of the card user</p>
                     </div>
-                    <div>
+                    <div className=' md:hidden'>
                         <p className='text-[16px] text-[#717171]'>
-                            All civil contracts for Part-A of HORC project have been awarded and works are in progress. Contract of construction of 4.7 km Twin Tunnel for Part B has been awarded and tenders for other packages of Part B are in various stages of procurement. Govt. of Haryana is providing necessary support in all fields viz land acquisition, forest clearance and financing of project.
-                        </p>
-                        <p className='text-[#146C60] mt-4 text-[19px]'>Full Name</p>
-                        <p className='text-[16px] text-[#89939E]'>Designation of the card user</p>
+                            Tap and Tag transcends the ordinary; it's not just a card – it's a commitment to a sustainable future. Powered by cutting-edge encrypted NFC technology, rest assured your information is a fortress, and exchanges are as reliable as the dawn. Customize your digital cards, breaking free from the constraints of traditional paper, enhancing their utility in ways previously unimagined.                        </p>
+                        <p className='text-[#146C60] md:hidden font-normal mt-4 text-[20px]'>Full Name</p>
+                        <p className='text-[16px] md:hidden text-[#89939E]'>Designation of the card user</p>
                     </div>
 
                     <div className='flex flex-wrap mt-4 gap-10 items-center '>

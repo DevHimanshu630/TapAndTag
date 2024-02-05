@@ -5,7 +5,7 @@ import Main from '../Components/Main';
 import Cart from '../Components/Cart';
 import ScanCart from './ScanCart';
 import VisitCart from './VisitCart';
-import cart from "../Images/Frame.jpg"
+import cart from "../Images/Frame.png"
 import scan from "../Images/scan 1.svg"
 import DeginationCard from './DeginationCard';
 import DigitalCard from './DigitalCard';
@@ -19,7 +19,8 @@ const Home = () => {
 
     const mymenu = {
         imageUrl: cart,
-        heading: "Share contact details with a single tap",
+        heading: "No more clumsy stacks of paper,",
+        heading1: "a mere tap on your smartphone.",
         paragraph: "For people who want to make a great first impression. Tap and share your contact details, gather leads and connect to over 5,000 apps and CRM tools."
     };
 
@@ -43,7 +44,7 @@ const Home = () => {
                 <Cart />
                 <ScanCart img={mymenusec.imageUrl} menuheading={mymenusec.heading} menusubheading={mymenusec.paragraph} />
                 <VisitCart />
-                <ScanCart img={mymenu.imageUrl} menuheading={mymenu.heading} menusubheading={mymenu.paragraph} />
+                <ScanCart img={mymenu.imageUrl} menuheading={mymenu.heading} menusubheading={mymenu.paragraph} menusubheading1={mymenu.heading1} />
                 <DeginationCard />
                 <DigitalCard />
                 <Footer />

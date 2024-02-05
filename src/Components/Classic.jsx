@@ -24,15 +24,15 @@ function Classic() {
             <div className='bg-[#FAF9F6] shadow-sm w-full h-52 flex items-center justify-center'>
                 <p style={linearGradientStyle} className='text-[70px]'>Ready to get Started?</p>
             </div>
-            <div className='flex  shadow-sm  flex-col gap-5 py-12 items-center justify-center'>
+            <div className='flex  shadow-sm  flex-col gap-3 py-12 items-center justify-center'>
                 <div>
                     <span className='text-[56px] text-[#146C60]'>CLASSIC</span>
                 </div>
                 <div className='flex flex-col  text-center'>
-                    <span className='text-[16px] text-[#717171]'>
+                    <span className='text-[20px] font-[Open Sans] font-normal text-[#717171]'>
                         The most popular option for digital business cards. Constructed from resilient, recyclable plastic
                     </span>
-                    <span className='text-[16px] text-[#717171]'>
+                    <span className='text-[20px] font-[Open Sans] font-normal text-[#717171]'>
                         they're designed for durability, making them perfect for every occasion.
                     </span>
                 </div>
