@@ -35,7 +35,7 @@ function Main() {
                     <div className=' '>
                         <p className='md:text-[75px] leading-10 text-3xl  text-[#146C60]'>The professional way</p>
                         <p className='md:text-[85px]  leading-tight text-3xl   tracking-wide   text-[#022D24]'>for networking</p>
-                        <span className=' xl:text-[16px]   font-[inter] text-sm text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
+                        <span className=' xl:text-[16px] font-sans leading-loose font-light text-sm text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
                     </div>
                     <div>
                         <button className='btn-hover  color-5 '>

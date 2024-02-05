@@ -77,7 +77,7 @@ function DigitalCard() {
                         <div
                             style={radialGradient}
                             onMouseEnter={handleParagraph3}
-                            className='border p-4 text-white leading-none flex justify-center items-center pt-8 w-[262px] h-[140px] text-center rounded-xl text-[24px] transition-all duration-300 ease-in-out delay-150'>
+                            className='border p-1 text-white leading-none flex justify-center items-center pt-4 w-[262px] h-[140px] text-center rounded-xl text-[24px] transition-all duration-300 ease-in-out delay-150'>
                             Versatile & Aesthetically Pleasing Design
                         </div>) : (
                         <div
@@ -94,7 +94,7 @@ function DigitalCard() {
                         <div
                             onMouseEnter={handleParagraph2}
                             style={radialGradient}
-                            className='borde text-white flex  items-center justify-center leading-none p-8 w-[262px] h-[140px] text-center rounded-xl text-[24px] transition-all duration-300 ease-in-out delay-150'>
+                            className='borde text-white flex  items-center justify-center leading-none p-5 w-[262px] h-[140px] text-center rounded-xl text-[24px] transition-all duration-300 ease-in-out delay-150'>
                             Secure & Eco-friendly Data Transfer
                         </div>) : (
                         <div
@@ -108,7 +108,7 @@ function DigitalCard() {
                         <div
                             onMouseEnter={handleParagraph4}
                             style={styleborder}
-                            className='border p-5 pt-8 w-[262px] h-[140px] leading-none text-center rounded-xl text-[24px] transition-all duration-300 ease-in-out delay-150'>
+                            className='border p-2 pt-8 w-[262px] h-[140px] text-[#146C60] leading-none text-center rounded-xl text-[24px] transition-all duration-300 ease-in-out delay-150'>
                             <span>Multimedia Integration</span><br />
                             <span className='text-[16px]'>for </span> Enhanced Communication
                         </div>) : (

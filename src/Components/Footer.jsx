@@ -10,7 +10,7 @@ function Footer() {
                 <div class="md:flex md:justify-between">
                     <div class="mb-6  flex flex-col gap-6 md:mb-0">
                         <a href="/" class="flex items-center">
-                            <img src={logo} class="h-[60px] w-[108px] me-3" alt="FlowBite Logo" />
+                            <img src={logo} class="md:w-[140px] w-[120px] me-3" alt="FlowBite Logo" />
                         </a>
                         <p className='w-72 text-[12px] text-[#717171] text-justify'>
                             2023 MOLOG OPC Pvt. Ltd. All rights reserved. All data were deemed correct at the time of creation. MOLOG is not liable for errors or omissions. All brand, product, service names and logos are trademarks and/or registered trademarks of their respective owners and are hereby recognized and acknowledged. www.molog.in
@@ -19,7 +19,7 @@ function Footer() {
                             813, Phase V, Udyog Vihar, Gurgaon 122016
                         </p>
                     </div>
-                    <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                    <div class="grid grid-cols-2 xl:mt-24 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
                             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                             <ul class="text-gray-500 dark:text-gray-400 font-medium">
