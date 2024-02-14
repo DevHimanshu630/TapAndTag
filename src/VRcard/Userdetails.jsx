@@ -10,7 +10,7 @@ import { CiGlobe } from "react-icons/ci";
 function Userdetails() {
     return (
         <div className=' w-[100vw] h-[100vh] flex xl:justify-center border bg-gray-50 p-2  '>
-            <div className='h-[55vh] bg-white shadow-sm rounded-md w-full xl:w-[70%] flex flex-col '>
+            <div className='xl:h-[55vh] bg-white shadow-sm rounded-md w-full xl:w-[70%] flex flex-col '>
                 <div className=' bg-[#fcba03] font-sans rounded-md flex gap-4 items-center w-full p-2 md:p-0 xl:pl-2 xl:h-48'>
                     <div className='border w-36 h-36 bg-white rounded-full'></div>
                     <div className='flex text-white text-lg flex-col'>
