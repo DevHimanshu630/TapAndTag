@@ -22,7 +22,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 582,
     bgcolor: 'background.paper',
     borderRadius: "24px",
     boxShadow: 24,
@@ -155,8 +154,8 @@ function Navbar() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style} >
-                    <div className='flex flex-col gap-10 h-[700px]   '>
-                        <div className='w-full flex pl-14 pr-10 pt-10 pb-1 items-center text-center justify-center '>
+                    <div className='flex flex-col gap-5 xl:gap-10 xl:h-[700px] h-[500px] md:h-[650px] md:w-[582px] xl:w-[582px]  '>
+                        <div className='w-full flex pl-14 pr-10 xl:pt-10 pt-7 pb-1 items-center text-center justify-center '>
                             <div>
                                 <p className='text-[28px] font-normal'>
                                     Order Now
@@ -166,14 +165,14 @@ function Navbar() {
                                 </p>
                             </div>
                         </div>
-                        <div className='flex flex-col gap-8 ml-16 mb-14 mr-10 overflow-y-scroll  '>
+                        <div className='flex flex-col gap-3 xl:gap-8 ml-8 xl:ml-16 mb-8  xl:mb-14 mr-6 xl:mr-10 overflow-y-scroll  '>
                             <div className='  flex items-center justify-center'>
                                 <div className='border h-[121px] w-[213px]'>
 
                                 </div>
                             </div>
-                            <div className=' flex w-full   items-center'>
-                                <div className='w-[80%]'>
+                            <div className=' flex w-full    xl:items-center'>
+                                <div className='xl:w-[80%] w-[70%] '>
                                     <p style={linearGradientStyle} className='text-[24px]  font-normal'>
                                         Classic
                                     </p>
@@ -181,7 +180,7 @@ function Navbar() {
                                         <p className='flex items-center text-[21px] text-[#484848] font-semibold font-sans'><LuIndianRupee className=' text-[21px] text-[#484848] font-semibold font-sans' />2,499 </p><p className='flex items-center text-[#D9D9D9] font-semibold  line-through text-[16px] font-sans'><LuIndianRupee className=' text-[#D9D9D9] font-semibold  line-through text-[16px] font-sans' />2,999</p> <span className='flex items-center text-[#4CAF4F] font-semibold text-[16px] font-sans'>17%</span> <span className='text-[#D9D9D9] text-[11px] mt-1 font-sans font-semibold'>One time purchase</span>
                                     </div>
                                 </div>
-                                <div className='flex gap-3'>
+                                <div className='flex gap-3 pt-2 md:pt-0'>
                                     <GoShareAndroid className='w-[19px] h-[19px] cursor-pointer text-[#CCCCCC]' />
                                     <img src={save} className='w-[19px] h-[19px] cursor-pointer ' alt="" />
                                 </div>
@@ -208,8 +207,8 @@ function Navbar() {
                             </div>
                             <div className='w-full flex-col flex gap-3'>
                                 <div className='flex gap-3'>
-                                    <button type="button" style={{ borderRadius: "34px" }} className=" btn-hover  hidden lg:block color-5">Buy Now</button>
-                                    <button type="button" style={{ borderRadius: "34px" }} className=" border-[#146C60] text-[#022D24]  border-[1.5px] px-12 ">Add to Cart</button>
+                                    <button type="button" style={{ borderRadius: "34px" }} className=" btn-hover  color-5">Buy Now</button>
+                                    <button type="button" style={{ borderRadius: "34px" }} className=" border-[#146C60] text-[#022D24] px-4 border-[1.5px] xl:px-12 ">Add to Cart</button>
                                 </div>
                                 <p>
                                     <span className='text-[11px] font-sans  font-extralight'>Delivery in </span><span className='text-[#5A5A5A] text-[11px] font-sans font-semibold'>7-12 business days</span>

@@ -22,7 +22,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 582,
     bgcolor: 'background.paper',
     borderRadius: "24px",
     boxShadow: 24,
@@ -56,13 +55,13 @@ function Model1() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style} >
-                    <div className='flex flex-col gap-10 h-[700px]   '>
+                    <div className='flex flex-col gap-10 xl:h-[700px] xl:w-[582px]  '>
                         <div className='w-full flex pl-14 pr-10 pt-10 pb-1 items-center text-center justify-center '>
                             <div>
                                 <p className='text-[28px] font-normal'>
                                     Order Now
                                 </p>
-                                <p className='text-[#9B9B9B] font-sans font-normal'>
+                                <p className='text-[#9B9B9B]   font-sans font-normal'>
                                     Get Your Own Digital Card
                                 </p>
                             </div>
