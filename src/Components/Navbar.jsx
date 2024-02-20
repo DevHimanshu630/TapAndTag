@@ -106,7 +106,7 @@ function Navbar() {
                 <div class={`${isMenuNav ? ' ' : ''} " max-w-screen-xl flex flex-wrap items-center mx-auto justify-between xl:px-10 p-4"`}>
                     <div>
                         <Link to={"/"} class="">
-                            <img src={logo} class="md:w-[140px] w-[120px]" alt="Flowbite Logo" />
+                            <img src={logo} class="md:w-[140px] w-[120px]" alt="tap&tag Logo" />
                         </Link>
                     </div>
                     <div className='flex gap-5'>
@@ -125,7 +125,7 @@ function Navbar() {
                                     <Link to={"/Sustainability"} class="block py-2 px-3 md:p-0 text-[20px]   rounded bg-[#FAF9F6] ">Sustainability</Link>
                                 </li>
                                 <li>
-                                    <Link to={'/'} class="in-block py-2 px-3 md:p-0 ml-5  text-[18px]  rounded bg-gradient-to-r from-[#022D24]  to-[#146C60]  text-transparent bg-clip-text  ">Login</Link>
+                                    <Link to={'/login'} class="in-block py-2 px-3 md:p-0 ml-5  text-[18px]  rounded bg-gradient-to-r from-[#022D24]  to-[#146C60]  text-transparent bg-clip-text  ">Login</Link>
                                 </li>
                             </ul>
                         </div>
@@ -138,7 +138,6 @@ function Navbar() {
                             aria-controls="navbar-toggle"
                             aria-expanded={isMenuOpen}
                         >
-                            <span className="sr-only">Open main menu</span>
                             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
                             </svg>
