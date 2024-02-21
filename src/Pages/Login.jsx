@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../Images/logo.png"
-import axios from "axios";
+import axios from "../Axios/Axios";
 
 export default function ExampleV2() {
 
@@ -11,19 +11,22 @@ export default function ExampleV2() {
     });
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [e.target.name]: e.target.value,
-        });
-        console.log(formData);
+        }));
     }
-    const handleSubmitLogin = async () => {
-        console.log(formData);
+    const handleSubmitLogin = async (e) => {
+
+        e.preventDefault();
+
         try {
-            const res = await axios.post('example', {
+            const res = await axios.post('users/login', {
                 email: formData.email,
                 password: formData.password
-            })
+            });
+
+
             console.log(res);
         }
         catch (err) {
