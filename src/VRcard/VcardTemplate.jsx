@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef } from "react";
+import QRCode from 'react-qr-code';
 import { useParams } from "react-router-dom";
 import axios from "axios";
 function VcardTemplate() {
   const { pageId } = useParams();
   console.log("username id", pageId);
+  const PageURL = `https://tap-and-tag.vercel.app/vcardTemp/${pageId}`
+  console.log("pageURL *************>>>>>" ,PageURL );
 
   const [userData, setUserData] = useState("");
+  const [value, setValue] = useState(PageURL);
   console.log("userdata ----------------->", userData);
 
   useEffect(() => {
@@ -25,6 +29,9 @@ function VcardTemplate() {
 
     fetchData();
   }, [pageId]);
+
+
+
 
   return (
     <div>
@@ -169,10 +176,32 @@ function VcardTemplate() {
               </div>
             </div>
           </div>
+
+
+
+          {/*Qr code  */}
+          <div className="w-full mt-[5rem]  flex gap-[3rem] justify-center flex-col">
+            <h1 className="text-center">QR generate</h1>
+            {value && (
+                        <QRCode
+                        className="ml-[5rem]"
+                            title="the product of MOLOG"
+                            value={value}
+                            size='256'
+                        />
+
+                        
+                    )}
+          </div>
+
         </div>
+
       ) : (
         <p>Loading...</p>
       )}
+
+
+
     </div>
   );
 }
