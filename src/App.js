@@ -6,6 +6,7 @@ import Sustainability from './Pages/Sustainability';
 import Userdetails from './VRcard/Userdetails';
 import Login from './Pages/Login'
 import SignUp from './Pages/SignUp';
+import VcardTemplate from './VRcard/VcardTemplate';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/product" element={<Product />} />
       <Route path="/Sustainability" element={<Sustainability />} />
       <Route path="/vcard" element={<Userdetails />} />
+      <Route path="/vcardTemp/:pageId" element={<VcardTemplate/>} />
     </Routes>
   );
 }
