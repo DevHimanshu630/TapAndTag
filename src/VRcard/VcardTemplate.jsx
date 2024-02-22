@@ -1,15 +1,14 @@
-import React, { useState, useEffect ,useRef } from "react";
-import QRCode from 'react-qr-code';
+import React, { useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 function VcardTemplate() {
   const { pageId } = useParams();
   console.log("username id", pageId);
-  const PageURL = `https://tap-and-tag.vercel.app/vcardTemp/${pageId}`
-  console.log("pageURL *************>>>>>" ,PageURL );
+  // const PageURL = `https://tap-and-tag.vercel.app/vcardTemp/${pageId}`
+  // console.log("pageURL *************>>>>>" ,PageURL );
 
   const [userData, setUserData] = useState("");
-  const [value, setValue] = useState(PageURL);
+
   console.log("userdata ----------------->", userData);
 
   useEffect(() => {
@@ -18,10 +17,11 @@ function VcardTemplate() {
       try {
         console.log("data post");
         const response = await axios.get(
-          `https://tapandtag.onrender.com/users/formdata/${pageId}`
+          `https://qdp72jc1-8080.inc1.devtunnels.ms/users/formdata/${pageId}`
         );
-        console.log(response);
+        console.log("response *********-------->",response);
         setUserData(response.data.response);
+        document.title = `Vcard ${pageId}`;
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -30,15 +30,14 @@ function VcardTemplate() {
     fetchData();
   }, [pageId]);
 
-
-
-
   return (
     <div>
       {userData ? (
         <div>
-          <div className="w-full h-full">
-            <div class="bg-[#146C60] w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full h-full ">
+            <div class=" w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+             style={{ backgroundImage: `url('/image/bg.png')` }}
+            >
               <div class="flex justify-end px-4 pt-4">
                 <button
                   id="dropdownButton"
@@ -90,24 +89,24 @@ function VcardTemplate() {
                 <h5 class="mb-1 text-xl font-medium text-[white] dark:text-white">
                   {userData.name}
                 </h5>
-                <span class="text-sm text-[white] dark:text-gray-400">
-                  Frontend Developer
+                <span class="text-sm text-[white] dark:text-gray-400 font-sans">
+                  {userData.designation}
                 </span>
                 <h1 class="mb-1 text-2xl mt-4 font-medium text-[white] dark:text-white">
-                  Everidoor
+                  {userData.company}
                 </h1>
               </div>
             </div>
 
             <div className="flex  justify-around mt-9">
               <div className="flex gap-3 mr-[5.5rem]">
-                <a href="">
+                <a href={userData.instagramUrl}>
                   <img src="/image/insta.png" alt="" />
                 </a>
-                <a href="">
+                <a href={userData.linkedinUrl}>
                   <img src="/image/linkedIN.png" alt="" />
                 </a>
-                <a href="">
+                <a href={userData.twitterUrl}>
                   <img src="/image/Vector.png" alt="" />
                 </a>
               </div>
@@ -115,9 +114,9 @@ function VcardTemplate() {
               <div className="">
                 <a
                   className=" underline underline-offset-2"
-                  href="https://tapandtag.molog.in"
+                  href={userData.webSiteUrl}
                 >
-                  tapandtag.molog.in
+                  {userData.webSiteUrl}
                 </a>
               </div>
             </div>
@@ -127,7 +126,7 @@ function VcardTemplate() {
                 <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">EMAIL</div>
                 <div className="flex items-center gap-4 p-2 px-5">
                   <img src="/image/email.png" alt="" />
-                  <p>himanshu@molog.in</p>
+                  <p>{userData.email}</p>
                 </div>
               </div>
               
@@ -136,7 +135,7 @@ function VcardTemplate() {
                 <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">Mobile</div>
                 <div className="flex items-center gap-4 p-2 px-5">
                   <img src="/image/phone.png" alt="" />
-                  <p>himanshu@molog.in</p>
+                  <p>{userData.mobile}</p>
                 </div>
               </div>
 
@@ -144,16 +143,16 @@ function VcardTemplate() {
                 <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">SMS</div>
                 <div className="flex items-center gap-4 p-2 px-5">
                   <img src="/image/sms.png" alt="" />
-                  <p>himanshu@molog.in</p>
+                  <p>{userData.sms}</p>
                 </div>
               </div>
 
-              <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+              <div className="w-[90%] h-[15vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
                 <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
                   ADDRESS
                 </div>
                 <div className="flex items-center gap-4 p-2 px-5">
-                  <p>himanshu@molog.in</p>
+                  <p>{userData.address1} , {userData.address2} , {userData.city} , {userData.state} , {userData.pinCode} </p>
                 </div>
               </div>
 
@@ -175,23 +174,6 @@ function VcardTemplate() {
                 </div>
               </div>
             </div>
-          </div>
-
-
-
-          {/*Qr code  */}
-          <div className="w-full mt-[5rem]  flex gap-[3rem] justify-center flex-col">
-            <h1 className="text-center">QR generate</h1>
-            {value && (
-                        <QRCode
-                        className="ml-[5rem]"
-                            title="the product of MOLOG"
-                            value={value}
-                            size='256'
-                        />
-
-                        
-                    )}
           </div>
 
         </div>
