@@ -7,6 +7,7 @@ import Userdetails from './VRcard/Userdetails';
 import Login from './Pages/Login'
 import SignUp from './Pages/SignUp';
 import VcardTemplate from './VRcard/VcardTemplate';
+import Dashboard from './VRcard/Dashboard';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/Sustainability" element={<Sustainability />} />
       <Route path="/vcard" element={<Userdetails />} />
       <Route path="/vcardTemp/:pageId" element={<VcardTemplate/>} />
+      <Route path="/dashboard" element={<Dashboard/>} />
     </Routes>
   );
 }

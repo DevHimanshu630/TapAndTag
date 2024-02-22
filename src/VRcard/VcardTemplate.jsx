@@ -1,5 +1,4 @@
-import React, { useState, useEffect ,useRef } from "react";
-import QRCode from 'react-qr-code';
+import React, { useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 function VcardTemplate() {
@@ -9,7 +8,7 @@ function VcardTemplate() {
   console.log("pageURL *************>>>>>" ,PageURL );
 
   const [userData, setUserData] = useState("");
-  const [value, setValue] = useState(PageURL);
+
   console.log("userdata ----------------->", userData);
 
   useEffect(() => {
@@ -22,6 +21,7 @@ function VcardTemplate() {
         );
         console.log(response);
         setUserData(response.data.response);
+        document.title = `Vcard ${pageId}`;
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -30,15 +30,14 @@ function VcardTemplate() {
     fetchData();
   }, [pageId]);
 
-
-
-
   return (
     <div>
       {userData ? (
         <div>
           <div className="w-full h-full">
-            <div class="bg-[#146C60] w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class=" w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+             style={{ backgroundImage: `url('/image/bg.png')` }}
+            >
               <div class="flex justify-end px-4 pt-4">
                 <button
                   id="dropdownButton"
@@ -175,23 +174,6 @@ function VcardTemplate() {
                 </div>
               </div>
             </div>
-          </div>
-
-
-
-          {/*Qr code  */}
-          <div className="w-full mt-[5rem]  flex gap-[3rem] justify-center flex-col">
-            <h1 className="text-center">QR generate</h1>
-            {value && (
-                        <QRCode
-                        className="ml-[5rem]"
-                            title="the product of MOLOG"
-                            value={value}
-                            size='256'
-                        />
-
-                        
-                    )}
           </div>
 
         </div>
