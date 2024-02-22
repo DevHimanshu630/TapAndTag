@@ -20,6 +20,9 @@ import phone from "../Images/phone2.png"
 import axios from "../Axios/Axios";
 import formImg from "../Images/formImage.png"
 import formUpload from "../Images/formUpload.png"
+import profileImg from "../Images/ProfileImg.png"
+import { MdDeleteOutline } from "react-icons/md";
+
 
 const style = {
     position: 'absolute',
@@ -91,10 +94,11 @@ function Navbar() {
 
 
     const linearGradientStyle = {
-        background: 'linear-gradient(90deg, #022D24 11.02%, #146C60 88.41%)',
+        background: 'linear-gradient(90deg, #022D24 0%, #146C60 94.17%)',
         WebkitBackgroundClip: 'text',
         color: 'transparent',
     };
+
 
     const myStyles = {
         background: 'linear-gradient(180deg, #F7EF8A 0%, #AE8625 100%)',
@@ -103,44 +107,26 @@ function Navbar() {
     };
 
     const [data, setData] = useState({
-
         name: "",
-        brandPhoto: "",
         profilePhoto: "",
-        email: '',
-        heading: '',
-        subHeading: '',
-        emailicon: '',
-        iconMobile: '',
-        iconSms: '',
-        headingTitle: '',
-        headingDescription: '',
-        cardTitle: '',
-        cardButtonText: '',
-        contactLable: '',
-        contactNumber: '',
-        emailLable: '',
-        lableEmail: '',
-        address: '',
-        addressLine1: '',
-        addressLine2: '',
-        city: '',
-        state: '',
-        country: '',
-        zipcode: '',
-        actionButton: '',
-        gmapURL: '',
-        imageTitle: '',
-        imageDesc: '',
-        socialTitle: '',
-        socialDesc: '',
-        facebookUrl: '',
-        instagramUrl: '',
-        twitterUrl: '',
-        linksTitle: '',
-        linksDesc: '',
-        additionalLinks: ''
-
+        designation: "",
+        companyName: "",
+        pageUrl: "",
+        email: "",
+        mobile: "",
+        sms: "",
+        webSiteUrl: "",
+        linkedinUrl: "",
+        twitterUrl: "",
+        instagramUrl: "",
+        address1: "",
+        address2: "",
+        city: "",
+        state: "",
+        country: "",
+        pinCode: "",
+        googleMapUrl: "",
+        image: "",
     })
 
     const handleChange = (e) => {
@@ -174,12 +160,22 @@ function Navbar() {
         }
     }
     const [formData, setFormData] = useState({
-        file: '',
+        files: [],
     });
     const handleInputChange = (e) => {
-        const file = e.target.files[0];
-        setFormData({ file });
+        const files = Array.from(e.target.files);
+        setFormData({ files });
     };
+
+
+    const [formProfileData, setProfileFormData] = useState({
+        imgFile: ''
+    });
+
+    const handleProfileInputChange = (e) => {
+        const imgFile = e.target.files[0];
+        setProfileFormData({ imgFile });
+    }
 
 
     return (
@@ -249,120 +245,131 @@ function Navbar() {
                         <div className='flex justify-between h-full gap-5  m-12 overflow-y-scroll   '>
                             <div className=' w-[70%]'>
                                 <form onSubmit={handleSubmitUserData} class="">
+                                    <div className="flex mb-5 flex-col gap-4  w-full">
+                                        <div className='flex gap-5  flex-col'>
+                                            <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Profile</p>
+                                            <div className='flex gap-9 pl-2 items-center  '>
+                                                <div className=' '>
+                                                    <img src={profileImg} className='w-[76px] rounded-full h-[76px]' alt="" />
+                                                </div>
+                                                <hr className='border h-12 font-thin text-[#D2D2D2]' />
+                                                <div className=' flex  gap-20 items-center justify-start w-[75%]'>
+                                                    <label
+                                                        htmlFor="dropzone-imgFile"
+                                                    >
+                                                        <div className="">
+                                                            {formProfileData.imgFile ? (
+                                                                <div className='flex gap-2 items-center'>
+                                                                    <p className="text-[#D3D3D3]">
+                                                                        Selected file: {formProfileData.imgFile.name}
+                                                                    </p>
+                                                                    <p className=' hover:cursor-pointer ' onClick={() => setProfileFormData({ ...formProfileData, imgFile: null })}><span className="text-[#D3D3D3]"><MdDeleteOutline size={24} /></span></p>
+                                                                </div>
+                                                            ) : (
+                                                                <div className='flex flex-col gap-1 hover:cursor-pointer'>
+                                                                    <img src={formUpload} sizes={20} className='' alt="" />
+                                                                    <p className=' text-[8px] '>Choose File </p>
+                                                                </div>
 
-                                    <div className="flex flex-col  w-full">
-                                        <h1>Profile</h1>
-                                        <div class="mb-5 flex m-3 items-center ">
-                                            <div className=''>
-                                                <label
-                                                    for="profilePhoto"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                                >
-                                                    Profile photo
-                                                </label>
-                                                <input
-
-                                                    type="file"
-                                                    id="profilePhoto"
-                                                    name="profilePhoto"
-                                                    value={data.profilePhoto}
-                                                    onChange={handleChange}
-                                                    class="bg-gray-50 border border-full border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none"
-                                                    placeholder="profile photo"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label
-                                                    for="brandPhoto"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                                >
-                                                    Brand Photo
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    name="brandPhoto"
-                                                    id="brandPhoto"
-                                                    value={data.brandPhoto}
-                                                    onChange={handleChange}
-                                                    class="bg-gray-50 border border-full border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none"
-                                                    required
-                                                />
+                                                            )}
+                                                        </div>
+                                                        <input
+                                                            accept="image/*"
+                                                            onChange={handleProfileInputChange}
+                                                            id="dropzone-imgFile"
+                                                            name="imgFile"
+                                                            type="file"
+                                                            className="hidden"
+                                                        />
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="mb-5">
-
+                                        <div class="mb-2 mt-3 w-[90%]">
                                             <input
                                                 placeholder='Name'
-                                                name="Name"
+                                                name="name"
                                                 type="text"
-                                                id="Name"
+                                                id="profileName"
                                                 value={data.name}
                                                 onChange={handleChange}
-                                                class="bg-gray-50 border  w-96 border-gray-300 text-gray-900 text-sm rounded-full focus:outline-none"
+                                                class=" border w-full  font-sans font-light  text-[16px] border-gray-300  placeholder-[#606060]  rounded-full focus:outline-none"
                                                 required
                                             />
                                         </div>
 
-                                        <div class="mb-5 flex gap-5">
+                                        <div class="mb-5 w-[90%] flex gap-5">
                                             <input
                                                 placeholder='Designation'
-                                                name=" Designation"
+                                                name="designation"
                                                 type="text"
-                                                id=" Designation"
-                                                value={data.name}
+                                                id="Designation"
+                                                value={data.designation}
                                                 onChange={handleChange}
-                                                class="bg-gray-50 border border-full w-1/2 border-gray-300 text-gray-900 text-sm rounded-full focus:outline-none"
+                                                class=" font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-1/2 border-gray-300 rounded-full focus:outline-none"
                                                 required
                                             />
                                             <input
                                                 placeholder='Company Name'
-                                                name="Name"
+                                                name="company"
                                                 type="text"
-                                                id="Name"
-                                                value={data.name}
+                                                id="companyName"
+                                                value={data.company}
                                                 onChange={handleChange}
-                                                class="bg-gray-50 border border-full w-1/2 border-gray-300 text-gray-900 text-sm rounded-full focus:outline-none"
+                                                class="font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-1/2 border-gray-300 text-gray-900 rounded-full focus:outline-none"
                                                 required
                                             />
                                         </div>
                                         <div class="mb-5 flex flex-col  gap-5 ">
-                                            <p>Create Your Page URL</p>
+                                            <div className=' w-[90%] flex justify-between items-center '>
+                                                <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Create Your Page URL</p>
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input onClick={""} type="checkbox" value="" class="sr-only peer" />
+                                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                                </label>
+                                            </div>
                                             <input
-                                                placeholder='Eg: Enter a combination of your Name and Organisation....../ .linkurl'
-                                                name=" Designation"
+                                                placeholder='   Eg: Enter a combination of your Name and Organisation....../ .linkurl'
+                                                name="pageUrl"
                                                 type="text"
-                                                id=" Designation"
-                                                value={data.name}
+                                                id="Designation"
+                                                value={data.pageUrl}
                                                 onChange={handleChange}
-                                                class="bg-gray-50 border border-full border-gray-300 text-gray-900 text-sm rounded-full focus:outline-none"
+                                                class="font-sans font-light  text-[16px] placeholder-[#D2D2D2] border w-[90%] border-full border-gray-300 rounded-full focus:outline-none"
                                                 required
                                             />
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-col mb-5 w-full">
+                                    <div className="flex mb-12 flex-col gap-4  w-full">
                                         <div className='flex gap-5 flex-col'>
-                                            <p>Profile connect icons</p>
+                                            <div className=' w-[90%] flex justify-between items-center '>
+                                                <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Profile Connect Icons</p>
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="" class="sr-only peer" />
+                                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                                </label>
+
+                                            </div>
                                             <div className='flex flex-col gap-4'>
                                                 <div class=" flex items-center">
                                                     <div className='border rounded-l-full'>
                                                         <label
                                                             for="emailicon"
-                                                            class="block p-2 w-32 pl-4 text-left text-sm font-medium text-gray-900 dark:text-white"
+                                                            class="block p-2 w-32 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                         >
                                                             Email
                                                         </label></div>
-                                                    <div className='border w-[70%]  rounded-r-full bg-gray-50 '>
+                                                    <div className='border w-[70%]  rounded-r-full  '>
                                                         <input
                                                             autoComplete="true"
-                                                            placeholder="name@flowbite.com"
+                                                            placeholder="Enter Your Email Address"
                                                             type="email"
-                                                            name="emailicon"
+                                                            name="email"
                                                             id="iconemail"
-                                                            value={data.emailicon}
+                                                            value={data.email}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 w-full rounded-r-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                            class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                             required
                                                         />
                                                     </div>
@@ -370,20 +377,22 @@ function Navbar() {
                                                 <div class=" flex items-center">
                                                     <div className='border rounded-l-full'>
                                                         <label
-                                                            for="iconMobile"
-                                                            class="block p-2 w-32 pl-4 text-left text-sm font-medium text-gray-900 dark:text-white"
+                                                            for="emailicon"
+                                                            class="block p-2 w-32 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                         >
                                                             Mobile
-                                                        </label>
-                                                    </div>
-                                                    <div className='border w-[70%]  rounded-r-full bg-gray-50 '>
+                                                        </label></div>
+                                                    <div className='border w-[70%]  rounded-r-full  '>
                                                         <input
-                                                            name="iconMobile"
-                                                            type="phone"
+                                                            autoComplete="true"
+                                                            placeholder="Enter Your Mobile Number"
+                                                            type="text"
+                                                            name="mobile"
                                                             id="iconMobile"
-                                                            value={data.iconMobile}
+                                                            value={data.mobile}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 p-2 w-full rounded-r-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none" required
+                                                            class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
+                                                            required
                                                         />
                                                     </div>
                                                 </div>
@@ -391,35 +400,62 @@ function Navbar() {
                                                     <div className='border rounded-l-full'>
                                                         <label
                                                             for="IconSms"
-                                                            class="block p-2 w-32 pl-4 text-left text-sm font-medium text-gray-900 dark:text-white"
+                                                            class="block p-2 w-32 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                         >
                                                             SMS
                                                         </label>
                                                     </div>
                                                     <div className='border w-[70%]  rounded-r-full bg-gray-50 '>
                                                         <input
-                                                            name="IconSms"
+                                                            placeholder='Enter Your SMS'
+                                                            name="sms"
                                                             type="text"
                                                             id="sms"
-                                                            value={data.iconSms}
+                                                            value={data.sms}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 p-2 w-full rounded-r-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none" required
+                                                            class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                         />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                    </div>
+                                    <div class="mb-12 flex flex-col  gap-5 ">
+                                        <div className=' w-[90%] flex justify-between items-center '>
+                                            <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Website</p>
+                                            <label class="inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" value="" class="sr-only peer" />
+                                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                            </label>
+                                        </div>
+                                        <input
+                                            placeholder='   Enter your Website URL'
+                                            name="webSiteUrl"
+                                            type="text"
+                                            id="webSiteUrl"
+                                            value={data.webSiteUrl}
+                                            onChange={handleChange}
+                                            class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-[90%] rounded-full    border-gray-300 focus:outline-none"
+                                            required
+                                        />
                                     </div>
 
-                                    <div className="flex flex-col mb-5  w-full">
+                                    <div className="flex flex-col mb-10  w-full">
                                         <div className='flex gap-5 flex-col'>
-                                            <p>Contact Us</p>
+                                            <div className=' w-[90%] flex justify-between items-center '>
+                                                <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Contact Us</p>
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="" class="sr-only peer" />
+                                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                                </label>
+                                            </div>
                                             <div className='flex flex-col gap-4'>
                                                 <div class=" flex items-center">
                                                     <div className='border rounded-l-full'>
                                                         <label
                                                             for="link"
-                                                            class="block p-2 w-32 pl-4 text-left text-sm font-medium text-gray-900 dark:text-white"
+                                                            class="block p-2 w-32 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                         >
                                                             Linkedin
                                                         </label></div>
@@ -428,11 +464,11 @@ function Navbar() {
                                                             autoComplete="true"
                                                             placeholder="Enter a valid Link"
                                                             type="text"
-                                                            name="link"
-                                                            id="link"
-                                                            value={data.emailicon}
+                                                            name="linkedinUrl"
+                                                            id="linkedinUrl"
+                                                            value={data.linkedinUrl}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 w-full rounded-r-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                            class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                             required
                                                         />
                                                     </div>
@@ -441,7 +477,7 @@ function Navbar() {
                                                     <div className='border rounded-l-full'>
                                                         <label
                                                             for="link"
-                                                            class="block p-2 w-32 pl-4 text-left text-sm font-medium text-gray-900 dark:text-white"
+                                                            class="block p-2 w-32 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                         >
                                                             Twitter
                                                         </label></div>
@@ -450,11 +486,11 @@ function Navbar() {
                                                             autoComplete="true"
                                                             placeholder="Enter a valid Link"
                                                             type="text"
-                                                            name="link"
-                                                            id="link"
-                                                            value={data.emailicon}
+                                                            name="twitterUrl"
+                                                            id="twitterUrl"
+                                                            value={data.twitterUrl}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 w-full rounded-r-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                            class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                             required
                                                         />
                                                     </div>
@@ -463,7 +499,7 @@ function Navbar() {
                                                     <div className='border rounded-l-full'>
                                                         <label
                                                             for="link"
-                                                            class="block p-2 w-32 pl-4 text-left text-sm font-medium text-gray-900 dark:text-white"
+                                                            class="block p-2 w-32 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                         >
                                                             Instagram
                                                         </label></div>
@@ -472,11 +508,11 @@ function Navbar() {
                                                             autoComplete="true"
                                                             placeholder="Enter a valid Link"
                                                             type="text"
-                                                            name="link"
-                                                            id="link"
-                                                            value={data.emailicon}
+                                                            name="instagramUrl"
+                                                            id="instagramUrl"
+                                                            value={data.instagramUrl}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 w-full rounded-r-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                            class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                             required
                                                         />
                                                     </div>
@@ -485,21 +521,27 @@ function Navbar() {
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-col  w-full">
+                                    <div className="flex flex-col mb-10 w-full">
                                         <div className='flex gap-5 flex-col'>
-                                            <p>Address</p>
+                                            <div className=' w-[90%] flex justify-between items-center '>
+                                                <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Address</p>
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="" class="sr-only peer" />
+                                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                                </label>
+                                            </div>
                                             <div className='flex flex-col gap-4'>
                                                 <div class=" flex items-center">
-                                                    <div className='border w-[90%]  rounded-full bg-gray-50 '>
+                                                    <div className=' w-[90%]   '>
                                                         <input
                                                             autoComplete="true"
-                                                            placeholder="Address Line 1"
+                                                            placeholder="   Address Line 1"
                                                             type="text"
-                                                            name="address"
-                                                            id="address"
-                                                            value={data.emailicon}
+                                                            name="address1"
+                                                            id="address1"
+                                                            value={data.address1}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 w-full rounded-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                            class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
                                                             required
                                                         />
                                                     </div>
@@ -507,59 +549,59 @@ function Navbar() {
                                                 <div className=' flex w-[90%]  gap-5 '>
                                                     <input
                                                         autoComplete="true"
-                                                        placeholder="Address Line 2"
+                                                        placeholder="   Address Line 2"
                                                         type="text"
                                                         name="address2"
                                                         id="address2"
-                                                        value={data.emailicon}
+                                                        value={data.address2}
                                                         onChange={handleChange}
-                                                        class="bg-gray-50  rounded-full w-[70%]   border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                        class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full w-[70%]   border-gray-300  focus:outline-none"
                                                         required
                                                     />
                                                     <input
                                                         autoComplete="true"
-                                                        placeholder="City"
+                                                        placeholder="  City"
                                                         type="text"
-                                                        name="City"
+                                                        name="city"
                                                         id="City"
-                                                        value={data.emailicon}
+                                                        value={data.city}
                                                         onChange={handleChange}
-                                                        class="bg-gray-50  rounded-full  w-[30%]   border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                        class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[30%]   border-gray-300 focus:outline-none"
                                                         required
                                                     />
                                                 </div>
                                                 <div className=' flex w-[90%] justify-evenly mb-5 gap-5 '>
                                                     <input
                                                         autoComplete="true"
-                                                        placeholder="State"
+                                                        placeholder="   State"
                                                         type="text"
-                                                        name="State"
+                                                        name="state"
                                                         id="State"
-                                                        value={data.emailicon}
+                                                        value={data.state}
                                                         onChange={handleChange}
-                                                        class="bg-gray-50  rounded-full w-[35%]   border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                        class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full w-[35%]   border-gray-300 focus:outline-none"
                                                         required
                                                     />
                                                     <input
                                                         autoComplete="true"
-                                                        placeholder="Country"
+                                                        placeholder="  Country"
                                                         type="text"
-                                                        name="Country"
+                                                        name="country"
                                                         id="Country"
-                                                        value={data.emailicon}
+                                                        value={data.country}
                                                         onChange={handleChange}
-                                                        class="bg-gray-50  rounded-full  w-[35%]    border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                        class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[35%]    border-gray-300 focus:outline-none"
                                                         required
                                                     />
                                                     <input
                                                         autoComplete="true"
-                                                        placeholder="Pin Code"
+                                                        placeholder="  Pin Code"
                                                         type="text"
                                                         name="pincode"
-                                                        id="pincode"
-                                                        value={data.emailicon}
+                                                        id="Pincode"
+                                                        value={data.pincode}
                                                         onChange={handleChange}
-                                                        class="bg-gray-50  rounded-full  w-[35%]    border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                        class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[35%]    border-gray-300 focus:outline-none"
                                                         required
                                                     />
                                                 </div>
@@ -567,21 +609,27 @@ function Navbar() {
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-col mb-5  w-full">
+                                    <div className="flex flex-col mb-12  w-full">
                                         <div className='flex gap-5 flex-col'>
-                                            <p>Google Maps URL</p>
+                                            <div className='flex justify-between items-center w-[90%]'>
+                                                <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Google Maps URL</p>
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="" class="sr-only peer" />
+                                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                                </label>
+                                            </div>
                                             <div className='flex flex-col gap-4'>
                                                 <div class=" flex items-center">
-                                                    <div className='border w-[90%]  rounded-full bg-gray-50 '>
+                                                    <div className=' w-[90%] '>
                                                         <input
                                                             autoComplete="true"
                                                             placeholder="Enter Your Location URL"
                                                             type="text"
-                                                            name="url"
-                                                            id="url"
-                                                            value={data.emailicon}
+                                                            name="googleMapUrl"
+                                                            id="GoogleMapUrl"
+                                                            value={data.googleMapUrl}
                                                             onChange={handleChange}
-                                                            class="bg-gray-50 w-full rounded-full  border-none  border-gray-300 text-gray-900 text-sm focus:outline-none"
+                                                            class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
                                                             required
                                                         />
                                                     </div>
@@ -591,45 +639,56 @@ function Navbar() {
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-col mb-5  w-full">
+                                    <div className="flex flex-col mb-12  w-full">
                                         <div className='flex gap-4 flex-col'>
-                                            <p>Images</p>
+                                            <div className='flex items-center justify-between w-[90%]'>
+                                                <p style={linearGradientStyle} className=' font-sans font-medium text-[20px] tracking-wide'>Images</p>
+                                                <label class="inline-flex items-center cursor-pointer">
+                                                    <input type="checkbox" value="" class="sr-only peer" />
+                                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                                </label>
+                                            </div>
                                             <div className='flex  items-center  '>
                                                 <div className=' '>
                                                     <img src={formImg} className='w-[82px] h-[82px]' alt="" />
                                                 </div>
                                                 <hr className='border h-12 mr-4  font-thin text-[#D2D2D2]' />
-                                                <div className=' flex  gap-20 items-center justify-start w-[75%]'>
+                                                <div className=' flex  gap-20 items-center justify-start w-[80%]'>
                                                     <label
                                                         htmlFor="dropzone-file"
                                                     >
                                                         <div className="">
-                                                            {formData.file ? (
+                                                            {formData.files.length > 0 ? (
                                                                 <div className='flex gap-2'>
-                                                                    <p className="">
-                                                                        Selected file: {formData.file.name}
+                                                                    <p className="text-[#D3D3D3]">
+                                                                        <p className="text-[#D3D3D3]">
+                                                                            Selected files: {formData.files.length > 0 && formData.files.map(file => file.name).join(', ')}
+                                                                        </p>
                                                                     </p>
-                                                                    <p className=' hover:cursor-pointer' onClick={() => setFormData({ ...formData, file: null })}>X</p>
+                                                                    <p className='hover:cursor-pointer' onClick={() => setFormData({ ...formData, files: [] })}>
+                                                                        <span className="text-[#D3D3D3]"><MdDeleteOutline size={24} /></span>
+                                                                    </p>
                                                                 </div>
                                                             ) : (
-                                                                <div className='flex flex-col gap-1 hover:cursor-pointer'>
+                                                                <label htmlFor="dropzone-file" className='flex flex-col gap-1 hover:cursor-pointer'>
                                                                     <img src={formUpload} sizes={20} className='' alt="" />
-                                                                    <p className=' text-[8px] '>Choose File</p>
-                                                                </div>
-
+                                                                    <p className='text-[8px]'>Choose Files</p>
+                                                                    <input
+                                                                        accept="image/*"
+                                                                        onChange={handleInputChange}
+                                                                        id="dropzone-file"
+                                                                        name="file"
+                                                                        type="file"
+                                                                        multiple  // Allow multiple files to be selected
+                                                                        className="hidden"
+                                                                    />
+                                                                </label>
                                                             )}
                                                         </div>
-                                                        <input
-                                                            accept="image/*, video/*"
-                                                            onChange={handleInputChange}
-                                                            id="dropzone-file"
-                                                            name="file"
-                                                            type="file"
-                                                            className="hidden"
-                                                        />
                                                     </label>
+
                                                     <div >
-                                                        <span className='text-[#D2D2D2]'>Upload Images on your Profile Page</span>
+                                                        <span className={` ${formData.files ? "hidden" : "block"} text-[#D2D2D2]`}>Upload Images on your Profile Page</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -645,8 +704,8 @@ function Navbar() {
                                     </div>
                                 </form>
                             </div>
-                            <div className='border '>
-                                <img src={phone} class="h-[478px] w-[478px] sticky " alt="Molog Logo" />
+                            <div className='border  '>
+                                <img src={phone} class="h-[478px] w-[478px] object-contain" alt="Molog Logo" />
                             </div>
                         </div>
                     </div>
