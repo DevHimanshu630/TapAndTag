@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../Images/logo.png"
 import axios from "../Axios/Axios";
 
-export default function ExampleV2() {
+export default function Login() {
 
 
     const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ export default function ExampleV2() {
 
 
             console.log(res);
-            localStorage.setItem('token',res.data.token);
+            localStorage.setItem('token', res.data.token);
         }
         catch (err) {
             console.log(err);
@@ -69,7 +69,7 @@ export default function ExampleV2() {
 
                 <p class="mt-10 text-center text-sm text-gray-500">
                     Not a member?
-                    <a href="" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
+                    <a href="/signup" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Sign Up</a>
                 </p>
             </div>
         </div>

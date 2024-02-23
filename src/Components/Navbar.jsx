@@ -122,6 +122,7 @@ function Navbar() {
     country: "",
     pinCode: "",
     googleMapUrl: "",
+    formName: "",
   });
 
   const handleChange = (e) => {
@@ -134,8 +135,10 @@ function Navbar() {
   };
   const token = localStorage.getItem("token");
 
+
   const handleSubmitUserData = async (e) => {
     e.preventDefault();
+
     const formDatas = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       formDatas.append(key, value);
@@ -144,12 +147,10 @@ function Navbar() {
     if (formData.profilePhoto) {
       formDatas.append("profilePhoto", formData.profilePhoto);
     }
-
     // Append image if present
     if (formProfileData.image) {
       formDatas.append("image", formProfileData.image);
     }
-    console.log(formDatas);
 
     try {
       const res = await axios.post("users/uploadForm", formDatas, {
@@ -159,10 +160,12 @@ function Navbar() {
         },
       });
       console.log(res);
+
     } catch (err) {
       console.log(err);
     }
   };
+
   const [formData, setFormData] = useState({
     profilePhoto: "",
   });
@@ -181,7 +184,7 @@ function Navbar() {
     setProfileFormData({ image: imgFile });
   };
 
-  const [showDiv, setShowDiv] = useState(false);
+  const [showDiv, setShowDiv] = useState(true);
   const [showform, setShowForm] = useState(true);
   const handleForm = () => {
     setShowForm(false);
@@ -189,18 +192,31 @@ function Navbar() {
   const handleBackForm = () => {
     setShowForm(true);
   };
-  
+
   const qrInputRef = useRef(null);
   const [qr, setQR] = useState('');
+  const [profileDiv, setProfileDiv] = useState(true);
+  const [webSiteDiv, setWebSiteDiv] = useState(false);
+  const [contactDiv, setContactDiv] = useState(false);
+  const [googleDiv, setGoogleDiv] = useState(false);
+  const [addresDiv, setAddresDiv] = useState(false);
+  const handleProfileDiv = () => {
+    setProfileDiv(!profileDiv)
+  }
+  const handleWbSiteDiv = () => {
+    setWebSiteDiv(!webSiteDiv)
+  }
+  const handleContactDiv = () => {
+    setContactDiv(!contactDiv)
+  }
+  const handleGoogleDiv = () => {
+    setGoogleDiv(!googleDiv)
+  }
 
-  const handleQr = () => {
-    if (qrInputRef.current) {
-      const inputValue = qrInputRef.current.value;
-      setQR(inputValue);
-    } else {
-      console.error("qrInputRef.current is null");
-    }
-  };
+  const handleAddress = () => {
+    setAddresDiv(!addresDiv)
+  }
+
 
   return (
     <div
@@ -212,9 +228,8 @@ function Navbar() {
     >
       <nav class="p-5  ">
         <div
-          class={`${
-            isMenuNav ? " " : ""
-          } " max-w-screen-xl flex flex-wrap items-center mx-auto justify-between xl:px-10 p-4"`}
+          class={`${isMenuNav ? " " : ""
+            } " max-w-screen-xl flex flex-wrap items-center mx-auto justify-between xl:px-10 p-4"`}
         >
           <div>
             <Link to={"/"} class="">
@@ -425,68 +440,42 @@ function Navbar() {
                           required
                         />
                       </div>
-                      {showDiv ? (
-                        <div className="w-[90%] transition-all ease-in-out duration-700 flex justify-between items-center">
-                          <p
-                            style={linearGradientStyle}
-                            className="font-sans font-medium text-[20px] tracking-wide"
+
+                      <div className="w-[90%]  flex justify-between items-center">
+                        <p
+                          style={linearGradientStyle}
+                          className="font-sans font-medium text-[20px] tracking-wide"
+                        >
+                          Create Your Page URL
+                        </p>
+                      </div>
+                      <div className="flex items-center transition-all ease-in-out duration-500">
+                        <div className="border w-[34%] bg-gray-100 rounded-l-full">
+                          <label
+                            for="emailicon"
+                            class="block p-2 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                           >
-                            Create Your Page URL
-                          </p>
-                          <label className="inline-flex items-center cursor-pointer">
-                            <input
-                              onClick={() => setShowDiv(!showDiv)}
-                              type="checkbox"
-                              value=""
-                              className="sr-only  peer"
-                            />
-                            <div
-                              className={`relative w-11 h-6 bg-${
-                                showDiv ? "bg-[#022D24] " : "bg-gray-300"
-                              } peer-focus:outline-none bg-gray-300 peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-300 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]`}
-                            />
+                            https://tapandtag.molog.in/
                           </label>
                         </div>
-                      ) : (
-                        <div className="w-[90%] transition-all ease-in-out duration-700 flex justify-between items-center">
-                          <p
-                            style={linearGradientStyle}
-                            className="font-sans font-medium text-[20px] tracking-wide"
-                          >
-                            Create Your Page URL
-                          </p>
-                          <label className="inline-flex items-center cursor-pointer">
-                            <input
-                              onClick={() => setShowDiv(!showDiv)}
-                              type="checkbox"
-                              value=""
-                              className="sr-only peer"
-                            />
-                            <div
-                              className={`relative w-11 h-6 bg-${
-                                showDiv ? "bg-gray-300" : "bg-[#022D24]"
-                              } peer-focus:outline-none bg-gray-300 peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]`}
-                            />
-                          </label>
+                        <div className="border w-[56%]  rounded-r-full  ">
+                          <input
+                            autoComplete="true"
+                            type="text"
+                            name="pageUrl"
+                            id="pageUrl"
+                            value={data.pageUrl}
+                            onChange={handleChange}
+                            class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
+                            required
+                          />
                         </div>
-                      )}
-                      {showDiv && (
-                        <input
-                          placeholder="https://tapandtag.molog.in/"
-                          
-                          name="pageUrl"
-                          type="text"
-                          id="Designation"
-                          // Add value and onChange handlers here if needed
-                          className="font-sans font-light text-[16px] placeholder-[#D2D2D2] border w-[90%] border-full border-gray-300 rounded-full focus:outline-none transition-all duration-300"
-                          required
-                        />
-                      )}
+                      </div>
                     </div>
 
                     <div className="flex mb-12 flex-col gap-4  w-full">
                       <div className="flex gap-5 flex-col">
-                        <div className=" w-[90%] flex justify-between items-center ">
+                        <div className=" w-[90%]  flex justify-between items-center ">
                           <p
                             style={linearGradientStyle}
                             className=" font-sans font-medium text-[20px] tracking-wide"
@@ -495,14 +484,15 @@ function Navbar() {
                           </p>
                           <label class="inline-flex items-center cursor-pointer">
                             <input
+                              onClick={handleProfileDiv}
                               type="checkbox"
                               value=""
                               class="sr-only peer"
                             />
-                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                            <div class="relative w-11 h-6 bg-[#022D24] peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-200"></div>
                           </label>
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className={` ${!profileDiv ? "hidden transition-all ease-in-out duration-700 h-0 " : "transition-all tra ease-in-out duration-700 h-full flex flex-col gap-4"} `}>
                           <div class=" flex items-center">
                             <div className="border rounded-l-full">
                               <label
@@ -583,6 +573,7 @@ function Navbar() {
                         </p>
                         <label class="inline-flex items-center cursor-pointer">
                           <input
+                            onClick={handleWbSiteDiv}
                             type="checkbox"
                             value=""
                             class="sr-only peer"
@@ -597,7 +588,7 @@ function Navbar() {
                         id="webSiteUrl"
                         value={data.webSiteUrl}
                         onChange={handleChange}
-                        class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-[90%] rounded-full    border-gray-300 focus:outline-none"
+                        className={` ${!webSiteDiv ? "hidden" : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-[90%] rounded-full    border-gray-300 focus:outline-none"}`}
                         required
                       />
                     </div>
@@ -613,6 +604,7 @@ function Navbar() {
                           </p>
                           <label class="inline-flex items-center cursor-pointer">
                             <input
+                              onClick={handleContactDiv}
                               type="checkbox"
                               value=""
                               class="sr-only peer"
@@ -620,7 +612,7 @@ function Navbar() {
                             <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
                           </label>
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className={` ${contactDiv ? "flex flex-col gap-4" : "hidden"}`}>
                           <div class=" flex items-center">
                             <div className="border rounded-l-full">
                               <label
@@ -705,6 +697,7 @@ function Navbar() {
                           </p>
                           <label class="inline-flex items-center cursor-pointer">
                             <input
+                              onClick={handleAddress}
                               type="checkbox"
                               value=""
                               class="sr-only peer"
@@ -712,7 +705,7 @@ function Navbar() {
                             <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
                           </label>
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className={` ${addresDiv ? "flex flex-col gap-4" : "hidden"}`}>
                           <div class=" flex items-center">
                             <div className=" w-[90%]   ">
                               <input
@@ -721,8 +714,8 @@ function Navbar() {
                                 type="text"
                                 name="address1"
                                 id="address1"
-                                value={data.address1}
                                 onChange={handleChange}
+                                value={data.address1}
                                 class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
                                 required
                               />
@@ -802,6 +795,7 @@ function Navbar() {
                           </p>
                           <label class="inline-flex items-center cursor-pointer">
                             <input
+                              onClick={handleGoogleDiv}
                               type="checkbox"
                               value=""
                               class="sr-only peer"
@@ -809,7 +803,7 @@ function Navbar() {
                             <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
                           </label>
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className={` ${googleDiv ? "flex flex-col gap-4" : "hidden"}`}>
                           <div class=" flex items-center">
                             <div className=" w-[90%] ">
                               <input
@@ -906,9 +900,8 @@ function Navbar() {
 
                             <div>
                               <span
-                                className={` ${
-                                  formData.profilePhoto ? "hidden" : "block"
-                                } text-[#D2D2D2]`}
+                                className={` ${formData.profilePhoto ? "hidden" : "block"
+                                  } text-[#D2D2D2]`}
                               >
                                 Upload Images on your Profile Page
                               </span>
@@ -929,21 +922,33 @@ function Navbar() {
                 ) : (
                   <div>
                     <div>
-                      <h1>QR Code Generator</h1>
                       <input
+                        autoComplete="true"
+                        placeholder="Enter Your Form Name"
                         type="text"
-                        value={`https://tapandtag.molog.in${data.pageUrl}`}
-                        ref={qrInputRef}
-                        onChange={handleQr}
-                        placeholder="Enter text for QR code"
+                        name="formName"
+                        id="formName"
+                        value={data.formName}
+                        onChange={handleChange}
+                        class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
+                        required
                       />
-                      {qr && <QRCode value={qr} />}
+                    </div>
+                    <div>
+                      <h1>QR Code Generator</h1>
+                      <div
+                        className="border p-3"
+                        ref={qrInputRef}
+                      >
+                        {data.pageUrl}
+                      </div>
+                      <QRCode value={qr} />
                     </div>
                     <div className="flex  flex-col">
                       <button onClick={handleBackForm} className="text-black">
                         back
-                      </button> 
-                     
+                      </button>
+
                       <button type="submit" className="text-black">
                         submit
                       </button>
@@ -958,7 +963,10 @@ function Navbar() {
                       alt="Molog Logo"
                     />
                   ) : (
-                    <div>qr img</div>
+                    <div className="w-96"
+                    >
+                      <QRCode value={qr} />
+                    </div>
                   )}
                 </div>
               </div>
@@ -968,9 +976,8 @@ function Navbar() {
       </Modal>
 
       <div
-        className={`w-full   xl:hidden ${
-          isMenuOpen ? "block   bg-[#FAF9F6]  " : "hidden"
-        }  `}
+        className={`w-full   xl:hidden ${isMenuOpen ? "block   bg-[#FAF9F6]  " : "hidden"
+          }  `}
         id="navbar-toggle"
       >
         <div className="flex flex-col items-center gap-10 ">
@@ -1004,8 +1011,8 @@ function Navbar() {
             </li>
 
             {/* <li className='border'>
-                            <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded ">Pricing <IoIosArrowForward size={24} /></a>
-                        </li> */}
+              <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded ">Pricing <IoIosArrowForward size={24} /></a>
+            </li> */}
           </ul>
         </div>
       </div>
@@ -1017,60 +1024,60 @@ export default Navbar;
 
 {
   /* <img src={formUpload} sizes={20} className='' alt="" />
-<p className=' text-[8px] '>Choose File</p> */
+  <p className=' text-[8px] '>Choose File</p> */
 }
 {
   /* <div className='  flex items-center justify-center'>
-<div className='border h-[121px] w-[213px]'>
+  <div className='border h-[121px] w-[213px]'>
 
-</div>
-</div>
-<div className=' flex w-full    xl:items-center'>
-<div className='xl:w-[80%] w-[70%] '>
+  </div>
+  </div>
+  <div className=' flex w-full    xl:items-center'>
+  <div className='xl:w-[80%] w-[70%] '>
     <p style={linearGradientStyle} className='text-[24px]  font-normal'>
         Classic
     </p>
     <div className='flex mt-2 items-center gap-2'>
         <p className='flex items-center text-[21px] text-[#484848] font-semibold font-sans'><LuIndianRupee className=' text-[21px] text-[#484848] font-semibold font-sans' />2,499 </p><p className='flex items-center text-[#D9D9D9] font-semibold  line-through text-[16px] font-sans'><LuIndianRupee className=' text-[#D9D9D9] font-semibold  line-through text-[16px] font-sans' />2,999</p> <span className='flex items-center text-[#4CAF4F] font-semibold text-[16px] font-sans'>17%</span> <span className='text-[#D9D9D9] text-[11px] mt-1 font-sans font-semibold'>One time purchase</span>
     </div>
-</div>
-<div className='flex gap-3 pt-2 md:pt-0'>
+  </div>
+  <div className='flex gap-3 pt-2 md:pt-0'>
     <GoShareAndroid className='w-[19px] h-[19px] cursor-pointer text-[#CCCCCC]' />
     <img src={save} className='w-[19px] h-[19px] cursor-pointer ' alt="" />
-</div>
-</div>
-<div className='flex  gap-3'>
-<div className=' text-center'>
+  </div>
+  </div>
+  <div className='flex  gap-3'>
+  <div className=' text-center'>
     <div className='border cursor-pointer h-10 w-10'>
         <img src={recClassic} className='w-full h-full' alt="recClassic" />
     </div>
     <span className='text-[11px] font-semibold font-sans text-[#5A5A5A] '>Classic</span>
-</div>
-<div className=' text-center'>
+  </div>
+  <div className=' text-center'>
     <div className='border cursor-pointer h-10 w-10'>
         <img src={recWood} className='w-full h-full' alt="recWood" />
     </div>
     <span className='text-[11px] font-semibold font-sans text-[#5A5A5A] '>Wood</span>
-</div>
-<div className=' text-center'>
+  </div>
+  <div className=' text-center'>
     <div className='border cursor-pointer h-10 w-10'>
         <img src={recMetal} className='w-full h-full' alt="recMetal" />
     </div>
     <span className='text-[11px] font-semibold font-sans text-[#5A5A5A] '>Metal</span>
-</div>
-</div>
-<div className='w-full flex-col flex gap-3'>
-<div className='flex gap-3'>
+  </div>
+  </div>
+  <div className='w-full flex-col flex gap-3'>
+  <div className='flex gap-3'>
     <button type="button" style={{ borderRadius: "34px" }} className=" btn-hover  color-5">Buy Now</button>
     <button type="button" style={{ borderRadius: "34px" }} className=" border-[#146C60] text-[#022D24] px-4 border-[1.5px] xl:px-12 ">Add to Cart</button>
-</div>
-<p>
+  </div>
+  <p>
     <span className='text-[11px] font-sans  font-extralight'>Delivery in </span><span className='text-[#5A5A5A] text-[11px] font-sans font-semibold'>7-12 business days</span>
-</p>
-</div>
-<div className='flex flex-col gap-5'>
-<p className='text-[#3E3E3E]  uppercase text-[14px] font-sans font-semibold'>Features</p>
-<div className='flex items-center gap-5'>
+  </p>
+  </div>
+  <div className='flex flex-col gap-5'>
+  <p className='text-[#3E3E3E]  uppercase text-[14px] font-sans font-semibold'>Features</p>
+  <div className='flex items-center gap-5'>
     <div className='flex flex-col gap-2 items-center text-center'>
         <div style={myStyles} className=' border-2  border-soild rounded-full border-[#AE8625] flex justify-center  items-center  h-12 w-12'>
             <img src={tapPay} className=' object-contain w-[26px] h-[26px]' alt="" />
@@ -1104,6 +1111,6 @@ export default Navbar;
             <span className='text-[11px] font-semibold font-sans text-[#AE8625] '>Profile</span>
         </div>
     </div>
-</div>
-</div> */
+  </div>
+  </div> */
 }
