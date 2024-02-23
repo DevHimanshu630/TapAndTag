@@ -1,6 +1,6 @@
 
 import Home from './Components/Home';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route , Navigate } from "react-router-dom";
 import Product from './Pages/Product';
 import Sustainability from './Pages/Sustainability';
 import Userdetails from './VRcard/Userdetails';
@@ -10,17 +10,41 @@ import VcardTemplate from './VRcard/VcardTemplate';
 import Dashboard from './VRcard/Dashboard';
 
 function App() {
+  const token = localStorage.getItem("token");
+  const isUserLoggedIn = !!token;
+  
+  console.log("user login status", isUserLoggedIn);
   return (
+    <>
+    {isUserLoggedIn ? (
+      <>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/Sustainability" element={<Sustainability />} />
+        <Route path="/vcard" element={<Userdetails />} />
+        <Route path="/vcardTemp/:pageId" element={<VcardTemplate/>} />
+      </Routes>
+      </>
+    ):
+   (
+    <>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/product" element={<Product />} />
-      <Route path="/Sustainability" element={<Sustainability />} />
-      <Route path="/vcard" element={<Userdetails />} />
-      <Route path="/vcardTemp/:pageId" element={<VcardTemplate/>} />
-      <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/Sustainability" element={<Sustainability />} />
+        <Route path="/vcard" element={<Userdetails />} />
+        <Route path="/vcardTemp/:pageId" element={<VcardTemplate/>} />
     </Routes>
+    </>
+    )
+     }
+    </>
   );
 }
 
