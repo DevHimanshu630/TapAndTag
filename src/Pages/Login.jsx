@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import logo from "../Images/logo.png"
 import axios from "../Axios/Axios";
+import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
-
+export default function ExampleV2() {
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         email: '',
@@ -25,10 +30,19 @@ export default function Login() {
                 email: formData.email,
                 password: formData.password
             });
-
-
             console.log(res);
-            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('token', res.data.token)
+            toast.success("login successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+            setTimeout(() => {
+                navigate("/dashboard")
+            }, [1000])
         }
         catch (err) {
             console.log(err);
@@ -37,6 +51,7 @@ export default function Login() {
 
     return (
         <div class="flex min-h-full flex-col justify-center px-6 py-24 lg:px-8">
+            <ToastContainer />
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img class="mx-auto h-32 w-auto" src={logo} alt="Your Company" />
                 <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
@@ -69,7 +84,7 @@ export default function Login() {
 
                 <p class="mt-10 text-center text-sm text-gray-500">
                     Not a member?
-                    <a href="/signup" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Sign Up</a>
+                    <Link to="/signup" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">SignUp</Link>
                 </p>
             </div>
         </div>

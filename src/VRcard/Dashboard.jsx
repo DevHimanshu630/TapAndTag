@@ -91,14 +91,14 @@ function Dashboard() {
         </tr>
       </thead>
       <tbody>
-        {userData.map((item, index) => (
+        {userData?.map((item, index) => (
           <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="px-6 py-4 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {item.timeStamp}
+              {item?.timeStamp}
             </td>
-            <td class="px-6 py-4 font-sans">{item.formName}</td>
-            <td class="px-6 py-4 font-sans">{item.type}</td>
-            <td class="px-6 py-4 font-sans">{item.QR.fileName}</td>
+            <td class="px-6 py-4 font-sans">{item?.formName}</td>
+            <td class="px-6 py-4 font-sans">{item?.type}</td>
+            <td class="px-6 py-4 font-sans">{item?.QR?.fileName}</td>
             {/* Add other columns as needed */}
           </tr>
         ))}
