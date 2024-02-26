@@ -14,7 +14,7 @@ import { MdContentCopy } from "react-icons/md";
 import { FiExternalLink } from "react-icons/fi";
 import { IoIosEye } from "react-icons/io";
 import { MdOutlineQrCode } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -42,6 +42,9 @@ function QrForm() {
         googleMapUrl: "",
         formName: "",
     });
+
+
+    const navigate = useNavigate()
 
     const linearGradientStyle = {
         background: "linear-gradient(90deg, #022D24 0%, #146C60 94.17%)",
@@ -100,6 +103,9 @@ function QrForm() {
                     pauseOnHover: true,
                     draggable: true,
                 });
+                setTimeout(() => {
+                    navigate("/dashboard")
+                }, [1000])
             }
             // setQR(null)
             console.log(res?.status);
@@ -126,8 +132,9 @@ function QrForm() {
                     draggable: true,
                 });
             }
-            if (err?.response && err?.response?.status == 401) {
-                toast.error("User Does Not Found!", {
+
+            if (err?.response && err?.response?.status == 405) {
+                toast.error("User Does Not Found Please SignUp", {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -135,6 +142,9 @@ function QrForm() {
                     pauseOnHover: true,
                     draggable: true,
                 });
+                setTimeout(() => {
+                    navigate("/signUp")
+                }, 3000)
             }
             if (err?.response && err?.response.status == 403) {
                 toast.error("Error in saving form data!", {
@@ -145,6 +155,9 @@ function QrForm() {
                     pauseOnHover: true,
                     draggable: true,
                 });
+                setTimeout(() => {
+                    navigate("/signUp")
+                }, 3000)
             }
             if (err?.response && err?.response?.status == 422) {
                 toast.error("Duplicate Page Url!", {
@@ -156,16 +169,7 @@ function QrForm() {
                     draggable: true,
                 });
             }
-            else {
-                toast.error("Unknown Error", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
-            }
+
 
         }
     };
@@ -384,12 +388,12 @@ function QrForm() {
                                             </p>
                                         </div>
                                         <div className="flex items-center transition-all ease-in-out duration-500">
-                                            <div className="border w-[34%] bg-gray-100 rounded-l-full">
+                                            <div className="border w-[39%] bg-gray-100 rounded-l-full">
                                                 <label
                                                     for="emailicon"
                                                     class="block p-2 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                 >
-                                                    https://tapandtag.molog.in/
+                                                    https://tapandtag.molog.in/vcard/
                                                 </label>
                                             </div>
                                             <div className="border w-[56%]  rounded-r-full  ">
@@ -796,7 +800,7 @@ function QrForm() {
                                                         </div>
                                                     )}
 
-                                                    {/* Input for selecting multiple files */}
+
                                                     <label htmlFor="dropzone-file" className="flex flex-col gap-1 hover:cursor-pointer">
                                                         <img src={formUpload} sizes={20} className="" alt="" />
                                                         <p className="text-[8px]">Choose Files</p>
@@ -854,7 +858,7 @@ function QrForm() {
                             <div className=" w-[400px] h-[550px] shadow-md rounded-2xl   ">
                                 <div className='border  rounded-t-xl '>
                                     <div className='justify-around border-b  overflow-x-visible pt-4 items-center p-3 gap-3 w-full flex h-14'>
-                                        <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/{data.pageUrl} </p>
+                                        <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/vcard/{data.pageUrl} </p>
                                         <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
                                         <Link target='_blank' to={`/https://tapandtag.molog.in/${data.pageUrl}`}>
                                             <FiExternalLink size={20} className='hover:cursor-pointer' />
