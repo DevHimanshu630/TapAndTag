@@ -43,8 +43,39 @@ export default function ExampleV2() {
             setTimeout(() => {
                 navigate("/dashboard")
             }, [1000])
+
         }
         catch (err) {
+            if (err.response && err.response.status === 404) {
+                toast.error("User does not exists.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            if (err.response && err.response.status === 403) {
+                toast.error("Invalid Password", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            if (err.response && err.response.status === 500) {
+                toast.error("Unexpected Error Occured", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
             console.log(err);
         }
     }

@@ -1,6 +1,8 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../Axios/Axios";
+
+
 function VcardTemplate() {
   const { pageId } = useParams();
   console.log("username id", pageId);
@@ -16,10 +18,8 @@ function VcardTemplate() {
       console.log(pageId);
       try {
         console.log("data post");
-        const response = await axios.get(
-          `https://tapandtag.onrender.com/users/formdata/${pageId}`
-        );
-        console.log("response *********-------->",response);
+        const response = await axios.get(`users/formdata/${pageId}`);
+        // console.log("response *********-------->", response);
         setUserData(response.data.response);
         document.title = `Vcard ${pageId}`;
       } catch (error) {
@@ -36,7 +36,7 @@ function VcardTemplate() {
         <div>
           <div className="w-full h-full ">
             <div class=" w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-             style={{ backgroundImage: `url('/image/bg.png')` }}
+              style={{ backgroundImage: `url('/image/bg.png')` }}
             >
               <div class="flex justify-end px-4 pt-4">
                 <button
@@ -81,11 +81,12 @@ function VcardTemplate() {
                 </div>
               </div>
               <div class="flex flex-col items-center pb-10">
-                <img
+                <img src={userData.profilePhotoObj.contentURL} className="xl:w-32 xl:h-32  w-24 h-24 rounded-full shadow-lg  object-cover" alt="" />
+                {/* <img
                   class="w-24 h-24 mb-3 rounded-full shadow-lg"
                   src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
                   alt="Bonnie image"
-                />
+                /> */}
                 <h5 class="mb-1 text-xl font-medium text-[white] dark:text-white">
                   {userData.name}
                 </h5>
@@ -121,58 +122,73 @@ function VcardTemplate() {
               </div>
             </div>
 
-            <div className="flex w-full h-[60vh] pt-[10rem] mt-[2rem]  overflow-x-auto justify-center items-center flex-col">
-              <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">EMAIL</div>
-                <div className="flex items-center gap-4 p-2 px-5">
-                  <img src="/image/email.png" alt="" />
-                  <p>{userData.email}</p>
-                </div>
-              </div>
-              
+            <div className="flex w-full h-[90vh] overflow-y-scroll mb-[5rem] mt-[2rem]  overflow-x-auto   justify-start items-start flex-col">
 
-              <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">Mobile</div>
-                <div className="flex items-center gap-4 p-2 px-5">
-                  <img src="/image/phone.png" alt="" />
-                  <p>{userData.mobile}</p>
+              <div className="flex flex-col items-center justify-start">
+
+                <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">EMAIL</div>
+                  <div className="flex items-center gap-4 p-2 px-5">
+                    <img src="/image/email.png" alt="" />
+                    <p>{userData.email}</p>
+                  </div>
+                </div>
+
+                <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">Mobile</div>
+                  <div className="flex items-center gap-4 p-2 px-5">
+                    <img src="/image/phone.png" alt="" />
+                    <p>{userData.mobile}</p>
+                  </div>
+                </div>
+
+                <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">SMS</div>
+                  <div className="flex items-center gap-4 p-2 px-5">
+                    <img src="/image/sms.png" alt="" />
+                    <p>{userData.sms}</p>
+                  </div>
+                </div>
+
+                <div className="w-[90%] h-[15vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
+                    ADDRESS
+                  </div>
+                  <div className="flex items-center gap-4 p-2 px-5">
+                    <p>{userData.address1} , {userData.address2} , {userData.city} , {userData.state} , {userData.pinCode} </p>
+                  </div>
+                </div>
+
+                <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
+                    Desgination
+                  </div>
+                  <div className="flex items-center gap-4 p-2 px-5">
+                    <p>{userData.designation}</p>
+                  </div>
+                </div>
+
+                <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
+                    Company
+                  </div>
+                  <div className="flex items-center gap-4 p-2 px-5">
+                    <p>{userData.companyName}</p>
+                  </div>
+                </div>
+                <div className="w-[90%]   mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full  bg-[#EEEEEE] p-2 px-5">
+                    Images
+                  </div>
+                  <div className="flex flex-wrap items-center gap-4 p-2 px-5">
+                    {userData.imageObj.map((image, index) => (
+                      <img key={index} src={image.contentURL} alt={`Image ${index}`} className="object-cover flex gap-3" />
+                    ))}
+                  </div>
+
                 </div>
               </div>
 
-              <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">SMS</div>
-                <div className="flex items-center gap-4 p-2 px-5">
-                  <img src="/image/sms.png" alt="" />
-                  <p>{userData.sms}</p>
-                </div>
-              </div>
-
-              <div className="w-[90%] h-[15vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
-                  ADDRESS
-                </div>
-                <div className="flex items-center gap-4 p-2 px-5">
-                  <p>{userData.address1} , {userData.address2} , {userData.city} , {userData.state} , {userData.pinCode} </p>
-                </div>
-              </div>
-
-              <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
-                  ADDRESS
-                </div>
-                <div className="flex items-center gap-4 p-2 px-5">
-                  <p>himanshu@molog.in</p>
-                </div>
-              </div>
-
-              <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
-                  ADDRESS
-                </div>
-                <div className="flex items-center gap-4 p-2 px-5">
-                  <p>himanshu@molog.in</p>
-                </div>
-              </div>
             </div>
           </div>
 

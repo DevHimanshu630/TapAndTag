@@ -9,6 +9,15 @@ import QRCode from 'react-qr-code';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import copy from 'clipboard-copy';
+import { MdContentCopy } from "react-icons/md";
+import { FiExternalLink } from "react-icons/fi";
+import { IoIosEye } from "react-icons/io";
+import { MdOutlineQrCode } from "react-icons/md";
+import { Link } from 'react-router-dom';
+
+
+
 
 function QrForm() {
 
@@ -60,12 +69,18 @@ function QrForm() {
             formDatas.append(key, value);
         });
 
-        if (formData.profilePhoto) {
-            formDatas.append("profilePhoto", formData.profilePhoto);
+        if (formData.image && formData.image.files) {
+            const files = formData.image.files;
+
+            for (const key in files) {
+                if (files.hasOwnProperty(key)) {
+                    formDatas.append("image", files[key]);
+                }
+            }
         }
         // Append image if present
-        if (formProfileData.image) {
-            formDatas.append("image", formProfileData.image);
+        if (formProfileData.profilePhoto) {
+            formDatas.append("profilePhoto", formProfileData.profilePhoto);
         }
 
         try {
@@ -76,8 +91,7 @@ function QrForm() {
                 },
             });
 
-
-            if (res.status == 200) {
+            if (res?.status == 200) {
                 toast.success("Qr Created successfully!", {
                     position: "top-right",
                     autoClose: 3000,
@@ -88,35 +102,99 @@ function QrForm() {
                 });
             }
             // setQR(null)
-            console.log(res);
+            console.log(res?.status);
+            if (res?.status == 422) {
+                toast.error("Duplicate Page Url!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
 
         } catch (err) {
-            console.log(err);
+            console.log(err.response.status);
+            if (err?.response && err?.response?.status == 501) {
+                toast.error("Error in Uploading Form", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            if (err?.response && err?.response?.status == 401) {
+                toast.error("User Does Not Found!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            if (err?.response && err?.response.status == 403) {
+                toast.error("Error in saving form data!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            if (err?.response && err?.response?.status == 422) {
+                toast.error("Duplicate Page Url!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            else {
+                toast.error("Unknown Error", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+
         }
     };
 
     const [formData, setFormData] = useState({
-        profilePhoto: "",
+        image: { files: {} },
     });
 
-    const handleInputChange = (event) => {
-        const Prpfilefile = event.target.files[0];
-        setFormData({ profilePhoto: Prpfilefile });
-    };
+    // const handleInputChange = (event) => {
+    //     const Prpfilefile = event.target.files[0];
+    //     setFormData({ profilePhoto: Prpfilefile });
+    // };
 
     const [formProfileData, setProfileFormData] = useState({
-        image: "",
+        profilePhoto: "",
     });
 
     const handleProfileInputChange = (e) => {
         const imgFile = e.target.files[0];
-        setProfileFormData({ image: imgFile });
+        setProfileFormData({ profilePhoto: imgFile });
     };
 
     const [showDiv, setShowDiv] = useState(true);
     const [showform, setShowForm] = useState(true);
+    const [showPhone, setShowPhone] = useState(true);
+
     const handleForm = () => {
         setShowForm(false);
+        setShowPhone(false);
     };
     const handleBackForm = () => {
         setShowForm(true);
@@ -147,6 +225,36 @@ function QrForm() {
     }
 
 
+
+
+    const handleMultipleInputChange = (e) => {
+        const files = e.target.files;
+        const updatedImages = { ...formData.image.files };
+
+        for (let i = 0; i < files.length; i++) {
+            const uniqueKey = `file_${Date.now()}_${i}`;
+            updatedImages[uniqueKey] = files[i];
+        }
+
+        setFormData({
+            ...formData,
+            image: { files: updatedImages },
+        });
+    };
+
+    const textRef = useRef(null);
+
+    const handleCopyClick = () => {
+        if (textRef.current) {
+            // Use clipboard-copy package
+            copy(textRef.current.innerText);
+
+            // Alternatively, you can use execCommand for older browsers
+            // document.execCommand('copy');
+        }
+    };
+
+
     return (
 
         <>
@@ -164,7 +272,7 @@ function QrForm() {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex justify-between h-full gap-5  m-12 overflow-y-scroll   ">
+                        <div className="flex justify-between h-full  px-5  m-12 overflow-y-scroll   ">
                             {showform ? (
                                 <div className=" w-[70%]">
                                     <div className="flex mb-5 flex-col gap-4  w-full">
@@ -187,18 +295,18 @@ function QrForm() {
                                                 <div className=" flex  gap-20 items-center justify-start w-[75%]">
                                                     <label htmlFor="dropzone-imgFile">
                                                         <div className="">
-                                                            {formProfileData.image ? (
+                                                            {formProfileData.profilePhoto ? (
                                                                 <div className="flex gap-2 items-center">
                                                                     <p className="text-[#D3D3D3]">
                                                                         Selected file:{" "}
-                                                                        {formProfileData.image.name}
+                                                                        {formProfileData.profilePhoto.name}
                                                                     </p>
                                                                     <p
                                                                         className=" hover:cursor-pointer "
                                                                         onClick={() =>
                                                                             setProfileFormData({
                                                                                 ...formProfileData,
-                                                                                image: null,
+                                                                                profilePhoto: null,
                                                                             })
                                                                         }
                                                                     >
@@ -658,95 +766,66 @@ function QrForm() {
                                                 >
                                                     Images
                                                 </p>
-                                                <label class="inline-flex items-center cursor-pointer">
+                                                {/* <label class="inline-flex items-center cursor-pointer">
                                                     <input
                                                         type="checkbox"
                                                         value=""
                                                         class="sr-only peer"
                                                     />
                                                     <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
-                                                </label>
+                                                </label> */}
                                             </div>
                                             <div className="flex  items-center  ">
                                                 <div className=" ">
-                                                    <img
-                                                        src={formImg}
-                                                        className="w-[82px] h-[82px]"
-                                                        alt=""
-                                                    />
+                                                    <img src={formImg} className="w-[82px] h-[82px]" alt="" />
                                                 </div>
-                                                <hr className="border h-12 mr-4  font-thin text-[#D2D2D2]" />
-                                                <div className=" flex  gap-20 items-center justify-start w-[80%]">
-                                                    <label htmlFor="dropzone-file">
-                                                        <div className="">
-                                                            {formData.profilePhoto ? (
-                                                                <div className="flex gap-2">
-                                                                    <p className="text-[#D3D3D3]">
-                                                                        Selected files:{" "}
-                                                                        {formData.profilePhoto.name}
-                                                                    </p>
-                                                                    <p
-                                                                        className="hover:cursor-pointer"
-                                                                        onClick={() =>
-                                                                            setFormData({
-                                                                                ...formData,
-                                                                                profilePhoto: null,
-                                                                            })
-                                                                        }
-                                                                    >
-                                                                        <span className="text-[#D3D3D3]">
-                                                                            <MdDeleteOutline size={24} />
-                                                                        </span>
-                                                                    </p>
-                                                                </div>
-                                                            ) : (
-                                                                <label
-                                                                    htmlFor="dropzone-file"
-                                                                    className="flex flex-col gap-1 hover:cursor-pointer"
-                                                                >
-                                                                    <img
-                                                                        src={formUpload}
-                                                                        sizes={20}
-                                                                        className=""
-                                                                        alt=""
-                                                                    />
-                                                                    <p className="text-[8px]">Choose Files</p>
-                                                                    <input
-                                                                        accept="image/*"
-                                                                        onChange={handleInputChange}
-                                                                        id="dropzone-file"
-                                                                        name="file"
-                                                                        type="file"
-                                                                        className="hidden"
-                                                                    />
-                                                                </label>
-                                                            )}
+                                                <hr className="border h-12 mr-4 font-thin text-[#D2D2D2]" />
+                                                <div className='flex'>
+                                                    {/* Display selected files */}
+                                                    {Object.keys(formData.image).length > 0 && (
+                                                        <div className="flex flex-col w-96 flex-wrap gap-2">
+                                                            <p className="text-[#D3D3D3] flex flex-col">
+                                                                Selected files: {Object.values(formData.image.files).map((file) => file.name).join(', ')}
+                                                            </p>
+                                                            <p
+                                                                className="hover:cursor-pointer"
+                                                                onClick={() => setFormData({ ...formData, image: {} })}
+                                                            >
+                                                                <span className="text-[#D3D3D3]"><MdDeleteOutline size={24} /></span>
+                                                            </p>
                                                         </div>
-                                                    </label>
+                                                    )}
 
-                                                    <div>
-                                                        <span
-                                                            className={` ${formData.profilePhoto ? "hidden" : "block"
-                                                                } text-[#D2D2D2]`}
-                                                        >
-                                                            Upload Images on your Profile Page
-                                                        </span>
-                                                    </div>
+                                                    {/* Input for selecting multiple files */}
+                                                    <label htmlFor="dropzone-file" className="flex flex-col gap-1 hover:cursor-pointer">
+                                                        <img src={formUpload} sizes={20} className="" alt="" />
+                                                        <p className="text-[8px]">Choose Files</p>
+                                                        <input
+                                                            accept="image/*"
+                                                            onChange={handleMultipleInputChange}
+                                                            id="dropzone-file"
+                                                            name="image"
+                                                            type="file"
+                                                            multiple // Allow multiple files to be selected
+                                                            className="hidden"
+                                                        />
+                                                    </label>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div className="w-full flex items-end justify-end">
                                         <button
                                             onClick={handleForm}
-                                            className="bg-[#022D24] px-7 py-2 rounded-full text-white"
+                                            className="bg-[#022D24] px-7 py-2 font-sans text-sm  font-thin rounded-full text-white"
                                         >
                                             Next
                                         </button>
                                     </div>
                                 </div>
                             ) : (
-                                <div className='w-[90%]'>
+                                <div className='w-[70%] mx-5 '>
                                     <div>
                                         <input
                                             autoComplete="true"
@@ -760,38 +839,47 @@ function QrForm() {
                                             required
                                         />
                                     </div>
-                                    <div>
-                                        <h1>QR Code Generator</h1>
-                                        <div
-                                            className="border p-3"
-                                            ref={qrInputRef}
-                                        >
-                                            {data.pageUrl}
-                                        </div>
-                                        <QRCode value={qr} />
-                                    </div>
-                                    <div className="flex justify-between w-full  ">
-                                        <button onClick={handleBackForm} className="text-black bg-gray-100 p-3 border w-fit">
-                                            back
+
+                                    <div className="flex  mt-5 justify-center gap-3 w-full  ">
+                                        <button onClick={handleBackForm} className="bg-[#022D24] px-7 py-2 rounded-full font-sans font-thin text-sm text-white">
+                                            Back
                                         </button>
 
-                                        <button type="submit" className="text-black border bg-gray-100 p-3 w-fit">
-                                            submit
+                                        <button type="submit" className="bg-[#022D24] px-7 py-2 rounded-full font-thin text-sm font-sans text-white">
+                                            Submit
                                         </button>
                                     </div>
                                 </div>
                             )}
-                            <div className="border  ">
-                                {showform ? (
+                            <div className=" w-[400px] h-[550px] shadow-md rounded-2xl   ">
+                                <div className='border  rounded-t-xl '>
+                                    <div className='justify-around border-b  overflow-x-visible pt-4 items-center p-3 gap-3 w-full flex h-14'>
+                                        <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/{data.pageUrl} </p>
+                                        <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
+                                        <Link target='_blank' to={`/https://tapandtag.molog.in/${data.pageUrl}`}>
+                                            <FiExternalLink size={20} className='hover:cursor-pointer' />
+                                        </Link>
+                                    </div>
+                                    <div className='justify-between  bg-gray-200 items-center p-3 gap-3 w-full flex h-14'>
+                                        <div className='flex items-center gap-2'>
+                                            <IoIosEye size={20} onClick={() => { setShowPhone(true) }} className='hover:cursor-pointer' />
+                                            <MdOutlineQrCode size={20} onClick={() => { setShowPhone(false) }} className='hover:cursor-pointer' />
+                                        </div>
+                                        <p className="bg-[#022D24] px-7 py-2 rounded-md font-thin text-sm font-sans text-white">Save</p>
+                                    </div>
+                                </div>
+                                {showPhone ? (
                                     <img
                                         src={phone}
-                                        class="h-[478px] w-[478px] object-contain"
+                                        class=" object-contain"
                                         alt="Molog Logo"
                                     />
+
                                 ) : (
-                                    <div className="w-96"
+                                    <div className="  flex items-center justify-center "
                                     >
-                                        <QRCode value={qr} />
+                                        <QRCode value={data.pageUrl} style={{ width: '200px' }} />
+
                                     </div>
                                 )}
                             </div>
