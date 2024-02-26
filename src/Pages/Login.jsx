@@ -41,7 +41,8 @@ export default function ExampleV2() {
                 draggable: true,
             });
             setTimeout(()=>{
-                navigate("/dashboard")
+                // navigate("/dashboard")
+                window.location.href='/dashboard';
             },[1000])
         }
         catch (err) {

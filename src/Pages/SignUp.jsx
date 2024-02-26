@@ -48,7 +48,8 @@ function SignUp() {
                     draggable: true,
                 });
                 setTimeout(()=>{
-                    navigate("/dashboard")
+                    // navigate("/dashboard")
+                    window.location.href='/dashboard';
                 },[1000])
 
             }
