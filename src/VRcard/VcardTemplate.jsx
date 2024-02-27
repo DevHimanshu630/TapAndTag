@@ -112,12 +112,12 @@ function VcardTemplate() {
               </div>
 
               <div className="">
-                {/* <Link
+                <Link
                   className=" underline underline-offset-2"
                   to={userData.webSiteUrl}
                 >
                   {userData.webSiteUrl}
-                </Link> */}
+                </Link>
               </div>
             </div>
 
