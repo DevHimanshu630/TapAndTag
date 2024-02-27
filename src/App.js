@@ -26,8 +26,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/product" element={<Product />} />
             <Route path="/Sustainability" element={<Sustainability />} />
-            <Route path="/vcard" element={<Userdetails />} />
-            <Route path="/vcardTemp/:pageId" element={<VcardTemplate />} />
+            <Route path="/vcard/:pageId" element={<VcardTemplate />} />
             <Route path='/qrform' element={<QrForm />} />
           </Routes>
         </>
@@ -41,8 +40,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/product" element={<Product />} />
               <Route path="/Sustainability" element={<Sustainability />} />
-              <Route path="/vcard" element={<Userdetails />} />
-              <Route path="/vcardTemp/:pageId" element={<VcardTemplate />} />
+              <Route path="/vcard/:pageId" element={<VcardTemplate />} />
             </Routes>
           </>
         )
