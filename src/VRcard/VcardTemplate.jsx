@@ -123,7 +123,7 @@ function VcardTemplate() {
 
             <div className="flex w-full h-[90vh] overflow-y-scroll mb-[5rem] mt-[2rem]  overflow-x-auto   justify-start items-start flex-col">
 
-              <div className="flex flex-col items-center justify-start">
+              <div className="flex flex-col w-full h-full items-center justify-start">
 
                 <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
                   <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">EMAIL</div>
