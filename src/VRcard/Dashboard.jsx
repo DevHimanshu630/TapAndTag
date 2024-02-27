@@ -3,10 +3,13 @@ import axios from '../Axios/Axios'
 import Home from "../Components/Home";
 import Navbar from "../Components/Navbar";
 import logo from '../Images/logo.png'
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function Dashboard() {
   const [userData, setUserData] = useState([]);
   const token = localStorage.getItem("token")
+
+  const navigate = useNavigate();
   // console.log(token);
   console.log("userData *******------------>", userData);
 
@@ -29,10 +32,14 @@ function Dashboard() {
     fetchData();
   }, [])
 
-     const handlelogout=(()=>{
-        localStorage.clear();
-        Navigate('/')
-     })
+
+  const handleSignOut = () => {
+    navigate("/signUp");
+    localStorage.removeItem("token");
+  }
+
+
+
   return (
     <div>
       {/* navbar */}
@@ -62,6 +69,9 @@ function Dashboard() {
               </li>
               <li>
                 <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Contact Us</a>
+              </li>
+              <li>
+                <p onClick={handleSignOut} class="block py-2 hover:cursor-pointer px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Sign Out</p>
               </li>
             </ul>
           </div>
