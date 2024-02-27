@@ -2,7 +2,7 @@ import Home from './Components/Home';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Product from './Pages/Product';
 import Sustainability from './Pages/Sustainability';
-import Userdetails from './VRcard/Userdetails';
+
 import Login from './Pages/Login'
 import SignUp from './Pages/SignUp';
 import VcardTemplate from './VRcard/VcardTemplate';

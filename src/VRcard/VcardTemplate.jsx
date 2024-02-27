@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "../Axios/Axios";
 
 
@@ -62,20 +62,19 @@ function VcardTemplate() {
                 >
                   <ul class="py-2" aria-labelledby="dropdownButton">
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to={"#"}
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Export Data
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link to="#"
                         class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Delete
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -101,24 +100,24 @@ function VcardTemplate() {
 
             <div className="flex  justify-around mt-9">
               <div className="flex gap-3 mr-[5.5rem]">
-                <a href={userData.instagramUrl}>
+                <Link to={userData.instagramUrl}>
                   <img src="/image/insta.png" alt="" />
-                </a>
-                <a href={userData.linkedinUrl}>
+                </Link>
+                <Link to={userData.linkedinUrl}>
                   <img src="/image/linkedIN.png" alt="" />
-                </a>
-                <a href={userData.twitterUrl}>
+                </Link>
+                <Link to={userData.twitterUrl}>
                   <img src="/image/Vector.png" alt="" />
-                </a>
+                </Link>
               </div>
 
               <div className="">
-                <a
+                {/* <Link
                   className=" underline underline-offset-2"
-                  href={userData.webSiteUrl}
+                  to={userData.webSiteUrl}
                 >
                   {userData.webSiteUrl}
-                </a>
+                </Link> */}
               </div>
             </div>
 

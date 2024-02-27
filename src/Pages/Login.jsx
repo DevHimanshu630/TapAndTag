@@ -101,7 +101,7 @@ export default function ExampleV2() {
                         <div class="flex items-center justify-between">
                             <label for="password" class="block text-sm font-sans font-light leading-6 text-gray-900">Password</label>
                             <div class="text-sm">
-                                <a href="#" class="font-normal font-sans text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                                <Link to={"#"} class="font-normal font-sans text-indigo-600 hover:text-indigo-500">Forgot password?</Link>
                             </div>
                         </div>
                         <div class="mt-2">

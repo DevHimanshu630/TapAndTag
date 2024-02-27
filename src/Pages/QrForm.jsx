@@ -270,26 +270,26 @@ function QrForm() {
             <ToastContainer />
             <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
                 <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 font-sans">
-                    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <Link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                         <img src={logo} class="h-16" alt="Flowbite Logo" />
-                    </a>
+                    </Link>
 
                     <div id="mega-menu-full" class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1">
                         <ul class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                             <li>
-                                <a href="/dashboard" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Dashboard</a>
+                                <Link to={"/dashboard"} class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Dashboard</Link>
                             </li>
                             <li>
                                 <button id="mega-menu-full-dropdown-button" data-collapse-toggle="mega-menu-full-dropdown" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Solutions </button>
                             </li>
                             <li>
-                                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
+                                <Link to="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Pricing</Link>
                             </li>
                             <li>
-                                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Articles</a>
+                                <Link to="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Articles</Link>
                             </li>
                             <li>
-                                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Contact Us</a>
+                                <Link to="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Contact Us</Link>
                             </li>
                             <li>
                                 <p onClick={handleSignOut} class="block py-2 hover:cursor-pointer px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Sign Out</p>
@@ -427,12 +427,12 @@ function QrForm() {
                                             </p>
                                         </div>
                                         <div className="flex items-center transition-all ease-in-out duration-500">
-                                            <div className="border w-[39%] bg-gray-100 rounded-l-full">
+                                            <div className="border w-[33%] bg-gray-100 rounded-l-full">
                                                 <label
                                                     for="emailicon"
                                                     class="block p-2 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                                                 >
-                                                    https://tapandtag.molog.in/vcard/
+                                                    https://tapandtag.molog.in/
                                                 </label>
                                             </div>
                                             <div className="border w-[56%]  rounded-r-full  ">
@@ -896,12 +896,16 @@ function QrForm() {
                             )}
                             <div className=" w-[400px] h-[550px] shadow-md rounded-2xl   ">
                                 <div className='border  rounded-t-xl '>
-                                    <div className='justify-around border-b  overflow-x-visible pt-4 items-center p-3 gap-3 w-full flex h-14'>
-                                        <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/vcard/{data.pageUrl} </p>
-                                        <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
-                                        <Link target='_blank' to={`/https://tapandtag.molog.in/${data.pageUrl}`}>
-                                            <FiExternalLink size={20} className='hover:cursor-pointer' />
-                                        </Link>
+                                    <div className='flex  w-[350px] items-center px-2 overflow-hidden justify-between'>
+                                        <div className='justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14'>
+                                            <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/{data.pageUrl} </p>
+                                        </div>
+                                        <div className='flex gap-2'>
+                                            <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
+                                            <Link target='_blank' to={`/https://tapandtag.molog.in/${data.pageUrl}`}>
+                                                <FiExternalLink size={20} className='hover:cursor-pointer' />
+                                            </Link>
+                                        </div>
                                     </div>
                                     <div className='justify-between  bg-gray-200 items-center p-3 gap-3 w-full flex h-14'>
                                         <div className='flex items-center gap-2'>
