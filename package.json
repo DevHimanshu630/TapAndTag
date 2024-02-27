@@ -1,5 +1,6 @@
 {
-  "name": "https://tapandtag.molog.in/",
+  "name": "tapandtag",
+  "homepage": "https://tapandtag.molog.in/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,7 +23,6 @@
     "react-dom": "^17.0.0 || ^18.0.0",
     "react-hook-form": "^7.50.1",
     "react-icons": "^5.0.1",
-    "react-qr-code": "^2.0.12",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.4",

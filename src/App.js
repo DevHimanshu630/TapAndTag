@@ -1,4 +1,3 @@
-
 import Home from './Components/Home';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Product from './Pages/Product';
@@ -9,6 +8,7 @@ import SignUp from './Pages/SignUp';
 import VcardTemplate from './VRcard/VcardTemplate';
 import Dashboard from './VRcard/Dashboard';
 import QrForm from './Pages/QrForm';
+
 
 function App() {
   const token = localStorage.getItem("token");
@@ -34,8 +34,8 @@ function App() {
         (
           <>
             <Routes>
-              <Route path='/qrform' element={<QrForm />} />
               <Route path="/" element={<Home />} />
+              <Route path='/qrform' element={<QrForm />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/product" element={<Product />} />

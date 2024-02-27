@@ -21,7 +21,7 @@ function VcardTemplate() {
         const response = await axios.get(`users/formdata/${pageId}`);
         // console.log("response *********-------->", response);
         setUserData(response.data.response);
-        document.title = `Vcard ${pageId}`;
+        // document.title = `Vcard ${pageId}`;
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -86,7 +86,7 @@ function VcardTemplate() {
                   class="w-24 h-24 mb-3 rounded-full shadow-lg"
                   src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
                   alt="Bonnie image"
-                /> */}
+                /> */} 
                 <h5 class="mb-1 text-xl font-medium text-[white] dark:text-white">
                   {userData.name}
                 </h5>
