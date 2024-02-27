@@ -16,7 +16,7 @@ function Main() {
     const sectionStyle = {
         backgroundImage: `url(${back})`,
         backgroundSize: 'cover', // Adjust the background size if needed
-        with: '100%'
+
     };
 
     function toggleOverlay() {
