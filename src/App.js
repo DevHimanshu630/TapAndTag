@@ -41,7 +41,6 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/product" element={<Product />} />
               <Route path="/Sustainability" element={<Sustainability />} />
-
               <Route path="/vcardTemp/:pageId" element={<VcardTemplate />} />
             </Routes>
           </>
