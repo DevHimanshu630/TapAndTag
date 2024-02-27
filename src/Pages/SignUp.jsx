@@ -47,9 +47,9 @@ function SignUp() {
                     pauseOnHover: true,
                     draggable: true,
                 });
-                setTimeout(() => {
+                setTimeout(()=>{
                     navigate("/dashboard")
-                }, [1000])
+                },[1000])
 
             }
         }
