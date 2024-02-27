@@ -4,7 +4,7 @@ import axios from "../Axios/Axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import { useNavigate ,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 function SignUp() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -48,40 +48,52 @@ function SignUp() {
                     draggable: true,
                 });
                 setTimeout(()=>{
-                    // navigate("/dashboard")
-                    window.location.href='/dashboard';
+                    navigate("/dashboard")
                 },[1000])
 
             }
         }
         catch (err) {
             if (err.response && err.response.status === 403) {
-              toast.error("User already exists. Please choose a different email.",{
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-            });
-            } else {
-              toast.error('Please try again after some time.',{
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-            });
+                toast.error("User already exists. Please choose a different email.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
             }
-          }
+            if (err.response && err.response.status === 500) {
+                toast.error("Unexpected Error Occured", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+
+
+            else {
+                toast.error('Please try again after some time.', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+        }
 
     }
 
 
     return (
         <div>
-            <ToastContainer/>
+            <ToastContainer />
             <section class="bg-gray-50 dark:bg-gray-900">
                 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">

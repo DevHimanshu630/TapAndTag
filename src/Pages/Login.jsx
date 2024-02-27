@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 export default function ExampleV2() {
-    const navigate =useNavigate()
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         email: '',
@@ -31,7 +31,7 @@ export default function ExampleV2() {
                 password: formData.password
             });
             console.log(res);
-            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('token', res.data.token)
             toast.success("login successfully!", {
                 position: "top-right",
                 autoClose: 3000,
@@ -40,19 +40,49 @@ export default function ExampleV2() {
                 pauseOnHover: true,
                 draggable: true,
             });
-            setTimeout(()=>{
-                // navigate("/dashboard")
-                window.location.href='/dashboard';
-            },[1000])
+            setTimeout(() => {
+                navigate("/dashboard")
+            }, [1000])
+
         }
         catch (err) {
+            if (err.response && err.response.status === 404) {
+                toast.error("User does not exists.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            if (err.response && err.response.status === 403) {
+                toast.error("Invalid Password", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
+            if (err.response && err.response.status === 500) {
+                toast.error("Unexpected Error Occured", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            }
             console.log(err);
         }
     }
 
     return (
         <div class="flex min-h-full flex-col justify-center px-6 py-24 lg:px-8">
-            <ToastContainer/>
+            <ToastContainer />
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img class="mx-auto h-32 w-auto" src={logo} alt="Your Company" />
                 <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
