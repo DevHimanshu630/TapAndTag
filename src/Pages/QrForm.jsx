@@ -59,10 +59,9 @@ function QrForm() {
                         },
                     });
                     console.log(response);
+
                     setData(response?.data?.response); // Set all response data to setData
                     // Append image if present
-
-                    setData(response?.data?.response.formProfileData.formProfileData);
 
                 } catch (error) {
                     console.error("Error fetching user data:", error);
@@ -208,10 +207,7 @@ function QrForm() {
         image: { files: {} },
     });
 
-    // const handleInputChange = (event) => {
-    //     const Prpfilefile = event.target.files[0];
-    //     setFormData({ profilePhoto: Prpfilefile });
-    // };
+
 
     const [formProfileData, setProfileFormData] = useState({
         profilePhoto: "",
