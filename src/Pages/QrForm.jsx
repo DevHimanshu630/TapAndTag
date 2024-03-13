@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from "../Axios/Axios";
 import phone from "../Images/phone2.png";
 import formImg from "../Images/formImage.png";
@@ -14,19 +14,22 @@ import { MdContentCopy } from "react-icons/md";
 import { FiExternalLink } from "react-icons/fi";
 import { IoIosEye } from "react-icons/io";
 import { MdOutlineQrCode } from "react-icons/md";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import logo from '../Images/logo.png'
+import html2canvas from 'html2canvas';
 
 
 
 
 function QrForm() {
-
+    const { formId } = useParams();
+    const token = localStorage.getItem("token")
+    console.log(formId);
     const [data, setData] = useState({
         name: "",
         designation: "",
         companyName: "",
-        pageUrl: "",
+        pageUrl: "sdfssd",
         email: "",
         mobile: "",
         sms: "",
@@ -43,6 +46,32 @@ function QrForm() {
         googleMapUrl: "",
         formName: "",
     });
+
+
+    useEffect(() => {
+        const formDatas = new FormData();
+        if (formId) {
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get(`users/update/${formId}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    console.log(response);
+                    setData(response?.data?.response); // Set all response data to setData
+                    // Append image if present
+
+                    setData(response?.data?.response.formProfileData.formProfileData);
+
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            };
+
+            fetchData();
+        }
+    }, [formId, token]);
 
 
     const navigate = useNavigate()
@@ -62,7 +91,7 @@ function QrForm() {
         }));
         console.log(data);
     };
-    const token = localStorage.getItem("token");
+
 
 
     const handleSubmitUserData = async (e) => {
@@ -253,14 +282,32 @@ function QrForm() {
         if (textRef.current) {
             // Use clipboard-copy package
             copy(textRef.current.innerText);
-
-            // Alternatively, you can use execCommand for older browsers
-            // document.execCommand('copy');
         }
     };
     const handleSignOut = () => {
         navigate("/signUp");
         localStorage.removeItem("token");
+    }
+
+    const qrRef = useRef(null);
+
+    const downloadQRImage = () => {
+        if (qrRef.current) {
+            const image = new Image();
+            image.crossOrigin = 'anonymous'; // Set crossOrigin to avoid canvas security issues
+
+            image.onload = () => {
+                html2canvas(qrRef.current, { useCORS: true }).then((canvas) => {
+                    const dataUrl = canvas.toDataURL();
+                    const link = document.createElement('a');
+                    link.href = dataUrl;
+                    link.download = 'qrcode_image.png';
+                    link.click();
+                });
+            };
+
+            image.src = `https://api.qrserver.com/v1/create-qr-code/?data=${data.pageUrl}&size=200x200`;
+        }
     }
 
 
@@ -389,7 +436,7 @@ function QrForm() {
                                                     name="name"
                                                     type="text"
                                                     id="profileName"
-                                                    value={data.name}
+                                                    value={data?.name}
                                                     onChange={handleChange}
                                                     class=" border w-full  font-sans font-light  text-[16px] border-gray-300  placeholder-[#606060]  rounded-full focus:outline-none"
                                                     required
@@ -402,7 +449,7 @@ function QrForm() {
                                                     name="designation"
                                                     type="text"
                                                     id="Designation"
-                                                    value={data.designation}
+                                                    value={data?.designation}
                                                     onChange={handleChange}
                                                     class=" font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-1/2 border-gray-300 rounded-full focus:outline-none"
                                                     required
@@ -412,7 +459,7 @@ function QrForm() {
                                                     name="companyName"
                                                     type="text"
                                                     id="companyName"
-                                                    value={data.companyName}
+                                                    value={data?.companyName}
                                                     onChange={handleChange}
                                                     class="font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-1/2 border-gray-300 text-gray-900 rounded-full focus:outline-none"
                                                     required
@@ -442,7 +489,7 @@ function QrForm() {
                                                         type="text"
                                                         name="pageUrl"
                                                         id="pageUrl"
-                                                        value={data.pageUrl}
+                                                        value={data?.pageUrl}
                                                         onChange={handleChange}
                                                         class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                         required
@@ -487,7 +534,7 @@ function QrForm() {
                                                                 type="email"
                                                                 name="email"
                                                                 id="iconemail"
-                                                                value={data.email}
+                                                                value={data?.email}
                                                                 onChange={handleChange}
                                                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                                 required
@@ -510,7 +557,7 @@ function QrForm() {
                                                                 type="text"
                                                                 name="mobile"
                                                                 id="iconMobile"
-                                                                value={data.mobile}
+                                                                value={data?.mobile}
                                                                 onChange={handleChange}
                                                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                                 required
@@ -532,7 +579,7 @@ function QrForm() {
                                                                 name="sms"
                                                                 type="text"
                                                                 id="sms"
-                                                                value={data.sms}
+                                                                value={data?.sms}
                                                                 onChange={handleChange}
                                                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                             />
@@ -564,7 +611,7 @@ function QrForm() {
                                                 name="webSiteUrl"
                                                 type="text"
                                                 id="webSiteUrl"
-                                                value={data.webSiteUrl}
+                                                value={data?.webSiteUrl}
                                                 onChange={handleChange}
                                                 className={` ${!webSiteDiv ? "hidden" : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-[90%] rounded-full    border-gray-300 focus:outline-none"}`}
                                                 required
@@ -607,7 +654,7 @@ function QrForm() {
                                                                 type="text"
                                                                 name="linkedinUrl"
                                                                 id="linkedinUrl"
-                                                                value={data.linkedinUrl}
+                                                                value={data?.linkedinUrl}
                                                                 onChange={handleChange}
                                                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                                 required
@@ -630,7 +677,7 @@ function QrForm() {
                                                                 type="text"
                                                                 name="twitterUrl"
                                                                 id="twitterUrl"
-                                                                value={data.twitterUrl}
+                                                                value={data?.twitterUrl}
                                                                 onChange={handleChange}
                                                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                                 required
@@ -653,7 +700,7 @@ function QrForm() {
                                                                 type="text"
                                                                 name="instagramUrl"
                                                                 id="instagramUrl"
-                                                                value={data.instagramUrl}
+                                                                value={data?.instagramUrl}
                                                                 onChange={handleChange}
                                                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                                                                 required
@@ -693,7 +740,7 @@ function QrForm() {
                                                                 name="address1"
                                                                 id="address1"
                                                                 onChange={handleChange}
-                                                                value={data.address1}
+                                                                value={data?.address1}
                                                                 class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
                                                                 required
                                                             />
@@ -706,7 +753,7 @@ function QrForm() {
                                                             type="text"
                                                             name="address2"
                                                             id="address2"
-                                                            value={data.address2}
+                                                            value={data?.address2}
                                                             onChange={handleChange}
                                                             class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full w-[70%]   border-gray-300  focus:outline-none"
                                                             required
@@ -717,7 +764,7 @@ function QrForm() {
                                                             type="text"
                                                             name="city"
                                                             id="City"
-                                                            value={data.city}
+                                                            value={data?.city}
                                                             onChange={handleChange}
                                                             class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[30%]   border-gray-300 focus:outline-none"
                                                             required
@@ -730,7 +777,7 @@ function QrForm() {
                                                             type="text"
                                                             name="state"
                                                             id="State"
-                                                            value={data.state}
+                                                            value={data?.state}
                                                             onChange={handleChange}
                                                             class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full w-[35%]   border-gray-300 focus:outline-none"
                                                             required
@@ -741,7 +788,7 @@ function QrForm() {
                                                             type="text"
                                                             name="country"
                                                             id="Country"
-                                                            value={data.country}
+                                                            value={data?.country}
                                                             onChange={handleChange}
                                                             class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[35%]    border-gray-300 focus:outline-none"
                                                             required
@@ -752,7 +799,7 @@ function QrForm() {
                                                             type="text"
                                                             name="pinCode"
                                                             id="Pincode"
-                                                            value={data.pinCode}
+                                                            value={data?.pinCode}
                                                             onChange={handleChange}
                                                             class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[35%]    border-gray-300 focus:outline-none"
                                                             required
@@ -790,7 +837,7 @@ function QrForm() {
                                                                 type="text"
                                                                 name="googleMapUrl"
                                                                 id="GoogleMapUrl"
-                                                                value={data.googleMapUrl}
+                                                                value={data?.googleMapUrl}
                                                                 onChange={handleChange}
                                                                 class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
                                                                 required
@@ -899,11 +946,11 @@ function QrForm() {
                                     <div className='border  rounded-t-xl '>
                                         <div className='flex  w-[350px] items-center px-2 overflow-hidden justify-between'>
                                             <div className='justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14'>
-                                                <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/{data.pageUrl} </p>
+                                                <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/{data?.pageUrl} </p>
                                             </div>
                                             <div className='flex gap-2'>
                                                 <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
-                                                <Link target='_blank' to={`/https://tapandtag.molog.in/${data.pageUrl}`}>
+                                                <Link target='_blank' to={`/https://tapandtag.molog.in/${data?.pageUrl}`}>
                                                     <FiExternalLink size={20} className='hover:cursor-pointer' />
                                                 </Link>
                                             </div>
@@ -913,7 +960,7 @@ function QrForm() {
                                                 <IoIosEye size={20} onClick={() => { setShowPhone(true) }} className='hover:cursor-pointer' />
                                                 <MdOutlineQrCode size={20} onClick={() => { setShowPhone(false) }} className='hover:cursor-pointer' />
                                             </div>
-                                            <p className="bg-[#022D24] px-7 py-2 rounded-md font-thin text-sm font-sans text-white">Save</p>
+                                            <button onClick={downloadQRImage} className="bg-[#022D24] hover:cursor-pointer px-7 py-2 rounded-md font-thin text-sm font-sans text-white">Save</button>
                                         </div>
                                     </div>
                                     {showPhone ? (
@@ -924,10 +971,14 @@ function QrForm() {
                                         />
 
                                     ) : (
-                                        <div className="  flex items-center justify-center "
-                                        >
-                                            <QRCode value={data.pageUrl} style={{ width: '200px' }} />
-
+                                        <div className=" flex items-center justify-center "
+                                        ><img
+                                                ref={qrRef}
+                                                src={`https://api.qrserver.com/v1/create-qr-code/?data=${data.pageUrl}&size=200x200`}
+                                                className='mt-5'
+                                                alt="QR Code"
+                                                crossOrigin="anonymous" // Set crossOrigin to avoid canvas security issues
+                                            />
                                         </div>
                                     )}
                                 </div>

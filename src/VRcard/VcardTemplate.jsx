@@ -29,7 +29,10 @@ function VcardTemplate() {
 
     fetchData();
   }, [pageId]);
+  // Import format function 
 
+
+ 
   return (
     <div>
       {userData ? (
@@ -88,6 +91,7 @@ function VcardTemplate() {
                 /> */}
                 <h5 class="mb-1 text-xl font-medium text-[white] dark:text-white">
                   {userData.name}
+            
                 </h5>
                 <span class="text-sm text-[white] dark:text-gray-400 font-sans">
                   {userData.designation}
