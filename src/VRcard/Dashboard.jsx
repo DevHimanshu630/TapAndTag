@@ -64,7 +64,7 @@ function Dashboard() {
 
     console.log(formId);
     // const res = await axios.post("", {}, {})
-    navigate(`/qrform/${formId}`)
+    navigate(`/UpdateQrForm/${formId}`)
   }
 
 
