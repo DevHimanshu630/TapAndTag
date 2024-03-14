@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from '../Axios/Axios'
 import Home from "../Components/Home";
 import Navbar from "../Components/Navbar";
 import logo from '../Images/logo.png'
 import { Link, useNavigate } from "react-router-dom";
+import { format } from 'date-fns'
+import QRCode from "react-qr-code";
+import html2canvas from 'html2canvas';
+import { CiEdit } from "react-icons/ci";
+import { wait } from "@testing-library/user-event/dist/utils";
+
+
+
 
 function Dashboard() {
   const [userData, setUserData] = useState([]);
   const token = localStorage.getItem("token")
+  const [formId, setFormId] = useState();
 
   const navigate = useNavigate();
   // console.log(token);
@@ -24,6 +33,8 @@ function Dashboard() {
         });
         console.log("getData of User **********-------->", response);
         setUserData(response.data.response);
+
+
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -36,6 +47,24 @@ function Dashboard() {
   const handleSignOut = () => {
     navigate("/signUp");
     localStorage.removeItem("token");
+  }
+
+  function formateTime(timestamp) {
+
+    const date = new Date(timestamp)
+    const formatted = format(date, 'MMMM dd, yyyy hh:mm a')
+    return formatted;
+
+  }
+  const qrCodeRef = useRef(null);
+
+  const naviagte = useNavigate()
+
+  const handleEdit = (formId) => {
+
+    console.log(formId);
+    // const res = await axios.post("", {}, {})
+    navigate(`/qrform/${formId}`)
   }
 
 
@@ -81,7 +110,7 @@ function Dashboard() {
 
       <div class="relative w-full flex justify-center overflow-x-auto">
         <table class="w-[75%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <thead class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="px-6 py-3">
                 Date
@@ -103,13 +132,24 @@ function Dashboard() {
           <tbody>
             {userData?.map((item, index) => (
               <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="px-6 py-4 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {item?.timeStamp}
+                <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {formateTime(item.timeStamp)}
+
                 </td>
-                <td class="px-6 py-4 font-sans">{item?.formName}</td>
-                <td class="px-6 py-4 font-sans">{item?.type}</td>
-                <td class="px-6 py-4 font-sans">{item?.QR?.fileName}</td>
-                {/* Add other columns as needed */}
+                <td class="px-6 py-3  justify-center  flex flex-col font-sans">
+                  {item.formDataID}
+                  <span className=" font-bold text-black">{item?.formName}</span>
+                  <span className="text-gray-300"><a href="" className="hover:underline hover:text-red-500">htpps://{item?.pageUrl}</a></span>
+                </td>
+                <td class="px-6 py-3 font-sans">{item?.type}</td>
+                <td ref={qrCodeRef} class="px-6 py-3 font-sans">
+                  <img src={`https://api.qrserver.com/v1/create-qr-code/?data=${item?.qr}&size=70x70`} alt="QR Code" />
+                </td>
+
+                <td className="px-6 py-3 flex hover:underline hover:cursor-pointer hover:text-blue-500 items-center gap-1 font-sans">
+                  <CiEdit onClick={() => { handleEdit(item.formDataID) }} size={20} />
+                  <span onClick={() => { handleEdit(item.formDataID) }}>edit</span>
+                </td>
               </tr>
             ))}
           </tbody>
