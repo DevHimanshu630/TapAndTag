@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-function EmailVerification() {
+function Verification() {
 
     const navigate = useNavigate()
     const [forgotData, setForgotData] = useState({
@@ -49,7 +49,7 @@ function EmailVerification() {
                 });
 
             }
-            if (err.response.status == 403) {
+            if (err?.response?.status == 403) {
                 toast.error("Reset Link Already Sent", {
                     position: "top-right",
                     autoClose: 3000,
@@ -110,4 +110,4 @@ function EmailVerification() {
     );
 }
 
-export default EmailVerification;
+export default Verification;

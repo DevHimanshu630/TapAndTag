@@ -9,7 +9,8 @@ import Dashboard from './VRcard/Dashboard';
 import QrForm from './Pages/QrForm';
 import FileManager from './VRcard/FlieManager';
 import Forgot from './Pages/Forgot';
-import EmailVerification from './Pages/EmailVerification';
+import Verification from './Pages/Verification';
+
 
 
 function App() {
@@ -32,8 +33,7 @@ function App() {
             <Route path='/qrform/:formId' element={<QrForm />} />
             <Route path='/qrform' element={<QrForm />} />
             <Route path='/filemanager' element={<FileManager />} />
-            <Route path='/accounts/password/reset/:hash' element={<Forgot />} />
-            <Route path='/accounts/password/forgot' element={<EmailVerification />} />
+            <Route path='/accounts/password/reset/' element={<Forgot />} />
           </Routes>
         </>
       ) :
@@ -48,8 +48,10 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/product" element={<Product />} />
+              <Route path='/accounts/password/reset/' element={<Forgot />} />
               <Route path="/Sustainability" element={<Sustainability />} />
               <Route path="/vcard/:pageId" element={<VcardTemplate />} />
+              <Route path='/accounts/password/forgot' element={<Verification />} />
             </Routes>
           </>
         )
