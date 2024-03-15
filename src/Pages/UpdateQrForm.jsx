@@ -64,7 +64,7 @@ function UpdateQrForm() {
 
                     setData(response?.data?.response); // Set all response data to setData
                     // Append image if present
-                    setProfileFormData(response?.data?.response.profilePhotoObj.contentURL)
+                    setProfileFormData(response?.data?.response.profilePhotoObj)
                     setImages(response?.data?.response.imageObj)
                 } catch (error) {
                     console.error("Error fetching user data:", error);
@@ -216,6 +216,8 @@ function UpdateQrForm() {
         profilePhoto: "",
     });
 
+
+    console.log(formProfileData);
     const handleProfileInputChange = (e) => {
         const imgFile = e.target.files[0];
         setProfileFormData({ profilePhoto: imgFile });

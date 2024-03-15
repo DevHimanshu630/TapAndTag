@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import WallpaperIcon from '@mui/icons-material/Wallpaper';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -12,29 +12,108 @@ import { MdContentCopy } from "react-icons/md";
 
 import Checkbox from "@mui/material/Checkbox";
 import { logDOM } from '@testing-library/react';
+import axios from '../Axios/Axios';
+import { useParams } from 'react-router-dom';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 
 
 function Card({ profileImg }) {
-    console.log(profileImg);
+    console.log(profileImg._id);
+
+    const { formId } = useParams();
+    console.log(formId);
+    const token = localStorage.getItem("token")
+
+    const handleDelete = async () => {
+        console.log("Deleting profile image");
+        try {
+            const res = await axios.put(`users/formdata/filemanager/${formId}`, {
+                deleteProfileId: profileImg._id
+            },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log(res);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    const [formProfileData, setProfileFormData] = useState({
+        profilePhoto: "",
+    });
+    const fileInputRef = useRef(null);
+    const [showInput, setShowDiv] = useState(false)
+
+    const handleInput = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleProfileInputChange = (e) => {
+        const imgFile = e.target.files[0];
+        setProfileFormData({ profilePhoto: imgFile });
+
+    };
+
+
+    const handleUpload = async () => {
+        try {
+            if (formProfileData.profilePhoto) {
+                console.log(formProfileData.profilePhoto);
+                const res = await axios.put(`users/formdata/filemanager/${formId}`, {
+                    profilePhoto: formProfileData.profilePhoto
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                console.log(res);
+            } else {
+                console.error("Profile photo is missing.");
+                // Handle the case where profile photo is missing
+            }
+        } catch (err) {
+            console.error("Error:", err.response);
+            // Handle errors appropriately, such as displaying an error message to the user
+        }
+    };
+
+
     return (
         <div className='border rounded-md w-52 h-48'>
             <div className="flex relative  h-full">
                 <input type='checkbox' className="flex border-none focus:outline-none relative z-10 top-2 left-2 appearance-none" />
-                <img src={profileImg} alt="no-profile" className="bg-cover rounded-t-md absolute z-0 w-full h-full" />
+                <img src={profileImg.contentURL} alt="no-profile" className="bg-cover rounded-t-md absolute z-0 w-full h-full" />
             </div>
             <div className="py-3 flex  items-center justify-around rounded-b-lg bg-gray-400">
                 <button className='text-md bg-blue-500 text-white px-4 rounded-md' >
                     Select
                 </button>
-                <MdContentCopy />
+                <MdContentCopy className='hover:cursor-pointer text-white' onClick={""} />
 
-                <TbPhotoSquareRounded />
-                <MdOutlineEdit />
-                <MdDelete />
+                <input
+                    ref={fileInputRef}
+                    accept="image/*"
+                    onChange={handleProfileInputChange}
+                    id="dropzone-imgFile"
+                    name="imgFile"
+                    type="file"
+                    className="hidden"
+                />
+                <TbPhotoSquareRounded
+                    className='hover:cursor-pointer text-white'
+                    onClick={handleInput}
+                />
+                <MdOutlineEdit className='hover:cursor-pointer text-white' onClick={""} />
+                <MdDelete className='hover:cursor-pointer text-white' onClick={handleDelete} />
 
             </div>
+            <Button onClick={handleUpload} variant="contained" disableElevation>
+                + New Upload
+            </Button>
         </div>
     );
 }
