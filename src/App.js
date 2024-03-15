@@ -7,7 +7,7 @@ import SignUp from './Pages/SignUp';
 import VcardTemplate from './VRcard/VcardTemplate';
 import Dashboard from './VRcard/Dashboard';
 import QrForm from './Pages/QrForm';
-import FileManager from './VRcard/FlieManager';
+import FileManager from './VRcard/FileManager';
 import Forgot from './Pages/Forgot';
 import Verification from './Pages/Verification';
 import UpdateQrForm from './Pages/UpdateQrForm';
@@ -24,7 +24,7 @@ function App() {
       {isUserLoggedIn ? (
         <>
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={< Dashboard />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
@@ -43,6 +43,17 @@ function App() {
         (
           <>
             <Routes>
+              {/* <Route
+                path="/dashboard"
+                element={
+                  isUserLoggedIn ? (
+                    <Navigate to="/dashboard" />
+
+                  ) : (
+                    <Navigate to="/Signup" />
+                  )
+                } /> */}
+              <Route path="/dashboard" element={< Dashboard />} />
               <Route path='/filemanager' element={<FileManager />} />
               <Route path='/UpdateQrForm/:formId' element={<UpdateQrForm />} />
               <Route path='/qrform' element={<QrForm />} />

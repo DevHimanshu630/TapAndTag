@@ -17,7 +17,9 @@ import { MdOutlineQrCode } from "react-icons/md";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import logo from '../Images/logo.png'
 import html2canvas from 'html2canvas';
-
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import ClearIcon from "@mui/icons-material/Clear";
+import FileManager from '../VRcard/FileManager'
 
 
 
@@ -58,11 +60,12 @@ function UpdateQrForm() {
                             Authorization: `Bearer ${token}`,
                         },
                     });
-                    console.log(response);
+                    console.log(response?.data?.response.imageObj);
 
                     setData(response?.data?.response); // Set all response data to setData
                     // Append image if present
-
+                    setProfileFormData(response?.data?.response.profilePhotoObj.contentURL)
+                    setImages(response?.data?.response.imageObj)
                 } catch (error) {
                     console.error("Error fetching user data:", error);
                 }
@@ -116,13 +119,13 @@ function UpdateQrForm() {
         }
 
         try {
-            const res = await axios.post("users/uploadForm", formDatas, {
+            const res = await axios.put(`users/formdata/update/${formId}`, formDatas, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "multipart/form-data", // Set content type for FormData
                 },
             });
-
+            console.log(res);
             if (res?.status == 200) {
                 toast.success("Qr Created successfully!", {
                     position: "top-right",
@@ -202,7 +205,7 @@ function UpdateQrForm() {
 
         }
     };
-
+    const [images, setImages] = useState()
     const [formData, setFormData] = useState({
         image: { files: {} },
     });
@@ -310,6 +313,51 @@ function UpdateQrForm() {
     return (
 
         <>
+            <div id="extralarge-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-7xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <section className="flex gap-2 items-center">
+                                <h1 className="font-semibold text-xl">File Manager</h1>
+                                <ContentCopyIcon />
+                                <span>Copy path</span>
+                            </section>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="extralarge-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <div class=" px-4 ">
+                            <FileManager profile={formProfileData} image={images} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="large-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-7xl max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <section className="flex gap-2 items-center">
+                                <h1 className="font-semibold text-xl">File Manager</h1>
+                                <ContentCopyIcon />
+                                <span>Copy path</span>
+                            </section>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="extralarge-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <div class=" px-4 ">
+                            <FileManager profile={formProfileData} image={images} />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div style={{ overflow: 'hidden' }} >
 
                 <nav class="bg-white border-gray-200  ">
@@ -372,17 +420,21 @@ function UpdateQrForm() {
                                                 </p>
                                                 <div className="flex gap-9 pl-2 items-center  ">
                                                     <div className=" ">
-                                                        <img
+                                                        {formProfileData === null ? (<img
                                                             src={profileImg}
                                                             className="w-[76px] rounded-full h-[76px]"
                                                             alt=""
-                                                        />
+                                                        />) : (<img
+                                                            src={formProfileData}
+                                                            className="w-[76px] rounded-full h-[76px]"
+                                                            alt=""
+                                                        />)}
                                                     </div>
                                                     <hr className="border h-12 font-thin text-[#D2D2D2]" />
                                                     <div className=" flex  gap-20 items-center justify-start w-[75%]">
                                                         <label htmlFor="dropzone-imgFile">
                                                             <div className="">
-                                                                {formProfileData.profilePhoto ? (
+                                                                {formProfileData?.profilePhoto ? (
                                                                     <div className="flex gap-2 items-center">
                                                                         <p className="text-[#D3D3D3]">
                                                                             Selected file:{" "}
@@ -403,25 +455,28 @@ function UpdateQrForm() {
                                                                         </p>
                                                                     </div>
                                                                 ) : (
-                                                                    <div className="flex flex-col gap-1 hover:cursor-pointer">
+                                                                    <div className="flex flex-col items-center justify-center gap-1 hover:cursor-pointer">
                                                                         <img
+                                                                            data-modal-target="extralarge-modal" data-modal-toggle="extralarge-modal"
                                                                             src={formUpload}
-                                                                            sizes={20}
-                                                                            className=""
+                                                                            sizes={0}
+                                                                            className="w-[42px] h-[42px]"
                                                                             alt=""
                                                                         />
-                                                                        <p className=" text-[8px] ">Choose File </p>
+                                                                        <button data-modal-target="extralarge-modal" data-modal-toggle="extralarge-modal" class="block text-[8px]  " type="button">
+                                                                            Choose File
+                                                                        </button>
                                                                     </div>
                                                                 )}
                                                             </div>
-                                                            <input
+                                                            {/* <input
                                                                 accept="image/*"
                                                                 onChange={handleProfileInputChange}
                                                                 id="dropzone-imgFile"
                                                                 name="imgFile"
                                                                 type="file"
                                                                 className="hidden"
-                                                            />
+                                                            /> */}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -869,7 +924,7 @@ function UpdateQrForm() {
                                                     <hr className="border h-12 mr-4 font-thin text-[#D2D2D2]" />
                                                     <div className='flex'>
                                                         {/* Display selected files */}
-                                                        {Object.keys(formData.image).length > 0 && (
+                                                        {/* {Object.keys(formData.image).length > 0 && (
                                                             <div className="flex flex-col w-96 flex-wrap gap-2">
                                                                 <p className="text-[#D3D3D3] flex flex-col">
                                                                     Selected files: {Object.values(formData.image.files).map((file) => file.name).join(', ')}
@@ -881,13 +936,16 @@ function UpdateQrForm() {
                                                                     <span className="text-[#D3D3D3]"><MdDeleteOutline size={24} /></span>
                                                                 </p>
                                                             </div>
-                                                        )}
+                                                        )} */}
 
 
                                                         <label htmlFor="dropzone-file" className="flex flex-col gap-1 hover:cursor-pointer">
-                                                            <img src={formUpload} sizes={20} className="" alt="" />
-                                                            <p className="text-[8px]">Choose Files</p>
-                                                            <input
+                                                            <img data-modal-target="large-modal" data-modal-toggle="large-modal" src={formUpload} sizes={20} className="" alt="" />
+
+                                                            <button data-modal-target="large-modal" data-modal-toggle="large-modal" class="block text-[8px]  " type="button">
+                                                                Choose File
+                                                            </button>
+                                                            {/* <input
                                                                 accept="image/*"
                                                                 onChange={handleMultipleInputChange}
                                                                 id="dropzone-file"
@@ -895,7 +953,7 @@ function UpdateQrForm() {
                                                                 type="file"
                                                                 multiple // Allow multiple files to be selected
                                                                 className="hidden"
-                                                            />
+                                                            /> */}
                                                         </label>
                                                     </div>
 
