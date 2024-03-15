@@ -1,4 +1,3 @@
-
 import Home from './Components/Home';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Product from './Pages/Product';
@@ -59,6 +58,7 @@ function App() {
               <Route path='/UpdateQrForm/:formId' element={<UpdateQrForm />} />
               <Route path='/qrform' element={<QrForm />} />
               <Route path="/" element={<Home />} />
+              <Route path='/qrform' element={<QrForm />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/product" element={<Product />} />

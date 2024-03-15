@@ -1,5 +1,6 @@
 {
-  "name": "https://tapandtag.molog.in/",
+  "name": "tapandtag",
+  "homepage": "https://tapandtag.molog.in/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
