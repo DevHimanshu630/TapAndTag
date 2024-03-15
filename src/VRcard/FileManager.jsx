@@ -31,9 +31,9 @@ function FlieManager({ profile, image }) {
     }
 
 
-  
 
-    
+
+
 
     console.log(profile);
     return (
@@ -88,18 +88,14 @@ function FlieManager({ profile, image }) {
                                     </Select>
                                 </FormControl>
                             </Box>
-                         
-                            
+
+
                         </div>
                     </div>
                     <div className="m-2">
                         {
-                            img ?
-                                (<Card profileImg={profile} />)
-                                :
-                                (
-                                    <ImageCard images={image} />
-                                )
+                            img ? (<Card profileImg={profile} />) :
+                                (<ImageCard images={image} />)
                         }
 
                     </div>

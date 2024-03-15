@@ -19,17 +19,17 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 
 function Card({ profileImg }) {
-    console.log(profileImg._id);
+    console.log(profileImg?._id);
 
     const { formId } = useParams();
     console.log(formId);
     const token = localStorage.getItem("token")
 
-    const handleDelete = async () => {
+    const handleDelete = async (id) => {
         console.log("Deleting profile image");
         try {
             const res = await axios.put(`users/formdata/filemanager/${formId}`, {
-                deleteProfileId: profileImg._id
+                deleteProfileId: profileImg?._id
             },
                 {
                     headers: {
@@ -48,52 +48,44 @@ function Card({ profileImg }) {
     const fileInputRef = useRef(null);
     const [showInput, setShowDiv] = useState(false)
 
-    const handleInput = () => {
-        fileInputRef.current.click();
-    };
 
     const handleProfileInputChange = (e) => {
         const imgFile = e.target.files[0];
         setProfileFormData({ profilePhoto: imgFile });
-
     };
+
 
 
     const handleUpload = async () => {
+        const formData = new FormData();
+        formData.append("profilePhoto", formProfileData.profilePhoto);
+
         try {
-            if (formProfileData.profilePhoto) {
-                console.log(formProfileData.profilePhoto);
-                const res = await axios.put(`users/formdata/filemanager/${formId}`, {
-                    profilePhoto: formProfileData.profilePhoto
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                console.log(res);
-            } else {
-                console.error("Profile photo is missing.");
-                // Handle the case where profile photo is missing
-            }
+            const res = await axios.put(`users/formdata/filemanager/${formId}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log(res);
         } catch (err) {
-            console.error("Error:", err.response);
-            // Handle errors appropriately, such as displaying an error message to the user
+            console.error(err);
         }
     };
+
+
 
 
     return (
         <div className='border rounded-md w-52 h-48'>
             <div className="flex relative  h-full">
                 <input type='checkbox' className="flex border-none focus:outline-none relative z-10 top-2 left-2 appearance-none" />
-                <img src={profileImg.contentURL} alt="no-profile" className="bg-cover rounded-t-md absolute z-0 w-full h-full" />
+                <img src={profileImg?.contentURL} alt="no-profile" className="bg-cover rounded-t-md absolute z-0 w-full h-full" />
             </div>
             <div className="py-3 flex  items-center justify-around rounded-b-lg bg-gray-400">
                 <button className='text-md bg-blue-500 text-white px-4 rounded-md' >
                     Select
                 </button>
                 <MdContentCopy className='hover:cursor-pointer text-white' onClick={""} />
-
                 <input
                     ref={fileInputRef}
                     accept="image/*"
@@ -101,14 +93,16 @@ function Card({ profileImg }) {
                     id="dropzone-imgFile"
                     name="imgFile"
                     type="file"
-                    className="hidden"
+                    style={{ display: 'none' }} // Use inline style to hide the input
                 />
+
                 <TbPhotoSquareRounded
                     className='hover:cursor-pointer text-white'
-                    onClick={handleInput}
+                    onClick={() => fileInputRef.current.click()} // Trigger click event of the file input
                 />
+
                 <MdOutlineEdit className='hover:cursor-pointer text-white' onClick={""} />
-                <MdDelete className='hover:cursor-pointer text-white' onClick={handleDelete} />
+                <MdDelete className='hover:cursor-pointer text-white' onClick={() => handleDelete(profileImg._Id)} />
 
             </div>
             <Button onClick={handleUpload} variant="contained" disableElevation>

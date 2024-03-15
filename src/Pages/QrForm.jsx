@@ -29,7 +29,7 @@ function QrForm() {
         name: "",
         designation: "",
         companyName: "",
-        pageUrl: "sdfssd",
+        pageUrl: "",
         email: "",
         mobile: "",
         sms: "",
@@ -483,6 +483,7 @@ function QrForm() {
                                                 <div className="border w-[56%]  rounded-r-full  ">
                                                     <input
                                                         autoComplete="true"
+                                                        placeholder='Enter your unique pageUrl (this can not be chaged once created) '
                                                         type="text"
                                                         name="pageUrl"
                                                         id="pageUrl"
@@ -932,11 +933,11 @@ function QrForm() {
                                     <div className='border  rounded-t-xl '>
                                         <div className='flex  w-[350px] items-center px-2 overflow-hidden justify-between'>
                                             <div className='justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14'>
-                                                <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/{data?.pageUrl} </p>
+                                                <p ref={textRef} className='w-full text-lg  '>https://tap-and-tag.vercel.app/vcard/{data?.pageUrl} </p>
                                             </div>
                                             <div className='flex gap-2'>
                                                 <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
-                                                <Link target='_blank' to={`/https://tapandtag.molog.in/${data?.pageUrl}`}>
+                                                <Link target='_blank' to={`/https://tap-and-tag.vercel.app/${data?.pageUrl}`}>
                                                     <FiExternalLink size={20} className='hover:cursor-pointer' />
                                                 </Link>
                                             </div>
