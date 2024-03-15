@@ -21,7 +21,7 @@ import html2canvas from 'html2canvas';
 
 
 
-function QrForm() {
+function UpdateQrForm() {
     const { formId } = useParams();
     const token = localStorage.getItem("token")
     console.log(formId);
@@ -29,7 +29,7 @@ function QrForm() {
         name: "",
         designation: "",
         companyName: "",
-        pageUrl: "",
+        pageUrl: "sdfssd",
         email: "",
         mobile: "",
         sms: "",
@@ -482,7 +482,6 @@ function QrForm() {
                                                 <div className="border w-[56%]  rounded-r-full  ">
                                                     <input
                                                         autoComplete="true"
-                                                        placeholder='Enter your unique pageUrl (this can not be chaged once created) '
                                                         type="text"
                                                         name="pageUrl"
                                                         id="pageUrl"
@@ -854,6 +853,14 @@ function QrForm() {
                                                     >
                                                         Images
                                                     </p>
+                                                    {/* <label class="inline-flex items-center cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        value=""
+                                        class="sr-only peer"
+                                    />
+                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                                </label> */}
                                                 </div>
                                                 <div className="flex  items-center  ">
                                                     <div className=" ">
@@ -875,6 +882,8 @@ function QrForm() {
                                                                 </p>
                                                             </div>
                                                         )}
+
+
                                                         <label htmlFor="dropzone-file" className="flex flex-col gap-1 hover:cursor-pointer">
                                                             <img src={formUpload} sizes={20} className="" alt="" />
                                                             <p className="text-[8px]">Choose Files</p>
@@ -889,6 +898,7 @@ function QrForm() {
                                                             />
                                                         </label>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -921,9 +931,8 @@ function QrForm() {
                                             <button onClick={handleBackForm} className="bg-[#022D24] px-7 py-2 rounded-full font-sans font-thin text-sm text-white">
                                                 Back
                                             </button>
-
                                             <button type="submit" className="bg-[#022D24] px-7 py-2 rounded-full font-thin text-sm font-sans text-white">
-                                                Submit
+                                                Submitdsdsafssd
                                             </button>
                                         </div>
                                     </div>
@@ -932,7 +941,7 @@ function QrForm() {
                                     <div className='border  rounded-t-xl '>
                                         <div className='flex  w-[350px] items-center px-2 overflow-hidden justify-between'>
                                             <div className='justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14'>
-                                                <p ref={textRef} className='w-full text-lg  '>https://tapandtag.molog.in/{data?.pageUrl} </p>
+                                                <p ref={textRef} className='w-full text-lg '>https://tapandtag.molog.in/{data?.pageUrl} </p>
                                             </div>
                                             <div className='flex gap-2'>
                                                 <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
@@ -977,4 +986,4 @@ function QrForm() {
     )
 }
 
-export default QrForm
+export default UpdateQrForm

@@ -10,6 +10,7 @@ import QrForm from './Pages/QrForm';
 import FileManager from './VRcard/FlieManager';
 import Forgot from './Pages/Forgot';
 import Verification from './Pages/Verification';
+import UpdateQrForm from './Pages/UpdateQrForm';
 
 
 
@@ -34,6 +35,8 @@ function App() {
             <Route path='/qrform' element={<QrForm />} />
             <Route path='/filemanager' element={<FileManager />} />
             <Route path='/accounts/password/reset/' element={<Forgot />} />
+            <Route path='/accounts/password/forgot' element={<Verification />} />
+            <Route path='/UpdateQrForm/:formId' element={<UpdateQrForm />} />
           </Routes>
         </>
       ) :
@@ -41,7 +44,7 @@ function App() {
           <>
             <Routes>
               <Route path='/filemanager' element={<FileManager />} />
-              <Route path='/qrform/:formId' element={<QrForm />} />
+              <Route path='/UpdateQrForm/:formId' element={<UpdateQrForm />} />
               <Route path='/qrform' element={<QrForm />} />
               <Route path="/" element={<Home />} />
               <Route path='/qrform' element={<QrForm />} />
