@@ -114,6 +114,7 @@ function QrForm() {
         if (formProfileData.profilePhoto) {
             formDatas.append("profilePhoto", formProfileData.profilePhoto);
         }
+        console.log(formProfileData);
 
         try {
             const res = await axios.post("users/uploadForm", formDatas, {

@@ -30,6 +30,11 @@ function FlieManager({ profile, image }) {
         setImages(true)
     }
 
+
+
+
+
+
     console.log(profile);
     return (
         <div className="flex flex-col  h-[80vh]">
@@ -83,19 +88,14 @@ function FlieManager({ profile, image }) {
                                     </Select>
                                 </FormControl>
                             </Box>
-                            <Button variant="contained" disableElevation>
-                                + New Upload
-                            </Button>
+
+
                         </div>
                     </div>
                     <div className="m-2">
                         {
-                            img ?
-                                (<Card profileImg={profile} />)
-                                :
-                                (
-                                    <ImageCard images={image} />
-                                )
+                            img ? (<Card profileImg={profile} />) :
+                                (<ImageCard images={image} />)
                         }
 
                     </div>
