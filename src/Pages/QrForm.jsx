@@ -932,7 +932,7 @@ function QrForm() {
                                     <div className='border  rounded-t-xl '>
                                         <div className='flex  w-[350px] items-center px-2 overflow-hidden justify-between'>
                                             <div className='justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14'>
-                                                <p ref={textRef} className='w-full text-lg  '>https://tap-and-tag.vercel.app/vcard/{data?.pageUrl} </p>
+                                                <p ref={textRef} className='w-full text-lg'>https://tap-and-tag.vercel.app/vcard/{data?.pageUrl} </p>
                                             </div>
                                             <div className='flex gap-2'>
                                                 <MdContentCopy size={20} onClick={handleCopyClick} className='hover:cursor-pointer' />
