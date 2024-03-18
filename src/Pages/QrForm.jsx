@@ -1054,6 +1054,7 @@ function QrForm() {
                     </div>
                   </div>
                   {showPhone ? (
+
                     <img src={phone} class=" object-contain" alt="Molog Logo" />
                   ) : (
                     <div className=" flex items-center justify-center ">
