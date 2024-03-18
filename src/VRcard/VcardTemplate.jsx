@@ -21,7 +21,7 @@ function VcardTemplate() {
         const response = await axios.get(`users/formdata/${pageId}`);
         // console.log("response *********-------->", response);
         setUserData(response.data.response);
-        // document.title = `Vcard ${pageId}`;
+        document.title = `Vcard ${pageId}`;
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
