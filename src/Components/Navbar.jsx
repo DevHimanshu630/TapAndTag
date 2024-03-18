@@ -206,14 +206,14 @@ function Navbar() {
                     Sustainability
                   </Link>
                 </li>
-                {/* <li>
+                <li>
                   <Link
                     to={"/login"}
                     class="in-block py-2 px-3 md:p-0 ml-5  text-[18px]  rounded bg-gradient-to-r from-[#022D24]  to-[#146C60]  text-transparent bg-clip-text hover:text-[#146C60] "
                   >
                     Login
                   </Link>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>
