@@ -17,6 +17,8 @@ import { MdOutlineQrCode } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import logo from "../Images/logo.png";
 import html2canvas from "html2canvas";
+import VcardTemplate from "../VRcard/VcardTemplate";
+import MobilePreview from "../Components/MobilePreview";
 
 function QrForm() {
   const { formId } = useParams();
@@ -416,11 +418,11 @@ function QrForm() {
                                       {formProfileData.profilePhoto.name}
                                     </p>
                                     <p
-                                      className=" hover:cursor-pointer "
+                                      className=" hover:cursor-pointer"
                                       onClick={() =>
                                         setProfileFormData({
                                           ...formProfileData,
-                                          profilePhoto: null,
+                                          profilePhoto: "",
                                         })
                                       }
                                     >
@@ -437,7 +439,7 @@ function QrForm() {
                                       className=""
                                       alt=""
                                     />
-                                    <p className=" text-[8px] ">Choose File </p>
+                                    <p className=" text-[8px]">Choose File </p>
                                   </div>
                                 )}
                               </div>
@@ -1003,10 +1005,10 @@ function QrForm() {
                     </div>
                   </div>
                 )}
-                <div className=" w-[400px] h-[550px] shadow-md rounded-2xl   ">
-                  <div className="border  rounded-t-xl ">
+                <div className=" w-[400px] h-[550px] shadow-md rounded-2xl overflow-hidden">
+                  <div className="border overflow-hidden rounded-t-xl ">
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
-                      <div className="justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14">
+                      <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg  ">
                           https://tap-and-tag.vercel.app/vcard/{data?.pageUrl}{" "}
                         </p>
@@ -1053,9 +1055,10 @@ function QrForm() {
                       </button>
                     </div>
                   </div>
+                  <div className="p-5">
                   {showPhone ? (
-
-                    <img src={phone} class=" object-contain" alt="Molog Logo" />
+                    <MobilePreview data={data} profileimg={image}/>
+                    // <img src={phone} class="object-contain" alt="Molog Logo" />
                   ) : (
                     <div className=" flex items-center justify-center ">
                       <img
@@ -1067,6 +1070,7 @@ function QrForm() {
                       />
                     </div>
                   )}
+                  </div>
                 </div>
               </div>
             </div>
