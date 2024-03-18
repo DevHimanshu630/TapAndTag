@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function MobilePreview({ data, profileimg }) {
+function MobilePreview({ data, profileimg, formData }) {
+  const multimg = Object?.keys(formData?.image?.files)?.map((key) => (
+    <img
+      key={key}
+      src={URL?.createObjectURL(formData?.image?.files[key])} // Pass File object directly
+      className="w-[76px] rounded-full h-[76px]"
+      alt=""
+    />
+  ));
   return (
     <div className="border-2  w-[330px] h-[400px] overflow-y-auto rounded-lg border-black p-2">
       {data ? (
@@ -165,14 +173,7 @@ function MobilePreview({ data, profileimg }) {
                 <div className="w-[90%]   mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
                   <div className="w-full  bg-[#EEEEEE] p-2 px-5">Images</div>
                   <div className="flex flex-wrap items-center gap-4 p-2 px-5">
-                    {data?.imageObj?.map((image, index) => (
-                      <img
-                        key={index}
-                        src={image?.contentURL}
-                        alt={`Image ${index}`}
-                        className="object-cover flex gap-3"
-                      />
-                    ))}
+                    {multimg}
                   </div>
                 </div>
               </div>
