@@ -18,8 +18,10 @@ import logo from "../Images/logo.png";
 import html2canvas from "html2canvas";
 import VcardTemplate from "../VRcard/VcardTemplate";
 import MobilePreview from "../Components/MobilePreview";
+import { Loader, Placeholder } from 'rsuite'
 
 function QrForm() {
+  const [loader, setLoader] = useState(false)
   const { formId } = useParams();
   const token = localStorage.getItem("token");
   console.log(formId);
@@ -123,6 +125,7 @@ function QrForm() {
           pauseOnHover: true,
           draggable: true,
         });
+        setLoader(true);
         setTimeout(() => {
           navigate("/dashboard");
         }, [1000]);
@@ -295,10 +298,18 @@ function QrForm() {
       alt=""
     />
   ));
+  if(loader){
+    return (
+    <div style={{ height: 200, background: '#000' }}>
+      <ToastContainer/>
+     <Placeholder.Paragraph rows={8} />
+    <Loader backdrop content="loading..." vertical />
+     </div>
+    );
+  }
   return (
     <>
       <div style={{ overflow: "hidden" }}>
-        <ToastContainer/>
         <nav class="bg-white border-gray-200  ">
           <div class="flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl p-4 font-sans">
             <Link
