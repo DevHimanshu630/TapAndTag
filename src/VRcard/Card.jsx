@@ -14,6 +14,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { logDOM } from '@testing-library/react';
 import axios from '../Axios/Axios';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 
@@ -37,6 +38,18 @@ function Card({ profileImg }) {
                     },
                 }
             );
+            if (res?.status === 200) {
+                toast.error("Profile Image Deleted!", {
+                  position: "top-right",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                });
+                setTimeout(() => {
+                }, [1000]);
+              }
             console.log(res);
         } catch (err) {
             console.error(err);
@@ -66,6 +79,18 @@ function Card({ profileImg }) {
                     Authorization: `Bearer ${token}`
                 }
             });
+            if (res?.status === 200) {
+                toast.success("Profile Image Updated!", {
+                  position: "top-right",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                });
+                setTimeout(() => {
+                }, [1000]);
+              }
             console.log(res);
         } catch (err) {
             console.error(err);

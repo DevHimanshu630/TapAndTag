@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import logo from "../Images/logo.png";
 import axios from "../Axios/Axios";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export default function ExampleV2() {
@@ -28,9 +27,15 @@ export default function ExampleV2() {
       const res = await axios.post("users/login", {
         email: formData.email,
         password: formData.password,
-      });
+      },
+      // {
+      //   headers: {
+      //   },
+      //   withCredentials: true // This will include the cookie on our request
+      // }
+      );
       console.log("hi there-------------------------", res);
-      //   localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res.data.token);
       toast.success("login successfully!", {
         position: "top-right",
         autoClose: 3000,

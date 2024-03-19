@@ -29,7 +29,13 @@ function SignUp() {
                     username: formData.username,
                     email: formData.email,
                     password: formData.password,
-                });
+                },
+                // {
+                //     headers: {
+                //     },
+                //     withCredentials: true // This will include the cookie on our request
+                // }
+                  );
             console.log(res);
             if (res.status == 200) {
                 const token = res.data.token;

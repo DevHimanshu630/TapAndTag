@@ -6,9 +6,8 @@ import formUpload from "../Images/formUpload.png";
 import profileImg from "../Images/ProfileImg.png";
 import { MdDeleteOutline } from "react-icons/md";
 import QRCode from "react-qr-code";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 import copy from "clipboard-copy";
 import { MdContentCopy } from "react-icons/md";
 import { FiExternalLink } from "react-icons/fi";
@@ -88,8 +87,7 @@ function QrForm() {
 
   const handleSubmitUserData = async (e) => {
     e.preventDefault();
-
-    const formDatas = new FormData();
+        const formDatas = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       formDatas.append(key, value);
     });
@@ -300,6 +298,7 @@ function QrForm() {
   return (
     <>
       <div style={{ overflow: "hidden" }}>
+        <ToastContainer/>
         <nav class="bg-white border-gray-200  ">
           <div class="flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl p-4 font-sans">
             <Link

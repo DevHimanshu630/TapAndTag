@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import Card from "./Card";
 import ImageCard from "./ImageCard";
+import {ToastContainer } from "react-toastify";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -15,6 +16,7 @@ function FlieManager({ profile, image }) {
     const [search, setSearch] = useState("");
     const [type, setType] = useState("");
     const [order, setOrder] = useState("");
+    
     const handleChange = (event) => {
         setType(event.target.value);
     };
@@ -38,8 +40,8 @@ function FlieManager({ profile, image }) {
     console.log(profile);
     return (
         <div className="flex flex-col  h-[80vh]">
-
             <div className="flex  h-full">
+            <ToastContainer/>
                 <div className="flex flex-col w-80 pt-3 gap-4 pr-2 border-r border-gray-300">
                     <input
                         type="text"

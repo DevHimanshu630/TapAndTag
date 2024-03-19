@@ -13,6 +13,7 @@ import profileImg from "../Images/ProfileImg.png";
 import Checkbox from "@mui/material/Checkbox";
 import { logDOM } from '@testing-library/react';
 import axios from '../Axios/Axios';
+import { toast, ToastContainer } from "react-toastify";
 import { useParams } from 'react-router-dom';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -29,7 +30,7 @@ function ImageCard({ images }) {
     const [imageId, setImageId] = useState()
 
     const handleDelete = async (id) => {
-        console.log("Deleting profile image", id);
+        console.log("Deleting Multiple image", id);
         try {
             const res = await axios.put(`users/formdata/filemanager/${formId}`, {
                 deleteImageId: [id]
@@ -40,7 +41,19 @@ function ImageCard({ images }) {
                     },
                 }
             );
-            console.log(res);
+            if (res?.status === 200) {
+                toast.error("Images Deleted!", {
+                  position: "top-right",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                });
+                setTimeout(() => {
+                }, [1000]);
+            }
+        console.log(res);
         } catch (err) {
             console.error(err);
         }
@@ -97,6 +110,18 @@ function ImageCard({ images }) {
                     Authorization: `Bearer ${token}`
                 }
             });
+            if (res?.status === 200) {
+                toast.success("Images Uploaded!", {
+                  position: "top-right",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                });
+                setTimeout(() => {
+                }, [1000]);
+              }
             console.log(res);
         } catch (err) {
             console.error(err);
