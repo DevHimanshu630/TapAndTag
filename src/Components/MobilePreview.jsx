@@ -190,7 +190,7 @@ function MobilePreview({ data, profileimg, formData, link, images }) {
                       ))}
                     </div>
                     ) : (
-                    {multimg}
+                    multimg
                   )}
                   </div>
                 </div>
