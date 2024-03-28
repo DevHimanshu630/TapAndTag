@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function MobilePreview({ data, profileimg, formData }) {
+function MobilePreview({ data, profileimg, formData, link, images }) {
   const multimg = Object?.keys(formData?.image?.files)?.map((key) => (
     <img
       key={key}
@@ -64,12 +64,20 @@ function MobilePreview({ data, profileimg, formData }) {
               <div class="flex flex-col items-center pb-10">
                 {/* <img src={data.profilePhotoObj.contentURL} className="xl:w-32 xl:h-32  w-24 h-24 rounded-full shadow-lg  object-cover" alt="" /> */}
                 {profileimg ? (
-                  <img
-                    class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                    src={URL.createObjectURL(profileimg)}
-                    alt="Bonnie image"
-                  />
-                ) : (
+                    link ? (
+                      <img
+                        className="w-24 h-24 mb-3 rounded-full shadow-lg"
+                        src={profileimg}
+                        alt="Bonnie image"
+                      />
+                    ) : (
+                      <img
+                        className="w-24 h-24 mb-3 rounded-full shadow-lg"
+                        src={URL.createObjectURL(profileimg)}
+                        alt="Bonnie image"
+                      />
+                    )
+                  ) : (
                   <img
                     class="w-24 h-24 mb-3 rounded-full shadow-lg"
                     src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
@@ -173,7 +181,17 @@ function MobilePreview({ data, profileimg, formData }) {
                 <div className="w-[90%]   mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
                   <div className="w-full  bg-[#EEEEEE] p-2 px-5">Images</div>
                   <div className="flex flex-wrap items-center gap-4 p-2 px-5">
+                    {link ? (
+                    <div className="flex gap-2">
+                      {images?.map((image, index) => (
+                      <img key={index} src={image?.contentURL}
+                      className="w-[76px] rounded-full h-[76px]"
+                      alt="" />
+                      ))}
+                    </div>
+                    ) : (
                     {multimg}
+                  )}
                   </div>
                 </div>
               </div>

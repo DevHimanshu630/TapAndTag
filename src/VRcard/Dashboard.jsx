@@ -10,10 +10,12 @@ import html2canvas from "html2canvas";
 import { CiEdit } from "react-icons/ci";
 import { wait } from "@testing-library/user-event/dist/utils";
 import { MdDeleteOutline } from "react-icons/md";
+import { toast, ToastContainer } from "react-toastify";
 
 function Dashboard() {
   const [userData, setUserData] = useState([]);
   const token = localStorage.getItem("token");
+  const [formdel, setFromdel] = useState(false)
   const [formId, setFormId] = useState();
 
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ function Dashboard() {
     };
 
     fetchData();
-  }, []);
+  }, [formdel]);
 
   const handleSignOut = () => {
     navigate("/signUp");
@@ -66,6 +68,17 @@ function Dashboard() {
           Authorization: `Bearer ${token}`,
         },
       });
+      toast.error("Form Deleted!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setTimeout(() => {
+      }, [1000]);
+      setFromdel(!formdel)
     } catch (err) {
       console.log(err);
     }
@@ -73,6 +86,7 @@ function Dashboard() {
 
   return (
     <div>
+    <ToastContainer/>
       <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 font-sans">
           <Link

@@ -21,6 +21,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import FileManager from "../VRcard/FileManager";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import MobilePreview from "../Components/MobilePreview";
 
 function UpdateQrForm() {
   const { formId } = useParams();
@@ -1180,8 +1181,9 @@ function UpdateQrForm() {
                       </button>
                     </div>
                   </div>
+                  <div className="p-5">
                   {showPhone ? (
-                    <img src={phone} class=" object-contain" alt="Molog Logo" />
+                    <MobilePreview data={data} link={true} profileimg={formProfileData?.contentURL} images={images} formData={formData}/>
                   ) : (
                     <div className=" flex items-center justify-center ">
                       <img
@@ -1193,6 +1195,7 @@ function UpdateQrForm() {
                       />
                     </div>
                   )}
+                  </div>
                 </div>
               </div>
             </div>
