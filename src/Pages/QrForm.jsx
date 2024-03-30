@@ -378,10 +378,10 @@ function QrForm() {
             </div>
           </div>
         </nav>
-        <div className="bg-gray-100 border items-center  justify-center p-5  flex ">
+        <div className="bg-gray-100 border items-center  justify-center md:p-5  flex ">
           <form
             onSubmit={handleSubmitUserData}
-            class="  overflow-y-scroll m-12 "
+            class="  overflow-y-scroll m-0 md:m-12 "
           >
             <div className="flex flex-col    bg-white  md:w-[582px]  lg:w-[1200px] ">
               <div className="w-full flex pl-14 pr-10 xl:pt-10 pt-7 pb-1 items-center text-center justify-center ">
@@ -394,9 +394,9 @@ function QrForm() {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-between h-full  px-5  m-12 overflow-y-scroll   ">
+              <div className="flex justify-between h-full  px-5  md:m-12 overflow-y-scroll   ">
                 {showform ? (
-                  <div className=" w-[70%]">
+                  <div className=" md:w-[70%]">
                     <div className="flex mb-5 flex-col gap-4  w-full">
                       <div className="flex gap-5  flex-col">
                         <p
@@ -413,7 +413,7 @@ function QrForm() {
                               alt=""
                             />):(<img
                               src={profileImg}
-                              className="w-[76px] rounded-full h-[76px]"
+                              className="md:w-[76px] rounded-full md:h-[76px]"
                               alt=""
                             />)}
                           </div>
@@ -465,7 +465,7 @@ function QrForm() {
                           </div>
                         </div>
                       </div>
-                      <div class="mb-2 mt-3 w-[90%]">
+                      <div class="mb-2 mt-3 md:w-[90%]">
                         <input
                           placeholder="Name"
                           name="name"
@@ -478,7 +478,7 @@ function QrForm() {
                         />
                       </div>
 
-                      <div class="mb-5 w-[90%] flex gap-5">
+                      <div class="mb-5 md:w-[90%] flex flex-col  md:flex md:flex-row gap-5">
                         <input
                           placeholder="Designation"
                           name="designation"
@@ -486,7 +486,7 @@ function QrForm() {
                           id="Designation"
                           value={data?.designation}
                           onChange={handleChange}
-                          class=" font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-1/2 border-gray-300 rounded-full focus:outline-none"
+                          class=" font-sans font-light w-full  text-[16px] placeholder-[#606060]  border border-full md:w-1/2 border-gray-300 rounded-full focus:outline-none"
                           required
                         />
                         <input
@@ -496,18 +496,19 @@ function QrForm() {
                           id="companyName"
                           value={data?.companyName}
                           onChange={handleChange}
-                          class="font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-1/2 border-gray-300 text-gray-900 rounded-full focus:outline-none"
+                          class="font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-full md:w-1/2 border-gray-300 text-gray-900 rounded-full focus:outline-none"
                           required
                         />
                       </div>
 
-                      <div className="w-[90%]  flex justify-between items-center">
+                      <div className="w-[90%]  flex gap-2  items-center">
                         <p
                           style={linearGradientStyle}
                           className="font-sans font-medium text-[20px] tracking-wide"
                         >
-                          Create Your Page URL
+                          Create Your Page URL 
                         </p>
+                        <span className="text-[12px] font-sans">(Once saved, cannot be changed later)</span>
                       </div>
                       <div className="flex items-center transition-all ease-in-out duration-500">
                         <div className="border w-[33%] bg-gray-100 rounded-l-full">
@@ -535,7 +536,7 @@ function QrForm() {
                     </div>
 
                     <div className="flex mb-12 flex-col gap-4  w-full">
-                      <div className="flex gap-5 flex-col">
+                      <div className="flex gap-5 w-[90%] md:w-full flex-col">
                         <div className=" w-[90%]  flex justify-between items-center ">
                           <p
                             style={linearGradientStyle}
@@ -643,7 +644,7 @@ function QrForm() {
                             onClick={handleWbSiteDiv}
                             type="checkbox"
                             value=""
-                            class="sr-only peer"
+                            class="sr-only peer "
                           />
                           <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
                         </label>
@@ -658,7 +659,7 @@ function QrForm() {
                         className={` ${
                           !webSiteDiv
                             ? "hidden"
-                            : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-[90%] rounded-full    border-gray-300 focus:outline-none"
+                            : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] md:w-[90%] rounded-full    border-gray-300 focus:outline-none"
                         }`}
                         required
                       />
@@ -785,7 +786,7 @@ function QrForm() {
                             addresDiv ? "flex flex-col gap-4" : "hidden"
                           }`}
                         >
-                          <div class=" flex items-center">
+                          <div class=" flex  items-center">
                             <div className=" w-[90%]   ">
                               <input
                                 autoComplete="true"
@@ -800,16 +801,16 @@ function QrForm() {
                               />
                             </div>
                           </div>
-                          <div className=" flex w-[90%]  gap-5 ">
+                          <div className=" md:flex md:flex-row flex flex-col w-[90%]  gap-5 ">
                             <input
                               autoComplete="true"
-                              placeholder="   Address Line 2"
+                              placeholder="  Address Line 2"
                               type="text"
                               name="address2"
                               id="address2"
                               value={data?.address2}
                               onChange={handleChange}
-                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full w-[70%]   border-gray-300  focus:outline-none"
+                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full md:w-[70%]   border-gray-300  focus:outline-none"
                               required
                             />
                             <input
@@ -820,11 +821,11 @@ function QrForm() {
                               id="City"
                               value={data?.city}
                               onChange={handleChange}
-                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[30%]   border-gray-300 focus:outline-none"
+                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[30%]   border-gray-300 focus:outline-none"
                               required
                             />
                           </div>
-                          <div className=" flex w-[90%] justify-evenly mb-5 gap-5 ">
+                          <div className=" md:flex md:flex-row flex flex-col w-[90%] justify-evenly mb-5 gap-5 ">
                             <input
                               autoComplete="true"
                               placeholder="   State"
@@ -833,7 +834,7 @@ function QrForm() {
                               id="State"
                               value={data?.state}
                               onChange={handleChange}
-                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full w-[35%]   border-gray-300 focus:outline-none"
+                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full md:w-[35%]   border-gray-300 focus:outline-none"
                               required
                             />
                             <input
@@ -844,7 +845,7 @@ function QrForm() {
                               id="Country"
                               value={data?.country}
                               onChange={handleChange}
-                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[35%]    border-gray-300 focus:outline-none"
+                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[35%]    border-gray-300 focus:outline-none"
                               required
                             />
                             <input
@@ -855,7 +856,7 @@ function QrForm() {
                               id="Pincode"
                               value={data?.pinCode}
                               onChange={handleChange}
-                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  w-[35%]    border-gray-300 focus:outline-none"
+                              class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[35%]    border-gray-300 focus:outline-none"
                               required
                             />
                           </div>
@@ -906,9 +907,9 @@ function QrForm() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col mb-12  w-full">
-                      <div className="flex gap-4 flex-col">
-                        <div className="flex items-center justify-between w-[90%]">
+                    <div className="flex flex-col mb-12  w-[90%]">
+                      <div className="flex gap-4 flex-col w-full">
+                        <div className="flex items-center justify-between w-full">
                           <p
                             style={linearGradientStyle}
                             className=" font-sans font-medium text-[20px] tracking-wide"
@@ -916,19 +917,19 @@ function QrForm() {
                             Images
                           </p>
                         </div>
-                        <div className="flex  items-center  ">
+                        <div className="flex w-full items-center  ">
                           <div className=" ">
                             <img
                               src={formImg}
-                              className="w-[82px] h-[82px]"
+                              className="md:w-[82px] md:h-[82px]"
                               alt=""
                             />
                           </div>
                           <hr className="border h-12 mr-4 font-thin text-[#D2D2D2]" />
-                          <div className="flex">
+                          <div className="flex gap-[7rem] md:gap-0 w-full">
                             {/* Display selected files */}
                             {Object?.keys(formData.image).length > 0 && (
-                              <div className="flex flex-col w-96 flex-wrap gap-2">
+                              <div className="flex flex-col  md:w-96 flex-wrap gap-2">
                                 <p className="text-[#D3D3D3] flex flex-col">
                                   Selected files:{" "}
                                   {Object?.values(formData.image.files)
@@ -1015,7 +1016,7 @@ function QrForm() {
                     </div>
                   </div>
                 )}
-                <div className=" w-[400px] h-[550px] shadow-md rounded-2xl overflow-hidden">
+                <div className="hidden md:block w-[400px] h-[550px] shadow-md rounded-2xl overflow-hidden">
                   <div className="border overflow-hidden rounded-t-xl ">
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
