@@ -1041,7 +1041,7 @@ function QrForm() {
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg  ">
-                          https://tap-and-tag.vercel.app/vcard/{data?.pageUrl}{" "}
+                        https://tapandtag.in/vcard/{data?.pageUrl}{" "}
                         </p>
                       </div>
                       <div className="flex gap-2">
@@ -1052,7 +1052,7 @@ function QrForm() {
                         />
                         <Link
                           target="_blank"
-                          to={`/https://tap-and-tag.vercel.app/${data?.pageUrl}`}
+                          to={`/vcard/${data?.pageUrl}`}
                         >
                           <FiExternalLink
                             size={20}
