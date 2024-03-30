@@ -42,15 +42,17 @@ function Dashboard() {
   }, [formdel]);
 
   const handleSignOut = () => {
-    // toast.error("Signed Out!", {
-    //   position: "top-right",
-    //   autoClose: 3000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    // });
-    navigate("/signUp");
+    toast.error("Signed Out!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+    setTimeout(()=>{
+      navigate("/signUp");
+    }, 1000)
     localStorage.removeItem("token");
   };
 
@@ -93,7 +95,10 @@ function Dashboard() {
   };
 
   return (
+    <>
+      <ToastContainer/>
     <div>
+          
       <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 font-sans">
           <Link
@@ -164,7 +169,7 @@ function Dashboard() {
       </nav>
 
       {/* navbar code end */}
-      <ToastContainer/>
+
       <div class="relative w-full flex justify-center overflow-x-auto">
         <table class="w-[75%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -250,6 +255,7 @@ function Dashboard() {
         </table>
       </div>
     </div>
+    </>
   );
 }
 
