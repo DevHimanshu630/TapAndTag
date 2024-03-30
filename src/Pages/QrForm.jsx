@@ -156,7 +156,7 @@ function QrForm() {
       }
 
       if (err?.response && err?.response?.status == 405) {
-        toast.error("User Does Not Found Please SignUp", {
+        toast.error("User Does Not Found Please SignUp First", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -515,7 +515,7 @@ function QrForm() {
                             for="emailicon"
                             class="block p-2 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                           >
-                            https://tapandtag.molog.in/
+                            https://tapandtag.in/
                           </label>
                         </div>
                         <div className="border w-[56%]  rounded-r-full  ">
