@@ -18,7 +18,7 @@ import Success from './Pages/Success';
 function App() {
   const token = localStorage.getItem("token");
   const isUserLoggedIn = !!token;
-
+  
   console.log("user login status", isUserLoggedIn);
   return (
     <>
