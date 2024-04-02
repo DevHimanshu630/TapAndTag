@@ -1,6 +1,6 @@
 {
   "name": "tapandtag",
-  "homepage": "https://tapandtag.molog.in/",
+  "homepage": "https://tapandtag.in/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build $BUILD_PATH",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

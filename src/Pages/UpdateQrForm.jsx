@@ -130,7 +130,7 @@ function UpdateQrForm() {
       );
       console.log(res);
       if (res?.status == 200) {
-        toast.success("Qr Created successfully!", {
+        toast.success("Information updated successfully!", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -1126,7 +1126,7 @@ function UpdateQrForm() {
                         type="submit"
                         className="bg-[#022D24] px-7 py-2 rounded-full font-thin text-sm font-sans text-white"
                       >
-                        Submitdsdsafssd
+                        Submit
                       </button>
                     </div>
                   </div>

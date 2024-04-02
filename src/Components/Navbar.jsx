@@ -119,61 +119,53 @@ function Navbar() {
             {isLoggedIn ? (
               // If logged in, show Dashboard button
               <div className="flex gap-5 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                  <Link to={"/qrform"}>
+                    <Button
+                      type="button"
+                      class="btn-hover hidden lg:block color-5"
+                    >
+                      Order Now
+                    </Button>
+                  </Link>
+                </div>
 
-              <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <Link to={"/qrform"}>
-                  <Button
-                    type="button"
-                    class="btn-hover hidden lg:block color-5"
-                  >
-                    Order Now
-                  </Button>
-                </Link>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                  <Link to={"/dashboard"}>
+                    <Button
+                      type="button"
+                      class="btn-hover hidden lg:block color-5"
+                    >
+                      Dashboard
+                    </Button>
+                  </Link>
+                </div>
               </div>
-
-              <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <Link to={"/dashboard"}>
-                  <Button
-                    type="button"
-                    class="btn-hover hidden lg:block color-5"
-                  >
-                    Dashboard
-                  </Button>
-                </Link>
-              </div>
-
-
-             
-
-              
-              </div>
-              
-              
             ) : (
               // If not logged in, show Order Now button
-              
-            <div className="flex gap-7 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+              <div className="flex gap-7 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <div className=" list-none">
-                <li>
-                  <Link
-                    to={"/login"}
-                    class="in-block py-2 px-3 md:p-0 ml-5  text-[18px]  rounded bg-gradient-to-r from-[#022D24]  to-[#146C60]  text-transparent bg-clip-text hover:text-[#146C60] "
-                  >
-                    Login
+                  <li>
+                    <Link
+                      to={"/login"}
+                      class="in-block py-2 px-3 md:p-0 ml-5  text-[18px]  rounded bg-gradient-to-r from-[#022D24]  to-[#146C60]  text-transparent bg-clip-text hover:text-[#146C60] "
+                    >
+                      Login
+                    </Link>
+                  </li>
+                </div>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                  <Link to={"/qrform"}>
+                    <Button
+                      type="button"
+                      class="btn-hover hidden lg:block color-5"
+                    >
+                      Order Now
+                    </Button>
                   </Link>
-                </li>
+                </div>
               </div>
-              <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <Link to={"/qrform"}>
-                  <Button
-                    type="button"
-                    class="btn-hover hidden lg:block color-5"
-                  >
-                    Order Now
-                  </Button>
-                </Link>
-              </div>
-            </div>
             )}
 
             <div
@@ -206,14 +198,14 @@ function Navbar() {
                     Sustainability
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     to={"/login"}
                     class="in-block py-2 px-3 md:p-0 ml-5  text-[18px]  rounded bg-gradient-to-r from-[#022D24]  to-[#146C60]  text-transparent bg-clip-text hover:text-[#146C60] "
                   >
                     Login
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

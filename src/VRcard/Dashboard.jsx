@@ -45,7 +45,17 @@ function Dashboard() {
   }, [formdel]);
 
   const handleSignOut = () => {
-    navigate("/signUp");
+    toast.error("Signed Out!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+    setTimeout(()=>{
+      navigate("/signUp");
+    }, 1000)
     localStorage.removeItem("token");
   };
 
@@ -98,6 +108,8 @@ function Dashboard() {
   }
   
   return (
+    <>
+      <ToastContainer/>
     <div>
     <ToastContainer/>
     <Modal
@@ -241,7 +253,7 @@ function Dashboard() {
                   </span>
                   <span className="text-gray-300">
                     <a href="" className="hover:underline hover:text-red-500">
-                      htpps://{item?.pageUrl}
+                      https://tapandtag.in/vcard/{item?.pageUrl}
                     </a>
                   </span>
                 </td>
@@ -289,6 +301,7 @@ function Dashboard() {
         </table>
       </div>
     </div>
+    </>
   );
 }
 
