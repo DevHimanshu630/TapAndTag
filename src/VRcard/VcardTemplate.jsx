@@ -32,6 +32,25 @@ function VcardTemplate() {
   // Import format function 
 
 
+    const generateVCF = () => {
+      const vcfContent = `
+      BEGIN:VCARD
+      VERSION:3.0
+      FN:${userData.name}
+      EMAIL:${userData.email}
+      TEL:${userData.mobile}
+      ADR:${userData.city}
+      PHOTO;TYPE=JPEG;VALUE=URI:${userData.profilePhotoObj.contentURL}
+      END:VCARD
+      `;
+      const blob = new Blob([vcfContent], { type: 'text/vcard;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', 'contact.vcf');
+      document.body.appendChild(link);
+      link.click();
+
+  };
  
   return (
     <div>
@@ -113,6 +132,9 @@ function VcardTemplate() {
                 <Link to={userData.twitterUrl}>
                   <img src="/image/Vector.png" alt="" />
                 </Link>
+                <button onClick={generateVCF} className="bg-green-200 p-6 rounded">
+                  Save Data
+                </button>
               </div>
 
               <div className="">

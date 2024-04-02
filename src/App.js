@@ -11,6 +11,8 @@ import FileManager from './VRcard/FileManager';
 import Forgot from './Pages/Forgot';
 import Verification from './Pages/Verification';
 import UpdateQrForm from './Pages/UpdateQrForm';
+import CheckoutForm from './Components/CheckoutForm';
+import CheckoutCart from './Pages/CheckoutCart';
 
 
 
@@ -26,8 +28,10 @@ function App() {
           <Routes>
             <Route path="/dashboard" element={< Dashboard />} />
             <Route path="/" element={<Home />} />
+            {/* <Route path='/checkout' element={<CheckoutForm/>}/> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path='/checkout' element={<CheckoutCart/>}/>  
             <Route path="/product" element={<Product />} />
             <Route path="/Sustainability" element={<Sustainability />} />
             <Route path="/vcard/:pageId" element={<VcardTemplate />} />

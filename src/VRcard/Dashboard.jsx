@@ -11,6 +11,9 @@ import { CiEdit } from "react-icons/ci";
 import { wait } from "@testing-library/user-event/dist/utils";
 import { MdDeleteOutline } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import CheckoutForm from "../Components/CheckoutForm";
 
 function Dashboard() {
   const [userData, setUserData] = useState([]);
@@ -83,10 +86,37 @@ function Dashboard() {
       console.log(err);
     }
   };
-
+  const [open, setOpen] = useState(false);
+  const [selectedform, setSelectedform] = useState('')
+  function handleOpen(formId){
+    setSelectedform(formId)
+    setOpen(true)
+  }
+  const handleClose = () => setOpen(false);
+  const handleCart = () => {
+    navigate('/checkout')
+  }
+  
   return (
     <div>
     <ToastContainer/>
+    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="100vh"
+        >
+        <div class="relative w-full max-w-7xl max-h-full ">
+        <CheckoutForm handleClose={handleClose} selectedform={selectedform} setOpen={setOpen}/>
+          </div>
+        </Box>
+      </Modal>
       <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4 font-sans">
           <Link
@@ -145,6 +175,14 @@ function Dashboard() {
               </li>
               <li>
                 <p
+                onClick={handleCart}
+                class="block py-2 hover:cursor-pointer px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                Cart     
+                </p>
+              </li>
+              <li>
+                <p
                   onClick={handleSignOut}
                   class="block py-2 hover:cursor-pointer px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
                 >
@@ -162,6 +200,9 @@ function Dashboard() {
         <table class="w-[75%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
+              <th scope="col" class="px-6 py-3">
+                Select Form
+              </th>
               <th scope="col" class="px-6 py-3">
                 Date
               </th>
@@ -185,6 +226,11 @@ function Dashboard() {
                 key={index}
                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
               >
+                <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <button onClick={()=>{handleOpen(item.formDataID)}} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Add To Cart
+              </button>
+                </td>
                 <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {formateTime(item.timeStamp)}
                 </td>
