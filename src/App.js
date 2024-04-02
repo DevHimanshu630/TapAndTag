@@ -37,7 +37,7 @@ function App() {
             <Route path="/vcard/:pageId" element={<VcardTemplate />} />
             <Route path='/qrform/:formId' element={<QrForm />} />
             <Route path='/qrform' element={<QrForm />} />
-            <Route path='/success' element={<Success />} />
+            {/* <Route path='/success' element={<Success />} /> */}
             <Route path='/filemanager' element={<FileManager />} />
             <Route path='/accounts/password/reset/' element={<Forgot />} />
             <Route path='/accounts/password/forgot' element={<Verification />} />
