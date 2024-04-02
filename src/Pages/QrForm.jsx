@@ -25,6 +25,7 @@ function QrForm() {
   const { formId } = useParams();
   const token = localStorage.getItem("token");
   console.log(formId);
+  const [pageurl, setPageurl] = useState('')
   const [data, setData] = useState({
     name: "",
     designation: "",
@@ -77,7 +78,6 @@ function QrForm() {
     WebkitBackgroundClip: "text",
     color: "transparent",
   };
-
   const handleChange = (e) => {
     console.log(data);
     setData((prev) => ({
@@ -212,9 +212,25 @@ function QrForm() {
   const [showform, setShowForm] = useState(true);
   const [showPhone, setShowPhone] = useState(true);
 
+  function validateForm() {
+    const form = document.getElementById('myform');
+    if (form.checkValidity()) {
+        // Form is valid, proceed with your logic
+        console.log('Form is valid');
+        setData((prev) => ({
+          ...prev,
+          pageUrl: pageurl,
+        }))
+        setShowForm(false);
+        setShowPhone(false);
+    } else {
+        // Form is invalid, show error messages or handle accordingly
+        console.log('Form is invalid');
+        form.reportValidity(); // Show browser's default validation error messages
+    }
+}
   const handleForm = () => {
-    setShowForm(false);
-    setShowPhone(false);
+    validateForm()
   };
   const handleBackForm = () => {
     setShowForm(true);
@@ -400,6 +416,7 @@ function QrForm() {
         </nav>
         <div className="bg-gray-100 border items-center  justify-center md:p-5  flex ">
           <form
+            id="myform"
             onSubmit={handleSubmitUserData}
             class="  overflow-y-scroll m-0 md:m-12 "
           >
@@ -507,7 +524,6 @@ function QrForm() {
                           value={data?.designation}
                           onChange={handleChange}
                           class=" font-sans font-light w-full  text-[16px] placeholder-[#606060]  border border-full md:w-1/2 border-gray-300 rounded-full focus:outline-none"
-                          required
                         />
                         <input
                           placeholder="Company Name"
@@ -517,7 +533,7 @@ function QrForm() {
                           value={data?.companyName}
                           onChange={handleChange}
                           class="font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-full md:w-1/2 border-gray-300 text-gray-900 rounded-full focus:outline-none"
-                          required
+                          
                         />
                       </div>
 
@@ -546,8 +562,8 @@ function QrForm() {
                             type="text"
                             name="pageUrl"
                             id="pageUrl"
-                            value={data?.pageUrl}
-                            onChange={handleChange}
+                            value={pageurl}
+                            onChange={(e)=>setPageurl(e.target.value.toLowerCase().trim())}
                             class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                             required
                           />
@@ -681,7 +697,7 @@ function QrForm() {
                             ? "hidden"
                             : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] md:w-[90%] rounded-full    border-gray-300 focus:outline-none"
                         }`}
-                        required
+                       
                       />
                     </div>
 
@@ -728,7 +744,7 @@ function QrForm() {
                                 value={data?.linkedinUrl}
                                 onChange={handleChange}
                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
-                                required
+                                
                               />
                             </div>
                           </div>
@@ -751,7 +767,7 @@ function QrForm() {
                                 value={data?.twitterUrl}
                                 onChange={handleChange}
                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
-                                required
+                                
                               />
                             </div>
                           </div>
@@ -774,7 +790,6 @@ function QrForm() {
                                 value={data?.instagramUrl}
                                 onChange={handleChange}
                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
-                                required
                               />
                             </div>
                           </div>
@@ -817,7 +832,7 @@ function QrForm() {
                                 onChange={handleChange}
                                 value={data?.address1}
                                 class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
-                                required
+                                
                               />
                             </div>
                           </div>
@@ -831,7 +846,7 @@ function QrForm() {
                               value={data?.address2}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full md:w-[70%]   border-gray-300  focus:outline-none"
-                              required
+                              
                             />
                             <input
                               autoComplete="true"
@@ -842,7 +857,7 @@ function QrForm() {
                               value={data?.city}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[30%]   border-gray-300 focus:outline-none"
-                              required
+                              
                             />
                           </div>
                           <div className=" md:flex md:flex-row flex flex-col w-[90%] justify-evenly mb-5 gap-5 ">
@@ -855,7 +870,7 @@ function QrForm() {
                               value={data?.state}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full md:w-[35%]   border-gray-300 focus:outline-none"
-                              required
+                              
                             />
                             <input
                               autoComplete="true"
@@ -866,7 +881,7 @@ function QrForm() {
                               value={data?.country}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[35%]    border-gray-300 focus:outline-none"
-                              required
+                              
                             />
                             <input
                               autoComplete="true"
@@ -877,7 +892,7 @@ function QrForm() {
                               value={data?.pinCode}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[35%]    border-gray-300 focus:outline-none"
-                              required
+                              
                             />
                           </div>
                         </div>
@@ -919,7 +934,6 @@ function QrForm() {
                                 value={data?.googleMapUrl}
                                 onChange={handleChange}
                                 class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
-                                required
                               />
                             </div>
                           </div>
@@ -1041,7 +1055,7 @@ function QrForm() {
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg  ">
-                        https://tapandtag.in/vcard/{data?.pageUrl}{" "}
+                        https://tapandtag.in/vcard/{pageurl}{" "}
                         </p>
                       </div>
                       <div className="flex gap-2">

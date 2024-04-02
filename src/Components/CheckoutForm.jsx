@@ -31,7 +31,11 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
 });
 
 function CheckoutForm({handleClose, selectedform, setOpen}) {
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState({
+    plasticCard: 0,
+    woodCard : 0,
+    metalCard: 0
+  })
   const [plastic, setPlastic] = useState(false)
   const [wood, setWood] = useState(false)
   const [metal, setMetal] = useState(false)
@@ -41,9 +45,7 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
     if (!plastic) {
       setCart({ ...cart, plasticCard: 1});
     } else {
-      const updatedCart = { ...cart };
-      delete updatedCart.plasticCard;
-      setCart(updatedCart);
+      setCart({...cart, plasticCard: 0});
     }
   };
 
@@ -51,10 +53,8 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
     setWood(!wood);
     if(!wood){
         setCart({...cart, woodCard: 1});
-    }else{
-        const updatedCart = {...cart};
-        delete updatedCart.woodCard;
-        setCart(updatedCart);
+    }else {
+      setCart({...cart, woodCard: 0});
     }
   };
 
@@ -62,10 +62,8 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
     setMetal(!metal);
     if(!metal){
         setCart({...cart, metalCard: 1});
-    }else{
-        const updatedCart = {...cart};
-        delete updatedCart.metalCard;
-        setCart(updatedCart);
+    }else {
+      setCart({...cart, metalCard: 0});
     }
   };
   const token = localStorage.getItem("token");
