@@ -74,10 +74,6 @@ function CheckoutCart() {
         Metal : {carts[key].cardQuantity.metalCard} <br />
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
     </div>
     ))}

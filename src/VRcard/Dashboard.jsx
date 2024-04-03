@@ -24,7 +24,8 @@ function Dashboard() {
   const navigate = useNavigate();
   // console.log(token);
   console.log("userData *******------------>", userData);
-
+  const [cartcount, setCartcount] = useState('')
+  const [cartCall, setCartCall] = useState(false)
   useEffect(() => {
     console.log("mount");
     const fetchData = async () => {
@@ -43,7 +44,21 @@ function Dashboard() {
 
     fetchData();
   }, [formdel]);
-
+  useEffect(()=>{
+    const fetchCart = async() =>{
+      try{
+        const res = await axios.get('users/cart',{
+          headers:{
+            Authorization: `Bearer ${token}`
+          }
+        })
+        setCartcount(res.data.cart.length)
+      }catch(e){
+        console.log(e)
+      }
+    }
+    fetchCart();
+  },[cartCall])
   const handleSignOut = () => {
     toast.error("Signed Out!", {
       position: "top-right",
@@ -103,7 +118,7 @@ function Dashboard() {
   }
   const handleClose = () => setOpen(false);
   const handleCart = () => {
-    navigate('/checkout')
+    navigate('/cart')
   }
   
   return (
@@ -123,7 +138,7 @@ function Dashboard() {
           minHeight="100vh"
         >
         <div class="relative w-full max-w-7xl max-h-full ">
-        <CheckoutForm handleClose={handleClose} selectedform={selectedform} setOpen={setOpen}/>
+        <CheckoutForm handleClose={handleClose} selectedform={selectedform} setOpen={setOpen} setCartCall={setCartCall}/>
           </div>
         </Box>
       </Modal>
@@ -188,7 +203,7 @@ function Dashboard() {
                 onClick={handleCart}
                 class="block py-2 hover:cursor-pointer px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                Cart     
+                Cart-({cartcount})     
                 </p>
               </li>
               <li>
@@ -246,13 +261,13 @@ function Dashboard() {
                   
                 </td>
                 <td class="px-6 py-3  justify-center  flex flex-col font-sans">
-                  {item.formDataID}
+                Tap Count: {item.tapCount}
                   <span className=" font-bold text-black">
-                    {item?.formName}
+                   Form: {item?.formName}
                   </span>
                   <span className="text-gray-300">
-                    <a href="" className="hover:underline hover:text-red-500">
-                      https://tapandtag.in/vcard/{item?.pageUrl}
+                    <a href={`https://tap-and-tag.vercel.app/vcard/${item.pageUrl}`} className="hover:underline hover:text-red-500">
+                      https://tap-and-tag.vercel.app/vcard/{item.pageUrl}
                     </a>
                   </span>
                 </td>

@@ -33,7 +33,7 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
   );
 });
 
-function CheckoutForm({handleClose, selectedform, setOpen}) {
+function CheckoutForm({handleClose, selectedform, setOpen, setCartCall}) {
   const [cart, setCart] = useState({
     plasticCard: 0,
     woodCard : 0,
@@ -91,6 +91,7 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
           draggable: true,
         });
         setOpen(false);
+        setCartCall((prev)=>!prev)
       }
       console.log(res);
     } catch (e) {
