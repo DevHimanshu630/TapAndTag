@@ -74,7 +74,6 @@ function Dashboard() {
     navigate(`/UpdateQrForm/${formId}`);
   };
   const handleDelete = async (formId) => {
-    console.log(formId);
     try {
       const res = await axios.delete(`users/form/delete/${formId}`, {
         headers: {
@@ -109,7 +108,6 @@ function Dashboard() {
   
   return (
     <>
-      <ToastContainer/>
     <div>
     <ToastContainer/>
     <Modal

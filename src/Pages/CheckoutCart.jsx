@@ -46,7 +46,7 @@ function CheckoutCart() {
         Authorization: `Bearer ${token}`,
       },
     })
-    navigate('payment')
+    navigate(`payment/${res.data.orderId}`)
     console.log(res)
   }catch(e){
       console.log(e)

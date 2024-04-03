@@ -4,6 +4,9 @@ import Checkbox from '@mui/material/Checkbox';
 import { Unstable_NumberInput as BaseNumberInput, numberInputClasses } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 import axios from '../Axios/Axios';
+import carting from "../Images/Cart.svg"
+import { toast, ToastContainer } from "react-toastify";
+
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -78,7 +81,17 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
           },
         }
       );
-      setOpen(false);
+      if(res.status === 200){
+        toast.success("Added To Cart", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setOpen(false);
+      }
       console.log(res);
     } catch (e) {
       console.log(e);
@@ -86,9 +99,15 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
   };
   
   console.log(cart)
+  const sectionStyle = {
+    backgroundImage: `url(${carting})`,
+    backgroundSize: 'cover', // Adjust the background size if needed
+    with: '240px',
+    height: '140px', // Set a specific height
+};
 
   return (
-    <div className='cart-container flex bg-yellow-100 gap-12 p-6 h-[90vh] w-[80vw]'>
+    <div className='cart-container flex bg-green-200 gap-12 p-6 h-[90vh] w-[80vw]'>
     <div className='flex flex-col justify-between flex-1'>
     <button
                   type="button"
@@ -114,7 +133,9 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
     </button>
     <div className="card-img flex gap-12 justify-center">
         <span className='flex flex-col justify-center'>
-        <img src="/card-demo.svg" alt="" />
+        <div style={sectionStyle} class="flex items-center font-[inter] font-bold justify-center text-white text-[20px] w-[240px]   ">
+            <p>Classic</p>
+        </div>
         <Checkbox {...label} onClick={handlePlastic} checked={plastic}/>
         {plastic? (<NumberInput
         aria-label="Demo number input"
@@ -125,7 +146,9 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
         />):''}
         </span>
         <span className='flex flex-col justify-center'>
-        <img src="/card-demo.svg" alt="" />
+        <div style={sectionStyle} class="flex items-center  font-[inter] font-bold justify-center text-white text-[20px] w-[240px]   ">
+            <p>Wood</p>
+        </div>
         <Checkbox {...label} onClick={handleWood} checked={wood}/>
         {wood?(<NumberInput
         aria-label="Demo number input"
@@ -136,7 +159,9 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
         />):''}
         </span>
         <span className='flex flex-col justify-center'>
-        <img src="/card-demo.svg" alt="" />
+        <div style={sectionStyle} class="flex items-center  font-[inter] font-bold justify-center text-white text-[20px] w-[240px]   ">
+            <p>Metal</p>
+        </div>
         <Checkbox {...label} onClick={handleMetal} checked={metal}/>
         {metal?(<NumberInput
         aria-label="Demo number input"

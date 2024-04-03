@@ -12,7 +12,7 @@ export const handlePayment = (authData) => async () => {
       },
     });
     if (data) {
-      console.log(data);
+      console.log("data", data);
       const options = {
         key: key,
         amount: data.order.amount,
@@ -30,7 +30,7 @@ export const handlePayment = (authData) => async () => {
         },
         notes: {
           address: "Razorpay Corporate Office",
-          orderId: `6608f4972fc0506c27b98f53`,  //order Id of order db mongo to be send
+          orderId: authData.orderId,  //order Id of order db mongo to be send
         },
         theme: {
           color: "#085e04",
@@ -43,7 +43,7 @@ export const handlePayment = (authData) => async () => {
           confirm_close: false,  
           animation: true
         },
-        callback_url: `https://j3hg2gqz-8080.inc1.devtunnels.ms/users/payment/verification?orderId=6608f4972fc0506c27b98f53`, //https://stack-overflow-server.vercel.app //mongodb order id to be send
+        callback_url: `https://j3hg2gqz-8080.inc1.devtunnels.ms/users/payment/verification?orderId=${authData.orderId}`, //https://stack-overflow-server.vercel.app //mongodb order id to be send
       };
 
       const razor = new window.Razorpay(options);
