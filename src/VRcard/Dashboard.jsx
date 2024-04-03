@@ -4,7 +4,6 @@ import Home from "../Components/Home";
 import Navbar from "../Components/Navbar";
 import logo from "../Images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
 import QRCode from "react-qr-code";
 import html2canvas from "html2canvas";
 import { CiEdit } from "react-icons/ci";
@@ -14,6 +13,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import CheckoutForm from "../Components/CheckoutForm";
+const { format } = require('date-fns');
 
 function Dashboard() {
   const [userData, setUserData] = useState([]);
@@ -60,10 +60,10 @@ function Dashboard() {
   };
 
   function formateTime(timestamp) {
-    const date = new Date(timestamp);
-    const formatted = format(date, "MMMM dd, yyyy hh:mm a");
+    console.log('dekho',timestamp)
+    const formatted = format(new Date(timestamp), "MMMM dd, yyyy hh:mm a");
     return formatted;
-  }
+}
   const qrCodeRef = useRef(null);
 
   const naviagte = useNavigate();
@@ -242,7 +242,8 @@ function Dashboard() {
               </button>
                 </td>
                 <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {formateTime(item.timeStamp)}
+                  {formateTime(item.timestamp)}
+                  
                 </td>
                 <td class="px-6 py-3  justify-center  flex flex-col font-sans">
                   {item.formDataID}
@@ -258,7 +259,7 @@ function Dashboard() {
                 <td class="px-6 py-3 font-sans">{item?.type}</td>
                 <td ref={qrCodeRef} class="px-6 py-3 font-sans">
                   <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?data=${item?.qr}&size=70x70`}
+                    src={`https://api.qrserver.com/v1/create-qr-code/?data=https://tap-and-tag.vercel.app/vcard/${item?.pageUrl}&size=70x70`}
                     alt="QR Code"
                   />
                 </td>
