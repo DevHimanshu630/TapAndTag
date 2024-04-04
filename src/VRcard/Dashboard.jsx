@@ -13,6 +13,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import CheckoutForm from "../Components/CheckoutForm";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const { format } = require('date-fns');
 
 function Dashboard() {
@@ -295,19 +296,21 @@ function Dashboard() {
                   </span>
                 </td>
                 <td className="px-6 py-3 flex hover:underline hover:cursor-pointer hover:text-blue-500 items-center gap-1 font-sans">
-                  <MdDeleteOutline
+                  <div className="">
+                  <DeleteForeverIcon
                     onClick={() => {
                       handleDelete(item.formDataID);
                     }}
                     size={20}
                   />
-                  <span
+                  </div>
+                  {/* <span
                     onClick={() => {
                       handleDelete(item.formDataID);
                     }}
                   >
                     delete
-                  </span>
+                  </span> */}
                 </td>
               </tr>
             ))}
