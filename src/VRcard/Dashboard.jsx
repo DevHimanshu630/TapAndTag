@@ -304,13 +304,13 @@ function Dashboard() {
                     size={20}
                   />
                   </div>
-                  {/* <span
+                  <span
                     onClick={() => {
                       handleDelete(item.formDataID);
                     }}
                   >
                     delete
-                  </span> */}
+                  </span>
                 </td>
               </tr>
             ))}
