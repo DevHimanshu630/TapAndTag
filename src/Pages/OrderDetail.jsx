@@ -1,6 +1,7 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from '../Axios/Axios'
 import React, { useEffect, useState } from 'react'
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 
 function OrderDetail() {
@@ -15,8 +16,8 @@ function OrderDetail() {
               Authorization: `Bearer ${token}`,
             }
         })
-        console.log(res.data.order)
-        setDetails(res.data.order)
+        console.log(res.data)
+        setDetails(res.data)
     }
     const gettingId = async() =>{
       const Query = window.location.search
@@ -28,18 +29,56 @@ function OrderDetail() {
   },[])
   
   return (
-    <div className='flex flex-col gap-12'>
-      Payment Status : {details.paymentStatus}<br/>
-      Here we can fetch the details <br />
-      {refId}
-
-    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-    Red Button
-    </button>
-
-    <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-    Green Button
-    </button>
+    <div className='flex bg-white shadow-md p-12 m-12'>
+      <div className='flex-[0.3] flex gap-4 items-center'>
+      <div className='flex gap-2'>
+      <img src="/metal.jpg" className='w-[10rem] rounded-xl' alt="" />
+      </div> 
+      <div className='flex flex-col'> 
+      <h2>Ordered Item: </h2>
+      <p>Plastic Card - {details?.order?.items[0]?.cardQuantity.plasticCard}</p>
+      <p>Wood Card - {details?.order?.items[0]?.cardQuantity.woodenCard}</p>
+      <p>Metal Card - {details?.order?.items[0]?.cardQuantity.metalCard}</p>
+      <p><CurrencyRupeeIcon fontSize='small'/> {details?.order?.amount}</p>
+      </div>
+      </div>
+      <div className='flex-[0.4] border-l-2 px-6 py-4 flex flex-col gap-2'>
+        <h2 className='font-bold text-xl'>Delivery Address</h2>
+        <h2 className='text-lg'>Shobhit Gupta</h2>
+        <p className='flex flex-col'>
+          <span>N 14/69 B-8,</span>
+          <span>Krishna Dev Nagar Colony</span>
+          <span>Khojwan, Varanasi</span>
+        </p>
+        <h2>Phone No: 9305428038</h2>
+      </div>
+      <div className='flex-[0.3] flex gap-4 flex-col border-l-2 px-6 py-4'>
+        <h2 className='font-bold text-xl'>Order Details </h2>
+        <div>
+        <p>Order Id: {details?.order?._id}</p>
+        <p>Reference Id: </p>
+        </div>
+        <div className='flex items-center gap-2'>
+        {details?.order?.paymentStatus === 'pending' ? (
+            <div class="h-4 w-4 rounded-full bg-red-500"></div>
+          ) : (
+            <div class="h-4 w-4 rounded-full bg-green-500"></div>
+        )}
+        {details?.order?.paymentStatus}
+        </div>
+        <div className='flex gap-4'>
+        <Link to={'/dashboard'}>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        Dashboard
+        </button>
+        </Link>
+        <Link to={'/order'}>
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+        Orders
+        </button>
+        </Link>
+        </div>
+      </div>
     </div>
   )
 }
