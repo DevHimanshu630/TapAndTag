@@ -57,7 +57,7 @@ function OrderDetail() {
         <h2 className='font-bold text-xl'>Order Details </h2>
         <div>
         <p>Order Id: {details?.order?._id}</p>
-        <p>Reference Id: </p>
+        <p>Reference Id: {details?.referenceId}</p>
         </div>
         <div className='flex items-center gap-2'>
         {details?.order?.paymentStatus === 'pending' ? (
