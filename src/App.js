@@ -36,9 +36,8 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path='/cart' element={<CheckoutCart/>}/>
             <Route path='/cart/payment/:id' element={<Payment/>}/>
-            <Route path='/order' element={<Orders/>}>
-            <Route path=':id' element={<OrderDetail/>} />
-            </Route>
+            <Route path='/order' element={<Orders/>}/>
+            <Route path='/order/:id' element={<OrderDetail/>}/>
             <Route path="/product" element={<Product />} />
             <Route path="/Sustainability" element={<Sustainability />} />
             <Route path="/vcard/:pageId" element={<VcardTemplate />} />
