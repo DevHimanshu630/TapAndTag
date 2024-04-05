@@ -28,7 +28,7 @@ function VisitCart() {
                         <div className=' flex gap-3'>
                             <img src={carts} alt="" />
                             <div className=' leading-5 flex flex-col xl:gap-3'>
-                                <p className='xl:text-[28px] font-[inter] font-bold text-[#4D4D4D]'>4</p>
+                                <p className='xl:text-[28px] font-[inter] font-bold text-[#4D4D4D]'>3</p>
                                 <p className='xl:text-[16px] text-[#717171]'>Types of Cards</p>
                             </div>
                         </div>

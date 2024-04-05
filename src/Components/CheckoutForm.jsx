@@ -69,16 +69,13 @@ function CheckoutForm({handleClose, selectedform, setOpen, setCartCall}) {
                   </svg>
                   <span class="sr-only">Close modal</span>
     </button>
-    <div className="card-img flex gap-12 justify-center">
-        <span className='flex flex-col justify-center'>
-        <CardCart show={'Classic'} val={cart.plasticCard} data={'plasticCard'} cart={cart} setCart={setCart}/>
-        </span>
-        <span className='flex flex-col justify-center'>
-        <CardCart show={'Wood'} val={cart.woodCard} data={'woodCard'} cart={cart} setCart={setCart}/>
-        </span>
-        <span className='flex flex-col justify-center'>
-        <CardCart show={'Metal'} val={cart.metalCard} data={'metalCard'} cart={cart} setCart={setCart}/>
-        </span>
+    <div className="card-img flex justify-center">
+        <CardCart show={'Classic'} val={cart.plasticCard} image={"/classic.jpg"} data={'plasticCard'} cart={cart} setCart={setCart} edit={true}
+        index={null} selIndex={null}/>
+        <CardCart show={'Wood'} val={cart.woodCard} data={'woodCard'} image={"/wood.jpg"} cart={cart} setCart={setCart} edit={true}
+        index={null} selIndex={null}/>
+        <CardCart show={'Metal'} val={cart.metalCard} data={'metalCard'} image={"/metal.jpg"} cart={cart} setCart={setCart} edit={true}
+        index={null} selIndex={null}/>
     </div>
     <button onClick={handleSubmit} className={cart.plasticCard || cart.metalCard || cart.woodCard ? 'bg-green-500 hover:bg-green-600 text-white py-2 px-2 rounded-full w-[20%] mx-4 self-end' : 'bg-slate-500 text-white py-2 px-4 mx-4 rounded-full w-[20%] self-end disabled'} 
     disabled={!(cart.metalCard || cart.plasticCard || cart.woodCard )}>Add To Cart 

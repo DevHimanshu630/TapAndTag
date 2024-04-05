@@ -1,44 +1,13 @@
 import axios from "../Axios/Axios";
 import React, { useEffect, useState } from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { Navigate, useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Icon, IconButton } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
-import { Unstable_NumberInput as BaseNumberInput } from "@mui/base/Unstable_NumberInput";
-import { styled } from "@mui/system";
-import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
 import CardCart from "../Components/CardCart";
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
 
-const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
-  return (
-    <BaseNumberInput
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInput,
-        incrementButton: StyledButton,
-        decrementButton: StyledButton,
-      }}
-      slotProps={{
-        incrementButton: {
-          children: <AddIcon fontSize="small" />,
-          className: "increment",
-        },
-        decrementButton: {
-          children: <RemoveIcon fontSize="small" />,
-        },
-      }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
 
 function CheckoutCart() {
   const token = localStorage.getItem("token");
@@ -46,8 +15,48 @@ function CheckoutCart() {
   const [orderArray, setOrderArray] = useState([]);
   const [delCart, setDelCart] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
+  const [mordiCart, setMordiCart] = useState({})
+  const [edit, setEdit] = useState(false)
+  const [editedCartIndex, setEditedCartIndex] = useState(null);
+  const editCart = (quantity, index) =>{
+    setMordiCart(quantity)
+    setEditedCartIndex(index);
+    setEdit(true)
+  }
+  const saveCart = async(formId) =>{
+    console.log(formId)
+    if(!(mordiCart.plasticCard || mordiCart.woodCard || mordiCart.metalCard)){
+      toast.error("All Fields Empty!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }else{
+      const res = await axios.post(`users/saveToCart/${formId}`,
+       { cardQuantity: mordiCart },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success("Cart Edited!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    setMordiCart({})
+    setEdit(false)
+    }
+  }
+  console.log(mordiCart)
   const navigate = useNavigate();
-  const [show, setShow] = useState("");
 
   useEffect(() => {
     const getting = async () => {
@@ -57,10 +66,10 @@ function CheckoutCart() {
         },
       });
       setCarts(res.data.cart);
-      console.log(res.data.cart);
+      console.log(res);
     };
     getting();
-  }, [delCart]);
+  }, [delCart, edit]);
 
   console.log(orderArray);
   const handleOrder = (ids, amount) => {
@@ -101,14 +110,13 @@ function CheckoutCart() {
     });
     toast.error("Cart Deleted!", {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 3000,  
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
     });
     setDelCart(!delCart);
-    setSubtotal((prev) => prev - amount);
   };
   return (
     // <div className='flex p-4'>
@@ -174,23 +182,64 @@ function CheckoutCart() {
           id="checkout"
         >
           <ToastContainer/>
-          <div className="flex md:flex-row flex-col justify-end" id="cart">
-            <div
-              className="w-full pl-5 pr-10 md:pr-4 md:py-12 py-8 bg-white overflow-y-auto overflow-x-hidden h-screen"
+          <div className="flex flex-row" id="cart">
+            <div className="flex-[0.7] ml-6 my-6 bg-white overflow-y-auto h-screen"
               id="scroll"
             >
               <p className="text-3xl mb-4 font-black text-gray-800">
                Cart :
               </p>
-              <div className="md:flex items-center border-t border-gray-200">
-                <div className="flex">
-                    <CardCart/>
-                    <CardCart/>
-                    <CardCart/>
-                </div>
-              </div>
+              {Object.keys(carts).map((key, index) => (
+                  <div key={key} className="md:flex items-center border-t border-gray-200">
+                  <input type="checkbox" onClick={() => handleOrder(carts[key]._id, carts[key].amount)}/>
+                    <div className="flex">
+                        <CardCart val={edit ? mordiCart.plasticCard : carts[key].cardQuantity.plasticCard}  
+                        cart={mordiCart} 
+                        setCart={setMordiCart} 
+                        data={'plasticCard'} 
+                        image={"/classic.jpg"} 
+                        edit={edit} 
+                        show={'Classic'}
+                        index={index}
+                        selIndex={editedCartIndex}/>
+                        <CardCart val={edit ? mordiCart.woodCard : carts[key].cardQuantity.woodCard} 
+                        cart={mordiCart} 
+                        setCart={setMordiCart} 
+                        data={'woodCard'} 
+                        image={"/wood.jpg"} 
+                        edit={edit} 
+                        show={'Wood'}
+                        index={index}
+                        selIndex={editedCartIndex}/>
+                        <CardCart val={edit ? mordiCart.metalCard : carts[key].cardQuantity.metalCard} 
+                        cart={mordiCart} 
+                        setCart={setMordiCart} 
+                        data={'metalCard'} 
+                        image={"/metal.jpg"} 
+                        edit={edit} 
+                        show={'Metal'}
+                        index={index}
+                        selIndex={editedCartIndex}/>
+                    </div>
+                    <div className="flex flex-col">
+                    <IconButton onClick={()=>editCart(carts[key].cardQuantity, index)}>
+                    <EditIcon/>
+                    </IconButton>
+                    <IconButton onClick={()=>deleteCart(carts[key]._id, carts[key].amount)}>
+                    <DeleteIcon/>
+                    </IconButton>
+                    {edit && index === editedCartIndex && (
+                    <div className="flex items-center">
+                      <IconButton onClick={() => saveCart(carts[key].formId)}>
+                        <CheckIcon/>
+                      </IconButton>
+                    </div>
+                    )}
+                    </div>
+                  </div>
+              ))}
             </div>
-            <div className="xl:w-1/2 md:w-1/3 xl:w-1/4 w-full bg-gray-100 h-full">
+            <div className="flex-[0.3] bg-gray-100 h-full">
               <div className="flex flex-col md:h-screen px-14 py-20 justify-between overflow-y-auto">
                 <div>
                   <p className="text-4xl font-black leading-9 text-gray-800">
@@ -201,18 +250,18 @@ function CheckoutCart() {
                       Subtotal
                     </p>
                     <p className="text-base leading-none text-gray-800">
-                      $9,000
+                      {subtotal}
                     </p>
                   </div>
                   <div className="flex items-center justify-between pt-5">
                     <p className="text-base leading-none text-gray-800">
                       Shipping
                     </p>
-                    <p className="text-base leading-none text-gray-800">$30</p>
+                    <p className="text-base leading-none text-gray-800">NA</p>
                   </div>
                   <div className="flex items-center justify-between pt-5">
                     <p className="text-base leading-none text-gray-800">Tax</p>
-                    <p className="text-base leading-none text-gray-800">$35</p>
+                    <p className="text-base leading-none text-gray-800">NA</p>
                   </div>
                 </div>
                 <div>
@@ -221,14 +270,14 @@ function CheckoutCart() {
                       Total
                     </p>
                     <p className="text-2xl font-bold leading-normal text-right text-gray-800">
-                      $10,240
+                      {subtotal}
                     </p>
                   </div>
                   <button
-                    onClick={() => setShow(!show)}
+                    onClick={proceedToPay}
                     className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white"
                   >
-                    Checkout
+                    Proceed To Pay
                   </button>
                 </div>
               </div>
@@ -258,113 +307,3 @@ function CheckoutCart() {
 
 export default CheckoutCart;
 
-const blue = {
-  100: "#daecff",
-  200: "#b6daff",
-  300: "#66b2ff",
-  400: "#3399ff",
-  500: "#007fff",
-  600: "#0072e5",
-  700: "#0059B2",
-  800: "#004c99",
-};
-
-const grey = {
-  50: "#F3F6F9",
-  100: "#E5EAF2",
-  200: "#DAE2ED",
-  300: "#C7D0DD",
-  400: "#B0B8C4",
-  500: "#9DA8B7",
-  600: "#6B7A90",
-  700: "#434D5B",
-  800: "#303740",
-  900: "#1C2025",
-};
-
-const StyledInputRoot = styled("div")(
-  ({ theme }) => `
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 400;
-  color: ${theme.palette.mode === "dark" ? grey[300] : grey[500]};
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-`
-);
-
-const StyledInput = styled("input")(
-  ({ theme }) => `
-  font-size: 0.875rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.375;
-  color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-  background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
-    theme.palette.mode === "dark" ? "rgba(0,0,0, 0.5)" : "rgba(0,0,0, 0.05)"
-  };
-  border-radius: 8px;
-  margin: 0 8px;
-  padding: 10px 12px;
-  outline: 0;
-  min-width: 0;
-  width: 4rem;
-  text-align: center;
-
-  &:hover {
-    border-color: ${blue[400]};
-  }
-
-  &:focus {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${
-      theme.palette.mode === "dark" ? blue[700] : blue[200]
-    };
-  }
-
-  &:focus-visible {
-    outline: 0;
-  }
-`
-);
-
-const StyledButton = styled("button")(
-  ({ theme }) => `
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  line-height: 1.5;
-  border: 1px solid;
-  border-radius: 999px;
-  border-color: ${theme.palette.mode === "dark" ? grey[800] : grey[200]};
-  background: ${theme.palette.mode === "dark" ? grey[900] : grey[50]};
-  color: ${theme.palette.mode === "dark" ? grey[200] : grey[900]};
-  width: 32px;
-  height: 32px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
-
-  &:hover {
-    cursor: pointer;
-    background: ${theme.palette.mode === "dark" ? blue[700] : blue[500]};
-    border-color: ${theme.palette.mode === "dark" ? blue[500] : blue[400]};
-    color: ${grey[50]};
-  }
-
-  &:focus-visible {
-    outline: 0;
-  }
-
-  &.increment {
-    order: 1;
-  }
-`
-);
