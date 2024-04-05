@@ -1,4 +1,5 @@
 import axios from "../Axios/Axios";
+import "../Css/payment.css";
 import React, { useEffect, useState } from "react";
 import { handlePayment } from "../Components/RazorPay";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -157,8 +158,8 @@ function Payment() {
       <ToastContainer />
       {addressSaved ? (
         <>
-          <div className="address bottom-2 p-4 w-full flex justify-center items-center text-center">
-            <h3 className="text-slate-600">Delivery Address - </h3>{" "}
+          <div className="address bottom-2 p-4 w-full flex justify-center items-center text-center border border-slate-500">
+            <h3 className="text-slate-600">Delivery Address </h3>{" "}
             <span className="font-bold">
               {" "}
               &nbsp;&nbsp;&nbsp; {form.fullname} &nbsp;{" "}
