@@ -64,12 +64,12 @@ function Payment() {
 
   const [form, setForm] = useState({
     country: "",
-    fullname: "",
+    fullName: "",
     mobile: "",
     pincode: "",
-    address1: "",
-    address2: "",
-    address3: "",
+    address_line1: "",
+    address_line2: "",
+    address_line3: "",
     landmark: "",
     city: "",
     state: "",
@@ -162,15 +162,15 @@ function Payment() {
             <h3 className="text-slate-600">Delivery Address </h3>{" "}
             <span className="font-bold">
               {" "}
-              &nbsp;&nbsp;&nbsp; {form.fullname} &nbsp;{" "}
+              &nbsp;&nbsp;&nbsp; {form.fullName} &nbsp;{" "}
             </span>
             <p className="inline">{`${
               " " +
-              form.address1 +
+              form.address_line1 +
               " " +
-              form.address2 +
+              form.address_line2 +
               " " +
-              form.address3 +
+              form.address_line3 +
               " " +
               form.city +
               " " +
@@ -209,8 +209,8 @@ function Payment() {
                       type="text"
                       id="name"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-                      name="fullname"
-                      value={form.fullname}
+                      name="fullName"
+                      value={form.fullName}
                       onChange={handleForm}
                       placeholder="John Doe"
                       required
@@ -287,8 +287,8 @@ function Payment() {
                     id="address1"
                     class="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                     placeholder="Address Line 1"
-                    name="address1"
-                    value={form.address1}
+                    name="address_line1"
+                    value={form.address_line1}
                     onChange={handleForm}
                     required
                   />
@@ -305,8 +305,8 @@ function Payment() {
                     id="address2"
                     className="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                     placeholder="Address Line 2"
-                    name="address2"
-                    value={form.address2}
+                    name="address_line2"
+                    value={form.address_line2}
                     onChange={handleForm}
                     required
                   />
@@ -327,7 +327,6 @@ function Payment() {
                       name="landmark"
                       value={form.landmark}
                       onChange={handleForm}
-                      required
                     />
                   </div>
 

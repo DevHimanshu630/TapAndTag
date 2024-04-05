@@ -42,15 +42,16 @@ function OrderDetail() {
       <p><CurrencyRupeeIcon fontSize='small'/> {details?.order?.amount}</p>
       </div>
       </div>
-      <div className='flex-[0.4] border-l-2 px-6 py-4 flex flex-col gap-2'>
+      <div className='flex-[0.5] border-l-2 px-6 py-4 flex flex-col gap-2'>
         <h2 className='font-bold text-xl'>Delivery Address</h2>
-        <h2 className='text-lg'>Shobhit Gupta</h2>
+        <h2 className='text-lg'>{details?.address?.fullName}</h2>
         <p className='flex flex-col'>
-          <span>N 14/69 B-8,</span>
-          <span>Krishna Dev Nagar Colony</span>
-          <span>Khojwan, Varanasi</span>
+          <span>{details?.address?.address_line1},</span>
+          <span>{details?.address?.address_line2}</span>
+          <span>{details?.address?.address_line3}, {details?.address?.landmark}</span>
+          <span>{details?.address?.city}, {details?.address?.state}, {details?.address?.pincode}</span>
         </p>
-        <h2>Phone No: 9305428038</h2>
+        <h2>Phone No: {details?.address?.mobile}</h2>
       </div>
       <div className='flex-[0.3] flex gap-4 flex-col border-l-2 px-6 py-4'>
         <h2 className='font-bold text-xl'>Order Details </h2>
