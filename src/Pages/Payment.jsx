@@ -400,6 +400,7 @@ function Payment() {
         </button>
         <button
           disabled={!addressSaved}
+          hidden={!addressSaved}
           className={`${
             !addressSaved
               ? "bg-slate-500 text-white font-bold py-2 px-4 m-2 rounded"
