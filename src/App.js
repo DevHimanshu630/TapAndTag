@@ -17,6 +17,8 @@ import CheckoutCart from './Pages/CheckoutCart';
 import Payment from './Pages/Payment';
 import Orders from './Pages/Orders';
 import OrderDetail from './Pages/OrderDetail';
+import Layout from './Layout';
+import { CartContextProvider } from './Context/Cart';
 
 
 function App() {
@@ -28,16 +30,19 @@ function App() {
     <>
       {isUserLoggedIn ? (
         <>
-          <Routes>
-            <Route path="/dashboard" element={< Dashboard />} />
+        <CartContextProvider>
+            <Routes>
             <Route path="/" element={<Home />} />
             {/* <Route path='/checkout' element={<CheckoutForm/>}/> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path='' element={<Layout/>}>
+            <Route path="/dashboard" element={< Dashboard />} />
             <Route path='/cart' element={<CheckoutCart/>}/>
             <Route path='/cart/payment/:id' element={<Payment/>}/>
             <Route path='/order' element={<Orders/>}/>
             <Route path='/order/:id' element={<OrderDetail/>}/>
+            </Route>
             <Route path="/product" element={<Product />} />
             <Route path="/Sustainability" element={<Sustainability />} />
             <Route path="/vcard/:pageId" element={<VcardTemplate />} />
@@ -49,6 +54,7 @@ function App() {
             <Route path='/accounts/password/forgot' element={<Verification />} />
             <Route path='/UpdateQrForm/:formId' element={<UpdateQrForm />} />
           </Routes>
+          </CartContextProvider>
         </>
       ) :
         (

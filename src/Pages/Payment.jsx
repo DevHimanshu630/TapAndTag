@@ -1,5 +1,4 @@
 import axios from "../Axios/Axios";
-import "../Css/payment.css";
 import React, { useEffect, useState } from "react";
 import { handlePayment } from "../Components/RazorPay";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -106,15 +105,11 @@ function Payment() {
         });
       }
       console.log(res);
+      setShowAddressSection(false)
       setAddressSaved(true);
     } catch (e) {
       console.log(e);
     }
-  };
-  const linearGradientStyle = {
-    background: "linear-gradient(90deg, #022D24 0%, #146C60 94.17%)",
-    WebkitBackgroundClip: "text",
-    color: "transparent",
   };
   const [location, setLocation] = useState(null);
   const [weather, setWeather] = useState(null);
@@ -152,52 +147,19 @@ function Payment() {
   useEffect(() => {
     fetchOrder();
   }, []);
-
+  const [showAddressSection, setShowAddressSection] = useState(true);
+  const toggleAddressSection = () => {
+    setShowAddressSection(!showAddressSection);
+  };
   return (
     <div>
       <ToastContainer />
-      {addressSaved ? (
-        <>
-          <div className="address bottom-2 p-4 w-full flex justify-center items-center text-center border border-slate-500">
-            <h3 className="text-slate-600">Delivery Address </h3>{" "}
-            <span className="font-bold">
-              {" "}
-              &nbsp;&nbsp;&nbsp; {form.fullName} &nbsp;{" "}
-            </span>
-            <p className="inline">{`${
-              " " +
-              form.address_line1 +
-              " " +
-              form.address_line2 +
-              " " +
-              form.address_line3 +
-              " " +
-              form.city +
-              " " +
-              form.pincode +
-              " " +
-              form.state +
-              " " +
-              form.country
-            }`}</p>
-          </div>
-        </>
-      ) : (
-        <>
-          <section class="bg-white dark:bg-white text-black">
-            <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-left text-black-600">
-                Delivery Address
-              </h2>
-              <Button onClick={handleGetLocation} variant="contained">
-                Get Location
-              </Button>
-              <form
-                onSubmit={handleAddress}
-                method="POST"
-                className="space-y-8"
-              >
-                <div className="flex w-full gap-8">
+      <section className="bg-white flex flex-col dark:bg-white text-black mx-24">
+        <h1 className="m-6 self-center text-3xl font-bold text-gray-900">Payment Page</h1>
+      <div className="m-10 max-w-screen flex flex-col gap-4">
+        {showAddressSection && (
+          <form onSubmit={handleAddress} method="POST" className="space-y-8 flex flex-col">
+            <div className="flex w-full gap-8">
                   <div className="w-1/2">
                     <label
                       for="name"
@@ -208,7 +170,7 @@ function Payment() {
                     <input
                       type="text"
                       id="name"
-                      className="shadow-sm bg-gray-50 border border-gray-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                      className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                       name="fullName"
                       value={form.fullName}
                       onChange={handleForm}
@@ -228,7 +190,7 @@ function Payment() {
                     <input
                       type="text"
                       id="mobile"
-                      className="block p-2.5 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                      className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                       placeholder="Mobile No."
                       name="mobile"
                       value={form.mobile}
@@ -248,7 +210,7 @@ function Payment() {
                     <input
                       type="text"
                       id="pincode"
-                      class="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                      className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                       placeholder="6 Digit [Eg. 110001]"
                       name="pincode"
                       value={form.pincode}
@@ -266,7 +228,7 @@ function Payment() {
                     <input
                       type="text"
                       id="City"
-                      className="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                      className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                       placeholder="City"
                       name="city"
                       value={form.city}
@@ -285,7 +247,7 @@ function Payment() {
                   <input
                     type="text"
                     id="address1"
-                    class="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                    className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                     placeholder="Address Line 1"
                     name="address_line1"
                     value={form.address_line1}
@@ -303,7 +265,7 @@ function Payment() {
                   <input
                     type="text"
                     id="address2"
-                    className="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                    className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                     placeholder="Address Line 2"
                     name="address_line2"
                     value={form.address_line2}
@@ -322,7 +284,7 @@ function Payment() {
                     <input
                       type="text"
                       id="address3"
-                      className="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                      className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                       placeholder="Eg. Near AIIMS Hospital"
                       name="landmark"
                       value={form.landmark}
@@ -357,7 +319,7 @@ function Payment() {
                     </label>
                     <select
                       id="state"
-                      className="block p-3 w-full text-sm text-black-600 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                      className="shadow-sm bg-blue-100 border border-primary-300 text-black-600 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                       name="state"
                       value={form.state}
                       onChange={handleForm}
@@ -375,39 +337,46 @@ function Payment() {
 
                 <button
                   type="submit"
-                  class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  class="py-3 px-5 self-end text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Save Address
                 </button>
-              </form>
-            </div>
-          </section>
-        </>
-      )}
-      <div className="pl-10 pt-3 flex w-full items-center justify-center">
+          </form>
+        )}
+        <div class="flex bg-gray-100 rounded justify-between w-full">
+        <h2 className="text-xl font-medium mt-2 ml-4 text-gray-700">
+          Delivery Address
+        </h2>
         <button
-          hidden={!addressSaved}
-          className={`${
-            !addressSaved
-              ? "bg-slate-500 text-white font-bold py-2 px-4 m-2 rounded"
-              : "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 m-2 rounded"
-          } p-2 ml-4 border rounded`}
-          onClick={() => {
-            setAddressSaved(false);
-          }}
+          onClick={toggleAddressSection}
+          class="py-3 px-4 text-sm font-medium text-white rounded bg-slate-300 hover:bg-blue-400 focus:outline-none dark:bg-slate-500 dark:hover:bg-blue-600 dark:focus:ring-blue-600"
         >
-          Edit Address
-        </button>
-        <button
+          {showAddressSection ? '▲' : '▼'}
+          </button>
+        </div>
+        {addressSaved && !showAddressSection ? (
+        <>
+          <div className="address w-full flex shadow-md">
+            <div className='px-6 py-4 flex flex-col gap-2'>
+            <h2 className='font-bold text-xl'>Delivery Address</h2>
+            <h2 className='text-lg'>{form.fullName}</h2>
+            <p className='flex flex-col'>
+              <span>{form.address_line1},</span>
+              <span>{form.address_line2}</span>
+              <span>{form.address_line3}, {form.landmark}</span>
+              <span>{form.city}, {form.state}, {form.pincode}</span>
+            </p>
+            <h2>Phone No: {form.mobile}</h2>
+          </div>
+            </div>
+        </>):""}
+          <button
           disabled={!addressSaved}
-          hidden={!addressSaved}
           className={`${
             !addressSaved
-              ? "bg-slate-500 text-white font-bold py-2 px-4 m-2 rounded"
+              ? "bg-slate-500 text-white font-bold py-2 px-4 m-2 rounded cursor-not-allowed"
               : "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 m-2 rounded"
           } p-2 ml-4 border rounded`}
-          data-toggle="tooltip"
-          data-placement="top"
           title={!addressSaved ? "Save address to Proceed" : ""}
           onClick={handlePayment({
             orderId: id,
@@ -416,6 +385,7 @@ function Payment() {
           Proceed to Payment
         </button>
       </div>
+    </section>
     </div>
   );
 }

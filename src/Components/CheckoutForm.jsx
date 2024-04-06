@@ -4,9 +4,10 @@ import axios from '../Axios/Axios';
 import { toast, ToastContainer } from "react-toastify";
 import CardCart from './CardCart';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useCartContext } from '../Context/Cart';
 
-
-function CheckoutForm({handleClose, selectedform, setOpen, setCartCall}) {
+function CheckoutForm({handleClose, selectedform, setOpen}) {
+  const {cartcount, setCartcount} = useCartContext()
   const [cart, setCart] = useState({
     plasticCard: 0,
     woodCard : 0,
@@ -35,7 +36,7 @@ function CheckoutForm({handleClose, selectedform, setOpen, setCartCall}) {
           draggable: true,
         });
         setOpen(false);
-        setCartCall((prev)=>!prev)
+        setCartcount(res.data.cartLength)
       }
       console.log(res);
     } catch (e) {

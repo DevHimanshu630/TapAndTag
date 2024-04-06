@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import CardCart from "../Components/CardCart";
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
-
+import { useCartContext } from "../Context/Cart";
 
 function CheckoutCart() {
   const token = localStorage.getItem("token");
@@ -18,6 +18,7 @@ function CheckoutCart() {
   const [mordiCart, setMordiCart] = useState({})
   const [edit, setEdit] = useState(false)
   const [editedCartIndex, setEditedCartIndex] = useState(null);
+  const {cartcount, setCartcount} = useCartContext()
   const editCart = (quantity, index) =>{
     setMordiCart(quantity)
     setEditedCartIndex(index);
@@ -52,7 +53,9 @@ function CheckoutCart() {
         draggable: true,
       });
     setMordiCart({})
+    setCartcount(res.data.cartLength)
     setEdit(false)
+    
     }
   }
   console.log(mordiCart)
@@ -116,6 +119,7 @@ function CheckoutCart() {
       pauseOnHover: true,
       draggable: true,
     });
+    setCartcount(res.data.cartLength)
     setDelCart(!delCart);
   };
   return (
@@ -239,7 +243,7 @@ function CheckoutCart() {
                   </div>
               ))}
             </div>
-            <div className="flex-[0.3] bg-gray-100 h-full">
+            <div className="flex-[0.3] bg-gray-100 h-100">
               <div className="flex flex-col md:h-screen px-14 py-20 justify-between overflow-y-auto">
                 <div>
                   <p className="text-4xl font-black leading-9 text-gray-800">
@@ -274,11 +278,13 @@ function CheckoutCart() {
                     </p>
                   </div>
                   <button
-                    onClick={proceedToPay}
-                    className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white"
-                  >
-                    Proceed To Pay
-                  </button>
+                  onClick={proceedToPay}
+                  disabled={orderArray.length === 0}
+                  className={`text-base leading-none w-full py-5 border focus:outline-none focus:ring-2 focus:ring-offset-2 ${orderArray.length === 0 ? 'bg-slate-500 border-gray-500 text-white cursor-not-allowed' : 'bg-green-800 border-green-800 focus:ring-gray-800 text-white'}`}
+                >
+                  Proceed To Pay
+                </button>
+
                 </div>
               </div>
             </div>
