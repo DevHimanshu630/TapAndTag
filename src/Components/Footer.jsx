@@ -27,9 +27,9 @@ function Footer() {
                                 <li class="mb-4">
                                     <Link to={"/"} class="hover:underline">Tap&Tag</Link>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <Link to={"/"} class="hover:underline">Tailwind CSS</Link>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                         <div>
