@@ -253,7 +253,7 @@ function Dashboard() {
                   </span>
                   <span className="text-gray-300">
                     <a href="" className="hover:underline hover:text-red-500">
-                      https://tapandtag.in/vcard/{item?.pageUrl}
+                      https://qdp72jc1-8080.inc1.devtunnels.ms/vcard/{item?.pageUrl}
                     </a>
                   </span>
                 </td>

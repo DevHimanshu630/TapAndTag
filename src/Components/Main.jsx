@@ -3,7 +3,7 @@ import MologLogo from "../Images/molog logo 1.svg"
 import phone from "../Images/phone.png"
 import back from '../Images/Group2.png'
 
-import { handlePayment } from "./Payment";
+import { handlePayment } from "./payment.jsx";
 
 
 
