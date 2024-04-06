@@ -57,12 +57,12 @@ function Navbar() {
     setTop(-100);
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [prevScrollpos]);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [prevScrollpos]);
 
   const navbarStyle = {
     backgroundColor: "#FAF9F6",
@@ -91,16 +91,16 @@ function Navbar() {
   };
 
   const isLoggedIn = localStorage.getItem("token") !== null;
-
+console.log(isLoggedIn);
   return (
     <div
       id="navbar"
       className=""
       style={navbarStyle}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
     >
-      <nav class="p-5  ">
+      <nav class="p-5 md:p-4 ">
         <div
           class={`${
             isMenuNav ? " " : ""
@@ -145,7 +145,7 @@ function Navbar() {
               // If not logged in, show Order Now button
 
               <div className="flex gap-7 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <div className=" list-none">
+                <div className=" list-none  hidden md:block">
                   <li>
                     <Link
                       to={"/login"}
@@ -246,7 +246,7 @@ function Navbar() {
         id="navbar-toggle"
       >
         <div className="flex flex-col items-center gap-10 ">
-          <ul class="flex flex-col w-full font-medium  rounded-lg bg-[#FAF9F6]   ">
+          <ul class="flex flex-col w-full font-medium   bg-[#FAF9F6]   ">
             <li className="border">
               <Link
                 to={"/"}
@@ -274,6 +274,15 @@ function Navbar() {
                 Sustainability
               </Link>
             </li>
+          {!isLoggedIn ? (<li className="border md:hidden ">
+            <Link
+              to={"/login"}
+              class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded "
+              aria-current="page"
+            >
+              Login
+            </Link>
+          </li>):(null)}
 
             {/* <li className='border'>
               <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded ">Pricing <IoIosArrowForward size={24} /></a>

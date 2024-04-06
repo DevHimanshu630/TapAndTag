@@ -34,9 +34,8 @@ function App() {
             {/* <Route path='/checkout' element={<CheckoutForm/>}/> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path='/checkout' element={<CheckoutCart/>}>
-              <Route path='payment' element={<Payment/>}/>
-            </Route>
+            <Route path='/cart' element={<CheckoutCart/>}/>
+            <Route path='/cart/payment/:id' element={<Payment/>}/>
             <Route path='/order' element={<Orders/>}/>
             <Route path='/order/:id' element={<OrderDetail/>}/>
             <Route path="/product" element={<Product />} />

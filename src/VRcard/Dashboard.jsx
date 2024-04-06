@@ -4,7 +4,6 @@ import Home from "../Components/Home";
 import Navbar from "../Components/Navbar";
 import logo from "../Images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
 import QRCode from "react-qr-code";
 import html2canvas from "html2canvas";
 import { CiEdit } from "react-icons/ci";
@@ -14,6 +13,8 @@ import { toast, ToastContainer } from "react-toastify";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import CheckoutForm from "../Components/CheckoutForm";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+const { format } = require('date-fns');
 
 function Dashboard() {
   const [userData, setUserData] = useState([]);
@@ -24,7 +25,8 @@ function Dashboard() {
   const navigate = useNavigate();
   // console.log(token);
   console.log("userData *******------------>", userData);
-
+  const [cartcount, setCartcount] = useState('')
+  const [cartCall, setCartCall] = useState(false)
   useEffect(() => {
     console.log("mount");
     const fetchData = async () => {
@@ -43,7 +45,21 @@ function Dashboard() {
 
     fetchData();
   }, [formdel]);
-
+  useEffect(()=>{
+    const fetchCart = async() =>{
+      try{
+        const res = await axios.get('users/cart',{
+          headers:{
+            Authorization: `Bearer ${token}`
+          }
+        })
+        setCartcount(res.data.cart.length)
+      }catch(e){
+        console.log(e)
+      }
+    }
+    fetchCart();
+  },[cartCall])
   const handleSignOut = () => {
     toast.error("Signed Out!", {
       position: "top-right",
@@ -60,10 +76,10 @@ function Dashboard() {
   };
 
   function formateTime(timestamp) {
-    const date = new Date(timestamp);
-    const formatted = format(date, "MMMM dd, yyyy hh:mm a");
+    console.log('dekho',timestamp)
+    const formatted = format(new Date(timestamp), "MMMM dd, yyyy hh:mm a");
     return formatted;
-  }
+}
   const qrCodeRef = useRef(null);
 
   const naviagte = useNavigate();
@@ -74,7 +90,6 @@ function Dashboard() {
     navigate(`/UpdateQrForm/${formId}`);
   };
   const handleDelete = async (formId) => {
-    console.log(formId);
     try {
       const res = await axios.delete(`users/form/delete/${formId}`, {
         headers: {
@@ -104,12 +119,11 @@ function Dashboard() {
   }
   const handleClose = () => setOpen(false);
   const handleCart = () => {
-    navigate('/checkout')
+    navigate('/cart')
   }
   
   return (
     <>
-      <ToastContainer/>
     <div>
     <ToastContainer/>
     <Modal
@@ -125,7 +139,7 @@ function Dashboard() {
           minHeight="100vh"
         >
         <div class="relative w-full max-w-7xl max-h-full ">
-        <CheckoutForm handleClose={handleClose} selectedform={selectedform} setOpen={setOpen}/>
+        <CheckoutForm handleClose={handleClose} selectedform={selectedform} setOpen={setOpen} setCartCall={setCartCall}/>
           </div>
         </Box>
       </Modal>
@@ -186,12 +200,20 @@ function Dashboard() {
                 </Link>
               </li>
               <li>
-                <p
-                onClick={handleCart}
-                class="block py-2 hover:cursor-pointer px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                <Link
+                  to={'/cart'}
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                Cart     
-                </p>
+                  Cart-({cartcount})  
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={'/order'}
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                Orders
+                </Link>
               </li>
               <li>
                 <p
@@ -244,23 +266,24 @@ function Dashboard() {
               </button>
                 </td>
                 <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {formateTime(item.timeStamp)}
+                  {formateTime(item.timestamp)}
+                  
                 </td>
                 <td class="px-6 py-3  justify-center  flex flex-col font-sans">
-                  {item.formDataID}
+                Tap Count: {item.tapCount}
                   <span className=" font-bold text-black">
-                    {item?.formName}
+                   Form: {item?.formName}
                   </span>
                   <span className="text-gray-300">
-                    <a href="" className="hover:underline hover:text-red-500">
-                      https://qdp72jc1-8080.inc1.devtunnels.ms/vcard/{item?.pageUrl}
+                    <a href={`https://tap-and-tag.vercel.app/vcard/${item.pageUrl}`} className="hover:underline hover:text-red-500">
+                      https://tap-and-tag.vercel.app/vcard/{item.pageUrl}
                     </a>
                   </span>
                 </td>
                 <td class="px-6 py-3 font-sans">{item?.type}</td>
                 <td ref={qrCodeRef} class="px-6 py-3 font-sans">
                   <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?data=${item?.qr}&size=70x70`}
+                    src={`https://api.qrserver.com/v1/create-qr-code/?data=https://tap-and-tag.vercel.app/vcard/${item?.pageUrl}&size=70x70`}
                     alt="QR Code"
                   />
                 </td>
@@ -281,12 +304,14 @@ function Dashboard() {
                   </span>
                 </td>
                 <td className="px-6 py-3 flex hover:underline hover:cursor-pointer hover:text-blue-500 items-center gap-1 font-sans">
-                  <MdDeleteOutline
+                  <div className="">
+                  <DeleteForeverIcon
                     onClick={() => {
                       handleDelete(item.formDataID);
                     }}
                     size={20}
                   />
+                  </div>
                   <span
                     onClick={() => {
                       handleDelete(item.formDataID);

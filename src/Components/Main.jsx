@@ -3,7 +3,6 @@ import MologLogo from "../Images/molog logo 1.svg"
 import phone from "../Images/phone.png"
 import back from '../Images/Group2.png'
 
-import { handlePayment } from "./payment.jsx";
 
 
 
@@ -39,9 +38,7 @@ function Main() {
                         <span className=' xl:text-[16px] font-sans leading-loose font-light text-sm text-[#717171]'>For those aiming to leave a fantastic initial impact.</span>
                     </div>
                     <div>
-                        <button className='btn-hover  color-5 ' onClick={handlePayment({
-                      amount: 1000,
-                    })}>
+                        <button className='btn-hover  color-5 '>
                             Get Your Card
                         </button>
                     </div>
