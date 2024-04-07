@@ -4,6 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from 'react-router-dom';
 import { useCartContext } from '../Context/Cart';
 import axios from '../Axios/Axios';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import HeaderCart from '../Components/HeaderCart';
 
 function Navigation() {
   const navigate = useNavigate()
@@ -23,17 +25,6 @@ function Navigation() {
     }, 1000)
     localStorage.removeItem("token");
   };
-  useEffect(()=>{
-    const fetch = async()=>{
-    const res = await axios.get("users/cart", {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        });
-        setCartcount(res.data.cart.length);
-    }
-    fetch()
-    },[])
 
   return (
     <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
@@ -97,7 +88,7 @@ function Navigation() {
                   to={'/cart'}
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                  Cart-({cartcount})  
+                  <HeaderCart/>
                 </Link>
               </li>
               <li>
