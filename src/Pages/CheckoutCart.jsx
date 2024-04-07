@@ -122,71 +122,16 @@ function CheckoutCart() {
     setCartcount(res.data.cartLength)
     setDelCart(!delCart);
   };
+
   return (
-    // <div className='flex p-4'>
-    //   <ToastContainer/>
-    //   <main className='flex-[0.8]'>
-    // {Object.keys(carts).map((key) => (
-    // <div key={key} className='my-6'>
-    // <Card sx={{ maxWidth: 1000 }}>
-    //   <input type="checkbox" onClick={() => handleOrder(carts[key]._id, carts[key].amount)}/>
-    //   <CardMedia
-    //     sx={{ height: 140 }}
-    //     image="/card-demo.svg"
-    //     title="green iguana"
-    //   />
-    //   <CardContent>
-    //     <Typography gutterBottom variant="h5" component="div">
-    //       Cards
-    //     </Typography>
-    //     <Typography variant="body2" color="text.secondary">
-    //     <div className="flex justify-between">
-    //       <div className="flex flex-col gap-2">
-    //       Plastic :<NumberInput aria-label="Quantity Input" min={1} value={carts[key].cardQuantity.plasticCard}/>
-    //       Wood :<NumberInput aria-label="Quantity Input" min={1} value={carts[key].cardQuantity.woodCard}/>
-    //       Metal :<NumberInput aria-label="Quantity Input" min={1} value={carts[key].cardQuantity.metalCard}/>
-    //       </div>
-    //     <div className=''>
-    //       <IconButton onClick={()=>deleteCart(carts[key]._id, carts[key].amount)}>
-    //       <DeleteIcon/>
-    //       </IconButton>
-    //     </div>
-    //     </div>
-    //     </Typography>
-    //   </CardContent>
-    // </Card>
-    // </div>
-    // ))}
-    //   </main>
-    //   <section className='flex-[0.3] my-6'>
-    //   <Card sx={{ maxWidth: 700 }}>
-    //   <CardMedia
-    //     sx={{ height: 140 }}
-    //     image="/card-demo.svg"
-    //     title="green iguana"
-    //   />
-    //   <CardContent>
-    //     <Typography gutterBottom variant="h5" component="div">
-    //       Cards
-    //     </Typography>
-    //     <Typography variant="body2" color="text.secondary">
-    //     hello
-    //     </Typography>
-    //   </CardContent>
-    //   <CardActions>
-    //     SubTotal : {subtotal}
-    //   </CardActions>
-    //   <Button onClick={proceedToPay} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" >Proceed To Pay</Button>
-    // </Card>
-    //   </section>
-    // </div>
     <>
         <div
           className="w-full h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
           id="checkout"
         >
           <ToastContainer/>
-          <div className="flex flex-row" id="cart">
+          {carts.length ? (
+            <div className="flex flex-row" id="cart">
             <div className="flex-[0.7] ml-6 my-6 bg-white overflow-y-auto h-screen"
               id="scroll"
             >
@@ -289,6 +234,13 @@ function CheckoutCart() {
               </div>
             </div>
           </div>
+          ):(
+            <div className="flex flex-col items-center justify-center">
+            <img src="/notfound.jpg" alt="" className="w-[40%]"/>
+            <h2>Items Not Found!</h2>
+            </div>
+          )}
+          
         </div>
       <style>
         {` /* width */

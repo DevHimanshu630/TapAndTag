@@ -20,9 +20,11 @@ function HeaderCart() {
     },[])
   return (
         <div className='cursor-pointer'>
-          <div className='px-3 bg-green-700 text-white text-md font-bold rounded-xl -top-[0px] top-[1.2rem] absolute right-[21rem] w-7'>{cartcount}</div>
+        <div className='relative'>
+          <div className='px-3 bg-green-700 text-white text-md absolute -top-[1rem] -right-[1rem] font-bold rounded-xl w-7'>{cartcount}</div>
             <div>
                 <ShoppingCartIcon />
+            </div>
             </div>
         </div>
   )

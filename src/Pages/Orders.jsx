@@ -31,7 +31,8 @@ function Orders() {
     navigate(`${ids}`)
   }
   return (
-    <div className='flex flex-col items-center gap-4 m-4 w-full'>
+    <>
+    {orders.length ? (<div className='flex flex-col items-center gap-4 m-4 w-full'>
       <h1 className='text-4xl mb-4'>Your Orders</h1>
       {Object.keys(orders).map((key) => (
       <div key={key} className='w-[80vw]'>
@@ -70,7 +71,13 @@ function Orders() {
       </Card>
       </div>
     ))}
-    </div>
+    </div>):(
+      <div className="flex flex-col items-center justify-center">
+      <img src="/notfound.jpg" alt="" className="w-[40%]"/>
+      <h2>Items Not Found!</h2>
+      </div>
+    )}
+    </>
   )
 }
 
