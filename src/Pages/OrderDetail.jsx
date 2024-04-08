@@ -37,7 +37,7 @@ function OrderDetail() {
       <div className='flex flex-col'> 
       <h2>Ordered Item: </h2>
       <p>Plastic Card - {details?.order?.items[0]?.cardQuantity.plasticCard}</p>
-      <p>Wood Card - {details?.order?.items[0]?.cardQuantity.woodenCard}</p>
+      <p>Wood Card - {details?.order?.items[0]?.cardQuantity.woodCard}</p>
       <p>Metal Card - {details?.order?.items[0]?.cardQuantity.metalCard}</p>
       <p><CurrencyRupeeIcon fontSize='small'/> {details?.order?.amount}</p>
       </div>
