@@ -18,12 +18,15 @@ import logo from "../Images/logo.png";
 import html2canvas from "html2canvas";
 import VcardTemplate from "../VRcard/VcardTemplate";
 import MobilePreview from "../Components/MobilePreview";
-import { Loader, Placeholder } from 'rsuite'
-
+import { useUserContext } from "../Context/User";
+import {Loader , Placeholder} from 'rsuite';
+import Navigation from "../Partials/Navigation";
+import QrNavigation from "../Partials/QrNavigation";
 function QrForm() {
+  const {userInfo,setUserInfo} =useUserContext();
   const [loader, setLoader] = useState(false)
   const { formId } = useParams();
-  const token = localStorage.getItem("token");
+  const token = userInfo ;
   console.log(formId);
   const [pageurl, setPageurl] = useState('')
   const [data, setData] = useState({
@@ -282,17 +285,25 @@ function QrForm() {
       copy(textRef.current.innerText);
     }
   };
-  const handleSignOut = () => {
-    toast.error("Signed Out!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
+  
+  const handleSignOut = async() => {
+    const res = await axios.post('users/logout', null, {
+      withCredentials: true
     });
-    navigate("/signUp");
-    localStorage.removeItem("token");
+    if(res.status === 200){
+    toast.error("Signed Out!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+    setTimeout(()=>{
+      setUserInfo(null)
+      navigate("/signUp");
+    }, 1000)
+  }
   };
 
   const qrRef = useRef(null);
@@ -326,16 +337,17 @@ function QrForm() {
   if(loader){
     return (
     <div style={{ height: 200, background: '#000' }}>
-      <ToastContainer/>
+     <ToastContainer/>
      <Placeholder.Paragraph rows={8} />
-    <Loader backdrop content="loading..." vertical />
+     <Loader backdrop content="loading..." vertical />
      </div>
     );
   }
   return (
     <>
       <div style={{ overflow: "hidden" }}>
-        <nav class="bg-white border-gray-200  ">
+      <QrNavigation/>
+        {/* <nav class="bg-white border-gray-200  ">
           <div class="flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl p-4 font-sans">
             <Link
               to="/"
@@ -349,7 +361,36 @@ function QrForm() {
               class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
             >
               <ul class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                {token !== null ? (<li>
+                
+                <li>
+                <Link
+                  to={"/"}
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/product"}
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
+                >
+                  Product
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/Sustainability"}
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
+                >
+                  Sustainability
+                </Link>
+                
+              </li>
+              {token !== null ? (<li>
                   <Link
                     to="/dashboard"
                     class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
@@ -358,39 +399,6 @@ function QrForm() {
                     Dashboard
                   </Link>
                 </li>):" "}
-                <li>
-                  <button
-                    id="mega-menu-full-dropdown-button"
-                    data-collapse-toggle="mega-menu-full-dropdown"
-                    class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Solutions{" "}
-                  </button>
-                </li>
-                <li>
-                  <Link
-                    to="#"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="#"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Articles
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="#"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
                 {token !== null ? (
                 <li>
                   <p
@@ -414,7 +422,8 @@ function QrForm() {
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> */}
+        
         <div className="bg-gray-100 border items-center  justify-center md:p-5  flex ">
           <form
             id="myform"

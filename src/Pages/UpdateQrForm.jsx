@@ -22,6 +22,7 @@ import FileManager from "../VRcard/FileManager";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import MobilePreview from "../Components/MobilePreview";
+import QrNavigation from "../Partials/QrNavigation";
 
 function UpdateQrForm() {
   const { formId } = useParams();
@@ -403,7 +404,7 @@ function UpdateQrForm() {
       </div> */}
 
       <div style={{ overflow: "hidden" }}>
-        <nav class="bg-white border-gray-200  ">
+        {/* <nav class="bg-white border-gray-200  ">
           <div class="flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl p-4 font-sans">
             <Link
               to="/"
@@ -470,7 +471,8 @@ function UpdateQrForm() {
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> */}
+        <QrNavigation/>
         <div className="bg-gray-100 border items-center  justify-center p-5  flex ">
           <form
             onSubmit={handleSubmitUserData}

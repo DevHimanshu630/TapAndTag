@@ -92,8 +92,8 @@ function Navbar() {
     color: "transparent",
   };
 
-  const isLoggedIn = userInfo;
-console.log(isLoggedIn);
+  const isLoggedIn = userInfo;    
+  console.log(isLoggedIn);
   return (
     <div
       id="navbar"
