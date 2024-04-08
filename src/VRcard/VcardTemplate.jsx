@@ -30,28 +30,32 @@ function VcardTemplate() {
     fetchData();
   }, [pageId]);
   // Import format function 
+  const generateVCF = () => {
+    const vcfContent = `BEGIN:VCARD
+VERSION:3.0
+N:${userData.name}
+TITLE:${userData.designation}
+ORG:${userData.companyName}
+EMAIL:${userData.email}
+TEL:${userData.mobile}
+ADR:${userData.city}
+URL;TYPE=linkedin:${userData.linkedinUrl} 
+URL;TYPE=twitter:${userData.twitterUrl} 
+URL;TYPE=instagram:${userData.instagramUrl} 
+URL;TYPE=Website:${userData.webSiteUrl}
+PHOTO;TYPE=JPEG;VALUE=URL:${userData.profilePhotoObj.contentURL}
+END:VCARD`;
 
+    const blob = new Blob([vcfContent], { type: 'text/vcard;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'contact.vcf');
 
-    const generateVCF = () => {
-      const vcfContent = `
-      BEGIN:VCARD
-      VERSION:3.0
-      FN:${userData.name}
-      EMAIL:${userData.email}
-      TEL:${userData.mobile}
-      ADR:${userData.city}
-      PHOTO;TYPE=JPEG;VALUE=URI:${userData.profilePhotoObj.contentURL}
-      END:VCARD
-      `;
-      const blob = new Blob([vcfContent], { type: 'text/vcard;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'contact.vcf');
-      document.body.appendChild(link);
-      link.click();
-
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
- 
+
   return (
     <div>
       {userData ? (

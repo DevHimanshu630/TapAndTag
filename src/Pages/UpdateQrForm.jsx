@@ -35,7 +35,7 @@ function UpdateQrForm() {
     name: "",
     designation: "",
     companyName: "",
-    pageUrl: "sdfssd",
+    pageUrl: 'www.tapandtag.in/vcard/',
     email: "",
     mobile: "",
     sms: "",
@@ -1136,7 +1136,7 @@ function UpdateQrForm() {
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg ">
-                          https://tapandtag.molog.in/{data?.pageUrl}{" "}
+                          www.tapandtag.in/vcard/{data?.pageUrl}{" "}
                         </p>
                       </div>
                       <div className="flex gap-2">
@@ -1147,7 +1147,7 @@ function UpdateQrForm() {
                         />
                         <Link
                           target="_blank"
-                          to={`/https://tapandtag.molog.in/${data?.pageUrl}`}
+                          to={`www.tapandtag.in/${data?.pageUrl}`}
                         >
                           <FiExternalLink
                             size={20}
