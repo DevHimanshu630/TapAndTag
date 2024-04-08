@@ -77,42 +77,47 @@ function Navigation() {
                 </Link>
               </li>
               <li>
-                <button
-                  id="mega-menu-full-dropdown-button"
-                  data-collapse-toggle="mega-menu-full-dropdown"
-                  class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Solutions{" "}
-                </button>
-              </li>
-              <li>
                 <Link
-                  to="#"
+                  to={"/"}
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
                 >
-                  Pricing
+                  Home
                 </Link>
               </li>
               <li>
                 <Link
-                  to="#"
+                  to={"/product"}
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
                 >
-                  Articles
+                  Product
                 </Link>
               </li>
               <li>
                 <Link
-                  to="#"
+                  to={"/Sustainability"}
                   class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
                 >
-                  Contact Us
+                  Sustainability
                 </Link>
               </li>
+              <li>
+                <Link
+                  to={"/"}
+                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
+                >
+                  Support
+                </Link>
+              </li>
+              
+              
               <li>
                 <Link
                   to={'/cart'}
-                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  class="block py-2 px-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   <HeaderCart/>
                 </Link>
@@ -126,7 +131,7 @@ function Navigation() {
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                 >
-                <AccountCircleOutlinedIcon className='text-white' fontSize='large'/>
+                <AccountCircleOutlinedIcon className='text-black dark:text-white' fontSize='large'/>
               </IconButton>
               </Tooltip>
               <Menu

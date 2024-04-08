@@ -104,6 +104,11 @@ function Dashboard() {
   }
   const handleClose = () => setOpen(false);
   
+  const radialGradient = {
+    background: 'radial-gradient(circle at center, #146C60, #022D24)',  // Colors with 100% opacity
+    borderRadius: '10px'
+};
+
   return (
     <>
     <div>
@@ -126,28 +131,32 @@ function Dashboard() {
         </Box>
       </Modal>
 
-      <div class="relative w-full flex justify-center overflow-x-auto">
-        <table class="w-[75%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="px-6 py-3">
+      <div class="relative w-full   mt-12 flex justify-center overflow-x-auto">
+        <table class="w-[75%] text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-lg">
+          <thead style={radialGradient} class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 h-[7vh]">
+            <tr className="text-white rounded-lg" >
+              {/* <th scope="col" class="px-6 font-sans font-thin py-3  rounded-l-lg">
                 Select Form
-              </th>
-              <th scope="col" class="px-6 py-3">
+              </th> */}
+              <th scope="col" class="px-6 font-sans font-thin  py-3  rounded-tl-lg border-lg">
                 Date
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 font-sans font-thin py-3">
                 Form Name
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 font-sans font-thin py-3">
                 Type
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 font-sans font-thin py-3">
                 QR Code
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 font-sans font-thin py-3  ">
+                Select Form
+              </th>
+              <th scope="col" class="px-6 font-sans font-thin py-3 rounded-tr-lg">
                 Action
               </th>
+             
             </tr>
           </thead>
           <tbody>
@@ -156,11 +165,11 @@ function Dashboard() {
                 key={index}
                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
               >
-                <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {/* <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <button onClick={()=>{handleOpen(item.formDataID)}} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Add To Cart
               </button>
-                </td>
+                </td> */}
                 <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {formateTime(item.timestamp)}
                   
@@ -183,38 +192,45 @@ function Dashboard() {
                     alt="QR Code"
                   />
                 </td>
+                <td class="px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <button onClick={()=>{handleOpen(item.formDataID)}} class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 px-4 rounded-full">
+                Add To Cart
+              </button>
+                </td>
 
-                <td className="px-6 py-3 flex hover:underline hover:cursor-pointer hover:text-blue-500 items-center gap-1 font-sans">
+                <td className="px-6 py-3 flex hover:underline hover:cursor-pointer hover:text-[#146C60] items-center gap-1 font-sans">
                   <CiEdit
                     onClick={() => {
                       handleEdit(item.formDataID);
                     }}
                     size={20}
+                    className="text-[#146C60]"
                   />
-                  <span
+                  {/* <span
                     onClick={() => {
                       handleEdit(item.formDataID);
                     }}
                   >
                     edit
-                  </span>
+                  </span> */}
                 </td>
-                <td className="px-6 py-3 flex hover:underline hover:cursor-pointer hover:text-blue-500 items-center gap-1 font-sans">
+                <td className="px-6 py-3 flex hover:underline hover:cursor-pointer hover:text-[#146C60] items-center gap-1 font-sans">
                   <div className="">
                   <DeleteForeverIcon
                     onClick={() => {
                       handleDelete(item.formDataID);
                     }}
                     size={20}
+                    className="text-[#146C60]"
                   />
                   </div>
-                  <span
+                  {/* <span
                     onClick={() => {
                       handleDelete(item.formDataID);
                     }}
                   >
                     delete
-                  </span>
+                  </span> */}
                 </td>
               </tr>
             ))}
