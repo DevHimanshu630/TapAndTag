@@ -553,7 +553,7 @@ function QrForm() {
                             for="emailicon"
                             class="block p-2 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                           >
-                            https://qdp72jc1-8080.inc1.devtunnels.ms/
+                            https://tapandtag.com/
                           </label>
                         </div>
                         <div className="border w-[56%]  rounded-r-full  ">
@@ -1056,7 +1056,7 @@ function QrForm() {
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg  ">
-                        https://qdp72jc1-8080.inc1.devtunnels.ms/vcard/{pageurl}{" "}
+                        www.tapandtag.in/vcard/{pageurl}{" "}
                         </p>
                       </div>
                       <div className="flex gap-2">
