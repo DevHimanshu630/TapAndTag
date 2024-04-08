@@ -79,12 +79,12 @@ END:VCARD`;
                   </button>
                 </div>
                   {isOpen && (
-                    <div className="dropdown-content absolute right-2 top-11 rounded-lg p-2 bg-white shadow-lg shadow-gray-100">
+                    <div className="dropdown-content absolute right-2 top-11 rounded-lg p-2 px-6 bg-white shadow-lg shadow-gray-100">
                       <ul>
                         <li
                         className="cursor-pointer "
                        onClick={generateVCF}
-                        >Export Data</li>
+                        >Save</li>
                       </ul>
                     </div>
                   )}
