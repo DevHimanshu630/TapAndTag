@@ -59,9 +59,10 @@ function UpdateQrForm() {
       const fetchData = async () => {
         try {
           const response = await axios.get(`users/update/${formId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            // headers: {
+            //   Authorization: `Bearer ${token}`,
+            // },
+            withCredentials: true
           });
           console.log(response?.data?.response.imageObj);
 
@@ -123,9 +124,10 @@ function UpdateQrForm() {
         formDatas,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data", // Set content type for FormData
           },
+          withCredentials: true
         }
       );
       console.log(res);

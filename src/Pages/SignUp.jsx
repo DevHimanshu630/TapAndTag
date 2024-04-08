@@ -30,16 +30,14 @@ function SignUp() {
                     email: formData.email,
                     password: formData.password,
                 },
-                // {
-                //     headers: {
-                //     },
-                //     withCredentials: true // This will include the cookie on our request
-                // }
+                {
+                    headers: {
+                    },
+                    withCredentials: true // This will include the cookie on our request
+                }
                   );
             console.log(res);
             if (res.status == 200) {
-                const token = res.data.token;
-                localStorage.setItem('token', token);
                 setFormData({
                     username: "",
                     email: "",

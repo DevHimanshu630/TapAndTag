@@ -16,6 +16,7 @@ import profile from "../Images/iconamoon_profile-circle.png";
 import qrScan from "../Images/qr-code-scan.png";
 import tapPay from "../Images/tap-to-pay.png";
 import "../Css/home.css";
+import { useUserContext } from "../Context/User";
 
 const style = {
   position: "absolute",
@@ -28,6 +29,7 @@ const style = {
 };
 
 function Navbar() {
+  const {userInfo,setUserInfo} = useUserContext()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -90,7 +92,7 @@ function Navbar() {
     color: "transparent",
   };
 
-  const isLoggedIn = localStorage.getItem("token") !== null;
+  const isLoggedIn = userInfo;
 console.log(isLoggedIn);
   return (
     <div

@@ -36,9 +36,10 @@ function ImageCard({ images }) {
                 deleteImageId: [id]
             },
                 {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    // headers: {
+                    //     Authorization: `Bearer ${token}`,
+                    // },
+                    withCredentials: true
                 }
             );
             if (res?.status === 200) {
@@ -106,9 +107,10 @@ function ImageCard({ images }) {
         }
         try {
             const res = await axios.put(`users/formdata/filemanager/${formId}`, formDatas, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                // headers: {
+                //     Authorization: `Bearer ${token}`
+                // }
+                withCredentials: true
             });
             if (res?.status === 200) {
                 toast.success("Images Uploaded!", {

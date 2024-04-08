@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../Context/User";
 
 export default function ExampleV2() {
   const navigate = useNavigate();
-
+  const {userInfo, setUserInfo} = useUserContext()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -28,14 +28,12 @@ export default function ExampleV2() {
         email: formData.email,
         password: formData.password,
       },
-      // {
-      //   headers: {
-      //   },
-      //   withCredentials: true // This will include the cookie on our request
-      // }
+       {
+        withCredentials: true
+        }
       );
+
       console.log("hi there-------------------------", res);
-        localStorage.setItem("token", res.data.token);
       toast.success("login successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -45,6 +43,7 @@ export default function ExampleV2() {
         draggable: true,
       });
       setTimeout(() => {
+        setUserInfo(true)
         navigate("/dashboard");
       }, [1000]);
     } catch (err) {

@@ -19,16 +19,18 @@ import Orders from './Pages/Orders';
 import OrderDetail from './Pages/OrderDetail';
 import Layout from './Layout';
 import { CartContextProvider } from './Context/Cart';
+import { useEffect } from 'react';
+import axios from './Axios/Axios';
+import { useUserContext } from './Context/User';
 
 
 function App() {
-  const token = localStorage.getItem("token");
-  const isUserLoggedIn = !!token;
+  const {userInfo,setUserInfo} = useUserContext()
   
-  console.log("user login status", isUserLoggedIn);
+  console.log("user login status", userInfo);
   return (
     <>
-      {isUserLoggedIn ? (
+      {userInfo ? (
         <>
         <CartContextProvider>
             <Routes>

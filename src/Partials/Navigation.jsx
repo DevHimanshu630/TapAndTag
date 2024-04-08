@@ -22,13 +22,18 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-
+import { useUserContext } from '../Context/User';
 
 function Navigation() {
+  const {userInfo,setUserInfo} = useUserContext()
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
   const {cartcount, setCartcount} = useCartContext()
-  const handleSignOut = () => {
+  const handleSignOut = async() => {
+    const res = await axios.post('users/logout', null, {
+      withCredentials: true
+    });
+    if(res.status === 200){
     toast.error("Signed Out!", {
       position: "top-right",
       autoClose: 3000,
@@ -38,9 +43,10 @@ function Navigation() {
       draggable: true,
     });
     setTimeout(()=>{
+      setUserInfo(null)
       navigate("/signUp");
     }, 1000)
-    localStorage.removeItem("token");
+  }
   };
   
   const [anchorEl, setAnchorEl] = useState(null);
@@ -170,7 +176,7 @@ function Navigation() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
+          <Avatar /> {userInfo?.data?.username}
         </MenuItem>
         <Divider />
         <MenuItem>

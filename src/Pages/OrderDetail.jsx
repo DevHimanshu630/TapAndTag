@@ -12,9 +12,10 @@ function OrderDetail() {
   useEffect(()=>{
     const getting = async() =>{
         const res = await axios.get(`users/order/${id}`,{
-            headers: {
-              Authorization: `Bearer ${token}`,
-            }
+            // headers: {
+            //   Authorization: `Bearer ${token}`,
+            // }
+            withCredentials: true
         })
         console.log(res.data)
         setDetails(res.data)

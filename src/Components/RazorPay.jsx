@@ -4,13 +4,13 @@ import axios from "../Axios/Axios";
 
 export const handlePayment = (authData) => async () => {
   console.log("RazorPay", authData);
-  const token = localStorage.getItem("token");
   try {
     const key = process.env.REACT_APP_RZP_KEY;
     const {data} = await axios.post("users/payment/checkout", authData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
+      withCredentials: true
     });
     if (data) {
       console.log("data", data);
