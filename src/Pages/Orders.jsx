@@ -18,9 +18,10 @@ function Orders() {
   useEffect(()=>{
     const getting = async()=>{
       const res = await axios.get('users/order',{
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // }
+        withCredentials: true
       })
       console.log(res.data.order)
       setOrders(res.data.order)

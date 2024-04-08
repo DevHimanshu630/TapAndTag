@@ -19,8 +19,6 @@ function Dashboard() {
   const [userData, setUserData] = useState([]);
   const token = localStorage.getItem("token");
   const [formdel, setFromdel] = useState(false)
-  const [formId, setFormId] = useState();
-  const {cartcount, setCartcount} = useCartContext()
 
   const navigate = useNavigate();
   // console.log(token);
@@ -31,9 +29,10 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get("users/dashboard", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          withCredentials: true,
+          // headers: {
+          //   Authorization: `Bearer ${token}`,
+          // },
         });
         console.log("getData of User **********-------->", response);
         setUserData(response.data.response);
@@ -77,9 +76,10 @@ function Dashboard() {
   const handleDelete = async (formId) => {
     try {
       const res = await axios.delete(`users/form/delete/${formId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
+        withCredentials: true
       });
       toast.error("Form Deleted!", {
         position: "top-right",

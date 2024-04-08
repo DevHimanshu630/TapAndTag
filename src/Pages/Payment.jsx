@@ -50,9 +50,10 @@ function Payment() {
   const fetchOrder = async () => {
     try {
       const res = await axios.get(`users/order/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
+        withCredentials: true
       });
       console.log(res);
     }
@@ -89,9 +90,10 @@ function Payment() {
           address: form,
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          // headers: {
+          //   Authorization: `Bearer ${token}`,
+          // },
+          withCredentials: true
         }
       );
       if (res.status === 200) {
