@@ -45,7 +45,7 @@ function Orders() {
           <div className='flex flex-col'> 
           <h2>Ordered Item: </h2>
           <p>Plastic - {orders[key].items[0].cardQuantity.plasticCard}</p>
-          <p>Wood - {orders[key].items[0].cardQuantity.woodenCard}</p>
+          <p>Wood - {orders[key].items[0].cardQuantity.woodCard}</p>
           <p>Metal - {orders[key].items[0].cardQuantity.metalCard}</p>
           </div>
           </div>
