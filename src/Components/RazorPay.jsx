@@ -44,7 +44,7 @@ export const handlePayment = (authData) => async () => {
           confirm_close: false,  
           animation: true
         },
-        callback_url: `https://tapandtag.onrender.com/users/payment/verification?orderId=${authData.orderId}`, //https://stack-overflow-server.vercel.app //mongodb order id to be send
+        callback_url: `https://ekdantinternational.in/users/payment/verification?orderId=${authData.orderId}`, //https://stack-overflow-server.vercel.app //mongodb order id to be send
       };
 
       const razor = new window.Razorpay(options);
