@@ -27,8 +27,8 @@ import { useUserContext } from '../Context/User';
 function Navigation() {
   const {userInfo,setUserInfo} = useUserContext()
   const navigate = useNavigate()
-  const token = localStorage.getItem('token')
-  const {cartcount, setCartcount} = useCartContext()
+  // const token = localStorage.getItem('token')
+
   const handleSignOut = async() => {
     const res = await axios.post('users/logout', null, {
       withCredentials: true

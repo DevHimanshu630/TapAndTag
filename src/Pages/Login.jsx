@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../Images/logo.png";
 import axios from "../Axios/Axios";
 import { Link } from "react-router-dom";
@@ -32,7 +32,10 @@ export default function ExampleV2() {
         withCredentials: true
         }
       );
-
+      const info = await axios.get('users/profile',{
+        withCredentials: true
+      })
+      setUserInfo(info)
       console.log("hi there-------------------------", res);
       toast.success("login successfully!", {
         position: "top-right",
@@ -43,7 +46,6 @@ export default function ExampleV2() {
         draggable: true,
       });
       setTimeout(() => {
-        setUserInfo(true)
         navigate("/dashboard");
       }, [1000]);
     } catch (err) {

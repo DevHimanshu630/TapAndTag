@@ -6,6 +6,7 @@ const instance = axios.create({
   // baseURL: "https://qdp72jc1-8080.inc1.devtunnels.ms/",
   // baseURL: "https://j3hg2gqz-8080.inc1.devtunnels.ms/"
   // baseURL: 'http://localhost:8080'
+  // baseURL: 'https://ekdantinternational.in/'
   // baseURL: 'ec2-3-110-32-74.ap-south-1.compute.amazonaws.com'
 });
 
