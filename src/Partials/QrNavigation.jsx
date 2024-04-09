@@ -114,7 +114,7 @@ function QrNavigation() {
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                 >
-                <AccountCircleOutlinedIcon className='text-black dark:text-white' fontSize='large'/>
+                <AccountCircleOutlinedIcon className='text-black ml-4' fontSize='large'/>
               </IconButton>
               </Tooltip>
               <Menu
