@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/User";
+import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
 
 export default function ExampleV2() {
   const navigate = useNavigate();
@@ -168,7 +169,22 @@ export default function ExampleV2() {
             SignUp
           </Link>
         </p>
+      {/* </div>
+      <div class="wrapper" id="wrapper">
+      <header>
+        <i class="bx bx-cookie"><CookieOutlinedIcon fontSize="large"/></i>
+        <h2>Cookies Consent</h2>
+      </header>
+
+      <div class="data">
+        <p>This website use cookies to help you have a superior and more relevant browsing experience on the website. <a href="#"> Read more...</a></p>
       </div>
+
+      <div class="buttons">
+        <button class="button" id="acceptBtn">Accept</button>
+        <button class="button" id="declineBtn">Decline</button>
+      </div> */}
+    </div>
     </div>
   );
 }

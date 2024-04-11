@@ -180,7 +180,7 @@ function Dashboard() {
                    Form: {item?.formName}
                   </span>
                   <span className="text-gray-300">
-                    <a href={`https://tap-and-tag.vercel.app/vcard/${item.pageUrl}`} className="hover:underline hover:text-red-500">
+                    <a href={`https://www.tapandtag.in//vcard/${item.pageUrl}`} className="hover:underline hover:text-red-500">
                       https://tap-and-tag.vercel.app/vcard/{item.pageUrl}
                     </a>
                   </span>
@@ -188,7 +188,7 @@ function Dashboard() {
                 <td class="px-6 py-3 font-sans">{item?.type}</td>
                 <td ref={qrCodeRef} class="px-6 py-3 font-sans">
                   <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?data=https://tap-and-tag.vercel.app/vcard/${item?.pageUrl}&size=70x70`}
+                    src={`https://api.qrserver.com/v1/create-qr-code/?data=https://www.tapandtag.in/vcard/${item?.pageUrl}&size=70x70`}
                     alt="QR Code"
                   />
                 </td>

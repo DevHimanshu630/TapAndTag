@@ -22,6 +22,10 @@ import { CartContextProvider } from './Context/Cart';
 import { useEffect } from 'react';
 import axios from './Axios/Axios';
 import { useUserContext } from './Context/User';
+import AdminLayout from './AdminLayout';
+import SetPrices from './AdminPages/SetPrices';
+import Users from './AdminPages/Users';
+import AllOrders from './AdminPages/AllOrders';
 
 
 function App() {
@@ -76,6 +80,11 @@ function App() {
               <Route path="/Sustainability" element={<Sustainability />} />
               <Route path="/vcard/:pageId" element={<VcardTemplate />} />
               <Route path='/accounts/password/forgot' element={<Verification />} />
+              <Route path='/admin' element={<AdminLayout/>}>
+                <Route path='price' element={<SetPrices/>}/>
+                <Route path='users' element={<Users/>}/>
+                <Route path='orders' element={<AllOrders/>}/>
+              </Route>
               </>
             )}
           </Routes>

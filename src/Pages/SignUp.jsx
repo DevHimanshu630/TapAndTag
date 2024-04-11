@@ -5,8 +5,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
+import { useUserContext } from '../Context/User';
+
 function SignUp() {
     const navigate = useNavigate();
+    const {userInfo,setUserInfo} = useUserContext()
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -36,6 +39,11 @@ function SignUp() {
                     withCredentials: true // This will include the cookie on our request
                 }
                   );
+
+                const info = await axios.get('users/profile',{
+                    withCredentials: true
+                })
+                setUserInfo(info)
             console.log(res);
             if (res.status == 200) {
                 setFormData({

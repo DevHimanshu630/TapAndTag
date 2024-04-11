@@ -119,23 +119,6 @@ function QrForm() {
         },
         withCredentials: true
       });
-
-      if (res?.status == 200) {
-        toast.success("Qr Created successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        setLoader(true);
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, [1000]);
-      }
-      // setQR(null)
-      console.log(res?.status);
       if (res?.status == 422) {
         toast.error("Duplicate Page Url!", {
           position: "top-right",
@@ -146,6 +129,22 @@ function QrForm() {
           draggable: true,
         });
       }
+      if (res?.status == 200) {
+        toast.success("Qr Created successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setLoader(true)
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, [1000]);
+      }
+      // setQR(null)
+      
     } catch (err) {
       console.log(err.response.status);
       if (err?.response && err?.response?.status == 501) {
@@ -336,17 +335,20 @@ function QrForm() {
   ));
   if(loader){
     return (
-    <div style={{ height: 200, background: '#000' }}>
-     <ToastContainer/>
-     <Placeholder.Paragraph rows={8} />
-     <Loader backdrop content="loading..." vertical />
-     </div>
+      <div className="loading">
+      <div class="typewriter">
+      <div class="slide"><i></i></div>
+      <div class="paper"></div>
+      <div class="keyboard"></div>
+      </div>
+      </div>
     );
   }
   return (
     <>
       <div style={{ overflow: "hidden" }}>
       <QrNavigation/>
+      <ToastContainer/>
         {/* <nav class="bg-white border-gray-200  ">
           <div class="flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl p-4 font-sans">
             <Link
