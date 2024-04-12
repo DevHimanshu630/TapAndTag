@@ -10,10 +10,10 @@ function HeaderCart() {
   useEffect(()=>{
     const fetch = async()=>{
     const res = await axios.get("users/cart", {
-      withCredentials: true,
-        // headers: {
-        //     Authorization: `Bearer ${token}`,
-        // },
+      // withCredentials: true,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         });
         setCartcount(res.data.cart.length);
     }

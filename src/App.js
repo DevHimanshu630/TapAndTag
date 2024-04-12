@@ -30,16 +30,17 @@ import AllOrders from './AdminPages/AllOrders';
 
 function App() {
   const {userInfo,setUserInfo} = useUserContext()
-  useEffect(()=>{
-    const data = async()=>{
-      const info = await axios.get('users/profile',{
-        withCredentials: true
-      })
-      setUserInfo(info)
-      console.log(info)
-    }
-    data()
-  },[])
+  // useEffect(()=>{
+  //   const data = async()=>{
+  //     const info = await axios.get('users/profile',{
+  //       withCredentials: true
+  //     })
+  //     setUserInfo(info)
+  //     console.log(info)
+  //   }
+  //   data()
+  // },[])
+  setUserInfo(localStorage.getItem('token'))
   console.log('user Status',userInfo)
   return (
     <>

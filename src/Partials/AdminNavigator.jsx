@@ -24,13 +24,7 @@ import { useUserContext } from '../Context/User';
 function AdminNavigator() {
     const {userInfo,setUserInfo} = useUserContext()
   const navigate = useNavigate()
-  // const token = localStorage.getItem('token')
-
   const handleSignOut = async() => {
-    const res = await axios.post('users/logout', null, {
-      withCredentials: true
-    });
-    if(res.status === 200){
     toast.error("Signed Out!", {
       position: "top-right",
       autoClose: 3000,
@@ -39,11 +33,10 @@ function AdminNavigator() {
       pauseOnHover: true,
       draggable: true,
     });
+    localStorage.removeItem("token");
     setTimeout(()=>{
-      setUserInfo(null)
       navigate("/signUp");
     }, 1000)
-  }
   };
   
   const [anchorEl, setAnchorEl] = useState(null);

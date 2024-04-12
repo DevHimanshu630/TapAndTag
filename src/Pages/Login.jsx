@@ -29,14 +29,15 @@ export default function ExampleV2() {
         email: formData.email,
         password: formData.password,
       },
-       {
-        withCredentials: true
-        }
+      //  {
+      //   withCredentials: true
+      //   }
       );
-      const info = await axios.get('users/profile',{
-        withCredentials: true
-      })
-      setUserInfo(info)
+      // const info = await axios.get('users/profile',{
+      //   withCredentials: true
+      // })
+      setUserInfo(res.data.token)
+      localStorage.setItem("token", res.data.token);
       console.log("hi there-------------------------", res);
       toast.success("login successfully!", {
         position: "top-right",

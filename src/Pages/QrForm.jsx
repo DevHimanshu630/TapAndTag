@@ -26,7 +26,7 @@ function QrForm() {
   const {userInfo,setUserInfo} =useUserContext();
   const [loader, setLoader] = useState(false)
   const { formId } = useParams();
-  const token = userInfo ;
+  const token = localStorage.getItem('token') ;
   console.log(formId);
   const [pageurl, setPageurl] = useState('')
   const [data, setData] = useState({
@@ -57,10 +57,10 @@ function QrForm() {
       const fetchData = async () => {
         try {
           const response = await axios.get(`users/update/${formId}`, {
-            // headers: {
-            //   Authorization: `Bearer ${token}`,
-            // },
-            withCredentials: true
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            // withCredentials: true
           });
           console.log(response);
 
@@ -116,8 +116,9 @@ function QrForm() {
       const res = await axios.post("users/uploadForm", formDatas, {
         headers: {
           "Content-Type": "multipart/form-data", // Set content type for FormData
+          Authorization: `Bearer ${token}`,
         },
-        withCredentials: true
+        // withCredentials: true
       });
       if (res?.status == 422) {
         toast.error("Duplicate Page Url!", {
@@ -286,10 +287,6 @@ function QrForm() {
   };
   
   const handleSignOut = async() => {
-    const res = await axios.post('users/logout', null, {
-      withCredentials: true
-    });
-    if(res.status === 200){
     toast.error("Signed Out!", {
       position: "top-right",
       autoClose: 3000,
@@ -298,11 +295,10 @@ function QrForm() {
       pauseOnHover: true,
       draggable: true,
     });
+    localStorage.removeItem("token");
     setTimeout(()=>{
-      setUserInfo(null)
       navigate("/signUp");
     }, 1000)
-  }
   };
 
   const qrRef = useRef(null);

@@ -33,10 +33,10 @@ function Card({ profileImg }) {
                 deleteProfileId: profileImg?._id
             },
                 {
-                    // headers: {
-                    //     Authorization: `Bearer ${token}`,
-                    // },
-                    withCredentials: true
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    // withCredentials: true
                 }
             );
             if (res?.status === 200) {
@@ -76,10 +76,10 @@ function Card({ profileImg }) {
 
         try {
             const res = await axios.put(`users/formdata/filemanager/${formId}`, formData, {
-                // headers: {
-                //     Authorization: `Bearer ${token}`
-                // }
-                withCredentials: true
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+                // withCredentials: true
             });
             if (res?.status === 200) {
                 toast.success("Profile Image Updated!", {

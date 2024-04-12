@@ -36,16 +36,19 @@ function SignUp() {
                 {
                     headers: {
                     },
-                    withCredentials: true // This will include the cookie on our request
+                    // withCredentials: true // This will include the cookie on our request
                 }
                   );
 
-                const info = await axios.get('users/profile',{
-                    withCredentials: true
-                })
-                setUserInfo(info)
+                // const info = await axios.get('users/profile',{
+                //     withCredentials: true
+                // })
+                setUserInfo(res.data.token)
+                
             console.log(res);
             if (res.status == 200) {
+                const token = res.data.token;
+                localStorage.setItem('token', token);
                 setFormData({
                     username: "",
                     email: "",

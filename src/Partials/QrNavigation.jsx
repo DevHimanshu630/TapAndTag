@@ -34,10 +34,6 @@ function QrNavigation() {
     };
     const navigate = useNavigate()
     const handleSignOut = async() => {
-        const res = await axios.post('users/logout', null, {
-          withCredentials: true
-        });
-        if(res.status === 200){
         toast.error("Signed Out!", {
           position: "top-right",
           autoClose: 3000,
@@ -46,11 +42,10 @@ function QrNavigation() {
           pauseOnHover: true,
           draggable: true,
         });
+        localStorage.removeItem("token");
         setTimeout(()=>{
-          setUserInfo(null)
           navigate("/signUp");
         }, 1000)
-      }
       };
   return (
     <nav class="bg-white border-gray-200  ">

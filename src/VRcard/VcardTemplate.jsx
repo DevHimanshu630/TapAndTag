@@ -115,9 +115,9 @@ END:VCARD`;
 
             <div className="flex  justify-around mt-9">
               <div className="flex gap-3 mr-[5.5rem]">
-                <Link to={userData.instagramUrl}>
+                <a href={userData.instagramUrl} target="_blank">
                   <img src="/image/insta.png" alt="" />
-                </Link>
+                </a>
                 <Link to={userData.linkedinUrl}>
                   <img src="/image/linkedIN.png" alt="" />
                 </Link>

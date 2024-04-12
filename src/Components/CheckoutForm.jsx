@@ -21,10 +21,10 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
       const res = await axios.post(`users/saveToCart/${selectedform}`,
        { cardQuantity: cart },
         {
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
-          withCredentials: true
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          // withCredentials: true
         }
       );
       if(res.status === 200){

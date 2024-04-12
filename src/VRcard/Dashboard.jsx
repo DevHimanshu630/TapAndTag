@@ -29,10 +29,10 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get("users/dashboard", {
-          withCredentials: true,
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
+          // withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
         console.log("getData of User **********-------->", response);
         setUserData(response.data.response);
@@ -76,10 +76,10 @@ function Dashboard() {
   const handleDelete = async (formId) => {
     try {
       const res = await axios.delete(`users/form/delete/${formId}`, {
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
-        withCredentials: true
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        // withCredentials: true
       });
       toast.error("Form Deleted!", {
         position: "top-right",

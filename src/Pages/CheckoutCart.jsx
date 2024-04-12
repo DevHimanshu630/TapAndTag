@@ -10,6 +10,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { useCartContext } from "../Context/Cart";
 
 function CheckoutCart() {
+  const token = localStorage.getItem('token')
   const [carts, setCarts] = useState("");
   const [orderArray, setOrderArray] = useState([]);
   const [delCart, setDelCart] = useState(false);
@@ -25,6 +26,7 @@ function CheckoutCart() {
   }
   const saveCart = async(formId) =>{
     console.log(formId)
+    
     if(!(mordiCart.plasticCard || mordiCart.woodCard || mordiCart.metalCard)){
       toast.error("All Fields Empty!", {
         position: "top-right",
@@ -38,10 +40,10 @@ function CheckoutCart() {
       const res = await axios.post(`users/saveToCart/${formId}`,
        { cardQuantity: mordiCart },
         {
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
-          withCredentials: true
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          // withCredentials: true
         }
       );
       toast.success("Cart Edited!", {
@@ -64,10 +66,10 @@ function CheckoutCart() {
   useEffect(() => {
     const getting = async () => {
       const res = await axios.get("users/cart", {
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
-        withCredentials: true
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        // withCredentials: true
       });
       setCarts(res.data.cart);
       console.log(res);
@@ -95,10 +97,10 @@ function CheckoutCart() {
         "users/order-now",
         { orderArray },
         {
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
-          withCredentials: true
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          // withCredentials: true
         }
       );
       navigate(`payment/${res.data.orderId}`);
@@ -109,10 +111,10 @@ function CheckoutCart() {
   };
   const deleteCart = async (ids, amount) => {
     const res = await axios.delete(`users/cart/delete/${ids}`, {
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      // },
-      withCredentials: true
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      // withCredentials: true
     });
     toast.error("Cart Deleted!", {
       position: "top-right",
