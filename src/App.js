@@ -1,5 +1,5 @@
 import Home from './Components/Home';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Product from './Pages/Product';
 import Sustainability from './Pages/Sustainability';
 import Login from './Pages/Login'
@@ -30,6 +30,7 @@ import AllOrders from './AdminPages/AllOrders';
 
 function App() {
   const {userInfo,setUserInfo} = useUserContext()
+  const navigate = useNavigate()
   // useEffect(()=>{
   //   const data = async()=>{
   //     const info = await axios.get('users/profile',{
@@ -42,6 +43,14 @@ function App() {
   // },[])
   setUserInfo(localStorage.getItem('token'))
   console.log('user Status',userInfo)
+  // const ProtectedRoute = ({ children }) => {
+  //   if (!userInfo) {
+  //     return navigate('/')
+  //   }
+
+  //   return children
+  // };
+
   return (
     <>
         <CartContextProvider>
@@ -52,7 +61,9 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             {userInfo ? (
               <>
-              <Route path='' element={<Layout/>}>
+              <Route path='' element={
+              <Layout/>
+              }>
               <Route path="/dashboard" element={< Dashboard />} />
               <Route path='/cart' element={<CheckoutCart/>}/>
               <Route path='/cart/payment/:id' element={<Payment/>}/>

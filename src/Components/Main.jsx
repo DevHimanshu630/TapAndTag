@@ -2,6 +2,7 @@ import React from 'react'
 import MologLogo from "../Images/molog logo 1.svg"
 import phone from "../Images/phone.png"
 import back from '../Images/Group2.png'
+import { Link } from 'react-router-dom';
 
 
 
@@ -39,7 +40,9 @@ function Main() {
                     </div>
                     <div>
                         <button className='btn-hover  color-5 '>
+                            <Link to={'/qrform'}>
                             Get Your Card
+                            </Link>
                         </button>
                     </div>
 

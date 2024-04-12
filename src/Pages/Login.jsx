@@ -48,7 +48,7 @@ export default function ExampleV2() {
         draggable: true,
       });
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate("/");
       }, [1000]);
     } catch (err) {
       if (err.response && err.response.status === 404) {

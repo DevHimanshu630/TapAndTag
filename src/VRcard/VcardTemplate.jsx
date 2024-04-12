@@ -85,6 +85,11 @@ END:VCARD`;
                         className="cursor-pointer "
                        onClick={generateVCF}
                         >Save</li>
+                        <Link to={'/'}>
+                        <li
+                        className="cursor-pointer"
+                        >Get Your Card</li>
+                        </Link>
                       </ul>
                     </div>
                   )}

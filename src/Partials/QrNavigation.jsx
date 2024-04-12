@@ -43,6 +43,7 @@ function QrNavigation() {
           draggable: true,
         });
         localStorage.removeItem("token");
+        setUserInfo(null)
         setTimeout(()=>{
           navigate("/signUp");
         }, 1000)

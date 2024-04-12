@@ -180,8 +180,8 @@ function Dashboard() {
                    Form: {item?.formName}
                   </span>
                   <span className="text-gray-300">
-                    <a href={`https://www.tapandtag.in//vcard/${item.pageUrl}`} className="hover:underline hover:text-red-500">
-                      https://tap-and-tag.vercel.app/vcard/{item.pageUrl}
+                    <a href={`https://www.tapandtag.in/vcard/${item.pageUrl}`} className="hover:underline hover:text-red-500">
+                      https://www.tapandtag.in/vcard/{item.pageUrl}
                     </a>
                   </span>
                 </td>

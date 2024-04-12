@@ -147,7 +147,7 @@ function QrForm() {
       // setQR(null)
       
     } catch (err) {
-      console.log(err.response.status);
+      console.log(err?.response?.status);
       if (err?.response && err?.response?.status == 501) {
         toast.error("Error in Uploading Form", {
           position: "top-right",

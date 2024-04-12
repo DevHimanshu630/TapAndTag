@@ -63,7 +63,7 @@ function SignUp() {
                     draggable: true,
                 });
                 setTimeout(() => {
-                    navigate("/dashboard")
+                    navigate("/")
                 }, [1000])
 
             }
