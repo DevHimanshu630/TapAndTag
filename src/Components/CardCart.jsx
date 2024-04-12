@@ -31,7 +31,7 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
 
 function CardCart({ show ,val ,cart, setCart, data, image, edit=false, index, selIndex}) {
   const [cardPrice, setCardPrice] = useState({})
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('tpt_token')
   useEffect(()=>{
     const getCardPrice = async() =>{
       const res = await axios.get('admin/get_card_price',{

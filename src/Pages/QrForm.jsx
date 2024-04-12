@@ -295,7 +295,7 @@ function QrForm() {
       pauseOnHover: true,
       draggable: true,
     });
-    localStorage.removeItem("token");
+    localStorage.removeItem("tpt_token");
     setTimeout(()=>{
       navigate("/signUp");
     }, 1000)

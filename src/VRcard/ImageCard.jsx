@@ -25,7 +25,7 @@ function ImageCard({ images }) {
 
     const { formId } = useParams();
     console.log(formId);
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("tpt_token")
 
     const [imageId, setImageId] = useState()
 

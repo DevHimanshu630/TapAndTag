@@ -43,7 +43,7 @@ const indianStates = [
 ];
 
 function Payment() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("tpt_token");
   const [addressSaved, setAddressSaved] = useState(false);
   const { id } = useParams();
   console.log(id);

@@ -5,7 +5,7 @@ import axios from "../Axios/Axios";
 export const handlePayment = (authData) => async () => {
   console.log("RazorPay", authData);
   try {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('tpt_token')
     const key = process.env.REACT_APP_RZP_KEY;
     const {data} = await axios.post("users/payment/checkout", authData, {
       headers: {

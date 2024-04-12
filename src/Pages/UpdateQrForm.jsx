@@ -26,7 +26,7 @@ import QrNavigation from "../Partials/QrNavigation";
 
 function UpdateQrForm() {
   const { formId } = useParams();
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("tpt_token");
   console.log(formId);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -65,7 +65,8 @@ function UpdateQrForm() {
             },
             // withCredentials: true
           });
-          console.log(response?.data?.response.imageObj);
+          
+          console.log("getdata-------->>>>>>>",response?.data?.response.imageObj);
 
           setData(response?.data?.response); // Set all response data to setData
           // Append image if present
@@ -283,7 +284,7 @@ function UpdateQrForm() {
   };
   const handleSignOut = () => {
     navigate("/signUp");
-    localStorage.removeItem("token");
+    localStorage.removeItem("tpt_token");
   };
 
   const qrRef = useRef(null);

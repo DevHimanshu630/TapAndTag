@@ -7,7 +7,7 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 function OrderDetail() {
   const {id} = useParams()
   const [refId, setRefId] = useState('')
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("tpt_token")
   const [details, setDetails] = useState('')
   useEffect(()=>{
     const getting = async() =>{
