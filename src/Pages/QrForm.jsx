@@ -26,7 +26,7 @@ function QrForm() {
   const {userInfo,setUserInfo} =useUserContext();
   const [loader, setLoader] = useState(false)
   const { formId } = useParams();
-  const token = localStorage.getItem('token') ;
+  const token = localStorage.getItem('tpt_token') ;
   console.log(formId);
   const [pageurl, setPageurl] = useState('')
   const [data, setData] = useState({
