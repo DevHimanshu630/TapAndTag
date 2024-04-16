@@ -6,7 +6,7 @@ import axios from '../Axios/Axios';
 
 function HeaderCart() {
   const {cartcount, setCartcount} = useCartContext()
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('tpt_token')
   useEffect(()=>{
     const fetch = async()=>{
     const res = await axios.get("users/cart", {

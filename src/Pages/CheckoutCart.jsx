@@ -10,7 +10,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { useCartContext } from "../Context/Cart";
 
 function CheckoutCart() {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('tpt_token')
   const [carts, setCarts] = useState("");
   const [orderArray, setOrderArray] = useState([]);
   const [delCart, setDelCart] = useState(false);

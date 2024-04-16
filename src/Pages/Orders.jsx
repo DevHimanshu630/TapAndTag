@@ -12,7 +12,7 @@ const { format } = require('date-fns');
 
 
 function Orders() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("tpt_token");
   const navigate = useNavigate()
   const [orders, setOrders] = useState('')
   useEffect(()=>{

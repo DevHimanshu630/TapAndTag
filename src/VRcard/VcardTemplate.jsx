@@ -138,12 +138,13 @@ END:VCARD`;
               </div>
 
               <div className="font-sans">
-                <Link
+                <a
                   className=" underline underline-offset-2"
-                  to={userData.webSiteUrl}
+                  href={userData.webSiteUrl}
+                  target="_himanshu"
                 >
                   {userData.webSiteUrl}
-                </Link>
+                </a>
               </div>
             </div>
 

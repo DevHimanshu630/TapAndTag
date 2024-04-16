@@ -38,7 +38,7 @@ function Navigation() {
       pauseOnHover: true,
       draggable: true,
     });
-    localStorage.removeItem("token");
+    localStorage.removeItem("tpt_token");
     setUserInfo(null)
     setTimeout(()=>{
       navigate("/signUp");

@@ -17,7 +17,8 @@ const { format } = require('date-fns');
 
 function Dashboard() {
   const [userData, setUserData] = useState([]);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("tpt_token");
+  console.log("dashbboard token ", token);
   const [formdel, setFromdel] = useState(false)
 
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ function Dashboard() {
     setTimeout(()=>{
       navigate("/signUp");
     }, 1000)
-    localStorage.removeItem("token");
+    localStorage.removeItem("tpt_token");
   };
 
   function formateTime(timestamp) {

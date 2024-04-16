@@ -47,7 +47,7 @@ function App() {
   //   }
   //   data()
   // },[])
-  setUserInfo(localStorage.getItem('token'))
+  setUserInfo(localStorage.getItem('tpt_token'))
   console.log('user Status',userInfo)
   // const ProtectedRoute = ({ children }) => {
   //   if (!userInfo) {

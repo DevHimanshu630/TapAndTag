@@ -26,7 +26,7 @@ function QrForm() {
   const {userInfo,setUserInfo} =useUserContext();
   const [loader, setLoader] = useState(false)
   const { formId } = useParams();
-  const token = localStorage.getItem('token') ;
+  const token = localStorage.getItem('tpt_token') ;
   console.log(formId);
   const [pageurl, setPageurl] = useState('')
   const [data, setData] = useState({
@@ -296,7 +296,7 @@ function QrForm() {
       pauseOnHover: true,
       draggable: true,
     });
-    localStorage.removeItem("token");
+    localStorage.removeItem("tpt_token");
     setTimeout(()=>{
       navigate("/signUp");
     }, 1000)

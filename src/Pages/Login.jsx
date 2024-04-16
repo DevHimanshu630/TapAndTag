@@ -37,7 +37,7 @@ export default function ExampleV2() {
       //   withCredentials: true
       // })
       setUserInfo(res.data.token)
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("tpt_token", res.data.token);
       console.log("hi there-------------------------", res);
       toast.success("login successfully!", {
         position: "top-right",
