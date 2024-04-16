@@ -970,18 +970,21 @@ function QrForm() {
                           <hr className="border h-12 mr-4 font-thin text-[#D2D2D2]" />
                           <div className="flex gap-[7rem] md:gap-0 w-full">
                             {/* Display selected files */}
-                            {Object?.keys(formData.image).length > 0 && (
+                            {Object?.keys(formData?.image)?.length > 0 && (
                               <div className="flex flex-col  md:w-96 flex-wrap gap-2">
                                 <p className="text-[#D3D3D3] flex flex-col">
                                   Selected files:{" "}
-                                  {Object?.values(formData.image.files)
+                                  {Object?.values(formData?.image?.files)
                                     .map((file) => file.name)
                                     .join(", ")}
                                 </p>
                                 <p
                                   className="hover:cursor-pointer"
-                                  onClick={() =>
-                                    setFormData({ ...formData, image: {} })
+                                  onClick={() =>{
+                                    if (formData?.image?.length) {
+                                      setFormData({ ...formData, image: {} });
+                                    }
+                                  }
                                   }
                                 >
                                   <span className="text-[#D3D3D3]">
@@ -1058,10 +1061,10 @@ function QrForm() {
                     </div>
                   </div>
                 )}
-                <div className="hidden md:block w-[400px] h-[550px] shadow-md rounded-2xl overflow-hidden">
-                  <div className="border overflow-hidden rounded-t-xl ">
-                    <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
-                      <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
+                <div className="hidden md:block w-[400px]  rounded-2xl overflow-hidden">
+                  <div className=" overflow-hidden rounded-t-2xl  border">
+                    <div className="flex   w-[350px] items-center px-2 overflow-hidden justify-between">
+                      <div className="justify-around border-b   overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg  ">
                         www.tapandtag.in/vcard/{pageurl}{" "}
                         </p>

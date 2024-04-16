@@ -4,6 +4,8 @@ import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import axios from '../Axios/Axios';
+import { MdOutlineCurrencyRupee } from "react-icons/md";
+import "../Css/home.css"
 
 const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
     return (
@@ -11,7 +13,7 @@ const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
         slots={{
           root: StyledInputRoot,
           input: StyledInput,
-          incrementButton: StyledButton,
+          incrementButton: StyledButtonPlus,
           decrementButton: StyledButton,
         }}
         slotProps={{
@@ -48,16 +50,20 @@ function CardCart({ show ,val ,cart, setCart, data, image, edit=false, index, se
     <div class="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
           <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
             <img class="object-cover" src={image} className='object-cover h-full w-full' alt="product image" />
-            <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">{show}</span>
+            {/* <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">{show}</span> */}
           </a>
           <div class="mt-4 px-5 pb-5">
-            <a href="#">
-              <h5 class="text-xl tracking-tight text-slate-900">{show} Card</h5>
-            </a>
+            <span className='flex items-center gap-2'>
+            <MdOutlineCurrencyRupee size={28}/>
+            <span class="text-[28px] font-bold font-sans text-slate-900">{cardPrice[data]}</span>
+            <span class="text-lg font-sans font-medium text-slate-400 red-line-through">$699</span>
+            <span className='text-sm font-sans text-red-400'>(8.88% off)</span>
+            </span>
             <div class="mt-2 mb-5 flex items-center justify-between">
               <p>
-                <span class="text-2xl font-bold text-slate-900">{cardPrice[data]}</span>
-                {/* <span class="text-sm text-slate-900 line-through">$699</span> */}
+              <h5 class="text-xl tracking-tight font-sans font-bold text-[#146C60]">{show}</h5>
+               
+                
               </p>
               <div class="flex items-center">
               {(edit && index === selIndex) ? (
@@ -120,27 +126,23 @@ const StyledInput = styled('input')(
   font-family: inherit;
   font-weight: 400;
   line-height: 1.375;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
-  };
-  border-radius: 8px;
-  margin: 0 8px;
-  padding: 10px 12px;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  border: 0px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+
+  margin: 0 0px;
+  padding: 5px 6px;
   outline: 0;
   min-width: 0;
   width: 3rem;
   text-align: center;
-
-  &:hover {
-    border-color: ${blue[400]};
-  }
+  background-color:#F6F6F6;
+  // &:hover {
+  //   border-color: ${grey[400]};
+  // }
 
   &:focus {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[700] : blue[200]};
+    box-shadow: 0 0 0 0px;
   }
 
   &:focus-visible {
@@ -155,9 +157,10 @@ const StyledButton = styled('button')(
   font-size: 0.8rem;
   box-sizing: border-box;
   line-height: 1.5;
-  border: 1px solid;
-  border-radius: 999px;
-  border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  border-right: 2px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  // border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
   color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
   width: 28px;
@@ -172,8 +175,47 @@ const StyledButton = styled('button')(
 
   &:hover {
     cursor: pointer;
-    background: ${theme.palette.mode === 'dark' ? blue[700] : blue[500]};
-    border-color: ${theme.palette.mode === 'dark' ? blue[500] : blue[400]};
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[500]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[500] : grey[400]};
+    color: ${grey[50]};
+  }
+
+  &:focus-visible {
+    outline: 0;
+  }
+
+  &.increment {
+    order: 1;
+  }
+`,
+);
+
+const StyledButtonPlus = styled('button')(
+  ({ theme }) => `
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  line-height: 1.5;
+  border-left: 2px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  // border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+  width: 28px;
+  height: 28px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+
+  &:hover {
+    cursor: pointer;
+    background: ${theme.palette.mode === 'dark' ? grey[700] : grey[500]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[500] : grey[400]};
     color: ${grey[50]};
   }
 
