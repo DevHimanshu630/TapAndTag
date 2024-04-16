@@ -79,9 +79,8 @@ function CheckoutForm({handleClose, selectedform, setOpen}) {
         <CardCart show={'Metal'} val={cart.metalCard} data={'metalCard'} image={"/metal.jpg"} cart={cart} setCart={setCart} edit={true}
         index={null} selIndex={null}/>
     </div>
-    <button onClick={handleSubmit} className={cart.plasticCard || cart.metalCard || cart.woodCard ? 'bg-green-500 hover:bg-green-600 text-white py-2 px-2 rounded-full w-[20%] mx-4 self-end' : 'bg-slate-500 text-white py-2 px-4 mx-4 rounded-full w-[20%] self-end disabled'} 
-    disabled={!(cart.metalCard || cart.plasticCard || cart.woodCard )}>Add To Cart 
-    <AddShoppingCartIcon/></button>
+    <button onClick={handleSubmit} className={cart.plasticCard || cart.metalCard || cart.woodCard ? 'text-white self-center btncheckout-hover rounded-full color-5' : 'text-white rounded-full py-[0.55rem] text-[18px] font-medium px-8 bg-gray-600 self-center  disabled'} 
+    disabled={!(cart.metalCard || cart.plasticCard || cart.woodCard )}>Order Now</button>
     </div>
     </div>
   )

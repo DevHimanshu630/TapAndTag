@@ -11,13 +11,20 @@ function MobilePreview({ data, profileimg, formData, link, images }) {
     />
   ));
   return (
-    <div className="border-2  w-[330px] h-[400px] overflow-y-auto rounded-lg border-black p-2">
+    <div style={{ 
+      width: '100%', // Specify the desired width here
+      backgroundImage: `url('/image/iphone.png')`, 
+      backgroundPosition: 'center', 
+      zIndex: 1, // Set the z-index here
+      // Set the z-index here
+      backgroundSize: 'cover' // Optional, adjust according to your needs 
+    }}className=" z-0  w-[350px] h-[670px] overflow-hidden  rounded-lg px-10  py-12">
       {data ? (
-        <div>
+        <div className="  h-[540px] overflow-y-scroll rounded-lg	">
           <div className="w-full h-full ">
             <div
-              class=" w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-              style={{ backgroundImage: `url('/image/bg.png')` }}
+              class=" w-full max-w-full border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700"
+              style={{ backgroundImage:` url('/image/bg.png') `}}
             >
               <div class="flex justify-end px-4 pt-4">
                 <button
