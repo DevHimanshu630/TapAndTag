@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 function SetPrices() {
   const [price, setPrice] = useState({})
   const [edit, setEdit] = useState(false)
-  useEffect(()=>{
+  useEffect(()=>{ 
     const fetch = async() =>{
         const data = await axios.get('admin/get_card_price')
         console.log(data.data.priceObj[0])
