@@ -148,8 +148,8 @@ const handleleadData = async (e) => {
         </Box>
       </Modal>
 
-      <div class="relative w-full   mt-12 flex justify-center overflow-x-auto">
-        <table class="w-[75%]  text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-lg">
+      <div class="relative w-full pt-36 flex justify-center overflow-x-auto">
+        <table class="w-[75%] text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-lg">
           <thead style={radialGradient} class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 h-[7vh]">
             <tr className="text-white rounded-lg" >
               <th scope="col" class="px-6 font-sans font-thin  py-3  rounded-tl-lg border-lg">
@@ -211,9 +211,9 @@ const handleleadData = async (e) => {
                 <button onClick={()=>{handleOpen(item.formDataID)}} class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 px-4 rounded-full">
                 Add To Cart
                 </button>
-                <button onClick={()=>{handleleadData(item.formDataID)}} class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 px-4 rounded-full">
+                {/* <button onClick={()=>{handleleadData(item.formDataID)}} class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 px-4 rounded-full">
                   leads
-                </button>
+                </button> */}
                 </div>
                 </td>
 

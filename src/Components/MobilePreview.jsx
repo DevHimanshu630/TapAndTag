@@ -10,10 +10,10 @@ function MobilePreview({ data, profileimg, formData, link, images }) {
       alt=""
     />
   ));
-  return (
+  return (    
     <div style={{ 
       width: '100%', // Specify the desired width here
-      backgroundImage: `url('/image/iphone.png')`, 
+      backgroundImage: `url('/image/Iphone mockup.png')`, 
       backgroundPosition: 'center', 
       zIndex: 1, // Set the z-index here
       // Set the z-index here
@@ -24,7 +24,7 @@ function MobilePreview({ data, profileimg, formData, link, images }) {
           <div className="w-full h-full ">
             <div
               class=" w-full max-w-full border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700"
-              style={{ backgroundImage:` url('/image/bg.png') `}}
+              style={{ backgroundImage: `url('/image/bg.png')` }}
             >
               <div class="flex justify-end px-4 pt-4">
                 <button

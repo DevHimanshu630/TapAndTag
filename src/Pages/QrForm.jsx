@@ -1071,10 +1071,10 @@ function QrForm() {
                     </div>
                   </div>
                 )}
-                <div className="hidden md:block w-[400px]  rounded-2xl overflow-hidden">
-                  <div className=" overflow-hidden rounded-t-2xl  border">
-                    <div className="flex   w-[350px] items-center px-2 overflow-hidden justify-between">
-                      <div className="justify-around border-b   overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
+                <div className="hidden md:block w-[400px]   rounded-2xl overflow-hidden">
+                  <div className=" overflow-hidden rounded-t-xl ">
+                    <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
+                      <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg  ">
                         www.tapandtag.in/vcard/{pageurl}{" "}
                         </p>
@@ -1121,7 +1121,7 @@ function QrForm() {
                       </button>
                     </div>
                   </div>
-                  <div className="p-5">
+                  <div className="p-5  ">
                   {showPhone ? (
                     <MobilePreview data={data} link={false} profileimg={image} formData={formData}/>
                     // <img src={phone} class="object-contain" alt="Molog Logo" />

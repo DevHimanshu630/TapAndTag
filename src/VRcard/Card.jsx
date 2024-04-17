@@ -103,7 +103,7 @@ function Card({ profileImg }) {
 
 
     return (
-        <div className='border rounded-md w-52 h-48'>
+        <div className='border rounded-md w-52  h-48'>
             <div className="flex relative  h-full">
                 <input type='checkbox' className="flex border-none focus:outline-none relative z-10 top-2 left-2 appearance-none" />
                 <img src={profileImg?.contentURL} alt="no-profile" className="bg-cover rounded-t-md absolute z-0 w-full h-full" />
