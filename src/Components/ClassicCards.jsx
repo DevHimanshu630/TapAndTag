@@ -51,8 +51,7 @@ function ClassicCards() {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col    gap-4'>
-
+                <div className='flex flex-col gap-4'>
                     <div
                         style={radialGradient}
                         className='borde text-white flex gap-8 xl:pl-10  pl-5 p-3 items-center leading-none xl:p-8 xl:w-[422px] h-[141px] text-center rounded-xl xl:text-[24px]'>

@@ -132,7 +132,7 @@ function Dashboard() {
         </Box>
       </Modal>
 
-      <div class="relative w-full   mt-12 flex justify-center overflow-x-auto">
+      <div class="relative w-full pt-36 flex justify-center overflow-x-auto">
         <table class="w-[75%] text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-lg">
           <thead style={radialGradient} class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 h-[7vh]">
             <tr className="text-white rounded-lg" >

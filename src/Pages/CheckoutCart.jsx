@@ -131,7 +131,7 @@ function CheckoutCart() {
   return (
     <>
         <div
-          className="w-full h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
+          className="w-full h-full mt-32 overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
           id="checkout"
         >
           <ToastContainer/>
@@ -144,7 +144,7 @@ function CheckoutCart() {
                Cart :
               </p>
               {Object.keys(carts).map((key, index) => (
-                  <div key={key} className="md:flex items-center border-t border-gray-200">
+                  <div key={key} className="md:flex items-center  border-gray-200">
                   <input type="checkbox" onClick={() => handleOrder(carts[key]._id, carts[key].amount)}/>
                     <div className="flex">
                         <CardCart val={edit ? mordiCart.plasticCard : carts[key].cardQuantity.plasticCard}  
@@ -193,8 +193,8 @@ function CheckoutCart() {
                   </div>
               ))}
             </div>
-            <div className="flex-[0.3] bg-gray-100 h-100">
-              <div className="flex flex-col md:h-screen px-14 py-20 justify-between overflow-y-auto">
+            <div className="flex-[0.3] bg-gray-100  ">
+              <div className="flex flex-col  px-14 py-16 justify-between overflow-y-auto">
                 <div>
                   <p className="text-4xl font-black leading-9 text-gray-800">
                     Summary

@@ -31,36 +31,44 @@ function Orders() {
   const handleOrderDetails = (ids) =>{
     navigate(`${ids}`)
   }
+
+  const gradientTextStyle = {
+    background: 'linear-gradient(90deg, #022D24, #146C60)',
+    WebkitBackgroundClip: 'text',
+    color: 'transparent'
+  };
   return (
     <>
-    {orders.length ? (<div className='flex flex-col items-center gap-4 m-4 w-full'>
-      <h1 className='text-4xl mb-4'>Your Orders</h1>
+    {orders.length ? (<div className='flex flex-col  items-center gap-4 mt-36 w-full'>
+      <h1 style={gradientTextStyle} className='text-5xl mb-4 font-normal'>Your Orders</h1>
       {Object.keys(orders).map((key) => (
-      <div key={key} className='w-[80vw]'>
-      <Card sx={{ maxWidth: '100vw' }}>
-        <CardContent className='flex justify-around'>
+      <div key={key} className='w-[70vw]   '>
+      <Card   className='pt-8 flex flex-col  px-12 '>
+        <CardContent className='flex  items-center justify-between  gap-32 '>
           <div className='flex gap-4 items-center'>
           <div className='flex gap-2'>
           <img src="/metal.jpg" className='w-[10rem] rounded-xl' alt="" />
           </div> 
-          <div className='flex flex-col'> 
-          <h2>Ordered Item: </h2>
-          <p>Plastic - {orders[key].items[0].cardQuantity.plasticCard}</p>
-          <p>Wood - {orders[key].items[0].cardQuantity.woodCard}</p>
-          <p>Metal - {orders[key].items[0].cardQuantity.metalCard}</p>
+          <div className='flex font-sans text-[#4D4D4D] flex-col'> 
+          <h2 className=' font-semibold'>Ordered Item: </h2>
+          <p className=' text-xs'>Plastic - {orders[key].items[0].cardQuantity.plasticCard}</p>
+          <p className=' text-xs'>Wood - {orders[key].items[0].cardQuantity.woodCard}</p>
+          <p className=' text-xs'>Metal - {orders[key].items[0].cardQuantity.metalCard}</p>
           </div>
           </div>
-          <Typography gutterBottom variant="h5" component="div">
-          <CurrencyRupeeIcon/> {orders[key].amount}
-          </Typography>
+        
           <Typography variant="body2" color="text.secondary" className=''>
           Ordered On: {format(new Date(orders[key].createdAt), "MMMM dd, yyyy hh:mm a")} <br />
-          <div className='flex items-center gap-2'>
+          <div className='flex items-center mt-2 gap-2'>
           {orders[key].paymentStatus === 'pending' ? (
             <div class="h-4 w-4 rounded-full bg-red-500"></div>
-          ) : (
-            <div class="h-4 w-4 rounded-full bg-green-500"></div>
+          ) : (<div className='w-52 flex items-center'>
+            <Typography gutterBottom variant="h5" className='flex items-center' component="div">
+            <CurrencyRupeeIcon/> {orders[key].amount}
+            </Typography>
+          </div>
           )}
+          <div class="h-4 w-4 rounded-full bg-green-500"></div>
           {orders[key].paymentStatus}
           </div>
           </Typography>

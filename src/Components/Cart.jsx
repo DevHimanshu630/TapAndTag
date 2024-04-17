@@ -8,7 +8,7 @@ function Cart() {
         backgroundImage: `url(${cart})`,
         backgroundSize: 'cover', // Adjust the background size if needed
         with: '140px',
-        height: '76px', // Set a specific height
+        height: '76px', // Set a specific height        
     };
 
     const linearGradientStyle = {
