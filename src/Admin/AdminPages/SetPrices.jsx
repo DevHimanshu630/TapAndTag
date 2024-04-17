@@ -1,7 +1,6 @@
 import Cards from '../AdminComponent/Cards'
-import axios from '../Axios/Axios'
+import axios from '../../Axios/Axios'
 import React, { useEffect, useState } from 'react'
-import CardCart from '../Components/CardCart'
 import { toast, ToastContainer } from "react-toastify";
 
 

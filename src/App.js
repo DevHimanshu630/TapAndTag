@@ -23,39 +23,24 @@ import { useEffect } from 'react';
 import axios from './Axios/Axios';
 import { useUserContext } from './Context/User';
 import AdminLayout from './AdminLayout';
-import SetPrices from './AdminPages/SetPrices';
-import Users from './AdminPages/Users';
-import AllOrders from './AdminPages/AllOrders';
+import SetPrices from './Admin/AdminPages/SetPrices';
+import Users from './Admin/AdminPages/Users';
+import AllOrders from './Admin/AdminPages/AllOrders';
 import TermAndCondition from './Pages/TermAndCondition';
 import Policy from './Pages/Policy';
 import AboutUs from './Pages/AboutUs';
 import ContactUs from './Pages/ContactUs';
 import Refundpolicy from './Pages/Refundpolicy';
-
+import AdLogin from './Admin/Authentication/AdLogin';
 
 
 function App() {
   const {userInfo,setUserInfo} = useUserContext()
   const navigate = useNavigate()
-  // useEffect(()=>{
-  //   const data = async()=>{
-  //     const info = await axios.get('users/profile',{
-  //       withCredentials: true
-  //     })
-  //     setUserInfo(info)
-  //     console.log(info)
-  //   }
-  //   data()
-  // },[])
+ 
   setUserInfo(localStorage.getItem('tpt_token'))
   console.log('user Status',userInfo)
-  // const ProtectedRoute = ({ children }) => {
-  //   if (!userInfo) {
-  //     return navigate('/')
-  //   }
 
-  //   return children
-  // };
 
   return (
     <>
@@ -98,11 +83,6 @@ function App() {
               <Route path="/Sustainability" element={<Sustainability />} />
               <Route path="/vcard/:pageId" element={<VcardTemplate />} />
               <Route path='/accounts/password/forgot' element={<Verification />} />
-              <Route path='/admin' element={<AdminLayout/>}>
-                <Route path='price' element={<SetPrices/>}/>
-                <Route path='users' element={<Users/>}/>
-                <Route path='orders' element={<AllOrders/>}/>
-              </Route>
               </>
             )}
             <Route path='/termandcondition' element={<TermAndCondition/>}/>
@@ -110,7 +90,17 @@ function App() {
             <Route path='/shppingandrefundpolicy' element={<Refundpolicy/>}/>
             <Route path='/aboutus' element={<AboutUs/>}/>
             <Route path='/contactus' element={<ContactUs/>}/>
+            <Route path='/admindashboard' element={<AdLogin/>}/>
           </Routes>
+
+         <Routes>
+          
+         <Route path='/admin' element={<AdminLayout/>}>
+                <Route path='price' element={<SetPrices/>}/>
+                <Route path='users' element={<Users/>}/>
+                <Route path='orders' element={<AllOrders/>}/>
+            </Route>
+         </Routes>
           </CartContextProvider>
         </>
   );

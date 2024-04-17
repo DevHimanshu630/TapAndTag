@@ -1,4 +1,4 @@
-import axios from '../Axios/Axios'
+import axios from '../../Axios/Axios'
 import React, { useEffect, useState } from 'react'
 
 function Users() {

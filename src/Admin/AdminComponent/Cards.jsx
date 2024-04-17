@@ -3,7 +3,7 @@ import { Unstable_NumberInput as BaseNumberInput } from '@mui/base/Unstable_Numb
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import axios from '../Axios/Axios';
+import axios from '../../Axios/Axios'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 const NumberInput = React.forwardRef(function CustomNumberInput(props, ref) {

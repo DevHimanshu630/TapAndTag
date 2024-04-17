@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "../Axios/Axios";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 function VcardTemplate() {
   const { pageId } = useParams();
+  // const pageURL= `https://www.tapandtag.in/vcard/${pageId}`
+  // console.log(pageURL);
   console.log("username id", pageId);
-  // const PageURL = `https://tap-and-tag.vercel.app/vcardTemp/${pageId}`
-  // console.log("pageURL *************>>>>>" ,PageURL );
-
   const [userData, setUserData] = useState("");
 
   console.log("userdata ----------------->", userData);
@@ -62,10 +63,107 @@ END:VCARD`;
     setIsOpen(!isOpen);
   };
 
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData , setformData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    companyName:"",
+    address:"",
+    message:""
+  })
+
+  const handleChange = (e) => {
+    console.log(formData);
+    setformData({
+        ...formData,
+        [e.target.name]: e.target.value,
+    });
+}
+
+const handleLeadform = async (e) => {
+  e.preventDefault();
+  try {
+      const res = await axios.post(`lead/${pageId}`,
+          {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              companyName:formData.companyName,
+              address:formData.address,
+              message:formData.message
+          },
+          {
+              headers: {
+              },
+          }
+            );
+      console.log(res);
+      if (res.status == 200) {
+          toast.success("User created successfully!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+          });
+          // setTimeout(() => {
+          //     navigate("/")
+          // }, [1000])
+      }
+  }
+  catch (err) {
+      if (err.response && err.response.status === 403) {
+          toast.error("User already exists. Please choose a different email.", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+          });
+      }
+      if (err.response && err.response.status === 500) {
+          toast.error("Unexpected Error Occured", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+          });
+      }
+
+
+      else {
+          toast.error('Please try again after some time.', {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+          });
+      }
+  }
+
+}
+
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+
+
+
   return (
     <div>
       {userData ? (
         <div>
+          <ToastContainer/>
           <div className="w-full h-full ">
             <div
               class=" relative w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -78,21 +176,18 @@ END:VCARD`;
                     <MoreVertIcon className="text-white" />
                   </button>
                 </div>
-                  {isOpen && (
-                    <div className="dropdown-content absolute right-2 top-11 rounded-lg p-2 px-6 bg-white shadow-lg shadow-gray-100">
-                      <ul>
-                        <li
-                        className="cursor-pointer "
-                       onClick={generateVCF}
-                        >Save</li>
-                        <Link to={'/'}>
-                        <li
-                        className="cursor-pointer"
-                        >Get Your Card</li>
-                        </Link>
-                      </ul>
-                    </div>
-                  )}
+                {isOpen && (
+                  <div className="dropdown-content absolute right-2 top-11 rounded-lg p-2 px-6 bg-white shadow-lg shadow-gray-100">
+                    <ul>
+                      <li className="cursor-pointer " onClick={generateVCF}>
+                        Save
+                      </li>
+                      <Link to={"/"}>
+                        <li className="cursor-pointer">Get Your Card</li>
+                      </Link>
+                    </ul>
+                  </div>
+                )}
               </div>
 
               <div class="flex flex-col items-center pb-10 mt-[2rem]">
@@ -101,11 +196,7 @@ END:VCARD`;
                   className="xl:w-32 xl:h-32  w-24 h-24 rounded-full shadow-lg  object-cover"
                   alt=""
                 />
-                {/* <img
-                  class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                  src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                  alt="Bonnie image"
-                /> */}
+              
                 <h5 class="mb-1 text-xl font-medium font-sans text-[white] dark:text-white">
                   {userData.name}
                 </h5>
@@ -129,12 +220,33 @@ END:VCARD`;
                 <Link to={userData.twitterUrl}>
                   <img src="/image/Vector.png" alt="" />
                 </Link>
-                {/* <button
-                  onClick={generateVCF}
-                  className="bg-green-200 p-6 rounded"
-                >
-                  Save Data
-                </button> */}
+                  {/* form open code */}
+                  <div className="flex justify-center items-center">
+      <button onClick={toggleModal} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Connect with Us
+      </button>
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-lg w-96">
+            <span onClick={toggleModal} className="absolute top-0 right-0 cursor-pointer p-2">&times;</span>
+            <h2 className="text-xl font-bold mb-4">Connect with US</h2>
+            <form onSubmit={handleLeadform}>
+              {/* Your form inputs */}
+              <input onChange={handleChange} type="text" name="name"  placeholder="Name" className="block w-full border border-gray-300 rounded mb-2 px-4 py-2" />
+              <input onChange={handleChange} type="email" name="email" placeholder="Email" className="block w-full border border-gray-300 rounded mb-4 px-4 py-2" />
+              <input onChange={handleChange} type="text" name="phone" placeholder="phone" className="block w-full border border-gray-300 rounded mb-4 px-4 py-2" />
+              <input onChange={handleChange} type="text" name="companyName" placeholder="company name" className="block w-full border border-gray-300 rounded mb-4 px-4 py-2" />
+              <input onChange={handleChange} type="text" name="address" placeholder="Address" className="block w-full border border-gray-300 rounded mb-4 px-4 py-2" />
+              <textarea onChange={handleChange} type="text" name="message" placeholder="Message" className="block w-full border border-gray-300 rounded mb-4 px-4 py-2" />
+              {/* Add more form inputs as needed */}
+              <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+
+                {/* end form code */}
               </div>
 
               <div className="font-sans">
@@ -171,7 +283,9 @@ END:VCARD`;
                 </div>
 
                 <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5 font-sans">SMS</div>
+                  <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5 font-sans">
+                    SMS
+                  </div>
                   <div className="flex font-sans items-center gap-4 p-2 px-5">
                     <img src="/image/sms.png" alt="" />
                     <p>{userData.sms}</p>
@@ -208,7 +322,9 @@ END:VCARD`;
                   </div>
                 </div>
                 <div className="w-[90%]   mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                  <div className="w-full  bg-[#EEEEEE] p-2 px-5 font-sans">Images</div>
+                  <div className="w-full  bg-[#EEEEEE] p-2 px-5 font-sans">
+                    Images
+                  </div>
                   <div className="flex  flex-wrap items-center gap-4 p-2 px-5">
                     {userData.imageObj.map((image, index) => (
                       <img
