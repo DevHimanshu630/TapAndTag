@@ -1136,8 +1136,8 @@ function UpdateQrForm() {
                     </div>
                   </div>
                 )}
-                <div className=" w-[400px] h-[550px] shadow-md rounded-2xl   ">
-                  <div className="border  rounded-t-xl ">
+                <div className=" hidden md:block w-[400px]  rounded-2xl overflow-hidden ">
+                  <div className=" overflow-hidden rounded-t-2xl  border">
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden    pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg ">
