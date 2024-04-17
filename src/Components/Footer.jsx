@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from "../Images/logo.png"
 import { Link } from 'react-router-dom'
 
@@ -47,10 +47,10 @@ function Footer() {
                             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Legal</h2>
                             <ul class="text-gray-500 dark:text-gray-400 font-medium">
                                 <li class="mb-4">
-                                    <Link to={""} class="hover:underline">Privacy Policy</Link>
+                                    <Link to={"/privacyandpolicy"} class="hover:underline">Privacy Policy</Link>
                                 </li>
                                 <li>
-                                    <Link to={""} class="hover:underline">Terms &amp; Conditions</Link>
+                                    <Link to={"/termandcondition"} class="hover:underline">Terms &amp; Conditions</Link>
                                 </li>
                             </ul>
                         </div>

@@ -26,6 +26,12 @@ import AdminLayout from './AdminLayout';
 import SetPrices from './AdminPages/SetPrices';
 import Users from './AdminPages/Users';
 import AllOrders from './AdminPages/AllOrders';
+import TermAndCondition from './Pages/TermAndCondition';
+import Policy from './Pages/Policy';
+import AboutUs from './Pages/AboutUs';
+import ContactUs from './Pages/ContactUs';
+import Refundpolicy from './Pages/Refundpolicy';
+
 
 
 function App() {
@@ -99,6 +105,11 @@ function App() {
               </Route>
               </>
             )}
+            <Route path='/termandcondition' element={<TermAndCondition/>}/>
+            <Route path='/privacyandpolicy' element={<Policy/>}/>
+            <Route path='/shppingandrefundpolicy' element={<Refundpolicy/>}/>
+            <Route path='/aboutus' element={<AboutUs/>}/>
+            <Route path='/contactus' element={<ContactUs/>}/>
           </Routes>
           </CartContextProvider>
         </>

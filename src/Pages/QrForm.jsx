@@ -275,6 +275,7 @@ function QrForm() {
       ...formData,
       image: { files: updatedImages },
     });
+    
   };
 
   const textRef = useRef(null);
@@ -321,14 +322,19 @@ function QrForm() {
       image.src = `https://api.qrserver.com/v1/create-qr-code/?data=${data.pageUrl}&size=200x200`;
     }
   };
-  const multimg = Object?.keys(formData?.image?.files)?.map(key => (
-    <img
-      key={key}
-      src={URL?.createObjectURL(formData?.image?.files[key])} // Pass File object directly
-      className="w-[76px] rounded-full h-[76px]"
-      alt=""
-    />
-  ));
+  const [multimg, setMultimg] = useState(null)
+  useEffect(() => {
+    const showdata = Object?.keys(formData.image.files)?.map(key => (
+      <img
+        key={key}
+        src={URL?.createObjectURL(formData.image.files[key])} // Pass File object directly
+        className="w-[76px] rounded-full h-[76px]"
+        alt=""
+      />
+    ))
+    console.log('data',showdata)
+    setMultimg(showdata)
+  }, [formData,setFormData]);
   if(loader){
     return (
       <div className="loading">
@@ -980,12 +986,14 @@ function QrForm() {
                                 </p>
                                 <p
                                   className="hover:cursor-pointer"
-                                  onClick={() =>{
-                                    if (formData?.image?.length) {
-                                      setFormData({ ...formData, image: {} });
+                                  onClick={() => {
+                                    const keysArray = Object.keys(formData.image.files);
+                                    if (formData?.image && keysArray.length) {
+                                      console.log('thing thing ')
+                                      setFormData({ ...formData, image:{files: {}}});
                                     }
-                                  }
-                                  }
+                                  }}
+                                  
                                 >
                                   <span className="text-[#D3D3D3]">
                                     <MdDeleteOutline size={24} />
@@ -1016,7 +1024,9 @@ function QrForm() {
                             </label>
                           </div>
                         </div>
-                        <div className="flex gap-4 flex-wrap">{multimg}</div>
+                        <div className="flex gap-4 flex-wrap">
+                        {multimg}
+                          </div>
                       </div>
                     </div>
                     <div className="w-full flex items-end justify-end">
