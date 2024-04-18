@@ -90,6 +90,23 @@ function SignUp() {
                     draggable: true,
                 });
             }
+            if ( err.response.status === 405) {
+                toast.error("Session Expired!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                localStorage.removeItem("tpt_token");
+                setTimeout(() => {
+                    navigate("/login")
+                }, [1000])
+
+
+            }
+
 
 
             else {

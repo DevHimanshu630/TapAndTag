@@ -36,10 +36,10 @@ function Footer() {
                             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Follow us</h2>
                             <ul class="text-gray-500 dark:text-gray-400 font-medium">
                                 <li class="mb-4">
-                                    <Link to={""} class="hover:underline ">Github</Link>
+                                    <Link to={""} class="hover:underline ">Instagram</Link>
                                 </li>
                                 <li>
-                                    <Link to={""} class="hover:underline">Discord</Link>
+                                    <Link to={""} class="hover:underline">LinkedIn</Link>
                                 </li>
                             </ul>
                         </div>

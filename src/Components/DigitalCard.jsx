@@ -66,7 +66,7 @@ function DigitalCard() {
                         <div
                             style={styleborder}
                             onMouseLeave={handleLeave}
-                            className="border border-[#022D24] leading-none flex justify-center items-center text-[#146C60] p-8 w-[262px] h-[140px] rounded-xl text-center text-[12px] "
+                            className="border border-[#022D24]  leading-none flex justify-center items-center text-[#146C60] p-8 w-[262px] h-[140px] rounded-xl text-center text-[12px]  "
                         >
                             With a single tap, seamlessly share comprehensive information including phone number, email, company address, LinkedIn, website, and portfolio, eliminating the need for traditional paper business cards
                         </div>

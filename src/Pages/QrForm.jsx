@@ -195,6 +195,24 @@ function QrForm() {
           draggable: true,
         });
       }
+
+      if ( err.response.status === 405) {
+        toast.error("Session Expired!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        localStorage.removeItem("tpt_token");
+        setTimeout(() => {
+            navigate("/login")
+        }, [1000])
+
+
+    }
+    
     }
   };
 
@@ -432,9 +450,9 @@ function QrForm() {
           <form
             id="myform"
             onSubmit={handleSubmitUserData}
-            class="  overflow-y-scroll m-0 md:m-12 "
+            class=" overflow-y-scroll m-0 md:w-[100vw] lg:w-auto "
           >
-            <div className="flex flex-col    bg-white  md:w-[582px]  lg:w-[1200px] ">
+            <div className="flex flex-col    bg-white    lg:w-[1200px] ">
               <div className="w-full flex pl-14 pr-10 xl:pt-10 pt-7 pb-1 items-center text-center justify-center ">
                 <div>
                   <p className="text-[28px] font-normal">
@@ -447,7 +465,7 @@ function QrForm() {
               </div>
               <div className="flex justify-between h-full  px-5  md:m-12 overflow-y-scroll   ">
                 {showform ? (
-                  <div className=" md:w-[70%]">
+                  <div className=" md:w-[100%] lg:w-[70%]">
                     <div className="flex mb-5 flex-col gap-4  w-full">
                       <div className="flex gap-5  flex-col">
                         <p
@@ -566,7 +584,7 @@ function QrForm() {
                             for="emailicon"
                             class="block p-2 pl-6 text-left font-sans font-light  text-[16px] placeholder-[#606060]   "
                           >
-                            https://tapandtag.com/
+                            https://tapandtag.in/
                           </label>
                         </div>
                         <div className="border w-[56%]  rounded-r-full  ">
@@ -1071,7 +1089,7 @@ function QrForm() {
                     </div>
                   </div>
                 )}
-                <div className="hidden md:block w-[400px]   rounded-2xl overflow-hidden">
+                <div className="hidden  w-[400px] md:hidden lg:block  rounded-2xl overflow-hidden">
                   <div className=" overflow-hidden rounded-t-xl ">
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">

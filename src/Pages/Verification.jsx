@@ -21,7 +21,7 @@ function Verification() {
         e.preventDefault();
         try {
             console.log(forgotData);
-            const res = await axios.post('/users/forgot-password-init', {
+            const res = await axios.post('/', {
                 email: forgotData.email
             })
 

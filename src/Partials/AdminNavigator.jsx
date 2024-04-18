@@ -20,10 +20,30 @@ import Logout from '@mui/icons-material/Logout';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import { useUserContext } from '../Context/User';
+// import { jwtDecode } from "jwt-decode";
+
+
 
 function AdminNavigator() {
     const {userInfo,setUserInfo} = useUserContext()
   const navigate = useNavigate()
+
+
+//   useEffect(() => {
+//     const checkTokenExpiration = () => {
+//         const token = localStorage.getItem("tpt_token");
+//         if (token) {
+//             const decodedToken = jwtDecode(token);
+//             const currentDate = new Date();
+//             if ((decodedToken.exp * 1000)-1000 < currentDate.getTime()) {
+//                 handleSignOut();
+//             }
+//         }
+//     };
+
+//     checkTokenExpiration();
+// }, []);
+
   const handleSignOut = async() => {
     toast.error("Signed Out!", {
       position: "top-right",
@@ -39,6 +59,8 @@ function AdminNavigator() {
       navigate("/signUp");
     }, 1000)
   };
+
+
   
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);

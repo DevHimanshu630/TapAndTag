@@ -37,8 +37,26 @@ function Dashboard() {
         });
         console.log("getData of User **********-------->", response);
         setUserData(response.data.response);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
+      } catch (err) {
+
+        if ( err.response.status === 405) {
+          toast.error("Session Expired!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+          });
+          localStorage.removeItem("tpt_token");
+          setTimeout(() => {
+              navigate("/login")
+          }, [1000])
+
+
+        } 
+
+        console.error("Error fetching user data:", err);
       }
     };
 
@@ -92,6 +110,23 @@ function Dashboard() {
       }, [1000]);
       setFromdel(!formdel)
     } catch (err) {
+      
+      if ( err.response.status === 405) {
+        toast.error("Session Expired!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        localStorage.removeItem("tpt_token");
+        setTimeout(() => {
+            navigate("/login")
+        }, [1000])
+
+
+    }
       console.log(err);
     }
   };

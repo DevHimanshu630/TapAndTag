@@ -1,7 +1,5 @@
 import axios from "../Axios/Axios";
 
-
-
 export const handlePayment = (authData) => async () => {
   console.log("RazorPay", authData);
   try {

@@ -30,13 +30,7 @@ export default function ExampleV2() {
         email: formData.email,
         password: formData.password,
       },
-      //  {
-      //   withCredentials: true
-      //   }
       );
-      // const info = await axios.get('users/profile',{
-      //   withCredentials: true
-      // })
       setUserInfo(res.data.token)
       localStorage.setItem("tpt_token", res.data.token);
       console.log("hi there-------------------------", res);
@@ -82,6 +76,23 @@ export default function ExampleV2() {
           draggable: true,
         });
       }
+     
+      if ( err.response.status === 405) {
+        toast.error("Session Expired!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        localStorage.removeItem("tpt_token");
+        setTimeout(() => {
+            navigate("/login")
+        }, [1000])
+
+
+    }
       console.log(err);
     }
   };
@@ -97,10 +108,10 @@ export default function ExampleV2() {
     <>
      <ToastContainer />
 <Navbar/>
-    <div class="flex h-screen flex-col border justify-center px-6 items-center lg:px-8">
+    <div class="flex h-screen w-full  flex-col border justify-center px-6 items-center lg:px-8">
      
 
-     <div className=" rounded-3xl w-[25vw] p-8  pt-12 shadow border">
+     <div className="mt-[5rem] rounded-3xl w-[85vw] md:w-[50vw] lg:w-[35vw] 2xl:w-[27vw] p-8  pt-12 shadow border">
       <div class="">
         <Link to={'/'}><img class="md:w-[140px] w-[120px] mx-auto" src={logo} alt="Your Company" /></Link>
         <h2 style={gradientTextStyle} class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -134,7 +145,7 @@ export default function ExampleV2() {
           <div className="pb-10 ">
             <div class="flex items-center justify-between">
             
-              <div class="text-sm">
+              <div class="text-sm ml-2">
                 <Link
                   to={"/accounts/password/forgot"}
                   class="font-normal font-sans text-indigo-600 hover:text-indigo-500"

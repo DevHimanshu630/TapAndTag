@@ -1,5 +1,6 @@
 import React from 'react'
 import classicimg from "../Images/classicimg.png"
+import { Link } from 'react-router-dom';
 
 function Classic() {
 
@@ -15,7 +16,7 @@ function Classic() {
         zIndex: "0",
 
     };
-
+    const isUserLoggedIn = localStorage.getItem('tpt_token') != null ;
     return (
         <>
             <div style={sectionStyle} className='flex h-96  xl:h-[562px] items-center '>
@@ -38,7 +39,12 @@ function Classic() {
                 </div>
                 <div className='mt-4'>
                     <button className='btn-hover color-5 '>
-                        Get Your Card
+                        {isUserLoggedIn ? (
+
+                            <Link to={"/qrform"}>Get Your Card</Link>
+                        ) : (
+                            <Link to={"/login"}>Get Your Card</Link>
+                        )}
                     </button>
                 </div>
             </div >

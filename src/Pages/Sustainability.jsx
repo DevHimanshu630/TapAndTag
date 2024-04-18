@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from "../Components/Navbar"
 import classicimg from "../Images/background1.png"
 import Footer from '../Components/Footer';
+import { Link } from 'react-router-dom';
 
 function Sustainability() {
 
@@ -19,7 +20,7 @@ function Sustainability() {
         backgroundAttachment: ' fixed'
     };
 
-
+    const isUserLoggedIn = localStorage.getItem("tpt_token") != null ;
     return (
         <>
             <Navbar />
@@ -55,7 +56,12 @@ function Sustainability() {
                         </div>
                         <div className='mt-4'>
                             <button className='border border-[#022D24]  text-[#022D24] hover:bg-[#022D24] hover:text-white rounded-sm text-[20px]  px-8 py-2'>
-                                Get Your Card
+                              
+                                {isUserLoggedIn ? (
+                                    <Link to={"/qrform"}>Get Your Card</Link>
+                                    ) : (
+                                    <Link to={"/login"}>Get Your Card</Link>
+                                    )}
                             </button>
                         </div>
                     </div>

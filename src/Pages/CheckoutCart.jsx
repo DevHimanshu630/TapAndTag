@@ -65,14 +65,33 @@ function CheckoutCart() {
 
   useEffect(() => {
     const getting = async () => {
-      const res = await axios.get("users/cart", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        // withCredentials: true
-      });
-      setCarts(res.data.cart);
-      console.log(res);
+      try{
+        const res = await axios.get("users/cart", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          // withCredentials: true
+        });
+        setCarts(res.data.cart);
+        console.log(res);
+      } catch (err){
+        console.log(err);
+        if ( err.response.status === 405) {
+          toast.error("Session Expired!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+          });
+          localStorage.removeItem("tpt_token");
+          setTimeout(() => {
+              navigate("/login")
+          }, [1000])
+        }
+        
+      }
     };
     getting();
   }, [delCart, edit]);
@@ -105,27 +124,64 @@ function CheckoutCart() {
       );
       navigate(`payment/${res.data.orderId}`);
       console.log(res);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+
+      if ( err.response.status === 405) {
+        toast.error("Session Expired!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        localStorage.removeItem("tpt_token");
+        setTimeout(() => {
+            navigate("/login")
+        }, [1000])
+
+
+    }
+      console.log(err);
     }
   };
   const deleteCart = async (ids, amount) => {
-    const res = await axios.delete(`users/cart/delete/${ids}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      // withCredentials: true
-    });
-    toast.error("Cart Deleted!", {
-      position: "top-right",
-      autoClose: 3000,  
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-    setCartcount(res.data.cartLength)
-    setDelCart(!delCart);
+    try{
+
+      const res = await axios.delete(`users/cart/delete/${ids}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.error("Cart Deleted!", {
+        position: "top-right",
+        autoClose: 3000,  
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setCartcount(res.data.cartLength)
+      setDelCart(!delCart);
+    } catch(err){
+      console.log(err);
+      if ( err.response.status === 405) {
+        toast.error("Session Expired!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        localStorage.removeItem("tpt_token");
+        setTimeout(() => {
+            navigate("/login")
+        }, [1000])
+
+
+    }
+    }
   };
 
   return (

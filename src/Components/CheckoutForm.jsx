@@ -5,8 +5,10 @@ import { toast, ToastContainer } from "react-toastify";
 import CardCart from "./CardCart";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useCartContext } from "../Context/Cart";
+import { useNavigate } from "react-router-dom";
 
 function CheckoutForm({ handleClose, selectedform, setOpen }) {
+  const navigate = useNavigate();
   const { cartcount, setCartcount } = useCartContext();
   const [cart, setCart] = useState({
     plasticCard: 0,
@@ -41,8 +43,25 @@ function CheckoutForm({ handleClose, selectedform, setOpen }) {
         setCartcount(res.data.cartLength);
       }
       console.log(res);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+
+      if ( err.response.status === 405) {
+        toast.error("Session Expired!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        localStorage.removeItem("tpt_token");
+        setTimeout(() => {
+            navigate("/login")
+        }, [1000])
+
+
+    }
+      console.log(err);
     }
   };
 

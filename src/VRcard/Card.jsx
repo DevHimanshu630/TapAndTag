@@ -13,13 +13,13 @@ import { MdContentCopy } from "react-icons/md";
 import Checkbox from "@mui/material/Checkbox";
 import { logDOM } from '@testing-library/react';
 import axios from '../Axios/Axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 
-
 function Card({ profileImg }) {
+    const navigate = useNavigate();
     console.log(profileImg?._id);
 
     const { formId } = useParams();
@@ -53,7 +53,26 @@ function Card({ profileImg }) {
               }
             console.log(res);
         } catch (err) {
+
+            if ( err.response.status === 405) {
+                toast.error("Session Expired!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                localStorage.removeItem("tpt_token");
+                setTimeout(() => {
+                    navigate("/login")
+                }, [1000])
+
+
+            }
+
             console.error(err);
+
         }
     };
     const [formProfileData, setProfileFormData] = useState({
@@ -95,6 +114,23 @@ function Card({ profileImg }) {
               }
             console.log(res);
         } catch (err) {
+
+            if ( err.response.status === 405) {
+                toast.error("Session Expired!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                localStorage.removeItem("tpt_token");
+                setTimeout(() => {
+                    navigate("/login")
+                }, [1000])
+
+
+            }
             console.error(err);
         }
     };

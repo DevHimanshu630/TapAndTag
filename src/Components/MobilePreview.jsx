@@ -170,7 +170,7 @@ function MobilePreview({ data, profileimg, formData, link, images }) {
 
                 <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
                   <div className="w-full h-1/2 bg-[#EEEEEE] p-2 px-5">
-                    Desgination
+                    Designation
                   </div>
                   <div className="flex items-center gap-4 p-2 px-5">
                     <p>{data.designation}</p>

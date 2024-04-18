@@ -1,7 +1,7 @@
 import axios from "../Axios/Axios";
 import React, { useEffect, useState } from "react";
 import { handlePayment } from "../Components/RazorPay";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { Button } from "@mui/material";
 import { WidthFull } from "@mui/icons-material";
@@ -44,6 +44,7 @@ const indianStates = [
 ];
 
 function Payment() {
+  const navigate = useNavigate();
   const token = localStorage.getItem("tpt_token");
   const [addressSaved, setAddressSaved] = useState(false);
   const { id } = useParams();
@@ -111,8 +112,24 @@ function Payment() {
       console.log(res);
       setShowAddressSection(false)
       setAddressSaved(true);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err)
+      if ( err.response.status === 405) {
+        toast.error("Session Expired!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        localStorage.removeItem("tpt_token");
+        setTimeout(() => {
+            navigate("/login")
+        }, [1000])
+
+
+    }
     }
   };
   const [location, setLocation] = useState(null);

@@ -14,11 +14,12 @@ import Checkbox from "@mui/material/Checkbox";
 import { logDOM } from '@testing-library/react';
 import axios from '../Axios/Axios';
 import { toast, ToastContainer } from "react-toastify";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 
 function ImageCard({ images }) {
+    const navigate = useNavigate();
     console.log(images);
 
     console.log();
@@ -56,6 +57,23 @@ function ImageCard({ images }) {
             }
         console.log(res);
         } catch (err) {
+
+            if ( err.response.status === 405) {
+                toast.error("Session Expired!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                localStorage.removeItem("tpt_token");
+                setTimeout(() => {
+                    navigate("/login")
+                }, [1000])
+
+
+            }
             console.error(err);
         }
     };
@@ -126,6 +144,23 @@ function ImageCard({ images }) {
               }
             console.log(res);
         } catch (err) {
+            
+            if ( err.response.status === 405) {
+                toast.error("Session Expired!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                localStorage.removeItem("tpt_token");
+                setTimeout(() => {
+                    navigate("/login")
+                }, [1000])
+
+
+            }
             console.error(err);
         }
     };
