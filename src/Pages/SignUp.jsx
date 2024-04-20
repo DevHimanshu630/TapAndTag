@@ -90,7 +90,7 @@ function SignUp() {
                     draggable: true,
                 });
             }
-            if ( err.response.status === 405) {
+            if ( err?.response?.status === 405) {
                 toast.error("Session Expired!", {
                     position: "top-right",
                     autoClose: 3000,
@@ -166,8 +166,8 @@ function SignUp() {
                     >
                       Create
                     </button>
-                                <p class="text-sm pt-8 text-center font-light text-[#606060] ">
-                                    Already have an account? <Link to="/login" class="font-medium text-[#606060] underline ">Login here </Link>
+                                <p class="text-xs pt-8 font-sans text-center  text-[#606060] ">
+                                    Already have an account? <Link to="/login" class=" text-[#606060] underline ">Login here </Link>
                                 </p>
                             </form>
                         </div>

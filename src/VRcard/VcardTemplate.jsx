@@ -157,7 +157,11 @@ const handleLeadform = async (e) => {
   };
 
 
-
+  const gradientTextStyle = {
+    background: 'linear-gradient(180deg, #1E1E1E -61.11%, #079376 177.78%)',
+    WebkitBackgroundClip: 'text',
+    color: 'transparent'
+};
 
   return (
     <div>
@@ -166,8 +170,8 @@ const handleLeadform = async (e) => {
           <ToastContainer/>
           <div className="w-full h-full ">
             <div
-              class=" relative w-full max-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-              style={{ backgroundImage: `url('/image/bg.png')` }}
+              class=" relative w-full max-w-full border  rounded-t-2xl"
+              style={{ backgroundImage: 'url("/image/phone look bg.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
               {/* dropdown code */}
               <div className="">
@@ -190,26 +194,39 @@ const handleLeadform = async (e) => {
                 )}
               </div>
 
-              <div class="flex flex-col items-center pb-10 mt-[2rem]">
+              <div class="flex flex-col gap-4 w-full items-center justify-between pb-3 mt-[3rem]">
+                <div className='flex w-full justify-center gap-10 pr-12 items-center '>
                 <img
                   src={userData.profilePhotoObj.contentURL}
                   className="xl:w-32 xl:h-32  w-24 h-24 rounded-full shadow-lg  object-cover"
                   alt=""
-                />
-              
-                <h5 class="mb-1 text-xl font-medium font-sans text-[white] dark:text-white">
+                />      
+                <div >
+                <h5 class="mb-1 text-xl capitalize font-medium font-sans text-[white] dark:text-white">
                   {userData.name}
                 </h5>
-                <span class="text-sm text-[white] dark:text-gray-400 font-sans">
+                <span class="text-sm text-[white] capitalize dark:text-gray-400 font-sans">
                   {userData.designation}
                 </span>
-                <h1 class="mb-1 text-2xl mt-4 font-sans font-medium text-[white] dark:text-white">
-                  {userData.company}
+                  </div>  
+                </div>
+                  <div>
+                    </div>     
+                <h1 class=" text-2xl capitalize  font-sans font-medium text-[white] dark:text-white">
+                  {userData.companyName}
                 </h1>
               </div>
             </div>
-
-            <div className="flex  justify-around mt-9">
+            <div className="w-full flex gap-16 py-4 md:px-24 md:justify-between justify-center">
+                <button onClick={toggleModal} style={gradientTextStyle} className='border px-3 font-semibold text-[14px] rounded-full border-[#146C60] '>
+                        Connect with Us
+                </button>
+                <button className='border rounded-full save text-white px-6 py-1 text-[14px]' onClick={generateVCF}>
+                      Save
+                 </button>
+               
+            </div>
+            <div className="flex mt-2 justify-center gap-20 md:px-24 md:justify-between ">
               <div className="flex gap-3 mr-[5.5rem]">
                 <a href={userData.instagramUrl} target="_blank">
                   <img src="/image/insta.png" alt="" />
@@ -222,9 +239,7 @@ const handleLeadform = async (e) => {
                 </Link>
                   {/* form open code */}
                   <div className="flex justify-center items-center">
-      <button onClick={toggleModal} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Connect with Us
-      </button>
+    
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
           <div className="bg-white p-8 rounded shadow-lg w-96">
@@ -260,7 +275,7 @@ const handleLeadform = async (e) => {
               </div>
             </div>
 
-            <div className="flex w-full h-[90vh]  mb-[5rem] mt-[2rem]     justify-start items-start flex-col">
+            <div className="flex w-full h-[90vh]  mb-[5rem]      justify-start items-start flex-col">
               <div className="flex flex-col w-full h-full items-center justify-start">
                 <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
                   <div className="w-full font-sans h-1/2 bg-[#EEEEEE] p-2 px-5">

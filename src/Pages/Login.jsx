@@ -177,11 +177,11 @@ export default function ExampleV2() {
           </div>
         </form>
 
-        <p class="mt-10  text-center font-normal font-sans text-xs text-[#606060]">
-          Not a member?
+        <p class="mt-10  text-center  font-sans text-xs text-[#606060]">
+          Not a member?&nbsp;
           <Link
             to="/signup"
-            class="font-normal  font-sans leading-6 text-[#606060]"
+            class=" underline font-sans leading-6 text-[#606060]"
           >
             SignUp
           </Link>

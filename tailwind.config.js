@@ -6,7 +6,11 @@ module.exports = {
     "./node_modules/tw-elements-react/dist/js/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      transitionDuration: {
+        '2000': '2000ms',
+      }
+    },
   },
   plugins: [require("tw-elements-react/dist/plugin.cjs")],
 }

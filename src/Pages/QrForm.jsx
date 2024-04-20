@@ -147,7 +147,7 @@ function QrForm() {
       // setQR(null)
       
     } catch (err) {
-      console.log(err?.response?.status);
+      // console.log(err?.response?.status);
       if (err?.response && err?.response?.status == 501) {
         toast.error("Error in Uploading Form", {
           position: "top-right",
@@ -172,7 +172,7 @@ function QrForm() {
           navigate("/signUp");
         }, 3000);
       }
-      if (err?.response && err?.response.status == 403) {
+      if (err?.response && err?.response?.status == 403) {
         toast.error("Error in saving form data!", {
           position: "top-right",
           autoClose: 3000,
@@ -196,7 +196,7 @@ function QrForm() {
         });
       }
 
-      if ( err.response.status === 405) {
+      if ( err?.response?.status === 405) {
         toast.error("Session Expired!", {
             position: "top-right",
             autoClose: 3000,

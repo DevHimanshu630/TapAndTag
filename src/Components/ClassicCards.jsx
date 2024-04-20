@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import classicmobile from "../Images/classicmobile.svg"
-import classichip from "../Images/classicchip.svg"
-import classiandoride from "../Images/andoride.svg"
-import carbon_sustainability from "../Images/carbon_sustainability.svg"
+// import classicmobile from "../Images/classicmobile.svg"
+// import classichip from "../Images/classicchip.svg"
+// import classiandoride from "../Images/andoride.svg"
+// import carbon_sustainability from "../Images/carbon_sustainability.svg"
 import { SiIos } from "react-icons/si";
 
 
@@ -26,7 +26,7 @@ function ClassicCards() {
                     <div
                         style={radialGradient}
                         className='borde text-white flex gap-8 xl:pl-10 pl-5 p-3 items-center leading-none xl:p-8 xl:w-[422px] h-[141px] text-center rounded-xl text-[24px]'>
-                        <img src={classicmobile} alt="" />
+                        <img src={"classicmobile"} alt="" />
                         <div className='flex flex-col  gap-2 justify-start items-start'>
                             <span className='xl:text-[28px] text-lg'>Unlimited Taps</span>
                             <div className='flex flex-col items-start'>
@@ -39,7 +39,7 @@ function ClassicCards() {
                         style={radialGradient}
                         className='borde text-white flex gap-4 xl:pl-10 pl-5 p-3 items-center leading-none xl:p-8 xl:w-[422px] h-[141px] text-center rounded-xl xl:text-[24px]'>
                         <div className='flex items-center  divide-gray-50 justify-center gap-1.5 '>
-                            <img src={classiandoride} alt="" />
+                            <img src={"classiandoride"} alt="" />
                             <div className='border-r border h-4 '></div>
                             <SiIos size={32} className='pl-1' />
                         </div>
@@ -55,7 +55,7 @@ function ClassicCards() {
                     <div
                         style={radialGradient}
                         className='borde text-white flex gap-8 xl:pl-10  pl-5 p-3 items-center leading-none xl:p-8 xl:w-[422px] h-[141px] text-center rounded-xl xl:text-[24px]'>
-                        <img src={classichip} alt="" />
+                        <img src={"classichip"} alt="" />
                         <div className='flex flex-col  gap-2 justify-start items-start'>
                             <span className='xl:text-[28px] text-lg'>NFC Chips</span>
                             <div className='flex flex-col items-start'>
@@ -67,7 +67,7 @@ function ClassicCards() {
                     <div
                         style={radialGradient}
                         className='borde text-white flex gap-8 xl:pl-10 pl-5 p-3  items-center leading-none xl:p-8 xl:w-[422px] h-[141px] text-center rounded-xl xl:text-[24px]'>
-                        <img src={carbon_sustainability} alt="" />
+                        <img src={"carbon_sustainability"} alt="" />
                         <div className='flex flex-col  gap-2 justify-start items-start'>
                             <span className='xl:text-[28px] text-lg'>Sustainibility</span>
                             <div className='flex flex-col items-start'>

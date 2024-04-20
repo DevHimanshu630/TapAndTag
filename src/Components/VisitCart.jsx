@@ -1,7 +1,7 @@
 import React from 'react'
-import people from '../Images/Vector.svg'
-import scan from '../Images/Vector1.svg'
-import carts from '../Images/Vector3.svg'
+// import people from '../Images/Vector.svg'
+// import scan from '../Images/Vector1.svg'
+// import carts from '../Images/Vector3.svg'
 import hand from '../Images/Trees saved icon.png'
 
 function VisitCart() {
@@ -19,14 +19,14 @@ function VisitCart() {
                 <div className='flex  items-center gap-10 xl:gap-20   justify-evenly  '>
                     <div className='flex  flex-col gap-5 xl:gap-10'>
                         <div className='  flex gap-3'>
-                            <img src={people} alt="" />
+                            <img src={"people"} alt="" />
                             <div className=' leading-5 flex flex-col xl:gap-3'>
                                 <p className='xl:text-[28px] font-[inter] font-bold text-[#4D4D4D]'>241</p>
                                 <p className='xl:text-[16px] text-[#717171]'>Cards generated</p>
                             </div>
                         </div>
                         <div className=' flex gap-3'>
-                            <img src={carts} alt="" />
+                            <img src={"carts"} alt="" />
                             <div className=' leading-5 flex flex-col xl:gap-3'>
                                 <p className='xl:text-[28px] font-[inter] font-bold text-[#4D4D4D]'>3</p>
                                 <p className='xl:text-[16px] text-[#717171]'>Types of Cards</p>
@@ -35,7 +35,7 @@ function VisitCart() {
                     </div>
                     <div className='flex flex-col gap-5 xl:gap-10'>
                         <div className=' flex gap-3'>
-                            <img src={scan} alt="" />
+                            <img src={"scan"} alt="" />
                             <div className=' leading-5 flex flex-col xl:gap-3'>
                                 <p className='xl:text-[28px] font-[inter] font-bold text-[#4D4D4D]'>46.3k</p>
                                 <p className='xl:text-[16px] text-[#717171]'>Scans</p>

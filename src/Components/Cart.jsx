@@ -1,11 +1,11 @@
 import React from 'react'
-import cart from "../Images/Cart.svg"
+// import cart from "../Images/Cart.svg"
 
 function Cart() {
 
 
     const sectionStyle = {
-        backgroundImage: `url(${cart})`,
+        backgroundImage: `url(${"cart"})`,
         backgroundSize: 'cover', // Adjust the background size if needed
         with: '140px',
         height: '76px', // Set a specific height        
