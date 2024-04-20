@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MdKeyboardArrowRight } from "react-icons/md";
-// import faq from "../Images/faq.svg"
+import faq from "../Images/faq.svg"
 
 
 function Faq() {
@@ -23,7 +23,7 @@ function Faq() {
                 <div className="flex flex-col  leading-tight text-left py-3 md:py-0 ">
                     <p style={linearGradientStyle} className='text-[48px]'>Frequently</p>
                     <p style={linearGradientStyle} className='text-[48px]'> Asked Questions</p>
-                    <img src={"faq"} alt="" className='h-[123px] ml-12 mt-10 w-[123px]' />
+                    <img src={faq} alt="" className='h-[123px] ml-12 mt-10 w-[123px]' />
                 </div>
                 <ul className="xl:basis-1/2 p-4 xl:p-0">
                     <li>
