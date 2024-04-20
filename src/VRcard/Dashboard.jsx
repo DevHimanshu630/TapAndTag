@@ -144,23 +144,7 @@ function Dashboard() {
 };
 
 
-const handleleadData = async (e) => {
-  console.log("formid ------>>>>>>>>",e);
-  try {
-      const res = await axios.get(`users/leads/${e}`,{
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-            );
-      console.log(res);
-     
-  }
-  catch (err) {
-    console.log(err);
-  }
 
-}
   return (
     <>
     <div>
@@ -199,7 +183,7 @@ const handleleadData = async (e) => {
               <th scope="col" class="px-6 font-sans font-thin py-3">
                 QR Code
               </th>
-              <th scope="col" class="px-6 font-sans font-thin py-3  ">
+              <th scope="col" class="pl-10 font-sans font-thin py-3  ">
                 Select Form
               </th>
               <th scope="col" class="px-6 font-sans font-thin py-3 rounded-tr-lg">
@@ -241,14 +225,16 @@ const handleleadData = async (e) => {
                     alt="QR Code"
                   />
                 </td>
-                <td class=" px-6 py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <div className="flex flex-col gap-4">
-                <button onClick={()=>{handleOpen(item.formDataID)}} class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 px-4 rounded-full">
+                <td class=" px-6  py-3 font-sans font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <div className="flex flex-col  gap-4">
+                <button onClick={()=>{handleOpen(item.formDataID)}} class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 w-28  rounded-full">
                 Add To Cart
                 </button>
-                {/* <button onClick={()=>{handleleadData(item.formDataID)}} class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 px-4 rounded-full">
-                  leads
-                </button> */}
+                <Link to={`/lead/${item.formDataID}`}>
+                  <button   class="border border-[#146C60] text-[#146C60] hover:bg-[#146C60] hover:text-[white]  font-bold py-2 px-4  rounded-full">
+                    Connections
+                  </button>
+                </Link>
                 </div>
                 </td>
 

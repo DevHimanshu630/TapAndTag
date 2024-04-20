@@ -33,6 +33,8 @@ import ContactUs from './Pages/ContactUs';
 import Refundpolicy from './Pages/Refundpolicy';
 import AdLogin from './Admin/Authentication/AdLogin';
 import ShippingPolicy from './Pages/ShippingPolicy ';
+import Carousel from './Components/Carousel';
+import Leads from './Pages/Leads';
 
 
 function App() {
@@ -57,6 +59,7 @@ function App() {
               <Layout/>
               }>
               <Route path="/dashboard" element={< Dashboard />} />
+              <Route path="/lead/:formId" element={< Leads />} />
               <Route path='/cart' element={<CheckoutCart/>}/>
               <Route path='/cart/payment/:id' element={<Payment/>}/>
               <Route path='/order' element={<Orders/>}/>
@@ -93,8 +96,8 @@ function App() {
             <Route path='/aboutus' element={<AboutUs/>}/>
             <Route path='/contactus' element={<ContactUs/>}/>
             <Route path='/admindashboard' element={<AdLogin/>}/>
+          <Route path='/priceasd' element={<Carousel/>}/>
           </Routes>
-
          <Routes>
           
          <Route path='/admin' element={<AdminLayout/>}>

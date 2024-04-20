@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import MologLogo from "../Images/molog logo 1.svg"
+import MologLogo from "../Images/molog logo 1.svg"
 import phone from "../Images/phone.png";
 import back from "../Images/Group2.png";
 import { Link } from "react-router-dom";
@@ -86,7 +86,7 @@ const isUserLoggedIn = localStorage.getItem('tpt_token') != null ;
 
             <div className="flex  w-full   items-end justify-end ">
               <img
-                src={"MologLogo"}
+                src={MologLogo}
                 class=" xl:h-[91px] h-14 xl:mt-10 mt-4 "
                 alt="Molog Logo"
               />

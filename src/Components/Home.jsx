@@ -6,7 +6,7 @@ import Cart from '../Components/Cart';
 import ScanCart from './ScanCart';
 import VisitCart from './VisitCart';
 import cart from "../Images/Frame.png"
-// import scan from "../Images/scan 1.svg"
+import scan from "../Images/scan 1.svg"
 import DeginationCard from './DeginationCard';
 import DigitalCard from './DigitalCard';
 import Navbar from './Navbar';
@@ -25,7 +25,7 @@ const Home = () => {
     };
 
     const mymenusec = {
-        imageUrl: "scan",
+        imageUrl: scan,
         heading: "Unlock the untapped potential",
         paragraph: "an eco-friendly innovation poised to revolutionize networking and information exchange."
     };
