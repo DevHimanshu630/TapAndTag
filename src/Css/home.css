@@ -99,6 +99,15 @@
     #146c60
   );
 }
+.save {
+  background-image: linear-gradient(
+    to right,
+    #022d24,
+    #146c60,
+    #146c60,
+    #146c60
+  );
+}
 .btncheckout-hover:hover {
   background-position: 100% 0;
   moz-transition: all 0.4s ease-in-out;

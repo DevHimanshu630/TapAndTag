@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import logo from "../Images/logo.png"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Footer() {
+
+
+
     return (
 
 
@@ -46,11 +49,17 @@ function Footer() {
                         <div>
                             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Legal</h2>
                             <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                                <li class="mb-4">
-                                    <Link to={"/privacyandpolicy"} class="hover:underline">Privacy Policy</Link>
+                                <li class="">
+                                    <Link to="/privacypolicy"  class="hover:underline">Privacy Policy</Link>
                                 </li>
                                 <li>
-                                    <Link to={"/termandcondition"} class="hover:underline">Terms &amp; Conditions</Link>
+                                    <Link to="/termandcondition" class="hover:underline">Terms &amp; Conditions</Link>
+                                </li>
+                                <li class="">
+                                    <Link to="/shippingpolicy" class="hover:underline">Shipping Policy</Link>
+                                </li>
+                                <li>
+                                    <Link to="/refundpolicy" class="hover:underline">Refund Policy</Link>
                                 </li>
                             </ul>
                         </div>

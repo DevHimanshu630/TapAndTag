@@ -45,7 +45,7 @@ function CheckoutForm({ handleClose, selectedform, setOpen }) {
       console.log(res);
     } catch (err) {
 
-      if ( err.response.status === 405) {
+      if ( err?.response?.status === 405) {
         toast.error("Session Expired!", {
             position: "top-right",
             autoClose: 3000,

@@ -39,7 +39,7 @@ function Dashboard() {
         setUserData(response.data.response);
       } catch (err) {
 
-        if ( err.response.status === 405) {
+        if ( err?.response?.status === 405) {
           toast.error("Session Expired!", {
               position: "top-right",
               autoClose: 3000,
@@ -111,7 +111,7 @@ function Dashboard() {
       setFromdel(!formdel)
     } catch (err) {
       
-      if ( err.response.status === 405) {
+      if ( err?.response?.status === 405) {
         toast.error("Session Expired!", {
             position: "top-right",
             autoClose: 3000,

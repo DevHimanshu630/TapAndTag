@@ -32,6 +32,7 @@ import AboutUs from './Pages/AboutUs';
 import ContactUs from './Pages/ContactUs';
 import Refundpolicy from './Pages/Refundpolicy';
 import AdLogin from './Admin/Authentication/AdLogin';
+import ShippingPolicy from './Pages/ShippingPolicy ';
 
 
 function App() {
@@ -86,8 +87,9 @@ function App() {
               </>
             )}
             <Route path='/termandcondition' element={<TermAndCondition/>}/>
-            <Route path='/privacyandpolicy' element={<Policy/>}/>
-            <Route path='/shppingandrefundpolicy' element={<Refundpolicy/>}/>
+            <Route path='/privacypolicy' element={<Policy/>}/>
+            <Route path='/refundpolicy' element={<Refundpolicy/>}/>
+            <Route path='/shippingpolicy' element={<ShippingPolicy/>}/>
             <Route path='/aboutus' element={<AboutUs/>}/>
             <Route path='/contactus' element={<ContactUs/>}/>
             <Route path='/admindashboard' element={<AdLogin/>}/>

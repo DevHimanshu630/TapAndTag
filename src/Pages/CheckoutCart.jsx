@@ -76,7 +76,7 @@ function CheckoutCart() {
         console.log(res);
       } catch (err){
         console.log(err);
-        if ( err.response.status === 405) {
+        if ( err?.response?.status === 405) {
           toast.error("Session Expired!", {
               position: "top-right",
               autoClose: 3000,
@@ -126,7 +126,7 @@ function CheckoutCart() {
       console.log(res);
     } catch (err) {
 
-      if ( err.response.status === 405) {
+      if ( err?.response?.status === 405) {
         toast.error("Session Expired!", {
             position: "top-right",
             autoClose: 3000,
@@ -165,7 +165,7 @@ function CheckoutCart() {
       setDelCart(!delCart);
     } catch(err){
       console.log(err);
-      if ( err.response.status === 405) {
+      if ( err?.response?.status === 405) {
         toast.error("Session Expired!", {
             position: "top-right",
             autoClose: 3000,

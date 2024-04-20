@@ -84,7 +84,7 @@ function Forgot() {
                 });
             }
 
-            if ( err.response.status === 405) {
+            if ( err?.response?.status === 405) {
                 toast.error("Session Expired!", {
                     position: "top-right",
                     autoClose: 3000,

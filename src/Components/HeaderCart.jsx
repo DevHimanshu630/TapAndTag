@@ -21,7 +21,7 @@ function HeaderCart() {
             setCartcount(res.data.cart.length);
         } catch (err) {
             console.error('Error fetching cart count:', err);
-            if (err.response.status === 405) {
+            if (err?.response?.status === 405) {
               toast.error("Session Expired!", {
                   position: "top-right",
                   autoClose: 3000,
