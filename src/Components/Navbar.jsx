@@ -36,7 +36,7 @@ function Navbar() {
 
   const [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
   const [top, setTop] = useState(0);
-
+  const isUserLoggedIn = localStorage.getItem('tpt_token') != null ;
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
 
@@ -123,7 +123,9 @@ function Navbar() {
               // If logged in, show Dashboard button
               <div className="flex gap-5 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                  
                   <Link to={"/qrform"}>
+                    
                     <Button
                       type="button"
                       class="btn-hover hidden lg:block color-5"
@@ -164,7 +166,12 @@ function Navbar() {
                       type="button"
                       class="btn-hover hidden lg:block color-5"
                     >
-                      Order Now
+                       {isUserLoggedIn ? (
+
+                        <Link to={"/qrform"}>Order Now</Link>
+                        ) : (
+                        <Link to={"/login"}>Order Now</Link>
+                        )}
                     </Button>
                   </Link>
                 </div>

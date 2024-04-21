@@ -53,21 +53,21 @@ function QrNavigation() {
           <div class="flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl p-4 font-sans">
             <Link
               to="/"
-              class="flex items-center space-x-3 rtl:space-x-reverse"
+              className="flex items-center space-x-3 rtl:space-x-reverse"
             >
               <img src={logo} class="h-16" alt="Flowbite Logo" />
             </Link>
 
             <div
               id="mega-menu-full"
-              class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
+              className="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
             >
-              <ul class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+              <ul className="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
                 
                 <li>
                 <Link
                   to={"/"}
-                  class="block py-2 px-3 text-gray-900 rounded "
+                  className="block py-2 px-3 text-gray-900 rounded "
                   aria-current="page"
                 >
                   Home
@@ -76,7 +76,7 @@ function QrNavigation() {
               <li>
                 <Link
                   to={"/product"}
-                  class="block py-2 px-3 text-gray-900 rounded "
+                  className="block py-2 px-3 text-gray-900 rounded "
                   aria-current="page"
                 >
                   Product
@@ -85,7 +85,7 @@ function QrNavigation() {
               <li>
                 <Link
                   to={"/Sustainability"}
-                  class="block py-2 px-3 text-gray-900 rounded "
+                  className="block py-2 px-3 text-gray-900 rounded "
                   aria-current="page"
                 >
                   Sustainability
@@ -95,7 +95,7 @@ function QrNavigation() {
               {userInfo !== null ? (<li>
                   <Link
                     to="/dashboard"
-                    class="block py-2 px-3 text-gray-900 rounded  "
+                    className="block py-2 px-3 text-gray-900 rounded btn-hover color-5 "
                     aria-current="page"
                   >
                     Dashboard
