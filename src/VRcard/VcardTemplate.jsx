@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
+
 import img from "../Images/Tap & Tag white logo 2.png";
 
 function VcardTemplate() {
@@ -149,7 +151,7 @@ END:VCARD`;
     WebkitBackgroundClip: "text",
     color: "transparent",
   };
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
 
   const handleanimation = () => {
     setIsHidden(!isHidden);
@@ -201,12 +203,12 @@ END:VCARD`;
         </div>
 
         <div>
-          <div className="w-full relative  bottom-[20px]  flex justify-center">
+          <div className="w-full relative  bottom-[18px]  flex justify-center">
             <span
               onClick={handleanimation}
               className="text-white cursor-pointer"
             >
-              <IoIosArrowDown className="text-[#079376]" />
+              <IoIosArrowUp className="text-[#079376]" size={34}/>
             </span>
           </div>
         </div>
@@ -272,7 +274,16 @@ END:VCARD`;
                   {userData.companyName}
                 </h1>
               </div>
+              <div className="w-full pb-1 flex justify-center">
+              <span
+                onClick={handleanimation}
+                className="text-white cursor-pointer"
+              >
+                <IoIosArrowDown className="text-[#079376]" size={34}/>
+              </span>
             </div>
+            </div>
+            
             <div className="w-full flex gap-8 py-4 md:px-24 md:justify-between justify-center">
               <button
                 onClick={toggleModal}
@@ -288,14 +299,7 @@ END:VCARD`;
                 Save
               </button>
             </div>
-            <div className="w-full pb-3 flex justify-center">
-              <span
-                onClick={handleanimation}
-                className="text-white cursor-pointer"
-              >
-                <IoIosArrowDown className="text-[#079376]" />
-              </span>
-            </div>
+            
             <div className="flex mt-2 justify-around gap-20 md:px-24 md:justify-between ">
               <div className="flex gap-3 ">
                 <a className="" href={userData.instagramUrl} target="_blank">
