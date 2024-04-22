@@ -13,6 +13,7 @@ import CheckoutForm from "../Components/CheckoutForm";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Navigation from "../Partials/Navigation";
 import { useCartContext } from "../Context/Cart";
+import ShimmerDash from "../Shimmer/ShimmerDash";
 const { format } = require('date-fns');
 
 function Dashboard() {
@@ -145,7 +146,7 @@ function Dashboard() {
 
 
 
-  return (
+  return !userData?(<ShimmerDash/>):(
     <>
     <div>
     <ToastContainer/>

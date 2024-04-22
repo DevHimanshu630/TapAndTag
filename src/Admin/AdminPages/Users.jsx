@@ -6,6 +6,9 @@ function Users() {
   useEffect(()=>{
     const fetch = async() =>{
       const data = await axios.get('admin/user-details')
+      if(data.status === 404){
+        
+      }
       console.log(data.data.userdetails)
       setUser(data.data.userdetails)
   }

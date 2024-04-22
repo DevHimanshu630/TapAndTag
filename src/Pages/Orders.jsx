@@ -8,13 +8,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import OrderShimmer from '../Shimmer/OrderShimmer';
 const { format } = require('date-fns');
 
 
 function Orders() {
   const token = localStorage.getItem("tpt_token");
   const navigate = useNavigate()
-  const [orders, setOrders] = useState('')
+  const [orders, setOrders] = useState(null)
   useEffect(()=>{
     const getting = async()=>{
       const res = await axios.get('users/order',{
@@ -37,9 +38,9 @@ function Orders() {
     WebkitBackgroundClip: 'text',
     color: 'transparent'
   };
-  return (
+  return !orders? <OrderShimmer/> : (
     <>
-    {orders.length ? (<div className='flex flex-col  items-center gap-4 mt-36 w-full'>
+    {orders?.length ? (<div className='flex flex-col  items-center gap-4 mt-36 w-full'>
       <h1 style={gradientTextStyle} className='text-5xl mb-4 font-normal'>Your Orders</h1>
       {Object.keys(orders).map((key) => (
       <div key={key} className='w-[70vw]   '>
@@ -81,9 +82,8 @@ function Orders() {
       </div>
     ))}
     </div>):(
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex w-full h-full py-[11rem] items-center justify-center">
       <img src="/notfound.jpg" alt="" className="w-[40%]"/>
-      <h2>Items Not Found!</h2>
       </div>
     )}
     </>

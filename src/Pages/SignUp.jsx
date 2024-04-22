@@ -162,7 +162,7 @@ function SignUp() {
                                 </div>
                                 <button
                       type="submit"
-                      class="btn-hover   m-auto hidden lg:block color-5"
+                      class="btn-hover block m-auto color-5"
                     >
                       Create
                     </button>

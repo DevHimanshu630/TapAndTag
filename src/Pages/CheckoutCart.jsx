@@ -8,10 +8,11 @@ import CardCart from "../Components/CardCart";
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import { useCartContext } from "../Context/Cart";
+import CartShimmer from "../Shimmer/CartShimmer";
 
 function CheckoutCart() {
   const token = localStorage.getItem('tpt_token')
-  const [carts, setCarts] = useState("");
+  const [carts, setCarts] = useState(null);
   const [orderArray, setOrderArray] = useState([]);
   const [delCart, setDelCart] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
@@ -184,14 +185,14 @@ function CheckoutCart() {
     }
   };
 
-  return (
+  return !carts? <CartShimmer/> : (
     <>
         <div
           className="w-full h-full mt-32 overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
           id="checkout"
         >
           <ToastContainer/>
-          {carts.length ? (
+          {carts?.length ? (
             <div className="flex flex-row" id="cart">
             <div className="flex-[0.7] ml-6 my-6 bg-white overflow-y-auto h-screen"
               id="scroll"
@@ -296,9 +297,8 @@ function CheckoutCart() {
             </div>
           </div>
           ):(
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center py-16 justify-center">
             <img src="/notfound.jpg" alt="" className="w-[40%]"/>
-            <h2>Items Not Found!</h2>
             </div>
           )}
           

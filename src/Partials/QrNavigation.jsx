@@ -95,12 +95,12 @@ function QrNavigation() {
               {userInfo !== null ? (<li>
                   <Link
                     to="/dashboard"
-                    className="block py-2 px-3 text-gray-900 rounded btn-hover color-5 "
+                    className="block py-2 px-3 mr-4 text-gray-900 rounded btn-hover color-5 "
                     aria-current="page"
                   >
                     Dashboard
                   </Link>
-                </li>):" "}
+                </li>): "" }
 
               </ul>
               <Tooltip title="Account settings">
@@ -110,7 +110,7 @@ function QrNavigation() {
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                 >
-                <AccountCircleOutlinedIcon className='text-black ml-4' fontSize='large'/>
+                <AccountCircleOutlinedIcon className='text-black' fontSize='large'/>
               </IconButton>
               </Tooltip>
               <Menu
@@ -152,13 +152,24 @@ function QrNavigation() {
           <Avatar /> {userInfo?.data?.username}
         </MenuItem>
         <Divider />
+        
         {userInfo? (
+          <>
+          <MenuItem>
+          <ListItemIcon>
+          <BookmarkBorderOutlinedIcon fontSize="small"/>
+          </ListItemIcon>
+          <Link to='/order'>
+          My Orders
+          </Link>
+        </MenuItem>
            <MenuItem onClick={handleSignOut}>
            <ListItemIcon>
              <Logout fontSize="small" />
            </ListItemIcon>
            SignOut
          </MenuItem> 
+         </>
         ):(
         
         <MenuItem>

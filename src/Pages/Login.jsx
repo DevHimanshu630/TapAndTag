@@ -170,7 +170,7 @@ export default function ExampleV2() {
           <div>
           <button
                       type="submit"
-                      class="btn-hover  Tenderness  m-auto hidden lg:block color-5"
+                      class="btn-hover Tenderness m-auto block color-5"
                     >
                      Login
                     </button>

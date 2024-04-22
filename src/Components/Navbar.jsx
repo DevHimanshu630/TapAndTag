@@ -166,12 +166,13 @@ function Navbar() {
                       type="button"
                       class="btn-hover hidden lg:block color-5"
                     >
-                       {isUserLoggedIn ? (
+                       {/* {isUserLoggedIn ? (
 
                         <Link to={"/qrform"}>Order Now</Link>
                         ) : (
                         <Link to={"/login"}>Order Now</Link>
-                        )}
+                        )} */}
+                        Order Now
                     </Button>
                   </Link>
                 </div>
@@ -179,7 +180,7 @@ function Navbar() {
             )}
 
             <div
-              class="items-center justify-between  hidden w-full md:flex md:w-auto md:order-1"
+              class="items-center justify-between  hidden w-full lg:flex lg:w-auto lg:order-1"
               id="navbar-cta"
             >
               <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-14 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  ">
@@ -292,7 +293,15 @@ function Navbar() {
             >
               Login
             </Link>
-          </li>):(null)}
+          </li>):(<li className="border">
+              <Link
+                to={"/dashboard"}
+                class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded "
+                aria-current="page"
+              >
+                Dashboard
+              </Link>
+            </li>)}
 
             {/* <li className='border'>
               <a href="#" class="flex items-center justify-between py-3 text-lg  px-3 text-black  rounded ">Pricing <IoIosArrowForward size={24} /></a>
