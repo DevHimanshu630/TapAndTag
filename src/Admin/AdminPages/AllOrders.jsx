@@ -28,7 +28,7 @@ function AllOrders() {
     const res = await axios.post('admin/update-print-status',{
       printIds: printarray
     })
-
+    console.log('tictok',res)
     if(res.status === 200){
       console.log('done ji done')
     }
@@ -50,9 +50,6 @@ return !orders? "" : (
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                   Print
-                </th>
-                <th scope="col" class="px-6 py-3">
                 User Id
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -68,19 +65,12 @@ return !orders? "" : (
         </thead>
         <tbody>
         {Object.values(orders).map((item, index) => (
-          (
-            item.order.paymentStatus === 'paid'?(
               <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-              <td className='flex items-center justify-center py-6'><input type="checkbox"
-               onClick={() => handlePrint(item.order._id)}
-               className=''/></td>
-              <td className="px-6 py-4 whitespace-nowrap">{item.order.userId}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{item.order._id}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{item.order.amount}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{item.order.paymentStatus}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{item?.order?.userId}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{item?.order?._id}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{item?.order?.amount}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{item?.order?.paymentStatus}</td>
             </tr>
-            ):""
-          )
         ))}
         </tbody>
     </table>

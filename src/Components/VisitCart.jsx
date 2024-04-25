@@ -8,7 +8,7 @@ function VisitCart() {
     return (
         <div className='w-full flex  justify-center bg-[#FAF9F6] py-9 md:py-0 my-14  xl:h-[288px] '>
 
-            <div className='flex xl:max-w-screen-xl flex-wrap md:flex-nowrap gap-12 xl:gap-44 xl:pr-10 justify-evenly  items-center  '>
+            <div className='flex xl:max-w-screen-xl flex-wrap md:flex-nowrap gap-12 xl:gap-44 xl:pr-10 justify-evenly py-12 items-center  '>
                 <div className=' xl:py-3 text-center md:text-start  '>
                     <p className='xl:text-[40px] leading-snug text-2xl'>The unseen potential of sustainable</p>
                     <p className='xl:text-[40px] leading-none text-xl text-[#146C60]'>digital visiting cards awaits discovery.</p>

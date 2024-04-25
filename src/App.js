@@ -35,6 +35,11 @@ import AdLogin from './Admin/Authentication/AdLogin';
 import ShippingPolicy from './Pages/ShippingPolicy ';
 import Carousel from './Components/Carousel';
 import Leads from './Pages/Leads';
+import PrintList from './Admin/AdminPages/PrintList';
+import LayoutPrint from './Admin/AdminPages/LayoutPrint';
+import PendingCards from './Admin/AdminPages/PendingCards';
+import Printed from './Admin/AdminPages/Printed';
+import { PrintContextProvider } from './Admin/Context/PrintCards';
 
 
 function App() {
@@ -99,12 +104,18 @@ function App() {
           <Route path='/priceasd' element={<Carousel/>}/>
           </Routes>
          <Routes>
-          
-         <Route path='/admin' element={<AdminLayout/>}>
+         <Route path='/admin' element={
+         <PrintContextProvider><AdminLayout/>
+         </PrintContextProvider>}>
                 <Route path='price' element={<SetPrices/>}/>
                 <Route path='users' element={<Users/>}/>
                 <Route path='orders' element={<AllOrders/>}/>
-            </Route>
+                <Route path='printlist' element={<LayoutPrint/>}>
+                  <Route path='remaining' element={<PrintList/>}/>
+                  <Route path='pending' element={<PendingCards/>}/>
+                  <Route path='printed' element={<Printed/>}/>
+                </Route>
+          </Route>
          </Routes>
           </CartContextProvider>
         </>
