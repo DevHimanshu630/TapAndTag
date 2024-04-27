@@ -25,16 +25,16 @@ function ContactUs() {
                             </div>
                             <div>
                             <p className=' font-sans font-semibold  '>
-                            MOLOG Pvt. Ltd.
+                            Company Name: <span className='font-sans font-normal'>EVERIDOOR Private Limited</span>
                             </p>
                             <p className=' font-sans font-semibold  '>
-                            Contact - <span className='font-sans font-normal'> +91 - 6307279736</span> 
+                            Contact - <span className='font-sans font-normal'> +91-6307279736</span> 
                             </p>
                             <p className=' font-sans font-semibold  '>
-                            Email <span className='font-sans font-normal'> info@tapandtag.com</span> 
+                            Email Address: <span className='font-sans font-normal'> info@tapandtag.com</span> 
                             </p>
                             <p className=' font-sans font-semibold  '>
-                            Address - <span className='font-sans font-normal'> 813, Udyog Vihar, Phase V, Gurugram, India</span> 
+                            Address - <span className='font-sans font-normal'> 813, Phase V, Udyog Vihar, Sector 19, Gurugram, Haryana 122008</span> 
                             </p>
                             </div>
                         </div>
