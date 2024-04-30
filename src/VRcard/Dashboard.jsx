@@ -14,6 +14,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Navigation from "../Partials/Navigation";
 import { useCartContext } from "../Context/Cart";
 import ShimmerDash from "../Shimmer/ShimmerDash";
+import { useOrderNowContext } from "../Context/Ordernow";
 const { format } = require('date-fns');
 
 function Dashboard() {
@@ -21,7 +22,7 @@ function Dashboard() {
   const token = localStorage.getItem("tpt_token");
   console.log("dashbboard token ", token);
   const [formdel, setFromdel] = useState(false)
-
+  const {OrderNow, setOrderNow, OrderFormData, setOrderFormData} = useOrderNowContext()
   const navigate = useNavigate();
   // console.log(token);
   console.log("userData *******------------>", userData);
@@ -62,7 +63,7 @@ function Dashboard() {
     };
 
     fetchData();
-  }, [formdel]);
+  }, [formdel, OrderNow]);
   
   const handleSignOut = () => {
     toast.error("Signed Out!", {

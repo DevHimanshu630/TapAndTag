@@ -40,6 +40,7 @@ import LayoutPrint from './Admin/AdminPages/LayoutPrint';
 import PendingCards from './Admin/AdminPages/PendingCards';
 import Printed from './Admin/AdminPages/Printed';
 import { PrintContextProvider } from './Admin/Context/PrintCards';
+import { OrderNowContextProvider } from './Context/Ordernow';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
 
   return (
     <>
+    <OrderNowContextProvider>
         <CartContextProvider>
             <Routes>
             <Route path="/" element={<Home />} />
@@ -118,6 +120,7 @@ function App() {
           </Route>
          </Routes>
           </CartContextProvider>
+          </OrderNowContextProvider>
         </>
   );
 }

@@ -4,14 +4,17 @@ import axios from "../Axios/Axios";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../Context/User";
 import CookieOutlinedIcon from '@mui/icons-material/CookieOutlined';
 import Navbar from "../Components/Navbar";
+import { useOrderNowContext } from "../Context/Ordernow";
+import { FourMp, SettingsTwoTone } from "@mui/icons-material";
 
 export default function ExampleV2() {
   const navigate = useNavigate();
   const {userInfo, setUserInfo} = useUserContext()
+  const {OrderNow, setOrderNow, OrderFormData, setOrderFormData} = useOrderNowContext()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -40,11 +43,121 @@ export default function ExampleV2() {
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
-        draggable: true,
+        draggable: true, 
       });
-      setTimeout(() => {
-        navigate("/");
-      }, [1000]);
+        if(OrderNow){
+          setTimeout(async()=>{
+            try {
+            const form = await axios.post("users/uploadForm", OrderFormData, {
+              headers: {
+                "Content-Type": "multipart/form-data", // Set content type for FormData
+                Authorization: `Bearer ${res.data.token}`,
+              },
+              // withCredentials: true
+            });
+            if (form?.status == 422) {
+              toast.error("Duplicate Page Url!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+            }
+            if (form?.status == 200) {
+              toast.success("Qr Created successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+              setOrderNow(false)
+            }
+            // setQR(null)
+            
+          } catch (err){
+            // console.log(err?.response?.status);
+            if (err?.response && err?.response?.status == 501) {
+              toast.error("Error in Uploading Form", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+            }
+      
+            if (err?.response && err?.response?.status == 405) {
+              toast.error("User Does Not Found Please SignUp First", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+              setTimeout(() => {
+                navigate("/signUp");
+              }, 2000);
+            }
+            if (err?.response && err?.response?.status == 403) {
+              toast.error("Error in saving form data!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+              setTimeout(() => {
+                navigate("/signUp");
+              }, 3000);
+            }
+            if (err?.response && err?.response?.status == 422) {
+              toast.error("Duplicate Page Url!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+             setTimeout(()=>{
+                navigate('/qrform')
+             },[1000])
+            }
+      
+            if ( err?.response?.status === 405) {
+              toast.error("Session Expired!", {
+                  position: "top-right",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+              });
+              localStorage.removeItem("tpt_token");
+              setTimeout(() => {
+                  navigate("/login")
+              }, [1000])
+      
+      
+          }
+          }
+        },[2000])
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, [1000]);
+        }else{
+          setTimeout(() => {
+            navigate("/");
+          }, [1000]);
+        }
+      
     } catch (err) {
       if (err.response && err.response.status === 404) {
         toast.error("User does not exists.", {
@@ -102,7 +215,7 @@ export default function ExampleV2() {
     WebkitBackgroundClip: 'text',
     color: 'transparent'
   };
-
+  console.log(useLocation())
 
   return (
     <>

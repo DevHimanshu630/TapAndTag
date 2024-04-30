@@ -35,10 +35,29 @@ function PendingCards() {
         });
         }
     }
+    const handleRevert = async() =>{
+      const res = await axios.put('admin/revert-export-status',
+    {revertIDs: printarray})
+
+    if(res.status === 200){
+      setPrintCards(res.data.printData)
+      toast.error("Moved To Remaining!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+    });
+    }
+    }
   return !printCards? <ShimmerPrint/> :(
     <div className='w-full h-full flex flex-col px-20 gap-4 py-2'>
     <ToastContainer/>
     <div className='flex gap-8 self-end'>
+    <button onClick={handleRevert} class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+    Move To Remaining
+    </button>
     <button onClick={handlePrintSubmit} class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
     Print
     </button>

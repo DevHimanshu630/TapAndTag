@@ -13,7 +13,7 @@ import { MdContentCopy } from "react-icons/md";
 import { FiExternalLink } from "react-icons/fi";
 import { IoIosEye } from "react-icons/io";
 import { MdOutlineQrCode } from "react-icons/md";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import logo from "../Images/logo.png";
 import html2canvas from "html2canvas";
 import VcardTemplate from "../VRcard/VcardTemplate";
@@ -22,8 +22,10 @@ import { useUserContext } from "../Context/User";
 import {Loader , Placeholder} from 'rsuite';
 import Navigation from "../Partials/Navigation";
 import QrNavigation from "../Partials/QrNavigation";
+import { OrderNowContext, useOrderNowContext } from "../Context/Ordernow";
 function QrForm() {
   const {userInfo,setUserInfo} =useUserContext();
+  const {OrderNow, setOrderNow, OrderFormData, setOrderFormData} = useOrderNowContext()
   const [loader, setLoader] = useState(false)
   const { formId } = useParams();
   const token = localStorage.getItem('tpt_token') ;
@@ -50,7 +52,6 @@ function QrForm() {
     googleMapUrl: "",
     formName: "",
   });
-
   useEffect(() => {
     const formDatas = new FormData();
     if (formId) {
@@ -70,13 +71,11 @@ function QrForm() {
           console.error("Error fetching user data:", error);
         }
       };
-
       fetchData();
     }
   }, [formId, token]);
 
   const navigate = useNavigate();
-
   const linearGradientStyle = {
     background: "linear-gradient(90deg, #022D24 0%, #146C60 94.17%)",
     WebkitBackgroundClip: "text",
@@ -112,108 +111,124 @@ function QrForm() {
       formDatas.append("profilePhoto", formProfileData.profilePhoto);
     }
 
-    try {
-      const res = await axios.post("users/uploadForm", formDatas, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Set content type for FormData
-          Authorization: `Bearer ${token}`,
-        },
-        // withCredentials: true
-      });
-      if (res?.status == 422) {
-        toast.error("Duplicate Page Url!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
+    if(userInfo){
+      try {
+        const res = await axios.post("users/uploadForm", formDatas, {
+          headers: {
+            "Content-Type": "multipart/form-data", // Set content type for FormData
+            Authorization: `Bearer ${token}`,
+          },
+          // withCredentials: true
         });
-      }
-      if (res?.status == 200) {
-        toast.success("Qr Created successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        setLoader(true)
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, [1000]);
-      }
-      // setQR(null)
-      
-    } catch (err) {
-      // console.log(err?.response?.status);
-      if (err?.response && err?.response?.status == 501) {
-        toast.error("Error in Uploading Form", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-      }
-
-      if (err?.response && err?.response?.status == 405) {
-        toast.error("User Does Not Found Please SignUp First", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        setTimeout(() => {
-          navigate("/signUp");
-        }, 3000);
-      }
-      if (err?.response && err?.response?.status == 403) {
-        toast.error("Error in saving form data!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        setTimeout(() => {
-          navigate("/signUp");
-        }, 3000);
-      }
-      if (err?.response && err?.response?.status == 422) {
-        toast.error("Duplicate Page Url!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-      }
-
-      if ( err?.response?.status === 405) {
-        toast.error("Session Expired!", {
+        if (res?.status == 422) {
+          toast.error("Duplicate Page Url!", {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-        });
-        localStorage.removeItem("tpt_token");
-        setTimeout(() => {
-            navigate("/login")
-        }, [1000])
-
-
+          });
+        }
+        if (res?.status == 200) {
+          toast.success("Qr Created successfully!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          setLoader(true)
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, [1000]);
+        }
+        // setQR(null)
+        
+      } catch (err) {
+        // console.log(err?.response?.status);
+        if (err?.response && err?.response?.status == 501) {
+          toast.error("Error in Uploading Form", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
+  
+        if (err?.response && err?.response?.status == 405) {
+          toast.error("User Does Not Found Please SignUp First", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          setTimeout(() => {
+            navigate("/signUp");
+          }, 3000);
+        }
+        if (err?.response && err?.response?.status == 403) {
+          toast.error("Error in saving form data!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          setTimeout(() => {
+            navigate("/signUp");
+          }, 3000);
+        }
+        if (err?.response && err?.response?.status == 422) {
+          toast.error("Duplicate Page Url!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
+  
+        if ( err?.response?.status === 405) {
+          toast.error("Session Expired!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+          });
+          localStorage.removeItem("tpt_token");
+          setTimeout(() => {
+              navigate("/login")
+          }, [1000])
+  
+  
+      }
+      }
+    }else{
+      toast.error("User Does Not Found Please SignUp First", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setTimeout(() => {
+        navigate("/signUp");
+      }, 2000);
+      setOrderFormData(formDatas);
+      setOrderNow(true);
     }
     
-    }
   };
 
   const [formData, setFormData] = useState({
