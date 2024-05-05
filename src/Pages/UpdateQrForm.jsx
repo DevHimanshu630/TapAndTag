@@ -53,6 +53,7 @@ function UpdateQrForm() {
     googleMapUrl: "",
     formName: "",
   });
+  const [fileupdata, setFiledata] = useState(false)
 
   useEffect(() => {
     const formDatas = new FormData();
@@ -79,7 +80,7 @@ function UpdateQrForm() {
 
       fetchData();
     }
-  }, [formId, token]);
+  }, [formId, token, fileupdata]);
 
   const navigate = useNavigate();
 
@@ -328,8 +329,8 @@ function UpdateQrForm() {
               <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <section className="flex gap-2 items-center">
                   <h1 className="font-semibold text-xl">File Manager</h1>
-                  <ContentCopyIcon />
-                  <span>Copy path</span>
+                  {/* <ContentCopyIcon />
+                  <span>Copy path</span> */}
                 </section>
                 <button
                   type="button"
@@ -355,7 +356,7 @@ function UpdateQrForm() {
                 </button>
               </div>
               <div class=" px-4 ">
-                <FileManager profile={formProfileData} image={images} />
+                <FileManager profile={formProfileData} image={images} setFiledata={setFiledata}/>
               </div>
             </div>
           </div>
@@ -548,7 +549,6 @@ function UpdateQrForm() {
                                       //   data-modal-toggle="extralarge-modal"
                                       src={formUpload}
                                       onClick={handleOpen}
-                                      sizes={0}
                                       className="w-[42px] h-[42px]"
                                       alt=""
                                     />
