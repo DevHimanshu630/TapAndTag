@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { FaUserEdit } from "react-icons/fa";
+
 
 import img from "../Images/Tap & Tag white logo 2.png";
 
@@ -405,6 +407,16 @@ END:VCARD`;
 
             <div className="flex w-full h-[90vh]  mb-[5rem]      justify-start items-start flex-col">
               <div className="flex flex-col w-full h-full items-center justify-start">
+              <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full font-sans h-1/2 bg-[#EEEEEE] p-2 px-5">
+                    BIO
+                  </div>
+                  <div className="flex font-sans items-center gap-4 p-2 px-5">
+                    <FaUserEdit color="#126156" size={'20px'}/>
+                    <p>{userData.bio}</p>
+                  </div>
+                </div>
+
                 <div className="w-[90%] h-[10vh] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
                   <div className="w-full font-sans h-1/2 bg-[#EEEEEE] p-2 px-5">
                     EMAIL

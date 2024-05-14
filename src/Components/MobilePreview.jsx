@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import profile from "../Images/Photo by Edmond Dantès.png"
+import { FaUserEdit } from "react-icons/fa";
+
 
 function MobilePreview({ data, profileimg, formData, link, images , customCss}) {
   const multimg = Object?.keys(formData?.image?.files)?.map((key) => (
@@ -133,6 +135,16 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
                 </Link>
               </div>
             </div>
+
+            <div className="w-[95%] mt-[2rem] rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
+                  <div className="w-full  font-sans bg-[#EEEEEE] py-1 px-5">
+                    BIO
+                  </div>
+                  <div className="flex items-center gap-4 p-2 px-5 font-snas">
+                  <FaUserEdit color="#126156" size={'20px'}/>
+                    <p>{data.bio ? data.bio:"your bio"}</p>
+                  </div>
+                </div>
 
             <div className="flex w-full h-[90vh] mb-[5rem] justify-start items-start flex-col">
               <div className="flex flex-col w-full h-full items-center justify-start">

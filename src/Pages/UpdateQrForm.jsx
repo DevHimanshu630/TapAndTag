@@ -52,6 +52,7 @@ function UpdateQrForm() {
     pinCode: "",
     googleMapUrl: "",
     formName: "",
+    bio: ""
   });
   const [fileupdata, setFiledata] = useState(false)
 
@@ -243,6 +244,10 @@ function UpdateQrForm() {
   const [contactDiv, setContactDiv] = useState(false);
   const [googleDiv, setGoogleDiv] = useState(false);
   const [addresDiv, setAddresDiv] = useState(false);
+  const [bioDiv, setBioDiv] = useState(false);
+  const handleBio = () => {
+    setBioDiv(!bioDiv);
+  }
   const handleProfileDiv = () => {
     setProfileDiv(!profileDiv);
   };
@@ -738,6 +743,39 @@ function UpdateQrForm() {
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div class="mb-12 flex flex-col  gap-5 ">
+                      <div className=" w-[90%] flex justify-between items-center ">
+                        <p
+                          style={linearGradientStyle}
+                          className=" font-sans font-medium text-[20px] tracking-wide"
+                        >
+                          Bio
+                        </p>
+                        <label class="inline-flex items-center cursor-pointer">
+                          <input
+                            onClick={handleBio}
+                            type="checkbox"
+                            value=""
+                            class="sr-only peer"
+                          />
+                          <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                        </label>
+                      </div>
+                      <textarea
+                        placeholder="   Enter your Bio"
+                        name="bio"
+                        type="text"
+                        id="bio"
+                        value={data?.bio}
+                        onChange={handleChange}
+                        className={` ${
+                          !bioDiv
+                            ? "hidden"
+                            : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-[90%] rounded-lg h-24 border-gray-300 focus:outline-none"
+                        }`}
+                        required
+                      />
                     </div>
                     <div class="mb-12 flex flex-col  gap-5 ">
                       <div className=" w-[90%] flex justify-between items-center ">

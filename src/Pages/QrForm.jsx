@@ -92,6 +92,20 @@ function QrForm() {
     }
   }, [formId, token]);
 
+  const [customImg, setCustomImg] = useState({})
+  useEffect(()=>{
+    const fetching = async() =>{
+      const data = await axios.get('users/background_images',{
+        headers: {
+          "Content-Type": "multipart/form-data", // Set content type for FormData
+          Authorization: `Bearer ${token}`,
+        },
+    })
+    setCustomImg(data)
+    }
+    fetching()
+  },[])
+
   const navigate = useNavigate();
   const linearGradientStyle = {
     background: "linear-gradient(90deg, #022D24 0%, #146C60 94.17%)",
@@ -293,9 +307,13 @@ function QrForm() {
   const [contactDiv, setContactDiv] = useState(false);
   const [googleDiv, setGoogleDiv] = useState(false);
   const [addresDiv, setAddresDiv] = useState(false);
+  const [bioDiv, setBioDiv] = useState(false);
   const handleProfileDiv = () => {
     setProfileDiv(!profileDiv);
   };
+  const handleBioDiv = () =>{
+    setBioDiv(!bioDiv)
+  }
   const handleWbSiteDiv = () => {
     setWebSiteDiv(!webSiteDiv);
   };
@@ -411,7 +429,7 @@ function QrForm() {
       [name]: value,
     }));
   };
-
+  
   return (
     <>
       <div style={{ overflow: "hidden" }}>
@@ -542,8 +560,8 @@ function QrForm() {
                           onChange={handleChange}
                           class="font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-full md:w-1/2 border-gray-300 text-gray-900 rounded-full focus:outline-none"
                         />
+                        
                       </div>
-
                       <div className="w-[90%]  flex gap-2  items-center">
                         <p
                           style={linearGradientStyle}
@@ -677,6 +695,39 @@ function QrForm() {
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div class="mb-12 flex flex-col  gap-5 ">
+                      <div className=" w-[90%] flex justify-between items-center ">
+                        <p
+                          style={linearGradientStyle}
+                          className=" font-sans font-medium text-[20px] tracking-wide"
+                        >
+                          Bio
+                        </p>
+                        <label class="inline-flex items-center cursor-pointer">
+                          <input
+                            onClick={handleBioDiv}
+                            type="checkbox"
+                            value=""
+                            class="sr-only peer "
+                          />
+                          <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                        </label>
+                      </div>
+                      <textarea
+                        placeholder="Enter your Bio"
+                        name="bio"
+                        type="text"
+                        id="bio"
+                        value={data?.bio}
+                        onChange={handleChange}
+                        className={` ${
+                          !bioDiv
+                            ? "hidden"
+                            : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] md:w-[90%] rounded-lg h-24   border-gray-300 focus:outline-none"
+                        }`}
+                       
+                      />
                     </div>
                     <div class="mb-12 flex flex-col  gap-5 ">
                       <div className=" w-[90%] flex justify-between items-center ">
@@ -1043,9 +1094,23 @@ function QrForm() {
                         required
                       />
                     </div>
+                    <div className="flex  mt-5 justify-center gap-3 w-full  ">
+                      <button
+                        onClick={handleBackForm}
+                        className="bg-[#022D24] px-7 py-2 rounded-full font-sans font-thin text-sm text-white"
+                      >
+                        Back
+                      </button>
 
-                    <div>
-                      <h1>Background Image</h1>
+                      <button
+                        type="submit"
+                        className="bg-[#022D24] px-7 py-2 rounded-full font-thin text-sm font-sans text-white"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                    <div className="flex flex-col gap-2 mt-16">
+                      <h1 className="text-xl font-bold">Background Image</h1>
                       <div className="flex gap-5 ">
                         <img
                           onClick={handleCustomCss}
@@ -1054,22 +1119,6 @@ function QrForm() {
                           width={"100px"}
                           height={"50px"}
                           src="https://cdn0070.qrcodechimp.com/images/digitalCard/youtuber_background.jpg?v=1715335332"
-                          alt=""
-                        />
-                        <img
-                          onClick={handleCustomCss}
-                          name="backgroundImage"
-                          value="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/pet_tag_bg_1.jpg?v=1715335332"
-                          width={"100px"}
-                          src="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/pet_tag_bg_1.jpg?v=1715335332"
-                          alt=""
-                        />
-                        <img
-                          onClick={handleCustomCss}
-                          name="backgroundImage"
-                          value="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/background_3.jpg?v=1715335332"
-                          width={"100px"}
-                          src="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/background_3.jpg?v=1715335332"
                           alt=""
                         />
                       </div>
@@ -1140,23 +1189,8 @@ function QrForm() {
                       </div>
                       <div></div>
                     </div>
-
-                    <div className="flex  mt-5 justify-center gap-3 w-full  ">
-                      <button
-                        onClick={handleBackForm}
-                        className="bg-[#022D24] px-7 py-2 rounded-full font-sans font-thin text-sm text-white"
-                      >
-                        Back
-                      </button>
-
-                      <button
-                        type="submit"
-                        className="bg-[#022D24] px-7 py-2 rounded-full font-thin text-sm font-sans text-white"
-                      >
-                        Submit
-                      </button>
-                    </div>
                   </div>
+                  
                 )}
                 <div className="hidden  w-[400px] md:hidden lg:block  rounded-2xl overflow-hidden">
                   <div className=" overflow-hidden rounded-t-xl ">
