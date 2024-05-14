@@ -21,6 +21,7 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
       // Set the z-index here
       backgroundSize: 'cover' // Optional, adjust according to your needs 
     }}className=" z-0  w-[350px] h-[670px] overflow-hidden  rounded-lg px-10  py-12">
+      
       {data ? (
         <div className="  h-[540px] overflow-y-scroll rounded-lg	">
           <div className="w-full h-full ">
