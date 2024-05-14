@@ -1,21 +1,9 @@
 import React, { useRef, useState } from 'react'
-import WallpaperIcon from '@mui/icons-material/Wallpaper';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { IconButton } from "@mui/material";
-import Button from "@mui/material/Button";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { MdOutlineEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import { TbPhotoSquareRounded } from "react-icons/tb";
-import { MdContentCopy } from "react-icons/md";
-
-import Checkbox from "@mui/material/Checkbox";
-import { logDOM } from '@testing-library/react';
+import { MdEdit } from "react-icons/md";
 import axios from '../Axios/Axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Draganddrop from '../Components/Draganddrop';
 import Dragprofile from '../Components/Dragprofile';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -94,15 +82,11 @@ function Card({ profileImg, setFiledata }) {
     return profileImg._id == null ? <Dragprofile setFiledata={setFiledata}/> : (
         <div className='border rounded-md w-52  h-48'>
             <div className="flex relative  h-full">
-                <input type='checkbox' className="flex border-none focus:outline-none relative z-10 top-2 left-2 appearance-none" />
                 <img src={profileImg?.contentURL} alt="no-profile" className="bg-cover rounded-t-md absolute z-0 w-full h-full" />
             </div>
-            <div className="py-3 flex  items-center justify-around rounded-b-lg bg-gray-400">
-                <button className='text-md bg-blue-500 text-white px-4 rounded-md' >
-                    Select
-                </button>                
+            <div className="py-3 flex  items-center justify-around rounded-b-lg bg-gray-400">              
                 <label htmlFor="dropzone-file" className="flex flex-col gap-1 hover:cursor-pointer">
-                <TbPhotoSquareRounded
+                <MdEdit
                     className='hover:cursor-pointer text-white'
                 />
                     <input
