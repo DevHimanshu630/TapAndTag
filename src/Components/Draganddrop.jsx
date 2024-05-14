@@ -83,7 +83,7 @@ function Draganddrop({ setUpload, setFiledata }) {
                 setTimeout(()=>{
                     setUpload(false);
                     setFiledata((prev)=>!prev)
-                },1000)
+                },500)
                 
 
             }
@@ -111,7 +111,7 @@ function Draganddrop({ setUpload, setFiledata }) {
                 onClick={handleInput}
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
-                className="border-2 border-blue-500 rounded-xl border-dashed h-[50vh] w-[65vw] cursor-pointer m-12 flex flex-col justify-center items-center text-xl gap-6"
+                className="border-2 border-[#12665a] rounded-xl border-dashed h-full cursor-pointer m-12 flex flex-col justify-center items-center text-xl gap-6"
             >
                 <div className="flex flex-col items-center">
                     <p>
@@ -119,7 +119,7 @@ function Draganddrop({ setUpload, setFiledata }) {
                     </p>
                     <p>Drag & Drop</p>
                     <p>
-                        or <span className="text-blue-500">click</span>
+                        or <span className="text-[#12665a]">click</span>
                     </p>
                 </div>
                 <p className="text-sm">Supports: JPEG, JPG, PNG</p>
