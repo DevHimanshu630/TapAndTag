@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import profile from "../Images/Photo by Edmond Dantès.png"
 
-function MobilePreview({ data, profileimg, formData, link, images }) {
+function MobilePreview({ data, profileimg, formData, link, images , customCss}) {
   const multimg = Object?.keys(formData?.image?.files)?.map((key) => (
     <img
       key={key}

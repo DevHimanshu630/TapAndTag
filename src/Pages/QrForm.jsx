@@ -19,18 +19,23 @@ import html2canvas from "html2canvas";
 import VcardTemplate from "../VRcard/VcardTemplate";
 import MobilePreview from "../Components/MobilePreview";
 import { useUserContext } from "../Context/User";
-import {Loader , Placeholder} from 'rsuite';
+import { Loader, Placeholder } from "rsuite";
 import Navigation from "../Partials/Navigation";
 import QrNavigation from "../Partials/QrNavigation";
 import { OrderNowContext, useOrderNowContext } from "../Context/Ordernow";
 function QrForm() {
-  const {userInfo,setUserInfo} =useUserContext();
-  const {OrderNow, setOrderNow, OrderFormData, setOrderFormData} = useOrderNowContext()
-  const [loader, setLoader] = useState(false)
+  const { userInfo, setUserInfo } = useUserContext();
+  const {
+    OrderNow,
+    setOrderNow,
+    OrderFormData,
+    setOrderFormData,
+  } = useOrderNowContext();
+  const [loader, setLoader] = useState(false);
   const { formId } = useParams();
-  const token = localStorage.getItem('tpt_token') ;
+  const token = localStorage.getItem("tpt_token");
   console.log(formId);
-  const [pageurl, setPageurl] = useState('')
+  const [pageurl, setPageurl] = useState("");
   const [data, setData] = useState({
     name: "",
     designation: "",
@@ -52,6 +57,18 @@ function QrForm() {
     googleMapUrl: "",
     formName: "",
   });
+
+  const [customCss, SetCustomCss] = useState({
+    backgroundImage: "",
+    PrimaryColor: "",
+    SecondaryColor: "",
+    PrimaryProfileText: "",
+    SecondaryProfileText: "",
+    PrimaryText: "",
+    SecondaryText: "",
+  });
+
+  console.log("customCss Data ---------->>>>>>", customCss);
   useEffect(() => {
     const formDatas = new FormData();
     if (formId) {
@@ -92,7 +109,7 @@ function QrForm() {
 
   const handleSubmitUserData = async (e) => {
     e.preventDefault();
-        const formDatas = new FormData();
+    const formDatas = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       formDatas.append(key, value);
     });
@@ -111,7 +128,7 @@ function QrForm() {
       formDatas.append("profilePhoto", formProfileData.profilePhoto);
     }
 
-    if(userInfo){
+    if (userInfo) {
       try {
         const res = await axios.post("users/uploadForm", formDatas, {
           headers: {
@@ -139,13 +156,12 @@ function QrForm() {
             pauseOnHover: true,
             draggable: true,
           });
-          setLoader(true)
+          setLoader(true);
           setTimeout(() => {
             navigate("/dashboard");
           }, [1000]);
         }
         // setQR(null)
-        
       } catch (err) {
         // console.log(err?.response?.status);
         if (err?.response && err?.response?.status == 501) {
@@ -158,7 +174,7 @@ function QrForm() {
             draggable: true,
           });
         }
-  
+
         if (err?.response && err?.response?.status == 405) {
           toast.error("User Does Not Found Please SignUp First", {
             position: "top-right",
@@ -195,25 +211,23 @@ function QrForm() {
             draggable: true,
           });
         }
-  
-        if ( err?.response?.status === 405) {
+
+        if (err?.response?.status === 405) {
           toast.error("Session Expired!", {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
           });
           localStorage.removeItem("tpt_token");
           setTimeout(() => {
-              navigate("/login")
-          }, [1000])
-  
-  
+            navigate("/login");
+          }, [1000]);
+        }
       }
-      }
-    }else{
+    } else {
       toast.error("User Does Not Found Please SignUp First", {
         position: "top-right",
         autoClose: 3000,
@@ -228,7 +242,6 @@ function QrForm() {
       setOrderFormData(formDatas);
       setOrderNow(true);
     }
-    
   };
 
   const [formData, setFormData] = useState({
@@ -238,10 +251,10 @@ function QrForm() {
   const [formProfileData, setProfileFormData] = useState({
     profilePhoto: "",
   });
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState("");
   const handleProfileInputChange = (e) => {
     const imgFile = e.target.files[0];
-    setImage(imgFile)
+    setImage(imgFile);
     setProfileFormData({ profilePhoto: imgFile });
   };
 
@@ -250,24 +263,24 @@ function QrForm() {
   const [showPhone, setShowPhone] = useState(true);
 
   function validateForm() {
-    const form = document.getElementById('myform');
+    const form = document.getElementById("myform");
     if (form.checkValidity()) {
-        // Form is valid, proceed with your logic
-        console.log('Form is valid');
-        setData((prev) => ({
-          ...prev,
-          pageUrl: pageurl,
-        }))
-        setShowForm(false);
-        setShowPhone(false);
+      // Form is valid, proceed with your logic
+      console.log("Form is valid");
+      setData((prev) => ({
+        ...prev,
+        pageUrl: pageurl,
+      }));
+      setShowForm(false);
+      setShowPhone(false);
     } else {
-        // Form is invalid, show error messages or handle accordingly
-        console.log('Form is invalid');
-        form.reportValidity(); // Show browser's default validation error messages
+      // Form is invalid, show error messages or handle accordingly
+      console.log("Form is invalid");
+      form.reportValidity(); // Show browser's default validation error messages
     }
-}
+  }
   const handleForm = () => {
-    validateForm()
+    validateForm();
   };
   const handleBackForm = () => {
     setShowForm(true);
@@ -308,7 +321,6 @@ function QrForm() {
       ...formData,
       image: { files: updatedImages },
     });
-    
   };
 
   const textRef = useRef(null);
@@ -319,8 +331,8 @@ function QrForm() {
       copy(textRef.current.innerText);
     }
   };
-  
-  const handleSignOut = async() => {
+
+  const handleSignOut = async () => {
     toast.error("Signed Out!", {
       position: "top-right",
       autoClose: 3000,
@@ -330,9 +342,9 @@ function QrForm() {
       draggable: true,
     });
     localStorage.removeItem("tpt_token");
-    setTimeout(()=>{
+    setTimeout(() => {
       navigate("/signUp");
-    }, 1000)
+    }, 1000);
   };
 
   const qrRef = useRef(null);
@@ -355,112 +367,57 @@ function QrForm() {
       image.src = `https://api.qrserver.com/v1/create-qr-code/?data=${data.pageUrl}&size=200x200`;
     }
   };
-  const [multimg, setMultimg] = useState(null)
+  const [multimg, setMultimg] = useState(null);
   useEffect(() => {
-    const showdata = Object?.keys(formData.image.files)?.map(key => (
+    const showdata = Object?.keys(formData.image.files)?.map((key) => (
       <img
         key={key}
         src={URL?.createObjectURL(formData.image.files[key])} // Pass File object directly
         className="w-[76px] rounded-full h-[76px]"
         alt=""
       />
-    ))
-    console.log('data',showdata)
-    setMultimg(showdata)
-  }, [formData,setFormData]);
-  if(loader){
+    ));
+    console.log("data", showdata);
+    setMultimg(showdata);
+  }, [formData, setFormData]);
+  if (loader) {
     return (
       <div className="loading">
-      <div class="typewriter">
-      <div class="slide"><i></i></div>
-      <div class="paper"></div>
-      <div class="keyboard"></div>
-      </div>
+        <div class="typewriter">
+          <div class="slide">
+            <i></i>
+          </div>
+          <div class="paper"></div>
+          <div class="keyboard"></div>
+        </div>
       </div>
     );
   }
+
+  const handleCustomCss = (e) => {
+    console.log(e);
+    console.log(
+      "=============>>",
+      e.target.src,
+      e.target.getAttribute("value")
+    );
+    const name = e.target.name;
+    const value =
+      e.target.type === "color"
+        ? e.target.value
+        : e.target.getAttribute("value");
+    SetCustomCss((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
       <div style={{ overflow: "hidden" }}>
-      <QrNavigation/>
-      <ToastContainer/>
-        {/* <nav class="bg-white border-gray-200  ">
-          <div class="flex flex-wrap justify-between  items-center mx-auto max-w-screen-xl p-4 font-sans">
-            <Link
-              to="/"
-              class="flex items-center space-x-3 rtl:space-x-reverse"
-            >
-              <img src={logo} class="h-16" alt="Flowbite Logo" />
-            </Link>
+        <QrNavigation />
+        <ToastContainer />
 
-            <div
-              id="mega-menu-full"
-              class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
-            >
-              <ul class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                
-                <li>
-                <Link
-                  to={"/"}
-                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  aria-current="page"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={"/product"}
-                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  aria-current="page"
-                >
-                  Product
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={"/Sustainability"}
-                  class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  aria-current="page"
-                >
-                  Sustainability
-                </Link>
-                
-              </li>
-              {token !== null ? (<li>
-                  <Link
-                    to="/dashboard"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                    aria-current="page"
-                  >
-                    Dashboard
-                  </Link>
-                </li>):" "}
-                {token !== null ? (
-                <li>
-                  <p
-                    onClick={handleSignOut}
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Sign Out
-                  </p>
-                </li>
-              ) : (
-                <li>
-                  <Link
-                    to={"/login"}
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Login
-                  </Link>
-                </li>
-              )}
-
-              </ul>
-            </div>
-          </div>
-        </nav> */}
-        
         <div className="bg-gray-100 border items-center  justify-center md:p-5  flex ">
           <form
             id="myform"
@@ -491,15 +448,19 @@ function QrForm() {
                         </p>
                         <div className="flex gap-9 pl-2 items-center">
                           <div className=" ">
-                            {image ? (<img
-                              src={URL.createObjectURL(image)}
-                              className="w-[76px] rounded-full h-[76px]"
-                              alt=""
-                            />):(<img
-                              src={profileImg}
-                              className="md:w-[76px] rounded-full md:h-[76px]"
-                              alt=""
-                            />)}
+                            {image ? (
+                              <img
+                                src={URL.createObjectURL(image)}
+                                className="w-[76px] rounded-full h-[76px]"
+                                alt=""
+                              />
+                            ) : (
+                              <img
+                                src={profileImg}
+                                className="md:w-[76px] rounded-full md:h-[76px]"
+                                alt=""
+                              />
+                            )}
                           </div>
                           <hr className="border h-12 font-thin text-[#D2D2D2]" />
                           <div className=" flex  gap-20 items-center justify-start w-[75%]">
@@ -580,7 +541,6 @@ function QrForm() {
                           value={data?.companyName}
                           onChange={handleChange}
                           class="font-sans font-light  text-[16px] placeholder-[#606060]  border border-full w-full md:w-1/2 border-gray-300 text-gray-900 rounded-full focus:outline-none"
-                          
                         />
                       </div>
 
@@ -589,9 +549,11 @@ function QrForm() {
                           style={linearGradientStyle}
                           className="font-sans font-medium text-[20px] tracking-wide"
                         >
-                          Create Your Page URL 
+                          Create Your Page URL
                         </p>
-                        <span className="text-[12px] font-sans">(Once saved, cannot be changed later)</span>
+                        <span className="text-[12px] font-sans">
+                          (Once saved, cannot be changed later)
+                        </span>
                       </div>
                       <div className="flex items-center transition-all ease-in-out duration-500">
                         <div className="border w-[33%] bg-gray-100 rounded-l-full">
@@ -610,7 +572,9 @@ function QrForm() {
                             name="pageUrl"
                             id="pageUrl"
                             value={pageurl}
-                            onChange={(e)=>setPageurl(e.target.value.toLowerCase().trim())}
+                            onChange={(e) =>
+                              setPageurl(e.target.value.toLowerCase().trim())
+                            }
                             class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
                             required
                           />
@@ -744,7 +708,6 @@ function QrForm() {
                             ? "hidden"
                             : " font-sans font-light border  text-[16px] placeholder-[#D2D2D2] md:w-[90%] rounded-full    border-gray-300 focus:outline-none"
                         }`}
-                       
                       />
                     </div>
 
@@ -791,7 +754,6 @@ function QrForm() {
                                 value={data?.linkedinUrl}
                                 onChange={handleChange}
                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
-                                
                               />
                             </div>
                           </div>
@@ -814,7 +776,6 @@ function QrForm() {
                                 value={data?.twitterUrl}
                                 onChange={handleChange}
                                 class="font-sans font-light  text-[12px] placeholder-[#D2D2D2] w-full rounded-r-full  border-none  border-gray-300 focus:outline-none"
-                                
                               />
                             </div>
                           </div>
@@ -879,7 +840,6 @@ function QrForm() {
                                 onChange={handleChange}
                                 value={data?.address1}
                                 class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
-                                
                               />
                             </div>
                           </div>
@@ -893,7 +853,6 @@ function QrForm() {
                               value={data?.address2}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full md:w-[70%]   border-gray-300  focus:outline-none"
-                              
                             />
                             <input
                               autoComplete="true"
@@ -904,7 +863,6 @@ function QrForm() {
                               value={data?.city}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[30%]   border-gray-300 focus:outline-none"
-                              
                             />
                           </div>
                           <div className=" md:flex md:flex-row flex flex-col w-[90%] justify-evenly mb-5 gap-5 ">
@@ -917,7 +875,6 @@ function QrForm() {
                               value={data?.state}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full md:w-[35%]   border-gray-300 focus:outline-none"
-                              
                             />
                             <input
                               autoComplete="true"
@@ -928,7 +885,6 @@ function QrForm() {
                               value={data?.country}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[35%]    border-gray-300 focus:outline-none"
-                              
                             />
                             <input
                               autoComplete="true"
@@ -939,7 +895,6 @@ function QrForm() {
                               value={data?.pinCode}
                               onChange={handleChange}
                               class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] rounded-full  md:w-[35%]    border-gray-300 focus:outline-none"
-                              
                             />
                           </div>
                         </div>
@@ -1020,13 +975,17 @@ function QrForm() {
                                 <p
                                   className="hover:cursor-pointer"
                                   onClick={() => {
-                                    const keysArray = Object.keys(formData.image.files);
+                                    const keysArray = Object.keys(
+                                      formData.image.files
+                                    );
                                     if (formData?.image && keysArray.length) {
-                                      console.log('thing thing ')
-                                      setFormData({ ...formData, image:{files: {}}});
+                                      console.log("thing thing ");
+                                      setFormData({
+                                        ...formData,
+                                        image: { files: {} },
+                                      });
                                     }
                                   }}
-                                  
                                 >
                                   <span className="text-[#D3D3D3]">
                                     <MdDeleteOutline size={24} />
@@ -1057,9 +1016,7 @@ function QrForm() {
                             </label>
                           </div>
                         </div>
-                        <div className="flex gap-4 flex-wrap">
-                        {multimg}
-                          </div>
+                        <div className="flex gap-4 flex-wrap">{multimg}</div>
                       </div>
                     </div>
                     <div className="w-full flex items-end justify-end">
@@ -1072,7 +1029,7 @@ function QrForm() {
                     </div>
                   </div>
                 ) : (
-                  <div className="w-[70%] mx-5 ">
+                  <div className="w-[70%] h-[100vh] mx-5 ">
                     <div>
                       <input
                         autoComplete="true"
@@ -1085,6 +1042,103 @@ function QrForm() {
                         class="font-sans font-light border  text-[16px] placeholder-[#D2D2D2] w-full rounded-full    border-gray-300 focus:outline-none"
                         required
                       />
+                    </div>
+
+                    <div>
+                      <h1>Background Image</h1>
+                      <div className="flex gap-5 ">
+                        <img
+                          onClick={handleCustomCss}
+                          name="backgroundImage"
+                          value="https://cdn0070.qrcodechimp.com/images/digitalCard/youtuber_background.jpg?v=1715335332"
+                          width={"100px"}
+                          height={"50px"}
+                          src="https://cdn0070.qrcodechimp.com/images/digitalCard/youtuber_background.jpg?v=1715335332"
+                          alt=""
+                        />
+                        <img
+                          onClick={handleCustomCss}
+                          name="backgroundImage"
+                          value="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/pet_tag_bg_1.jpg?v=1715335332"
+                          width={"100px"}
+                          src="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/pet_tag_bg_1.jpg?v=1715335332"
+                          alt=""
+                        />
+                        <img
+                          onClick={handleCustomCss}
+                          name="backgroundImage"
+                          value="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/background_3.jpg?v=1715335332"
+                          width={"100px"}
+                          src="https://cdn0070.qrcodechimp.com/images/digitalCard/bg/background_3.jpg?v=1715335332"
+                          alt=""
+                        />
+                      </div>
+                      <h1>Colors</h1>
+                      <div className="">
+                        <h1>Primary Color</h1>
+                        <div>
+                          <input
+                            type="color"
+                            name="PrimaryColor"
+                            value={customCss.PrimaryColor}
+                            onChange={handleCustomCss}
+                          />
+                          <div>{customCss.PrimaryColor}</div>
+                        </div>
+
+                        <div>
+                          Secondary Color:
+                          <input
+                            type="color"
+                            name="SecondaryColor"
+                            value={customCss.SecondaryColor}
+                            onChange={handleCustomCss}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex gap-5">
+                        <div>
+                          Primary Profile Text color:
+                          <input
+                            type="color"
+                            name="PrimaryProfileText"
+                            value={customCss.PrimaryProfileText}
+                            onChange={handleCustomCss}
+                          />
+                        </div>
+                        <div>
+                          Secondary Profile Text color:
+                          <input
+                            type="color"
+                            name="SecondaryProfileText"
+                            value={customCss.SecondaryProfileText}
+                            onChange={handleCustomCss}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex gap-5">
+                        <div>
+                          Primary Text color:
+                          <input
+                            type="color"
+                            name="PrimaryText"
+                            value={customCss.PrimaryText}
+                            onChange={handleCustomCss}
+                          />
+                        </div>
+                        <div>
+                          Secondary Text color:
+                          <input
+                            type="color"
+                            name="SecondaryText"
+                            value={customCss.SecondaryText}
+                            onChange={handleCustomCss}
+                          />
+                        </div>
+                      </div>
+                      <div></div>
                     </div>
 
                     <div className="flex  mt-5 justify-center gap-3 w-full  ">
@@ -1109,7 +1163,7 @@ function QrForm() {
                     <div className="flex  w-[350px] items-center px-2 overflow-hidden justify-between">
                       <div className="justify-around border-b  overflow-hidden pt-4 items-center p-3 gap-3 flex h-14">
                         <p ref={textRef} className="w-full text-lg  ">
-                        www.tapandtag.in/vcard/{pageurl}{" "}
+                          www.tapandtag.in/vcard/{pageurl}{" "}
                         </p>
                       </div>
                       <div className="flex gap-2">
@@ -1118,10 +1172,7 @@ function QrForm() {
                           onClick={handleCopyClick}
                           className="hover:cursor-pointer"
                         />
-                        <Link
-                          target="_blank"
-                          to={`/vcard/${data?.pageUrl}`}
-                        >
+                        <Link target="_blank" to={`/vcard/${data?.pageUrl}`}>
                           <FiExternalLink
                             size={20}
                             className="hover:cursor-pointer"
@@ -1155,20 +1206,26 @@ function QrForm() {
                     </div>
                   </div>
                   <div className="p-5  ">
-                  {showPhone ? (
-                    <MobilePreview data={data} link={false} profileimg={image} formData={formData}/>
-                    // <img src={phone} class="object-contain" alt="Molog Logo" />
-                  ) : (
-                    <div className=" flex items-center justify-center ">
-                      <img
-                        ref={qrRef}
-                        src={`https://api.qrserver.com/v1/create-qr-code/?data=${data.pageUrl}&size=200x200`}
-                        className="mt-5"
-                        alt="QR Code"
-                        crossOrigin="anonymous" // Set crossOrigin to avoid canvas security issues
+                    {showPhone ? (
+                      <MobilePreview
+                        data={data}
+                        customCss={customCss}
+                        link={false}
+                        profileimg={image}
+                        formData={formData}
                       />
-                    </div>
-                  )}
+                    ) : (
+                      // <img src={phone} class="object-contain" alt="Molog Logo" />
+                      <div className=" flex items-center justify-center ">
+                        <img
+                          ref={qrRef}
+                          src={`https://api.qrserver.com/v1/create-qr-code/?data=${data.pageUrl}&size=200x200`}
+                          className="mt-5"
+                          alt="QR Code"
+                          crossOrigin="anonymous" // Set crossOrigin to avoid canvas security issues
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
