@@ -308,6 +308,8 @@ function QrForm() {
   const [googleDiv, setGoogleDiv] = useState(false);
   const [addresDiv, setAddresDiv] = useState(false);
   const [bioDiv, setBioDiv] = useState(false);
+  const [backgroundChange, setBackgroundChange] = useState(false)
+  const [colorCustom, setColorCustom] = useState(false)
   const handleProfileDiv = () => {
     setProfileDiv(!profileDiv);
   };
@@ -323,6 +325,12 @@ function QrForm() {
   const handleGoogleDiv = () => {
     setGoogleDiv(!googleDiv);
   };
+  const handleBackgrondChange = () =>{
+    setBackgroundChange(!backgroundChange);
+  }
+  const handleColor = () =>{
+    setColorCustom(!colorCustom);
+  }
 
   const handleAddress = () => {
     setAddresDiv(!addresDiv);
@@ -1110,84 +1118,162 @@ function QrForm() {
                       </button>
                     </div>
                     <div className="flex flex-col gap-2 mt-16">
-                      <h1 className="text-xl font-bold">Background Image</h1>
                       <div className="flex gap-5 ">
-                        <img
-                          onClick={handleCustomCss}
-                          name="backgroundImage"
-                          value="https://cdn0070.qrcodechimp.com/images/digitalCard/youtuber_background.jpg?v=1715335332"
-                          width={"100px"}
-                          height={"50px"}
-                          src="https://cdn0070.qrcodechimp.com/images/digitalCard/youtuber_background.jpg?v=1715335332"
-                          alt=""
-                        />
-                      </div>
-                      <h1>Colors</h1>
-                      <div className="">
-                        <h1>Primary Color</h1>
-                        <div>
-                          <input
-                            type="color"
-                            name="PrimaryColor"
-                            value={customCss.PrimaryColor}
-                            onChange={handleCustomCss}
-                          />
-                          <div>{customCss.PrimaryColor}</div>
-                        </div>
+                      {console.log('------------------>customImg', customImg.data.data)}
 
-                        <div>
-                          Secondary Color:
+                    <div className="flex flex-col mb-12 w-full">
+                      <div className="flex gap-5 flex-col border shadow-md rounded-lg">
+                        <div className="flex justify-between items-center bg-[#f0f0ff] p-4 rounded-lg">
+                          <p
+                            style={linearGradientStyle}
+                            className=" font-sans font-medium text-[20px] tracking-wide "
+                          >
+                            Background Image
+                          </p>
+                          <label class="inline-flex items-center cursor-pointer">
+                            <input
+                              onClick={handleBackgrondChange}
+                              type="checkbox"
+                              value=""
+                              class="sr-only peer"
+                            />
+                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                          </label>
+                        </div>
+                        <div
+                          className={` ${
+                            backgroundChange ? "flex flex-col gap-4" : "hidden"
+                          }`}
+                        >
+                          <div class=" flex items-center ">
+                            <div className=" w-[90%] flex gap-4 p-4">
+                            {customImg.data.data.map((image, index)=>(
+                            <div className="w-16 h-16 rounded-lg overflow-hidden">
+                            <img src={image.url} alt="" 
+                            onClick={handleCustomCss}
+                            name="backgroundImage"
+                            value={image.url}
+                            key={index}
+                            className="h-full w-full object-cover cursor-pointer"
+                            />
+                            </div>))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div className="flex flex-col mb-12 w-full">
+                      <div className="flex gap-5 flex-col border shadow-md rounded-lg">
+                        <div className="flex justify-between items-center bg-[#f0f0ff] p-4 rounded-lg">
+                          <p
+                            style={linearGradientStyle}
+                            className=" font-sans font-medium text-[20px] tracking-wide "
+                          >
+                            Colors
+                          </p>
+                          <label class="inline-flex items-center cursor-pointer">
+                            <input
+                              onClick={handleColor}
+                              type="checkbox"
+                              value=""
+                              class="sr-only peer"
+                            />
+                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-0 peer-focus:ring-blue-00 dark:peer-focus:ring-blue-0 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#022D24]"></div>
+                          </label>
+                        </div>
+                        <div
+                          className={` ${
+                            colorCustom ? "flex flex-col gap-4" : "hidden"
+                          }`}
+                        >
+                          <div class=" flex flex-col items-center ">
+                            
+                      <div className=" w-[90%] flex justify-around gap-4 p-4">
+                            <div className="flex flex-col w-full gap-2">
+                            <h1 className="text-[#76859c]">Primary Color</h1>
+                            <div className="flex gap-3 border w-full border-slate-200"> 
+                              <input
+                                type="color"
+                                name="PrimaryColor"
+                                value={customCss.PrimaryColor}
+                                onChange={handleCustomCss}
+                              />
+                              <div>{customCss.PrimaryColor}</div>
+                            </div>
+                            </div>  
+                        <div className="flex flex-col w-full gap-2">
+                          <h1 className="text-[#76859c]">Secondary Color</h1>
+                          <div className="flex gap-3 border w-full border-slate-200">
                           <input
                             type="color"
                             name="SecondaryColor"
                             value={customCss.SecondaryColor}
                             onChange={handleCustomCss}
                           />
+                          <div>{customCss.SecondaryColor}</div>
+                          </div>
                         </div>
+                      
                       </div>
-
-                      <div className="flex gap-5">
-                        <div>
-                          Primary Profile Text color:
-                          <input
+                      <div className=" w-[90%] flex justify-around gap-4 p-4">
+                            <div className="flex flex-col w-full gap-2">
+                            <h1 className="text-[#76859c]">Primary Profile Text color</h1>
+                            <div className="flex gap-3 border w-full border-slate-200"> 
+                            <input
                             type="color"
                             name="PrimaryProfileText"
                             value={customCss.PrimaryProfileText}
                             onChange={handleCustomCss}
                           />
-                        </div>
-                        <div>
-                          Secondary Profile Text color:
+                              <div>{customCss.PrimaryProfileText}</div>
+                            </div>
+                            </div>  
+                        <div className="flex flex-col w-full gap-2">
+                          <h1 className="text-[#76859c]">Secondary Profile Text color</h1>
+                          <div className="flex gap-3 border w-full border-slate-200">
                           <input
                             type="color"
                             name="SecondaryProfileText"
                             value={customCss.SecondaryProfileText}
                             onChange={handleCustomCss}
                           />
+                          <div>{customCss.SecondaryProfileText}</div>
+                          </div>
                         </div>
+                      
                       </div>
-
-                      <div className="flex gap-5">
-                        <div>
-                          Primary Text color:
-                          <input
+                      <div className=" w-[90%] flex justify-around gap-4 p-4">
+                            <div className="flex flex-col w-full gap-2">
+                            <h1 className="text-[#76859c]">Primary Text color</h1>
+                            <div className="flex gap-3 border w-full border-slate-200"> 
+                            <input
                             type="color"
                             name="PrimaryText"
                             value={customCss.PrimaryText}
                             onChange={handleCustomCss}
                           />
-                        </div>
-                        <div>
-                          Secondary Text color:
+                              <div>{customCss.PrimaryText}</div>
+                            </div>
+                            </div>  
+                        <div className="flex flex-col w-full gap-2">
+                          <h1 className="text-[#76859c]">Secondary Text color</h1>
+                          <div className="flex gap-3 border w-full border-slate-200">
                           <input
                             type="color"
                             name="SecondaryText"
                             value={customCss.SecondaryText}
                             onChange={handleCustomCss}
                           />
+                          <div>{customCss.SecondaryText}</div>
+                          </div>
+                        </div>
+                      
+                      </div>
+                        </div>
                         </div>
                       </div>
-                      <div></div>
+                    </div>
                     </div>
                   </div>
                   
