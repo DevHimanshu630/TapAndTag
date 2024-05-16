@@ -1325,7 +1325,7 @@ function QrForm() {
                       </button>
                     </div>
                   </div>
-                  <div className="p-5  ">
+                  <div className="pt-5">
                     {showPhone ? (
                       <MobilePreview
                         data={data}

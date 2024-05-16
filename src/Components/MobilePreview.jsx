@@ -2,13 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import profile from "../Images/Photo by Edmond Dantès.png"
 import { FaUserEdit } from "react-icons/fa";
+import { ContactlessOutlined } from "@mui/icons-material";
+import { IoMdMail } from "react-icons/io";
+import { BiSolidPhoneCall } from "react-icons/bi";
+import { RiMessage2Fill } from "react-icons/ri";
+import { FaAddressCard } from "react-icons/fa6";
+
 
 
 function MobilePreview({ data, profileimg, formData, link, images , customCss}) {
   console.log('data for mobile preview---------->',customCss);
   const backgroundImageUrl = customCss && customCss.backgroundImage ? customCss.backgroundImage : '';
-  const PrimaryColor = customCss && customCss.PrimaryColor ? customCss.PrimaryColor : "white"
-  
+  const PrimaryColor = customCss && customCss.PrimaryColor ? customCss.PrimaryColor : "#EEEEEE";
+  const SecondaryColor = customCss && customCss.SecondaryColor ? customCss.SecondaryColor : "#000000";
+  const PrimaryProfileTextColor = customCss && customCss.PrimaryProfileText ? customCss.PrimaryProfileText : '#ffffff';
+  const SecondaryProfileTextColor = customCss && customCss.SecondaryProfileText ? customCss.SecondaryProfileText : '#ffffff';
+
   const multimg = Object?.keys(formData?.image?.files)?.map((key) => (
     <img
       key={key}
@@ -19,16 +28,15 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
   ));
   console.log(data.company);
   return (
-    <div className="flex justify-center relative w-[350px]">
-    <img src="/image/Iphone mockup.png" alt="" className="absolute " />    
-    <div className=" flex flex-col items-center justify-start w-[245px] rounded-3xl overflow-hidden h-[520px]"
+    <div className="flex justify-center relative w-[380px]">
+    <img src="/image/Iphone mockup.png" alt="" className="absolute w-full" />
+    <div className="flex flex-col items-center justify-start w-[265px] mt-2 rounded-3xl h-[565px] overflow-y-scroll"
     style={{ backgroundImage: `url('${backgroundImageUrl}')` }}>
       
                 {data ? (
-                        <div className="h-full overflow-hidden rounded-lg">
                             <div className="w-full h-full">
                                 <div className="w-full max-w-full border border-gray-200 rounded-2xl shadow dark:bg-gray-800 dark:border-gray-700">
-                                    <div className="flex justify-end px-4 pt-4">
+                                    <div className="flex bg-[#032720] justify-end px-4 pt-4">
                                         <button
                                             id="dropdownButton"
                                             data-dropdown-toggle="dropdown"
@@ -62,7 +70,7 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
                                                 <li>
                                                     <Link
                                                         to="#"
-                                                        className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                                        className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                     >
                                                         Delete
                                                     </Link>
@@ -70,7 +78,8 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
                                             </ul>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col items-center justify-center gap-3 h-32">
+                                    <div className="flex flex-col items-center justify-center gap-3 h-32"
+                                    style={{ backgroundImage: 'url("/image/phone look bg.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                                         <div className="flex gap-3">
                                             {profileimg ? (
                                                 link ? (
@@ -94,10 +103,12 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
                                                 />
                                             )}
                                             <div className="">
-                                                <h5 className="text-xl font-sans font-light text-[white]">
+                                                <h5 className="text-xl font-sans font-light"
+                                                style={{color: PrimaryProfileTextColor}}>
                                                     {data.name ? data.name : "Your Fullname"}
                                                 </h5>
-                                                <p className="text-xs text-[white]">
+                                                <p className="text-xs font-sans font-light"
+                                                style={{color: SecondaryProfileTextColor}}>
                                                     {data.designation ? data.designation : "Your Designation"}
                                                 </p>
                                             </div>
@@ -129,50 +140,68 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
                                     </div>
                                 </div>
                                 <div className="flex w-full items-start flex-col">
-                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5">EMAIL</div>
+                                    <div className = {`w-full mt-6 border-[#EEEEEE] rounded-[8px] border flex-shrink-0`}
+                                    >
+                                        <div className={`w-full font-sans py-1 bg-[#EEEEEE] px-5`}
+                                        style={{ color: PrimaryColor }}
+                                        >EMAIL</div>
                                         <div className="flex items-center gap-4 p-2 px-5 font-snas">
-                                            <img src="/image/email.png" alt="" />
-                                            <p>{data.email ? data.email : "yourname@gmail.in"}</p>
+                                            <IoMdMail color={PrimaryColor} size='25px'/>
+                                            <p style={{color: SecondaryColor}}>{data.email ? data.email : "yourname@gmail.in"}</p>
                                         </div>
                                     </div>
-                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5">Mobile</div>
+                                    <div className="w-full mt-6 rounded-[8px] border-[#EEEEEE] border flex-shrink-0"
+                                    >
+                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5"
+                                        style={{ color: PrimaryColor }}>Mobile</div>
                                         <div className="flex items-center gap-4 p-2 px-5 font-snas">
-                                            <img src="/image/phone.png" alt="" />
-                                            <p>{data.mobile ? data.mobile : "+91 701772XXXX"}</p>
+                                            <BiSolidPhoneCall color={PrimaryColor} size='25px'/>
+                                            <p style={{color: SecondaryColor}}>{data.mobile ? data.mobile : "+91 701772XXXX"}</p>
                                         </div>
                                     </div>
-                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5">SMS</div>
+                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0"
+                                    >
+                                        <div className="w-full font-sans py-1 bg-[#EEEEEE] px-5"
+                                        style={{ color: PrimaryColor }}>SMS</div>
                                         <div className="flex items-center gap-4 p-2 px-5 font-snas">
-                                            <img src="/image/sms.png" alt="" />
-                                            <p>{data.sms ? data.sms : "+91 701772XXXX"}</p>
+                                            <RiMessage2Fill color={PrimaryColor} size='25px'/>
+                                            <p style={{color: SecondaryColor}}>{data.sms ? data.sms : "+91 701772XXXX"}</p>
                                         </div>
                                     </div>
-                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5">ADDRESS</div>
+                                    <div className="w-full mt-6 border-[#EEEEEE] rounded-[8px] border flex-shrink-0"
+                                    >
+                                        <div className="w-full bg-[#EEEEEE] font-sans py-1 px-5"
+                                        style={{ color: PrimaryColor }}>ADDRESS</div>
                                         <div className="flex items-center gap-4 p-2 px-5 font-snas">
-                                            <p>
+                                        <FaAddressCard color={PrimaryColor} size='75px'/>
+                                            <p style={{color: SecondaryColor}}>
                                                 {data.address1 ? data.address1 : "813, Udyog Vihar Phase V,"} {data.address2 ? data.address2 : "Gurugram,"} {data.city ? data.city : "Haryana,"}
                                                 {data.state ? data.state : "Uttar Pradesh,"} {data.country ? data.country : "India,"} {data.pinCode ? data.pinCode : "122016"}
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5">Designation</div>
-                                        <div className="flex items-center gap-4 p-2 px-5 font-snas">
+                                    <div className="w-full mt-6 border-[#EEEEEE] rounded-[8px] border flex-shrink-0"
+                                    >
+                                        <div className="w-full bg-[#EEEEEE] font-sans py-1 px-5"
+                                        style={{ color: PrimaryColor }}>Designation</div>
+                                        <div className="flex items-center gap-4 p-2 px-5 font-snas"
+                                        style={{color: SecondaryColor}}>
                                             {data.designation ? data.designation : "Your Designation"}
                                         </div>
                                     </div>
-                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5">Company</div>
-                                        <div className="flex items-center gap-4 p-2 px-5 font-snas">
+                                    <div className="w-full mt-6 border-[#EEEEEE] rounded-[8px] border flex-shrink-0"
+                                    >
+                                        <div className="w-full bg-[#EEEEEE] font-sans py-1 px-5"
+                                        style={{ color: PrimaryColor }}>Company</div>
+                                        <div className="flex items-center gap-4 p-2 px-5 font-snas"
+                                        style={{color: SecondaryColor}}>
                                             {data.companyName ? data.companyName : "Your Company"}
                                         </div>
                                     </div>
-                                    <div className="w-full mt-6 rounded-[8px] border border-[#EEEEEE] flex-shrink-0">
-                                        <div className="w-full font-sans bg-[#EEEEEE] py-1 px-5">Images</div>
+                                    <div className="w-full mt-6 border-[#EEEEEE] rounded-[8px] border flex-shrink-0"
+                                    >
+                                        <div className="w-full bg-[#EEEEEE] font-sans py-1 px-5"
+                                        style={{ color: PrimaryColor }}>Images</div>
                                         <div className="flex flex-wrap items-center gap-4 p-2 px-5">
                                             {link ? (
                                                 <div className="flex gap-2">
@@ -187,7 +216,7 @@ function MobilePreview({ data, profileimg, formData, link, images , customCss}) 
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        
                     ) : (
                         <p>Loading...</p>
                     )}
