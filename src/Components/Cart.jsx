@@ -25,7 +25,7 @@ function Cart() {
                 <span className='xl:text-[16px]  font-[inter] font-normal  text-sm text-[#AEB3B6]'>Select the card category that aligns most fittingly with your inclinations.</span>
             </div>
             <div class=" flex flex-wrap justify-center gap-5  md:gap-14    ">
-                <div style={sectionStyle} class="flex items-center  font-[inter] font-bold justify-center text-white text-[20px]  w-[140px]   ">
+                {/* <div style={sectionStyle} class="flex items-center  font-[inter] font-bold justify-center text-white text-[20px]  w-[140px]   ">
                     <p>Classic</p>
                 </div>
                 <div style={sectionStyle} class="flex items-center  font-[inter] font-bold justify-center text-white text-[20px] w-[140px]   ">
@@ -33,7 +33,10 @@ function Cart() {
                 </div>
                 <div style={sectionStyle} class="flex items-center  font-[inter] font-bold justify-center text-white text-[20px] w-[140px]   ">
                     <p>Metal</p>
-                </div>
+                </div> */}
+                <img src="/classic.png" className='w-[140px]' alt="" />
+                <img src="/wood.png" className='w-[140px]' alt="" />
+                <img src="/metal.png" className='w-[140px]' alt="" />
             </div>
         </div>
     )

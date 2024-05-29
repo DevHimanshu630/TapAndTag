@@ -33,7 +33,7 @@ function OrderDetail() {
     <div className='flex bg-white shadow-md border rounded-md mt-48 p-12 m-72'>
       <div className='flex-[0.3] flex gap-4 items-center'>
       <div className='flex gap-2'>
-      <img src="/metal.jpg" className='w-[10rem] rounded-xl' alt="" />
+      <img src="/classic.png" className='w-[10rem] rounded-xl' alt="" />
       </div> 
       <div className='flex gap-14 flex-col font-sans text-[#4D4D4D]'> 
       <div>

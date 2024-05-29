@@ -102,7 +102,7 @@ function CheckoutForm({ handleClose, selectedform, setOpen }) {
           <CardCart
             show={"Classic"}
             val={cart.plasticCard}
-            image={"/classic.jpg"}
+            image={"/classic.png"}
             data={"plasticCard"}
             cart={cart}
             setCart={setCart}
@@ -114,7 +114,7 @@ function CheckoutForm({ handleClose, selectedform, setOpen }) {
             show={"Wood"}
             val={cart.woodCard}
             data={"woodCard"}
-            image={"/wood.jpg"}
+            image={"/wood.png"}
             cart={cart}
             setCart={setCart}
             edit={true}
@@ -125,7 +125,7 @@ function CheckoutForm({ handleClose, selectedform, setOpen }) {
             show={"Metal"}
             val={cart.metalCard}
             data={"metalCard"}
-            image={"/metal.jpg"}
+            image={"/metal.png"}
             cart={cart}
             setCart={setCart}
             edit={true}

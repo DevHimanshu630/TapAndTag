@@ -208,7 +208,7 @@ function CheckoutCart() {
                         cart={mordiCart} 
                         setCart={setMordiCart} 
                         data={'plasticCard'} 
-                        image={"/classic.jpg"} 
+                        image={"/classic.png"} 
                         edit={edit} 
                         show={'Classic'}
                         index={index}
@@ -217,7 +217,7 @@ function CheckoutCart() {
                         cart={mordiCart} 
                         setCart={setMordiCart} 
                         data={'woodCard'} 
-                        image={"/wood.jpg"} 
+                        image={"/wood.png"} 
                         edit={edit} 
                         show={'Wood'}
                         index={index}
@@ -226,7 +226,7 @@ function CheckoutCart() {
                         cart={mordiCart} 
                         setCart={setMordiCart} 
                         data={'metalCard'} 
-                        image={"/metal.jpg"} 
+                        image={"/metal.png"} 
                         edit={edit} 
                         show={'Metal'}
                         index={index}

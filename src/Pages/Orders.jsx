@@ -48,7 +48,7 @@ function Orders() {
         <CardContent className='flex  items-center justify-between  gap-32 '>
           <div className='flex gap-4 items-center'>
           <div className='flex gap-2'>
-          <img src="/metal.jpg" className='w-[10rem] rounded-xl' alt="" />
+          <img src="/classic.png" className='w-[10rem] rounded-xl' alt="" />
           </div> 
           <div className='flex font-sans text-[#4D4D4D] flex-col'> 
           <h2 className=' font-semibold'>Ordered Item: </h2>
