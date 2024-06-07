@@ -11,6 +11,9 @@ module.exports = {
         '2000': '2000ms',
       }
     },
+    fontFamily: {
+      'primary':['HelveticNeue'],
+   } 
   },
   plugins: [require("tw-elements-react/dist/plugin.cjs")],
 }

@@ -93,19 +93,19 @@ function QrForm() {
   }, [formId, token]);
 
   const [customImg, setCustomImg] = useState({})
-  useEffect(()=>{
-    const fetching = async() =>{
-      const data = await axios.get('users/background_images',{
-        headers: {
-          "Content-Type": "multipart/form-data", // Set content type for FormData
-          Authorization: `Bearer ${token}`,
-        },
-    })
-    setCustomImg(data)
-    }
-    fetching()
-  },[])
-
+  // useEffect(()=>{ 
+  //   const fetching = async() =>{
+  //     const data = await axios.get('users/background_images',{
+  //       headers: {
+  //         "Content-Type": "multipart/form-data", // Set content type for FormData
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //   })
+  //   setCustomImg(data)
+  //   }
+  //   fetching()
+  // },[])
+ 
   const navigate = useNavigate();
   const linearGradientStyle = {
     background: "linear-gradient(90deg, #022D24 0%, #146C60 94.17%)",
@@ -1119,7 +1119,7 @@ function QrForm() {
                     </div>
                     <div className="flex flex-col gap-2 mt-16">
                       <div className="flex gap-5 ">
-                      {console.log('------------------>customImg', customImg.data.data)}
+                      {/* {console.log('------------------>customImg', customImg.data.data)} */}
 
                     <div className="flex flex-col mb-12 w-full">
                       <div className="flex gap-5 flex-col border shadow-md rounded-lg">
@@ -1147,7 +1147,7 @@ function QrForm() {
                         >
                           <div class=" flex items-center ">
                             <div className=" w-[90%] flex gap-4 p-4">
-                            {customImg.data.data.map((image, index)=>(
+                            {/* {customImg.data.data.map((image, index)=>(
                             <div className="w-16 h-16 rounded-lg overflow-hidden">
                             <img src={image.url} alt="" 
                             onClick={handleCustomCss}
@@ -1156,7 +1156,7 @@ function QrForm() {
                             key={index}
                             className="h-full w-full object-cover cursor-pointer"
                             />
-                            </div>))}
+                            </div>))} */}
                             </div>
                           </div>
                         </div>

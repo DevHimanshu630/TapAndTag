@@ -41,6 +41,8 @@ import PendingCards from './Admin/AdminPages/PendingCards';
 import Printed from './Admin/AdminPages/Printed';
 import { PrintContextProvider } from './Admin/Context/PrintCards';
 import { OrderNowContextProvider } from './Context/Ordernow';
+import Landing from './Pages/Landing';
+import { ErrorBoundary } from 'react-error-boundary';
 
 
 function App() {
@@ -56,7 +58,8 @@ function App() {
     <OrderNowContextProvider>
         <CartContextProvider>
             <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Landing />} />
+            {/* <Route path="/" element={<Home />} /> */}
             {/* <Route path='/checkout' element={<CheckoutForm/>}/> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
@@ -86,7 +89,8 @@ function App() {
             ):(
               <>
               <Route path='/qrform' element={<QrForm />} />
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Landing />} />
+              {/* <Route path="/" element={<Home />} /> */}
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/product" element={<Product />} />

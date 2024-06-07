@@ -13,11 +13,25 @@
   url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.ttf")format("truetype"),
   url("https://db.onlinewebfonts.com/t/04f7cfc7a58fe57373d0396aba73970d.svg#Tenderness Regular")format("svg");
 }
+@font-face {
+  font-family: 'HelveticNeue';
+  src: url('/public/Fonts/HelveticaNeue-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Tanderness';
+  src: url('/public/Fonts/Tenderness.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 body{
   /* font-family: 'Tenderness'; */
   font-family:'Tenderness Regular' ;
 }
-
+.tanderness{
+  font-family: 'Tanderness';
+}
 
 /* Cookie Concent------- */
 
@@ -93,6 +107,9 @@ header h2 {
 } */
 
 /* ------------------Loader */
+.fontopen{
+  font-family: sans-serif;
+}
 .loading{
   background:#1f2937;
   display:flex;
